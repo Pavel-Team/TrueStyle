@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_articles.xml" value="0.27291666666666664" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_clothes_search.xml" value="0.17889492753623187" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_profile.xml" value="0.27291666666666664" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_recommendation.xml" value="0.17889492753623187" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/menu/bottom_nav_menu.xml" value="0.27291666666666664" />
       </map>
     </option>
   </component>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_recommendation"
+        android:icon="@drawable/icon_recommendation"
+        android:title="@string/title_recommendation" />
+
+    <item
+        android:id="@+id/navigation_clothes_search"
+        android:icon="@drawable/icon_recommendation"
+        android:title="@string/title_clothes_search" />
+
+    <item
+        android:id="@+id/navigation_articles"
+        android:icon="@drawable/icon_recommendation"
+        android:title="@string/title_articles" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/icon_recommendation"
+        android:title="@string/title_profile" />
+
+</menu>

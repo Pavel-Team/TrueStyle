@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">True Style</string>
+
+    <string name="title_recommendation">Recommendation</string>
+    <string name="title_clothes_search">Search</string>
+    <string name="title_articles">Articles</string>
+    <string name="title_profile">Profile</string>
+
 </resources>
