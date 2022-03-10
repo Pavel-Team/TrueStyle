@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_recommendation"
-        android:icon="@drawable/icon_recommendation"
+        android:icon="@drawable/ic_recommendation"
         android:title="@string/title_recommendation" />
 
     <item
         android:id="@+id/navigation_clothes_search"
-        android:icon="@drawable/icon_recommendation"
-        android:title="@string/title_clothes_search" />
+        android:icon="@drawable/ic_photo"
+        android:title="@string/title_clothes_search"/>
 
     <item
         android:id="@+id/navigation_articles"
-        android:icon="@drawable/icon_recommendation"
-        android:title="@string/title_articles" />
+        android:icon="@drawable/ic_articles"
+        android:title="@string/title_articles"/>
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/icon_recommendation"
+        android:icon="@drawable/ic_profile"
         android:title="@string/title_profile" />
 
 </menu>

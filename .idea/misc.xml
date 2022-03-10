@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_articles.xml" value="0.15885416666666666" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_photo.xml" value="0.15885416666666666" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_profile.xml" value="0.15885416666666666" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_recommendation.xml" value="0.15885416666666666" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_articles.xml" value="0.27291666666666664" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_clothes_search.xml" value="0.17889492753623187" />
