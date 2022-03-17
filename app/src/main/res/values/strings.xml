@@ -6,4 +6,14 @@
     <string name="title_articles">Articles</string>
     <string name="title_profile">Profile</string>
 
+    <string name="content_description_ic_plus">Make photo</string>
+    <string name="example_quote">Мода - это игра, в которую нужно играть серьезно</string>
+    <string name="tech_support">Support</string>
+    <string name="estimate">Estimate</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="title_recommendation_articles">Your style</string>
+    <string name="title_recommendation_clothes">Recommended</string>
+
+    <string name="image_clothes">Image clothes</string>
+
 </resources>

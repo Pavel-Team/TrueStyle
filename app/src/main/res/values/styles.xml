@@ -1,3 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--Стиль для TextView заголовка приложения-->
+    <style name="titleAppTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/playball_regular</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <!--Стиль для TextView цитаты-->
+    <style name="quoteTextViewStile" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/roboto_italic</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:justificationMode" tools:targetApi="o">inter_word</item>
+    </style>
+
+    <!--Стиль для TextView автора цитаты-->
+    <style name="authorQuoteTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/roboto_thin</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--Стиль для TextView заголовков-->
+    <style name="titleTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!--Стиль для TextView обычного текста-->
+    <style name="textTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!--Стиль для TextView ссылок-->
+    <style name="linkTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/light_blue</item>
+        <item name="fontFamily">@font/roboto_thin</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
 </resources>

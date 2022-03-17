@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_recommendation">Рекомендации</string>
+    <string name="title_clothes_search">Поиск по фото</string>
+    <string name="title_articles">Статьи</string>
+    <string name="title_profile">Профиль</string>
+
+    <string name="content_description_ic_plus">Сделать фото</string>
+    <string name="tech_support">Техподдержка</string>
+    <string name="estimate">Оценить</string>
+    <string name="subscribe">Подписаться</string>
+    <string name="title_recommendation_articles">Ваш стиль</string>
+    <string name="title_recommendation_clothes">Рекомендуем</string>
+
+    <string name="image_clothes">Изображение одежды</string>
+</resources>

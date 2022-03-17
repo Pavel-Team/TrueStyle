@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_window">16dp</dimen>
+
+    <dimen name="width_ic_plus">29dp</dimen>
+    <dimen name="margin_quote">48dp</dimen>
+    <dimen name="margin_quote_top">24dp</dimen>
+    <dimen name="width_quote_line">96dp</dimen>
+    <dimen name="height_quote_line">2dp</dimen>
+    <dimen name="radius_corners_quote_line">1dp</dimen>
+    <dimen name="margin_bottom_layout_add_actions">10dp</dimen>
+    <dimen name="margin_circle_add_actions">5dp</dimen>
+    <dimen name="width_circle_add_actions">2dp</dimen>
+    <dimen name="margin_recommendation_recycler_view">10dp</dimen>
+    <dimen name="margin_top_title_recommendation_clothes">30dp</dimen>
+    <dimen name="margin_top_title_recommendation_articles">30dp</dimen>
+    <dimen name="margin_bottom_recommendation_articles_recycler_view">30dp</dimen>
+
+    <dimen name="width_item_clothes">150dp</dimen>
+    <dimen name="height_image_clothes">176dp</dimen>
+    <dimen name="radius_image_clothes">12dp</dimen>
+    <dimen name="margin_text_clothes">8dp</dimen>
+    <dimen name="width_item_article">120dp</dimen>
+    <dimen name="height_image_article">122dp</dimen>
+</resources>
