@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_recommendation">
+
+    <fragment
+        android:id="@+id/navigation_recommendation"
+        android:name="ru.dm.android.truestyle.ui.screen.RecommendationFragment"
+        android:label="@string/title_recommendation"
+        tools:layout="@layout/fragment_recommendation" />
+
+    <fragment
+        android:id="@+id/navigation_clothes_search"
+        android:name="ru.dm.android.truestyle.ui.screen.ClothesSearchFragment"
+        android:label="@string/title_clothes_search"
+        tools:layout="@layout/fragment_clothes_search" />
+
+    <fragment
+        android:id="@+id/navigation_articles"
+        android:name="ru.dm.android.truestyle.ui.screen.ArticlesFragment"
+        android:label="@string/title_articles"
+        tools:layout="@layout/fragment_articles" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="ru.dm.android.truestyle.ui.screen.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>
