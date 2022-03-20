@@ -1,25 +1,23 @@
-/**Модель одного экземпляра одежды в рекомендациях*/
+/**Модель одного экземпляра одежды (страница с подробной информацией об одежде)*/
 package ru.dm.android.truestyle.model
 
 import android.util.Log
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
 
-data class Clothes(private val _title: String,
-                   private val _imageUrl: String): BaseObservable() {
+data class Clothes(val id: Int,
+                   val imageUrl: String,
+                   val title: String,
+                   val color: String,
+                   private val _season: List<String>,
+                   val size: Int,
+                   val gender: String,
+                   val type: String) {
 
-    @get:Bindable
-    var title: String = _title
-    set(value) {
-        field = value
-        notifyChange()
-    }
-
-    @get:Bindable
-    var imageUrl: String = _imageUrl
-    set(value) {
-        field = value
-        notifyChange()
+    var seasons = ""
+    get() {
+        for (value in _season)
+            field += "$value, "
+        field = field.substring(0, field.length-2)
+        return field
     }
 
 }

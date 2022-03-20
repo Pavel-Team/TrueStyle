@@ -37,7 +37,8 @@
             android:layout_marginEnd="@dimen/margin_window"
             android:scaleType="centerCrop"
             android:background="@null"
-            android:contentDescription="@string/content_description_ic_plus" />
+            android:contentDescription="@string/content_description_ic_plus"
+            android:onClick="@{() -> viewModel.onClickPlus()}"/>
 
         <TextView
             android:id="@+id/quote"
