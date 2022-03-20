@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="width_icon_splash_screen">150dp</dimen>
+
     <dimen name="margin_window">16dp</dimen>
+
+    <dimen name="min_height_button">10dp</dimen>
+    <dimen name="padding_top_button">7dp</dimen>
+    <dimen name="padding_bottom_button">8dp</dimen>
+    <dimen name="padding_start_end_button">10dp</dimen>
+    <dimen name="stroke_white_button">1dp</dimen>
 
     <dimen name="width_ic_plus">29dp</dimen>
     <dimen name="margin_quote">48dp</dimen>
@@ -22,4 +30,17 @@
     <dimen name="margin_text_clothes">8dp</dimen>
     <dimen name="width_item_article">120dp</dimen>
     <dimen name="height_image_article">122dp</dimen>
+
+    <dimen name="characters_table_padding_top_bottom">5dp</dimen>
+    <dimen name="margin_start_end_row_characters">10dp</dimen>
+    <dimen name="margin_top_row_characters">5dp</dimen>
+    <dimen name="margin_bottom_row_characters">4dp</dimen>
+    <dimen name="radius_button">10dp</dimen>
+    <dimen name="row_characters_line_height">1dp</dimen>
+    <dimen name="radius_table_characters">16dp</dimen>
+
+    <dimen name="margin_image_clothes_search">56dp</dimen>
+    <dimen name="margin_start_buttons_search_clothes">24dp</dimen>
+    <dimen name="margin_between_buttons_search_clothes">8dp</dimen>
+    <dimen name="margin_horizontal_buttons_search_clothes">21dp</dimen>
 </resources>

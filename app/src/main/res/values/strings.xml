@@ -6,6 +6,8 @@
     <string name="title_articles">Articles</string>
     <string name="title_profile">Profile</string>
 
+    <string name="fragment_clothes">Clothes</string>
+
     <string name="content_description_ic_plus">Make photo</string>
     <string name="example_quote">Мода - это игра, в которую нужно играть серьезно</string>
     <string name="tech_support">Support</string>
@@ -15,5 +17,19 @@
     <string name="title_recommendation_clothes">Recommended</string>
 
     <string name="image_clothes">Image clothes</string>
+
+    <string name="button_add_to_wardrobe">Add to wardrobe</string>
+    <string name="row_characters_title">Title</string>
+    <string name="row_characters_color">Color</string>
+    <string name="row_characters_season">Season</string>
+    <string name="row_characters_size">Size</string>
+    <string name="row_characters_gender">Gender</string>
+    <string name="row_characters_type">Type</string>
+    <string name="row_characters_example_value">value</string>
+
+    <string name="title_search_clothes">Search</string>
+    <string name="descriprion_image_clothes_search">Make photo - find clothes</string>
+    <string name="button_load_photo">Select from gallery</string>
+    <string name="button_make_photo">Make photo</string>
 
 </resources>

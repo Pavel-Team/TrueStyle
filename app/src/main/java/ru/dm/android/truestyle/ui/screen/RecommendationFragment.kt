@@ -7,15 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.dm.android.truestyle.R
-import ru.dm.android.truestyle.databinding.FragmentArticlesBinding
 import ru.dm.android.truestyle.databinding.FragmentRecommendationBinding
-import ru.dm.android.truestyle.model.Clothes
 import ru.dm.android.truestyle.ui.screen.adapter.ArticleRecommendationAdapter
 import ru.dm.android.truestyle.ui.screen.adapter.ClothesRecommendationAdapter
-import ru.dm.android.truestyle.viewmodel.ArticlesViewModel
 import ru.dm.android.truestyle.viewmodel.RecommendationViewModel
 
 private const val TAG = "RecommendationFragment"
@@ -38,15 +33,15 @@ public class RecommendationFragment : Fragment() {
         _binding = FragmentRecommendationBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        _binding!!.lifecycleOwner = this@RecommendationFragment
-        _binding!!.viewModel = recommendationViewModel
+        binding.lifecycleOwner = this@RecommendationFragment
+        binding.viewModel = recommendationViewModel
 
         //Настраиваем RecyclerView с рекомендациями для одежды и статей
-        _binding!!.clothesRecommendationRecyclerView.apply{
+        binding.clothesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ClothesRecommendationAdapter(context, recommendationViewModel.liveDataClothes.value!!) //ВРЕМЕННО
+            adapter = ClothesRecommendationAdapter(context, recommendationViewModel.liveDataClothes.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
-        _binding!!.articlesRecommendationRecyclerView.apply{
+        binding.articlesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = ArticleRecommendationAdapter(context, recommendationViewModel.liveDataArticles.value!!) //ВРЕМЕННО
         }

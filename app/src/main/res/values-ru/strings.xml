@@ -5,6 +5,8 @@
     <string name="title_articles">Статьи</string>
     <string name="title_profile">Профиль</string>
 
+    <string name="fragment_clothes">Обзор одежды</string>
+
     <string name="content_description_ic_plus">Сделать фото</string>
     <string name="tech_support">Техподдержка</string>
     <string name="estimate">Оценить</string>
@@ -13,4 +15,17 @@
     <string name="title_recommendation_clothes">Рекомендуем</string>
 
     <string name="image_clothes">Изображение одежды</string>
+
+    <string name="button_add_to_wardrobe">Добавить в гардероб</string>
+    <string name="row_characters_title">Название</string>
+    <string name="row_characters_color">Цвет</string>
+    <string name="row_characters_season">Сезон</string>
+    <string name="row_characters_size">Размер</string>
+    <string name="row_characters_gender">Пол</string>
+    <string name="row_characters_type">Тип</string>
+
+    <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>
+    <string name="button_load_photo">Выбрать из галереи</string>
+    <string name="button_make_photo">Сделать фото</string>
+
 </resources>

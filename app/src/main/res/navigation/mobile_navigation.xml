@@ -9,7 +9,14 @@
         android:id="@+id/navigation_recommendation"
         android:name="ru.dm.android.truestyle.ui.screen.RecommendationFragment"
         android:label="@string/title_recommendation"
-        tools:layout="@layout/fragment_recommendation" />
+        tools:layout="@layout/fragment_recommendation" >
+        <action
+            android:id="@+id/action_navigation_recommendation_to_fragment_clothes"
+            app:destination="@id/fragment_clothes" />
+        <action
+            android:id="@+id/action_navigation_recommendation_to_navigation_clothes_search"
+            app:destination="@id/navigation_clothes_search" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_clothes_search"
@@ -28,5 +35,15 @@
         android:name="ru.dm.android.truestyle.ui.screen.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/fragment_clothes"
+        android:name="ru.dm.android.truestyle.ui.screen.ClothesFragment"
+        android:label="@string/fragment_clothes"
+        tools:layout="@layout/fragment_clothes">
+        <argument
+            android:name="clothes_id"
+            android:defaultValue="-1" />
+    </fragment>
 
 </navigation>

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="ru.dm.android.truestyle.model.Article" />
+            type="ru.dm.android.truestyle.model.ArticleRecommendation" />
     </data>
 
     <LinearLayout

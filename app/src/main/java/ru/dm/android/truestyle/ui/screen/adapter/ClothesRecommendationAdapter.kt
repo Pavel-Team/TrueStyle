@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemClothesRecommendationBinding
 import ru.dm.android.truestyle.model.Clothes
+import ru.dm.android.truestyle.model.ClothesRecommendation
 import ru.dm.android.truestyle.ui.screen.holder.ClothesHolder
 
 class ClothesRecommendationAdapter(private val context: Context,
-                                   private val listClothes: List<Clothes>): RecyclerView.Adapter<ClothesHolder>() {
+                                   private val listClothes: List<ClothesRecommendation>): RecyclerView.Adapter<ClothesHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothesHolder {
         val binding = DataBindingUtil.inflate<ItemClothesRecommendationBinding>(

@@ -8,11 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemArticleRecommendationBinding
-import ru.dm.android.truestyle.model.Article
+import ru.dm.android.truestyle.model.ArticleRecommendation
 import ru.dm.android.truestyle.ui.screen.holder.ArticleHolder
 
 class ArticleRecommendationAdapter(private val context: Context,
-                                   private val listArticles: List<Article>): RecyclerView.Adapter<ArticleHolder>(){
+                                   private val listArticles: List<ArticleRecommendation>): RecyclerView.Adapter<ArticleHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
         val binding = DataBindingUtil.inflate<ItemArticleRecommendationBinding>(
