@@ -17,4 +17,7 @@
 
     <color name="strong_gray">#B3000000</color>
     <color name="light_gray">#1B000000</color>
+
+    <color name="light_purple">#D300F5</color>
+    <color name="yellow">#FFC700</color>
 </resources>

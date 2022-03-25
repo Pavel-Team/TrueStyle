@@ -32,4 +32,18 @@
     <string name="button_load_photo">Select from gallery</string>
     <string name="button_make_photo">Make photo</string>
 
+    <string name="settings">Settings</string>
+    <string name="user_style">User style</string>
+    <string name="row_user_height">Height</string>
+    <string name="row_user_weight">Weight</string>
+    <string name="row_user_gender">Gender</string>
+    <string name="hint_user_name">user.name</string>
+    <string name="hint_style_user">Unknown style</string>
+    <string name="value_user_table">Fill in</string>
+    <string name="wardrobe">Your wardrobe</string>
+    <string name="title_autumn">Autumn</string>
+    <string name="title_summer">Summer</string>
+    <string name="title_winter">Winter</string>
+    <string name="title_spring">Spring</string>
+
 </resources>
