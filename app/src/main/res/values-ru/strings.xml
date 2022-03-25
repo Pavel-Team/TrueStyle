@@ -28,4 +28,17 @@
     <string name="button_load_photo">Выбрать из галереи</string>
     <string name="button_make_photo">Сделать фото</string>
 
+    <string name="settings">Настройки</string>
+    <string name="user_style">Стиль пользователя</string>
+    <string name="row_user_height">Рост</string>
+    <string name="row_user_weight">Вес</string>
+    <string name="row_user_gender">Пол</string>
+    <string name="hint_style_user">Неизвестный стиль</string>
+    <string name="value_user_table">Заполните</string>
+    <string name="wardrobe">Ваш гардероб</string>
+    <string name="title_autumn">Осень</string>
+    <string name="title_summer">Лето</string>
+    <string name="title_winter">Зима</string>
+    <string name="title_spring">Весна</string>
+
 </resources>

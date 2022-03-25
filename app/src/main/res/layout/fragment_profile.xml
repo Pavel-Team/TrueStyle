@@ -3,19 +3,267 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="ru.dm.android.truestyle.viewmodel.ProfileViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.screen.ProfileFragment">
 
         <TextView
+            android:id="@+id/user_name"
+            style="@style/titleTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:text="@{viewModel.liveData.name}"
+            android:hint="@string/hint_user_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="24sp"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_window"/>
+
+        <ImageButton
+            android:layout_width="@dimen/width_ic_settings"
+            android:layout_height="@dimen/width_ic_settings"
+            app:layout_constraintTop_toTopOf="@id/user_name"
+            app:layout_constraintBottom_toBottomOf="@id/user_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_window"
+            android:src="@drawable/ic_settings"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/settings"
+            android:background="@null"/>
+
+        <LinearLayout
+            android:id="@+id/user_style_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            android:background="@drawable/background_user_style"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_top_user_style"
+            android:padding="@dimen/padding_user_style"
+            android:paddingEnd="@dimen/padding_end_user_style">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/width_image_user_style"
+                android:layout_height="@dimen/width_image_user_style"
+                app:cardCornerRadius="@dimen/radius_image_clothes"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/example_style_user"
+                    android:contentDescription="@string/user_style"
+
+                    android:src="@drawable/example_style_user"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                style="@style/textTextViewStyle.charactersTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.liveData.style}"
+                android:hint="@string/hint_style_user"
+                android:layout_marginStart="@dimen/margin_start_text_user_style"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/user_info_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/user_style_layout"
+            android:layout_margin="@dimen/margin_window"
+            android:orientation="vertical"
+            android:background="@drawable/background_layout_characteristics"
+            android:paddingTop="@dimen/characters_table_padding_top_bottom"
+            android:paddingBottom="@dimen/characters_table_padding_top_bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                style="@style/rowCharactersLinearLayout">
+                <TextView
+                    style="@style/textTextViewStyle.charactersTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/row_user_height"
+                    android:layout_weight="2"/>
+                <TextView
+                    style="@style/textTextViewStyle.charactersTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:hint="@string/value_user_table"
+                    android:layout_weight="1"
+                    android:text="@{viewModel.liveData.height}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                style="@style/rowCharactersLinearLayout">
+                <TextView
+                    style="@style/textTextViewStyle.charactersTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/row_user_weight"
+                    android:layout_weight="2"/>
+                <TextView
+                    style="@style/textTextViewStyle.charactersTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/value_user_table"
+                    android:layout_weight="1"
+                    android:text="@{viewModel.liveData.weight}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/margin_start_end_row_characters"
+                android:layout_marginEnd="@dimen/margin_start_end_row_characters"
+                android:layout_marginTop="@dimen/margin_top_row_characters"
+                android:layout_marginBottom="@dimen/margin_bottom_row_characters">
+                <TextView
+                    style="@style/textTextViewStyle.charactersTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/row_user_gender"
+                    android:layout_weight="2"/>
+                <TextView
+                    style="@style/textTextViewStyle.charactersTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/value_user_table"
+                    android:layout_weight="1"
+                    android:text="@{viewModel.liveData.gender}"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/text_wardrobe"
+            style="@style/titleTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/user_info_table"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_top_wardrobe"
+            android:text="@string/wardrobe" />
+
+        <ImageView
+            android:id="@+id/button_autumn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/background_autumn"
+            app:layout_constraintTop_toBottomOf="@id/text_wardrobe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_summer"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_top_seasons"
+            android:layout_marginEnd="@dimen/margin_horizontal_between_season"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/title_autumn" />
+
+        <TextView
+            style="@style/boldTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/button_autumn"
+            app:layout_constraintBottom_toBottomOf="@id/button_autumn"
+            app:layout_constraintStart_toStartOf="@id/button_autumn"
+            app:layout_constraintEnd_toEndOf="@id/button_autumn"
+            android:text="@string/title_autumn"/>
+
+        <ImageView
+            android:id="@+id/button_summer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/background_summer"
+            app:layout_constraintStart_toEndOf="@id/button_autumn"
+            app:layout_constraintTop_toBottomOf="@id/text_wardrobe"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/margin_horizontal_between_season"
+            android:layout_marginEnd="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_top_seasons"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/title_summer"/>
+
+        <TextView
+            style="@style/boldTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/button_summer"
+            app:layout_constraintBottom_toBottomOf="@id/button_summer"
+            app:layout_constraintStart_toStartOf="@id/button_summer"
+            app:layout_constraintEnd_toEndOf="@id/button_summer"
+            android:text="@string/title_summer"/>
+
+        <ImageView
+            android:id="@+id/button_winter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/margin_horizontal_between_season"
+            android:adjustViewBounds="true"
+            android:src="@drawable/background_winter"
+            app:layout_constraintEnd_toStartOf="@id/button_spring"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_autumn"
+            android:contentDescription="@string/title_winter"/>
+
+        <TextView
+            style="@style/boldTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/button_winter"
+            app:layout_constraintBottom_toBottomOf="@id/button_winter"
+            app:layout_constraintStart_toStartOf="@id/button_winter"
+            app:layout_constraintEnd_toEndOf="@id/button_winter"
+            android:text="@string/title_winter"/>
+
+        <ImageView
+            android:id="@+id/button_spring"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/background_spring"
+            app:layout_constraintStart_toEndOf="@id/button_winter"
+            app:layout_constraintTop_toBottomOf="@id/button_summer"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/margin_horizontal_between_season"
+            android:layout_marginEnd="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_window"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/title_spring"/>
+
+        <TextView
+            style="@style/boldTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/button_spring"
+            app:layout_constraintBottom_toBottomOf="@id/button_spring"
+            app:layout_constraintStart_toStartOf="@id/button_spring"
+            app:layout_constraintEnd_toEndOf="@id/button_spring"
+            android:text="@string/title_spring"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
