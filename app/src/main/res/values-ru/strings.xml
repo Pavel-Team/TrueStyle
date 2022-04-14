@@ -41,4 +41,9 @@
     <string name="title_winter">Зима</string>
     <string name="title_spring">Весна</string>
 
+    <string name="not_connection">Нет соединения</string>
+
+    <string name="content_description_ic_all_articles">Отркрыть все статьи</string>
+    <string name="example_title_recommended_article">Название статьи</string>
+
 </resources>

@@ -222,7 +222,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_window"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/margin_top_seasons"
             android:layout_marginEnd="@dimen/margin_horizontal_between_season"
             android:adjustViewBounds="true"
             android:src="@drawable/background_winter"
@@ -251,7 +251,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/margin_horizontal_between_season"
             android:layout_marginEnd="@dimen/margin_window"
-            android:layout_marginTop="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_top_seasons"
             android:adjustViewBounds="true"
             android:contentDescription="@string/title_spring"/>
 

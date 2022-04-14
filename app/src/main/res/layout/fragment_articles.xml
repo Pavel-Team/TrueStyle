@@ -3,19 +3,52 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.screen.ArticlesFragment">
+        tools:context=".ui.screen.ArticlesFragment"
+        android:background="@color/black">
+
+        <ViewFlipper
+            android:id="@+id/view_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <TextView
+            android:id="@+id/title_articles"
+            style="@style/titleAppTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Articles"
+            android:text="@string/articles"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_window"
+            android:textColor="@color/white"/>
+
+        <ImageButton
+            android:id="@+id/make_photo_image_button"
+            android:layout_width="@dimen/width_ic_plus"
+            android:layout_height="@dimen/width_ic_plus"
+            android:src="@drawable/ic_all_articles"
+            app:layout_constraintTop_toTopOf="@id/title_articles"
+            app:layout_constraintBottom_toBottomOf="@id/title_articles"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_window"
+            android:scaleType="centerCrop"
+            android:background="@null"
+            android:contentDescription="@string/content_description_ic_all_articles" />
+
+        <LinearLayout
+            android:id="@+id/layout_circles"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_window"
+            android:gravity="center"
+            android:orientation="vertical" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

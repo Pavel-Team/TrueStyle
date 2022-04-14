@@ -20,4 +20,8 @@
 
     <color name="light_purple">#D300F5</color>
     <color name="yellow">#FFC700</color>
+
+    <color name="transparent_black">#DB000000</color>
+    <color name="transparent_gray">#99000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

@@ -51,7 +51,13 @@
     <dimen name="margin_start_text_user_style">6dp</dimen>
     <dimen name="width_ic_settings">26dp</dimen>
     <dimen name="margin_top_user_style">24dp</dimen>
-    <dimen name="margin_top_seasons">12dp</dimen>
+    <dimen name="margin_top_seasons">16dp</dimen>
     <dimen name="margin_horizontal_between_season">8dp</dimen>
     <dimen name="margin_top_wardrobe">24dp</dimen>
+
+    <dimen name="width_image_not_connect">200dp</dimen>
+    <dimen name="margin_bottom_image_no_connect">100dp</dimen>
+
+    <dimen name="text_size_recommended_article">28sp</dimen>
+    <dimen name="width_circle_article">10dp</dimen>
 </resources>

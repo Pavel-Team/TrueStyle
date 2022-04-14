@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="ru.dm.android.truestyle.model.RecommendedArticle" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/example_recommended_article"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/title_articles"/>
+
+        <ru.dm.android.truestyle.ui.view.RecommendedArticleView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            style="@style/titleTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginBottom="@dimen/margin_window"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_recommended_article"
+            tools:textColorHint="@color/white"
+            tools:hint="@string/example_title_recommended_article" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
