@@ -13,7 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.screen.ProfileFragment">
+        tools:context=".ui.screen.ProfileFragment"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/user_name"

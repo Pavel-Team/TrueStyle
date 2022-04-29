@@ -3,16 +3,14 @@ package ru.dm.android.truestyle.ui.screen
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavArgs
-import androidx.navigation.fragment.navArgs
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
 import ru.dm.android.truestyle.viewmodel.ClothesViewModel
 
 private const val TAG = "ClothesFragment"
+private const val ARG_CLOTHES_ID = "clothes_id" //Константа для получения аргументов из Bundle
 
 class ClothesFragment : Fragment() {
 
@@ -20,7 +18,7 @@ class ClothesFragment : Fragment() {
     private var _binding: FragmentClothesBinding? = null
     private val binding get() = _binding!!
 
-    private var clothesId: Int = -1
+    private var clothesId: Int? = -1
     private var width = 0
 
 
@@ -28,8 +26,7 @@ class ClothesFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         //Достаем аргументы
-        val args: ClothesFragmentArgs by navArgs()
-        clothesId = args.clothesId
+        clothesId = arguments?.getInt(ARG_CLOTHES_ID, -1)
 
         //Получаем размеры ширины экрана
         val windowManager: WindowManager = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -44,7 +41,7 @@ class ClothesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         clothesViewModel = ViewModelProvider(this).get(ClothesViewModel::class.java)
 
         //Настраиваем dataBinding
@@ -70,4 +67,18 @@ class ClothesFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+
+
+    companion object {
+        fun newInstance(clothesId: Int): ClothesFragment {
+            val args = Bundle().apply {
+                putSerializable(ARG_CLOTHES_ID, clothesId)
+            }
+            return ClothesFragment().apply {
+                arguments = args
+            }
+        }
+    }
+
 }

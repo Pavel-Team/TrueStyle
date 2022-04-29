@@ -3,6 +3,7 @@ package ru.dm.android.truestyle.ui.screen
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -41,6 +42,7 @@ public class ArticlesFragment : Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "onCreate")
         articlesViewModel = ViewModelProvider(this).get(ArticlesViewModel::class.java)
 
         _binding = FragmentArticlesBinding.inflate(inflater, container, false)
@@ -52,7 +54,7 @@ public class ArticlesFragment : Fragment()  {
         setNightMode()
         var listArticles = articlesViewModel.liveData.value!! //ВРЕМЕННО
         updateViewFlipper(listArticles)
-        listCircle.get(0).isActivated = true
+        listCircle.get(indexActiveArticle).isActivated = true //Установка кружочка
 
         //Слушатель для слайдинга пальцем
         var fromPosition = 0f
@@ -94,6 +96,7 @@ public class ArticlesFragment : Fragment()  {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.d(TAG, "onDestroyView")
         _binding = null
         setLightMode()
     }
