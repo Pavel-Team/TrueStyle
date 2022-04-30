@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ViewFlipper
+import androidx.core.view.children
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
@@ -18,11 +20,12 @@ import ru.dm.android.truestyle.databinding.FragmentArticlesBinding
 import ru.dm.android.truestyle.databinding.ItemRecommendedArticleBinding
 import ru.dm.android.truestyle.model.RecommendedArticle
 import ru.dm.android.truestyle.ui.activity.MainActivity
+import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.viewmodel.ArticlesViewModel
 
 
 private const val TAG = "ArticlesFragment"
-private const val DELTA_Y = 600 //Число пикселей, необходимых для слайдинга статьи
+private const val DELTA_Y = 450 //Число пикселей, необходимых для слайдинга статьи
 
 public class ArticlesFragment : Fragment()  {
 
@@ -58,6 +61,7 @@ public class ArticlesFragment : Fragment()  {
 
         //Слушатель для слайдинга пальцем
         var fromPosition = 0f
+        var isScroll = false //Была ли проскроллена статья
         viewFlipper.setOnTouchListener(object: View.OnTouchListener {
             override fun onTouch(view: View, event: MotionEvent): Boolean {
 
@@ -66,23 +70,39 @@ public class ArticlesFragment : Fragment()  {
                         fromPosition = event.getY();
                     }
                     MotionEvent.ACTION_MOVE -> {
-                        var toPosition = event.getY()
+                        if (!isScroll) {
+                            var toPosition = event.getY()
 
-                        if(fromPosition > toPosition && fromPosition - toPosition > DELTA_Y) {
-                            showNextArticle()
-                            listCircle.get(indexActiveArticle).isActivated=false
-                            indexActiveArticle = if (indexActiveArticle == listArticles.size-1) 0 else indexActiveArticle+1
-                            listCircle.get(indexActiveArticle).isActivated=true
-                            fromPosition = toPosition
-                            return true
-                        } else if (fromPosition < toPosition && toPosition - fromPosition > DELTA_Y) {
-                            showPreviousArticle()
-                            listCircle.get(indexActiveArticle).isActivated=false
-                            indexActiveArticle = if (indexActiveArticle == 0) listArticles.size-1 else indexActiveArticle-1
-                            listCircle.get(indexActiveArticle).isActivated=true
-                            fromPosition = toPosition
-                            return true
+                            if (fromPosition > toPosition && fromPosition - toPosition > DELTA_Y) {
+                                showNextArticle()
+                                isScroll=true
+                                listCircle.get(indexActiveArticle).isActivated = false
+                                indexActiveArticle =
+                                    if (indexActiveArticle == listArticles.size - 1) 0 else indexActiveArticle + 1
+                                listCircle.get(indexActiveArticle).isActivated = true
+                                fromPosition = toPosition
+                                return true
+                            } else if (fromPosition < toPosition && toPosition - fromPosition > DELTA_Y) {
+                                showPreviousArticle()
+                                isScroll=true
+                                listCircle.get(indexActiveArticle).isActivated = false
+                                indexActiveArticle =
+                                    if (indexActiveArticle == 0) listArticles.size - 1 else indexActiveArticle - 1
+                                listCircle.get(indexActiveArticle).isActivated = true
+                                fromPosition = toPosition
+                                return true
+                            }
                         }
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        if (!isScroll && fromPosition-event.getY()==0f) {
+                            val idArticle = listArticles.get(indexActiveArticle).id
+                            Log.d(TAG, "Нажата статья id = " + idArticle.toString())
+                            val callbacks = context as NavigationCallbacks
+                            val fragmentTo = ArticleFragment.newInstance(idArticle)
+                            callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
+                        }
+                        isScroll = false
                     }
                 }
 
@@ -145,6 +165,15 @@ public class ArticlesFragment : Fragment()  {
         listArticles.forEach {
             val bindingArticle = ItemRecommendedArticleBinding.inflate(layoutInflater, viewFlipper, false)
             bindingArticle.model = it
+//            val idArticle = it.id
+//            bindingArticle.root.setOnClickListener(object: View.OnClickListener {
+//                override fun onClick(p0: View?) {
+//                    Log.d(TAG, "Нажата статья id = " + idArticle.toString())
+//                    val callbacks = context as NavigationCallbacks
+//                    val fragmentTo = ArticleFragment.newInstance(idArticle)
+//                    //callbacks.navigateTo(fragmentTo, R.id.navigation_articles))
+//                }
+//            })
             viewFlipper.addView(bindingArticle.root)
 
             //Добавляем кружок
