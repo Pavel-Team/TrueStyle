@@ -60,4 +60,15 @@
 
     <dimen name="text_size_recommended_article">28sp</dimen>
     <dimen name="width_circle_article">10dp</dimen>
+
+    <dimen name="width_ic_back">31dp</dimen>
+    <dimen name="margin_ic_back">20dp</dimen>
+    <dimen name="margin_start_title_style">20dp</dimen>
+    <dimen name="margin_top_recycler_view_topics">24dp</dimen>
+
+    <dimen name="radius_image_item_topics">12dp</dimen>
+    <dimen name="padding_text_item_topic">8dp</dimen>
+    <dimen name="text_size_item_topics">15sp</dimen>
+    <dimen name="margin_top_bottom_item_topics">8dp</dimen>
+    <dimen name="width_image_topic">64dp</dimen>
 </resources>

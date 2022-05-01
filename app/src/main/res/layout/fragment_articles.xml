@@ -28,7 +28,7 @@
             android:textColor="@color/white"/>
 
         <ImageButton
-            android:id="@+id/make_photo_image_button"
+            android:id="@+id/image_button_topics"
             android:layout_width="@dimen/width_ic_plus"
             android:layout_height="@dimen/width_ic_plus"
             android:src="@drawable/ic_all_articles"

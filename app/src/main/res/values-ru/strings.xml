@@ -46,4 +46,8 @@
     <string name="content_description_ic_all_articles">Отркрыть все статьи</string>
     <string name="example_title_recommended_article">Название статьи</string>
 
+    <string name="back">Назад</string>
+    <string name="image_topic">Тема</string>
+    <string name="hint_title_topic">Название темы</string>
+
 </resources>

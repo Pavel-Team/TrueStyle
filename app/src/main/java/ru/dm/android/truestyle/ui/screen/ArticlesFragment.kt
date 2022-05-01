@@ -39,6 +39,14 @@ public class ArticlesFragment : Fragment()  {
     private lateinit var listCircle: MutableList<ImageView>
     private var indexActiveArticle = 0 //Индекс текущего активированного кружка
 
+    private lateinit var callbacks: NavigationCallbacks
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        callbacks = context as NavigationCallbacks
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,7 +106,6 @@ public class ArticlesFragment : Fragment()  {
                         if (!isScroll && fromPosition-event.getY()==0f) {
                             val idArticle = listArticles.get(indexActiveArticle).id
                             Log.d(TAG, "Нажата статья id = " + idArticle.toString())
-                            val callbacks = context as NavigationCallbacks
                             val fragmentTo = ArticleFragment.newInstance(idArticle)
                             callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
                         }
@@ -107,6 +114,15 @@ public class ArticlesFragment : Fragment()  {
                 }
 
                 return true
+            }
+        })
+
+
+        //Слушатель для кнопки показа всех тем
+        binding.imageButtonTopics.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = TopicsFragment()
+                callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
             }
         })
 

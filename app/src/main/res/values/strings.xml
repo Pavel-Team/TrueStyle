@@ -52,4 +52,9 @@
     <string name="content_description_ic_all_articles">Open all articles</string>
     <string name="example_title_recommended_article">Article title</string>
 
+    <string name="back">Back</string>
+    <string name="style">Style</string>
+    <string name="image_topic">Theme</string>
+    <string name="hint_title_topic">Title name</string>
+
 </resources>

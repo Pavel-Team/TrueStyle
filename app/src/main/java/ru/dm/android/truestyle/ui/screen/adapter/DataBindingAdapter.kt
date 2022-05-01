@@ -13,7 +13,7 @@ import androidx.databinding.BindingAdapter
 fun setWebViewClient(view: WebView, client: WebChromeClient) {
     view.webChromeClient = client
     view.webViewClient = WebViewClient()
-    //view.settings.javaScriptEnabled=true
+    view.settings.javaScriptEnabled=true
 }
 
 @BindingAdapter("loadUrl")
