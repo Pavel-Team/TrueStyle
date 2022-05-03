@@ -1,17 +1,17 @@
-/**Holder одного элемента статьи на странице рекомендаций*/
 package ru.dm.android.truestyle.ui.screen.holder
 
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
-import ru.dm.android.truestyle.databinding.ItemArticleRecommendationBinding
-import ru.dm.android.truestyle.model.ArticleRecommendation
+import ru.dm.android.truestyle.databinding.ItemArticleInTopicBinding
+import ru.dm.android.truestyle.databinding.ItemTopicBinding
+import ru.dm.android.truestyle.model.ArticleInTopic
+import ru.dm.android.truestyle.model.Topic
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.ui.screen.ArticleFragment
 
-class ArticleHolder(private val binding: ItemArticleRecommendationBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
-
+class ArticleInTopicHolder(private val binding: ItemArticleInTopicBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener  {
     private var callbacks: NavigationCallbacks
 
     init {
@@ -19,9 +19,9 @@ class ArticleHolder(private val binding: ItemArticleRecommendationBinding, conte
         callbacks = context as NavigationCallbacks
     }
 
-    fun bind(article: ArticleRecommendation) {
+    fun bind(articleInTopic: ArticleInTopic) {
         binding.apply {
-            model = article
+            model = articleInTopic
             executePendingBindings()
         }
     }
@@ -30,6 +30,6 @@ class ArticleHolder(private val binding: ItemArticleRecommendationBinding, conte
         val id = binding.model!!.id
 
         val fragmentTo = ArticleFragment.newInstance(id)
-        callbacks.navigateTo(fragmentTo, R.id.navigation_recommendation)
+        callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
     }
 }

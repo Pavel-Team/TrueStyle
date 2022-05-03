@@ -57,4 +57,8 @@
     <string name="image_topic">Theme</string>
     <string name="hint_title_topic">Title name</string>
 
+    <string name="hint_title_article">Article</string>
+    <string name="hint_description_article">Description</string>
+    <string name="search">Search...</string>
+
 </resources>

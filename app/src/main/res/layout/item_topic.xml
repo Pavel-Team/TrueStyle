@@ -36,7 +36,7 @@
         <TextView
             style="@style/textTextViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textSize="@dimen/text_size_item_topics"
             android:padding="@dimen/padding_text_item_topic"
             android:justificationMode="inter_word"

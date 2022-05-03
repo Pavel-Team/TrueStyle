@@ -27,7 +27,8 @@
         <!--Главная активити-->
         <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan">
         </activity>
     </application>
 

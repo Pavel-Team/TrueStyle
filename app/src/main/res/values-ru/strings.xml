@@ -50,4 +50,8 @@
     <string name="image_topic">Тема</string>
     <string name="hint_title_topic">Название темы</string>
 
+    <string name="hint_title_article">Статья</string>
+    <string name="hint_description_article">Описание</string>
+    <string name="search">Вы ищите...</string>
+
 </resources>

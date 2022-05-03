@@ -21,7 +21,7 @@ class ArticleRecommendationAdapter(private val context: Context,
             parent,
             false
         )
-        return ArticleHolder(binding)
+        return ArticleHolder(binding, context)
     }
 
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {

@@ -71,4 +71,10 @@
     <dimen name="text_size_item_topics">15sp</dimen>
     <dimen name="margin_top_bottom_item_topics">8dp</dimen>
     <dimen name="width_image_topic">64dp</dimen>
+    <dimen name="margin_top_description_article">5dp</dimen>
+    <dimen name="width_ic_search">24dp</dimen>
+    <dimen name="width_ic_send">28dp</dimen>
+
+    <dimen name="padding_edit_text">8dp</dimen>
+    <dimen name="width_cursor">1dp</dimen>
 </resources>

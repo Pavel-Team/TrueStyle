@@ -24,8 +24,8 @@ class TopicAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: TopicHolder, position: Int) {
-        val clothes = listTopics[position]
-        holder.bind(clothes)
+        val topics = listTopics[position]
+        holder.bind(topics)
     }
 
     override fun getItemCount(): Int {

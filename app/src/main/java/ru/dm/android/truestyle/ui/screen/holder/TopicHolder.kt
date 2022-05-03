@@ -3,9 +3,11 @@ package ru.dm.android.truestyle.ui.screen.holder
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemTopicBinding
 import ru.dm.android.truestyle.model.Topic
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.screen.ArticlesInTopicFragment
 
 class TopicHolder(private val binding: ItemTopicBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
@@ -24,10 +26,10 @@ class TopicHolder(private val binding: ItemTopicBinding, context: Context): Recy
     }
 
     override fun onClick(view: View?) {
-        val id = binding.model!!.id
+        val titleTopic = binding.model!!.title
 
-        //val fragmentTo = ClothesFragment.newInstance(id)
-        //callbacks.navigateTo(fragmentTo, R.id.navigation_recommendation)
+        val fragmentTo = ArticlesInTopicFragment.newInstance(titleTopic)
+        callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
     }
 
 }
