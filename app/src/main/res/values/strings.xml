@@ -61,4 +61,9 @@
     <string name="hint_description_article">Description</string>
     <string name="search">Search...</string>
 
+    <string name="season">Season</string>
+    <string name="description_wardrobe_clothes">Clothes</string>
+    <string name="hint_title_wardrobe_clothes">Title clothes</string>
+    <string name="hint_description_wardrobe_clothes">Description clothes</string>
+
 </resources>

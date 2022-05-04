@@ -25,12 +25,14 @@ private const val ARG_TITLE_TOPIC = "titleTopic" //Константа для Bun
 
 class ArticlesInTopicFragment: Fragment() {
 
-    private lateinit var arriclesInTopicViewModel: ArticlesInTopicViewModel
+    private lateinit var articlesInTopicViewModel: ArticlesInTopicViewModel
     private var _binding: FragmentArticlesInTopicBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var callbacks: NavigationCallbacks
     private lateinit var adapterArticles: ArticlesInTopicAdapter
+
+    private lateinit var titleTopic: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,14 +46,15 @@ class ArticlesInTopicFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        arriclesInTopicViewModel = ViewModelProvider(this).get(ArticlesInTopicViewModel::class.java)
+        articlesInTopicViewModel = ViewModelProvider(this).get(ArticlesInTopicViewModel::class.java)
+        articlesInTopicViewModel.liveDataTopic.value = arguments!!.getString(ARG_TITLE_TOPIC, "")
 
         _binding = FragmentArticlesInTopicBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         binding.lifecycleOwner = this@ArticlesInTopicFragment
         adapterArticles = ArticlesInTopicAdapter(context!!)
-        adapterArticles.submitList(arriclesInTopicViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+        adapterArticles.submitList(articlesInTopicViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         binding.recyclerViewArticles.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = adapterArticles
@@ -137,9 +140,9 @@ class ArticlesInTopicFragment: Fragment() {
         val textForSearch = binding.editTextSearch.text.toString().lowercase(Locale.getDefault())
         Log.d(TAG, textForSearch)
         if (textForSearch.length==0)
-            adapterArticles.submitList(arriclesInTopicViewModel.liveData.value)
+            adapterArticles.submitList(articlesInTopicViewModel.liveData.value)
         else {
-            var newList = arriclesInTopicViewModel.liveData.value?.toMutableList()
+            var newList = articlesInTopicViewModel.liveData.value?.toMutableList()
             var iterator = newList?.iterator()
             while (iterator!!.hasNext())
                 if (!iterator.next().title.lowercase(Locale.getDefault()).contains(textForSearch))

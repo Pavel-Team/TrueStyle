@@ -54,4 +54,9 @@
     <string name="hint_description_article">Описание</string>
     <string name="search">Вы ищите...</string>
 
+    <string name="season">Сезон</string>
+    <string name="description_wardrobe_clothes">Одежда</string>
+    <string name="hint_title_wardrobe_clothes">Название одежды</string>
+    <string name="hint_description_wardrobe_clothes">Описание одежды</string>
+
 </resources>

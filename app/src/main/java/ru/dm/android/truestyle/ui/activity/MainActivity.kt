@@ -120,6 +120,12 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     }
 
 
+    override fun clearStackFragment(idItemMenu: Int) {
+        while (!mapStackFragments.get(idItemMenu)!!.isEmpty())
+            mapStackFragments.get(idItemMenu)!!.pop()
+    }
+
+
     override fun onBackPressed() {
         if (mapStackFragments.get(lastMenuItem)!!.isEmpty())
             finish()

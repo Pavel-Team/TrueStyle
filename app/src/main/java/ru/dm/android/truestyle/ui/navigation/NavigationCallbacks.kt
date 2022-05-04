@@ -6,4 +6,6 @@ import androidx.fragment.app.Fragment
 interface NavigationCallbacks {
     /**Метод навигации с текущего фрагмента на фрагмент toFragment, открытый в itemMenu с id = idItemMenu*/
     fun navigateTo(toFragment: Fragment, idItemMenu: Int)
+    /**Метод очистки всего стека фрагментов*/
+    fun clearStackFragment(idItemMenu: Int)
 }

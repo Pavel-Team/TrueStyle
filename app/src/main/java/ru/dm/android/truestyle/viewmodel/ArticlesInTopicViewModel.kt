@@ -6,6 +6,7 @@ import ru.dm.android.truestyle.model.ArticleInTopic
 
 class ArticlesInTopicViewModel: ViewModel() {
     var liveData: MutableLiveData<List<ArticleInTopic>> = MutableLiveData()
+    var liveDataTopic: MutableLiveData<String> = MutableLiveData()
 
     //ВРЕМЕННО
     init {
