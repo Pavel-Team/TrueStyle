@@ -59,4 +59,7 @@
     <string name="hint_title_wardrobe_clothes">Название одежды</string>
     <string name="hint_description_wardrobe_clothes">Описание одежды</string>
 
+    <string name="not_camera">Извините, Ваше устройство не поддерживает камеру</string>
+    <string name="choose_gallery">Загрузить фото с помощью...</string>
+
 </resources>

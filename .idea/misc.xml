@@ -42,6 +42,7 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_wardrobe.xml" value="0.33" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_article_in_topic.xml" value="0.33" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_article_recommendation.xml" value="0.14270833333333333" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_clothes_in_wardrobe.xml" value="0.1358695652173913" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_clothes_inw_wardrobe.xml" value="0.21784420289855072" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_clothes_recommendation.xml" value="0.25" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_recommended_article.xml" value="0.1111111111111111" />
@@ -50,6 +51,7 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/menu/bottom_nav_menu.xml" value="0.27291666666666664" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2890625" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.13034188034188035" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/xml/files.xml" value="0.1358695652173913" />
       </map>
     </option>
   </component>

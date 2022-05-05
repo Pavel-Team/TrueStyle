@@ -66,4 +66,7 @@
     <string name="hint_title_wardrobe_clothes">Title clothes</string>
     <string name="hint_description_wardrobe_clothes">Description clothes</string>
 
+    <string name="not_camera">Sorry, your device does not support the camera</string>
+    <string name="choose_gallery">Upload photo with...</string>
+
 </resources>

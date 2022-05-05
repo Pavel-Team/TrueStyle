@@ -20,6 +20,7 @@
             android:layout_marginTop="@dimen/margin_window"/>
 
         <ImageView
+            android:id="@+id/image_view_load_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
