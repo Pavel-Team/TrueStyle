@@ -69,4 +69,9 @@
     <string name="not_camera">Sorry, your device does not support the camera</string>
     <string name="choose_gallery">Upload photo with...</string>
 
+    <string name="row_settings_language">Language</string>
+    <string name="row_settings_theme">Theme</string>
+    <string name="row_settings_push">Push</string>
+    <string name="soon">Soon</string>
+
 </resources>

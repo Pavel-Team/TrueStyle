@@ -40,6 +40,14 @@ class ProfileFragment : Fragment() {
         binding.lifecycleOwner = this@ProfileFragment
         binding.viewModel = profileViewModel
 
+        //Обработчик кнопки с настройками
+        binding.imageButtonSettings.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = SettingsFragment()
+                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+            }
+        })
+
         //Обработчики на сезоны в гардеробе
         binding.buttonAutumn.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {

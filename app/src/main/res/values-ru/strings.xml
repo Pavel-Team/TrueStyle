@@ -62,4 +62,9 @@
     <string name="not_camera">Извините, Ваше устройство не поддерживает камеру</string>
     <string name="choose_gallery">Загрузить фото с помощью...</string>
 
+    <string name="row_settings_language">Язык</string>
+    <string name="row_settings_theme">Тема</string>
+    <string name="row_settings_push">Уведомления</string>
+    <string name="soon">Скоро</string>
+
 </resources>
