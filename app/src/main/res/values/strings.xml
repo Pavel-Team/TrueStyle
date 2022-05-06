@@ -74,4 +74,11 @@
     <string name="row_settings_push">Push</string>
     <string name="soon">Soon</string>
 
+    <array name="array_languages">
+        <item>Русский</item>
+        <item>English</item>
+    </array>
+
+    <string name="hint_setting">Setting</string>
+
 </resources>

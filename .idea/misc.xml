@@ -35,9 +35,10 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_clothes.xml" value="0.33" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_clothes_search.xml" value="0.25" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_error_connect.xml" value="0.18568840579710144" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_one_setting.xml" value="0.33" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_profile.xml" value="0.19364375461936437" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_recommendation.xml" value="0.17889492753623187" />
-        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_settings.xml" value="0.41654135338345866" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_themes_article.xml" value="0.2" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_topics.xml" value="0.10944026733500417" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_wardrobe.xml" value="0.33" />
@@ -47,6 +48,7 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_clothes_inw_wardrobe.xml" value="0.21784420289855072" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_clothes_recommendation.xml" value="0.25" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_recommended_article.xml" value="0.1111111111111111" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_setting.xml" value="0.18704710144927536" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_theme_articles.xml" value="0.25" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_topic.xml" value="0.22" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/menu/bottom_nav_menu.xml" value="0.27291666666666664" />

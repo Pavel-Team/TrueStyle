@@ -1,14 +1,20 @@
 /**Фрагмент с настройками*/
 package ru.dm.android.truestyle.ui.screen
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentSettingsBinding
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
+import ru.dm.android.truestyle.preferences.LanguageContextWrapper
+import ru.dm.android.truestyle.ui.SettingFragment
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.viewmodel.SettingViewModel
 import ru.dm.android.truestyle.viewmodel.SettingsViewModel
 
 class SettingsFragment: Fragment() {
@@ -22,6 +28,9 @@ class SettingsFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Нужно для обновления языка
+        val ctx: Context = LanguageContextWrapper.wrap(getContext()!!, ApplicationPreferences.getLanguage(getContext()!!))
+        resources.updateConfiguration(ctx.getResources().getConfiguration(), ctx.getResources().getDisplayMetrics())
         callbacks = context as NavigationCallbacks
     }
 
@@ -32,10 +41,29 @@ class SettingsFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
+        //settingsViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application)).get(
+        //    SettingsViewModel::class.java)
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         binding.viewModel = settingsViewModel
         val root: View = binding.root
+
+        binding.lifecycleOwner = this@SettingsFragment
+
+        //Слушатель на кнопку назад
+        binding.imageButtonBack.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                activity?.onBackPressed()
+            }
+        })
+
+        //Слушатели для настроек (ВРЕМЕННО ТОЛЬКО ДЛЯ ЯЗЫКА)
+        binding.layoutLanguage.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = SettingFragment.newInstance(binding.textViewLanguage.text.toString())
+                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+            }
+        })
 
         return root
     }

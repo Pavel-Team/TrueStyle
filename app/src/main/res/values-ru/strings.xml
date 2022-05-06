@@ -67,4 +67,6 @@
     <string name="row_settings_push">Уведомления</string>
     <string name="soon">Скоро</string>
 
+    <string name="hint_setting">Настройка</string>
+
 </resources>

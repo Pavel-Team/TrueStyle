@@ -1,6 +1,7 @@
 /**Главная активити*/
 package ru.dm.android.truestyle.ui.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
+import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.ui.screen.ArticlesFragment
 import ru.dm.android.truestyle.ui.screen.ClothesSearchFragment
@@ -36,6 +39,12 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         mapStackFragments.put(R.id.navigation_clothes_search, Stack())
         mapStackFragments.put(R.id.navigation_articles, Stack())
         mapStackFragments.put(R.id.navigation_profile, Stack())
+    }
+
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LanguageContextWrapper.wrap(newBase, ApplicationPreferences.getLanguage(newBase)))
+        resources.updateConfiguration(newBase.resources.configuration, newBase.resources.displayMetrics)
     }
 
 

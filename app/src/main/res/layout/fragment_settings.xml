@@ -60,6 +60,7 @@
                 android:layout_height="wrap_content"
                 style="@style/rowCharactersLinearLayout">
                 <TextView
+                    android:id="@+id/text_view_language"
                     style="@style/textTextViewStyle.charactersTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,6 +82,7 @@
                 android:layout_height="wrap_content"
                 style="@style/rowCharactersLinearLayout">
                 <TextView
+                    android:id="@+id/text_view_theme"
                     style="@style/textTextViewStyle.charactersTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,6 +109,7 @@
                 android:layout_marginTop="@dimen/margin_top_row_characters"
                 android:layout_marginBottom="@dimen/margin_bottom_row_characters">
                 <TextView
+                    android:id="@+id/text_view_push"
                     style="@style/textTextViewStyle.charactersTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

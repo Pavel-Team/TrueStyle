@@ -2,6 +2,7 @@ package ru.dm.android.truestyle.viewmodel
 
 import android.app.Application
 import android.util.Log
+import androidx.databinding.Bindable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import ru.dm.android.truestyle.R
