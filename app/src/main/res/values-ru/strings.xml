@@ -41,7 +41,8 @@
     <string name="title_winter">Зима</string>
     <string name="title_spring">Весна</string>
 
-    <string name="not_connection">Нет соединения</string>
+    <string name="not_connection">Упс...\nНет соединения с Интернетом</string>
+    <string name="error_server">Похоже ведутся технические работы. \nПерезайдите чуть позже</string>
 
     <string name="content_description_ic_all_articles">Отркрыть все статьи</string>
     <string name="example_title_recommended_article">Название статьи</string>
@@ -68,5 +69,8 @@
     <string name="soon">Скоро</string>
 
     <string name="hint_setting">Настройка</string>
+
+    <string name="button_ok_dialog_fragment">Понятно</string>
+    <string name="button_retry_dialog_fragment">Обновить</string>
 
 </resources>

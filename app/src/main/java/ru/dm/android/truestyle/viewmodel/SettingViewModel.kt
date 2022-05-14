@@ -27,16 +27,9 @@ class SettingViewModel(application: Application): AndroidViewModel(application) 
             "English" -> shortLanguage="en"
         }
 
-        //ПАЛКА: НУЖНО КАК ТО МЕНЯТЬ ЛОКАЛЬ СТРОК ТОЖЕ
         when (titleSetting) {
-            "Язык" -> {
+            app.resources.getString(R.string.row_settings_language) -> {
                 ApplicationPreferences.setLanguage(app.applicationContext, shortLanguage)
-            }
-            "Language" -> {
-                ApplicationPreferences.setLanguage(app.applicationContext, shortLanguage)
-
-                //Смена языка
-                //...
             }
             app.applicationContext.resources.getString(R.string.row_settings_theme) -> {}
             app.applicationContext.resources.getString(R.string.row_settings_push) -> {}

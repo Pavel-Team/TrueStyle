@@ -109,6 +109,7 @@
         <item name="queryBackground">@drawable/background_layout_characteristics</item>
     </style>
 
+    <!--Стиль для EditText-->
     <style name="editTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/background_layout_characteristics</item>
         <item name="android:textColorHint">@color/light_gray_2</item>
@@ -119,6 +120,16 @@
         <item name="android:maxLines">1</item>
         <item name="android:inputType">text</item>
         <item name="android:imeOptions">actionDone</item>
+    </style>
+
+    <!--Стиль для диалоговых окон-->
+    <style name="dialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowMinWidthMajor">84%</item>
+        <item name="android:windowMinWidthMinor">84%</item>
+        <item name="windowFixedHeightMajor">84%</item>
+        <item name="windowFixedHeightMinor">84%</item>
     </style>
 
 </resources>

@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.databinding.DialogFragmentErrorServerBinding
 import ru.dm.android.truestyle.databinding.FragmentProfileBinding
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
+import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.viewmodel.ProfileViewModel
 
@@ -39,6 +43,12 @@ class ProfileFragment : Fragment() {
 
         binding.lifecycleOwner = this@ProfileFragment
         binding.viewModel = profileViewModel
+
+
+        NotConnectionDialogFragment().apply {
+            show(this@ProfileFragment.requireFragmentManager(), ConstantsDialog.DIALOG_NOT_CONNECTION)
+        }
+
 
         //Обработчик кнопки с настройками
         binding.imageButtonSettings.setOnClickListener(object: View.OnClickListener {

@@ -20,7 +20,6 @@ class SettingsViewModel(application: Application): AndroidViewModel(application)
             ApplicationPreferences.setLanguage(application.applicationContext, shortLanguage)
         }
         var language = ""
-        Log.d("sss", language)
         when (shortLanguage) {
             "ru" -> {language="Русский"}
             "en" -> {language="English"}

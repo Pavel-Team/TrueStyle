@@ -80,4 +80,5 @@
 
     <dimen name="margin_top_table_settings">32dp</dimen>
     <dimen name="text_size_settings">25sp</dimen>
+    <dimen name="radius_background_dialog">32dp</dimen>
 </resources>

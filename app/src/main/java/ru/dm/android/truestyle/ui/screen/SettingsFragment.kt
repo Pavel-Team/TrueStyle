@@ -12,9 +12,7 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentSettingsBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
-import ru.dm.android.truestyle.ui.SettingFragment
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
-import ru.dm.android.truestyle.viewmodel.SettingViewModel
 import ru.dm.android.truestyle.viewmodel.SettingsViewModel
 
 class SettingsFragment: Fragment() {

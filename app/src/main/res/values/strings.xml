@@ -47,6 +47,7 @@
     <string name="title_spring">Spring</string>
 
     <string name="not_connection">Not connection</string>
+    <string name="error_server">Technical work. \nRe-apply later</string>
 
     <string name="articles">Articles</string>
     <string name="content_description_ic_all_articles">Open all articles</string>
@@ -80,5 +81,10 @@
     </array>
 
     <string name="hint_setting">Setting</string>
+
+    <string name="login">Login</string>
+
+    <string name="button_ok_dialog_fragment">Ok</string>
+    <string name="button_retry_dialog_fragment">Refresh</string>
 
 </resources>

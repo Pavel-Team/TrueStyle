@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     private lateinit var binding: ActivityMainBinding
     lateinit var navView: BottomNavigationView
 
-    //private var customNavigation: CustomNavigation = CustomNavigation()
     private var mapStackFragments: HashMap<Int, Stack<Fragment>> = HashMap() //<id выбранного пункта меню, стэк фрагментов>
     private var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
 
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)*/
-        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()//ВРЕМЕННО (чтобы был не navhostfragment, а обычный фрагмент с рекомендациями)
+        supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
         navView.setOnItemSelectedListener(this)
     }
 
@@ -112,6 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         return true
     }
 
+
     override fun navigateTo(toFragment: Fragment, idItemMenu: Int) {
         //Добавляем в соотвествующий стек и переходим к toFragment
         val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
@@ -119,7 +119,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         //На случай если надо запустить фрагмент в другой вкладке (не равной lastItem)
         navView.menu.findItem(idItemMenu).isChecked=true
-        navView.menu.findItem(idItemMenu).isChecked=false
 
         lastMenuItem = idItemMenu
         supportFragmentManager
