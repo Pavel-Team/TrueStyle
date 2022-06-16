@@ -14,6 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/image_view_recommended_article"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/example_recommended_article"

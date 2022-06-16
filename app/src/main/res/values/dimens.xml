@@ -81,4 +81,29 @@
     <dimen name="margin_top_table_settings">32dp</dimen>
     <dimen name="text_size_settings">25sp</dimen>
     <dimen name="radius_background_dialog">32dp</dimen>
+
+    <dimen name="margin_bottom_edit_text_password_login_fragment">20dp</dimen>
+    <dimen name="radius_black_line">5dp</dimen>
+    <dimen name="margin_start_password_edit_text">42dp</dimen>
+    <dimen name="text_size_app_name_in_login_fragment">39sp</dimen>
+    <dimen name="margin_top_sign_in">47dp</dimen>
+    <dimen name="text_size_button_sign">20sp</dimen>
+    <dimen name="margin_top_sign_up">6dp</dimen>
+    <dimen name="margin_bottom_privacy_policy">9dp</dimen>
+    <dimen name="margin_start_privacy_policy">47dp</dimen>
+    <dimen name="width_black_line_login_fragment">134dp</dimen>
+    <dimen name="height_black_line_login_fragment">5dp</dimen>
+    <dimen name="margin_bottom_black_line_login_fragment">8dp</dimen>
+    <dimen name="text_size_continue">20sp</dimen>
+    <dimen name="padding_start_icon_image_button">10dp</dimen>
+    <dimen name="inner_padding_image_button">3dp</dimen>
+    <dimen name="width_icon_image_button">22sp</dimen>
+    <dimen name="margin_top_image_button_google">5dp</dimen>
+    <dimen name="margin_top_image_button_vk">2dp</dimen>
+    <dimen name="margin_start_dashed_border">32dp</dimen>
+    <dimen name="margin_end_dashed_border">10dp</dimen>
+    <dimen name="margin_top_dashed_border">2dp</dimen>
+    <dimen name="dash_gap_dashed_border">3dp</dimen>
+    <dimen name="dash_width_dashed_border">2dp</dimen>
+    <dimen name="width_dash_border">1dp</dimen>
 </resources>

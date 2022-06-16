@@ -23,6 +23,15 @@ class ArticleHolder(private val binding: ItemArticleRecommendationBinding, conte
         binding.apply {
             model = article
             executePendingBindings()
+
+            if (article.id == 2)
+                imageViewArticleRecommended.setImageResource(R.drawable.example_article_2)
+            else if (article.id == 3)
+                imageViewArticleRecommended.setImageResource(R.drawable.example_article_3)
+            else if (article.id == 4)
+                imageViewArticleRecommended.setImageResource(R.drawable.example_article_4)
+            else if (article.id == 5)
+                imageViewArticleRecommended.setImageResource(R.drawable.example_article_5)
         }
     }
 

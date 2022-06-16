@@ -21,6 +21,9 @@ class WardrobeClothesHolder(private val binding: ItemClothesInWardrobeBinding, c
         binding.apply {
             model = wardrobeClothes
             executePendingBindings()
+
+            if (wardrobeClothes.id==2)
+                imageViewWardrobe.setImageResource(R.drawable.example_clothes_wardrobe_2)
         }
     }
 

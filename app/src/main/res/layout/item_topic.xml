@@ -24,6 +24,7 @@
             app:cardCornerRadius="@dimen/radius_image_item_topics">
 
         <ImageView
+            android:id="@+id/image_view_topic"
             android:layout_width="@dimen/width_image_topic"
             android:layout_height="@dimen/width_image_topic"
             android:scaleType="centerCrop"

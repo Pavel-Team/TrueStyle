@@ -22,6 +22,10 @@ class TopicHolder(private val binding: ItemTopicBinding, context: Context): Recy
         binding.apply {
             model = topic
             executePendingBindings()
+            if (topic.id == 1)
+                imageViewTopic.setImageResource(R.drawable.example_topic_1)
+            else if (topic.id == 2)
+                imageViewTopic.setImageResource(R.drawable.example_topic_2)
         }
     }
 

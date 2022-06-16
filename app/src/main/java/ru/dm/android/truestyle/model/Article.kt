@@ -13,10 +13,11 @@ data class Article(val id: Int,
     @get:Bindable
     val uri: String
     get() {
-        return Uri.parse(URL)
-            .buildUpon()
-            .appendPath(_nameFileArticle)
-            .build()
-            .toString()
+//        return Uri.parse(URL)
+//            .buildUpon()
+//            .appendPath(_nameFileArticle)
+//            .build()
+//            .toString()
+        return "http://192.168.1.71:8080/user/helpme"
     }
 }

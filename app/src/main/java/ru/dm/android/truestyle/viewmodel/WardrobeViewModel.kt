@@ -11,9 +11,8 @@ class WardrobeViewModel: ViewModel() {
     //ВРЕМЕННО
     init {
         liveData.value = listOf(
-            WardrobeClothes(1, "Кофта с оленями", "32 размер, бежевый, женская, нательная", "www.url1.ru"),
-            WardrobeClothes(2, "Кофта белая", "34 размер, бежевый, женская, нательная", "www.url1.ru"),
-            WardrobeClothes(3, "Кофта", "36 размер, красная, женская, нательная", "www.url1.ru")
+            WardrobeClothes(1, "Кофта белая", "46 размер, белый, женская, нательная", "www.url1.ru"),
+            WardrobeClothes(2, "Свитер белый синий", "50 размер, белый синий, мужской, нательный", "www.url2.ru")
         )
     }
 }

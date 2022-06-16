@@ -45,9 +45,9 @@ class ProfileFragment : Fragment() {
         binding.viewModel = profileViewModel
 
 
-        NotConnectionDialogFragment().apply {
-            show(this@ProfileFragment.requireFragmentManager(), ConstantsDialog.DIALOG_NOT_CONNECTION)
-        }
+//        NotConnectionDialogFragment().apply {
+//            show(this@ProfileFragment.requireFragmentManager(), ConstantsDialog.DIALOG_NOT_CONNECTION)
+//        }
 
 
         //Обработчик кнопки с настройками

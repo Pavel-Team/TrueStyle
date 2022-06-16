@@ -14,6 +14,7 @@
     <color name="light_blue">#449AFF</color>
 
     <color name="gray">#13000000</color>
+    <color name="gray_2">#323232</color>
 
     <color name="strong_gray">#B3000000</color>
     <color name="light_gray">#1B000000</color>
@@ -26,4 +27,5 @@
     <color name="transparent">#00000000</color>
 
     <color name="light_gray_2">#1E000000</color>
+    <color name="light_gray_3">#4D000000</color>
 </resources>

@@ -104,13 +104,38 @@
         <item name="android:textColor">@color/strong_gray</item>
     </style>
 
+    <style name="buttonStyle.whiteBlue">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/light_blue</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <!--Стиль для кнопок с изображением-->
+    <style name="buttonStyle.imageButton" parent="buttonStyle.whiteBlue">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">@dimen/inner_padding_image_button</item>
+    </style>
+
     <!--Стиль для SearchView-->
     <style name="searchViewStyle" parent="Widget.AppCompat.Light.SearchView">
         <item name="queryBackground">@drawable/background_layout_characteristics</item>
     </style>
 
-    <!--Стиль для EditText-->
+    <!--Стиль для EditText -->
     <style name="editTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColorHint">@color/light_gray_3</item>
+        <item name="android:backgroundTint">@color/gray_2</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_edit_text</item>
+    </style>
+
+    <!--Стиль для EditText с поиском-->
+    <style name="editTextStyle.Search">
         <item name="android:background">@drawable/background_layout_characteristics</item>
         <item name="android:textColorHint">@color/light_gray_2</item>
         <item name="fontFamily">@font/roboto_medium</item>

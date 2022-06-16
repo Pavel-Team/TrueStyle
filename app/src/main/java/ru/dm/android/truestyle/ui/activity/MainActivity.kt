@@ -14,10 +14,7 @@ import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
-import ru.dm.android.truestyle.ui.screen.ArticlesFragment
-import ru.dm.android.truestyle.ui.screen.ClothesSearchFragment
-import ru.dm.android.truestyle.ui.screen.ProfileFragment
-import ru.dm.android.truestyle.ui.screen.RecommendationFragment
+import ru.dm.android.truestyle.ui.screen.*
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -90,7 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                     R.id.navigation_recommendation -> { newFragment = RecommendationFragment() }
                     R.id.navigation_clothes_search -> { newFragment = ClothesSearchFragment() }
                     R.id.navigation_articles -> { newFragment = ArticlesFragment() }
-                    R.id.navigation_profile -> { newFragment = ProfileFragment() }
+                    R.id.navigation_profile -> { newFragment = LoginFragment() } //Добавить проверку
                 }
                 if (newFragment != null) {
                     supportFragmentManager

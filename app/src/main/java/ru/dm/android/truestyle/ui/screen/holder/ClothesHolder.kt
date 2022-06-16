@@ -23,6 +23,12 @@ class ClothesHolder(private val binding: ItemClothesRecommendationBinding, conte
         binding.apply {
             model = clothes
             executePendingBindings()
+            if (clothes.id == 1)
+                imageViewRecommendedClothes.setImageResource(R.drawable.example_clothes_1)
+            else if (clothes.id == 2)
+                imageViewRecommendedClothes.setImageResource(R.drawable.example_clothes_2)
+            else if (clothes.id == 3)
+                imageViewRecommendedClothes.setImageResource(R.drawable.example_clothes_3)
         }
     }
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="ru.dm.android.truestyle.model.WardrobeClothes" />
+            type="ru.dm.android.truestyle.model.GetRecommendationClothes" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,18 +26,18 @@
             app:cardCornerRadius="@dimen/radius_image_item_topics">
 
             <ImageView
-                android:id="@+id/image_view_wardrobe"
+                android:id="@+id/image_view_get_recommendation_clothes"
                 android:layout_width="@dimen/width_image_topic"
                 android:layout_height="@dimen/width_image_topic"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/example_clothes"
+                tools:src="@drawable/example_clothes_3"
                 android:contentDescription="@string/description_wardrobe_clothes"
 
-                android:src="@drawable/example_clothes"/>
+                android:src="@drawable/example_clothes_3"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/title_wardrobe_clothes"
+            android:id="@+id/title_get_recommendation_clothes"
             style="@style/textTextViewStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -58,15 +58,13 @@
             style="@style/textTextViewStyle.additionalText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/title_wardrobe_clothes"
-            app:layout_constraintEnd_toEndOf="@id/title_wardrobe_clothes"
-            app:layout_constraintTop_toBottomOf="@id/title_wardrobe_clothes"
+            app:layout_constraintStart_toStartOf="@id/title_get_recommendation_clothes"
+            app:layout_constraintEnd_toEndOf="@id/title_get_recommendation_clothes"
+            app:layout_constraintTop_toBottomOf="@id/title_get_recommendation_clothes"
             android:maxLines="1"
             android:layout_marginTop="@dimen/margin_top_description_article"
             android:text="@{model.description}"
             android:hint="@string/hint_description_wardrobe_clothes"/>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -62,7 +62,7 @@
 
         <EditText
             android:id="@+id/edit_text_search"
-            style="@style/editTextStyle"
+            style="@style/editTextStyle.Search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/image_button_back"

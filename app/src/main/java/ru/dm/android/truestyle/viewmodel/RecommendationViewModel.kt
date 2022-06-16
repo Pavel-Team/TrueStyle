@@ -26,7 +26,7 @@ class RecommendationViewModel : ViewModel() {
         liveDataArticles.value = listOf(
             ArticleRecommendation(1, "Помада под твое платье", "www.url4"),
             ArticleRecommendation(2, "Пончики как стиль одежды", "www.url5"),
-            ArticleRecommendation(3, "Тренды 2022", "www.url6"),
+            ArticleRecommendation(3, "Что такое мода", "www.url6"),
             ArticleRecommendation(4, "История моды", "www.url7"),
             ArticleRecommendation(5, "Первое пальто", "www.url8")
         )

@@ -12,6 +12,6 @@ class ArticleViewModel : ViewModel() {
     fun loadArticle(idArticle: Int?) {
         //ВРЕМЕННО
         //liveData.value = idArticle?.let { Article(it, "ProgressBar#attr_android:max") }
-        liveData.value = idArticle?.let { Article(it, "example.html") }
+        liveData.value = idArticle?.let { Article(it, "user/helpme") }
     }
 }

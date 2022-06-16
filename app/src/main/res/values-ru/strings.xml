@@ -73,4 +73,14 @@
     <string name="button_ok_dialog_fragment">Понятно</string>
     <string name="button_retry_dialog_fragment">Обновить</string>
 
+    <string name="password">Пароль</string>
+    <string name="login_hint">Номер, email или имя пользователя</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="forgot_password">Забыли пароль? <b>Войти</b></string>
+    <string name="privacy_policy">Продолжая, Вы соглашаетесть с <b>правилами</b> True Style и <b>политикой конфиденциальности</b></string>
+    <string name="or_continue_with">или продолжить с</string>
+
+    <string name="recommendation">Рекомендации</string>
+
 </resources>

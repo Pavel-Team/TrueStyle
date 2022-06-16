@@ -23,6 +23,11 @@ class ArticleInTopicHolder(private val binding: ItemArticleInTopicBinding, conte
         binding.apply {
             model = articleInTopic
             executePendingBindings()
+
+            if (articleInTopic.id == 2)
+                imageViewArticleInTopic.setImageResource(R.drawable.example_article_in_topic_2)
+            else if (articleInTopic.id == 3)
+                imageViewArticleInTopic.setImageResource(R.drawable.example_article_in_topic_3)
         }
     }
 

@@ -22,6 +22,7 @@
             app:cardCornerRadius="@dimen/radius_image_clothes">
 
             <ImageView
+                android:id="@+id/image_view_article_recommended"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"

@@ -181,6 +181,8 @@ public class ArticlesFragment : Fragment()  {
         listArticles.forEach {
             val bindingArticle = ItemRecommendedArticleBinding.inflate(layoutInflater, viewFlipper, false)
             bindingArticle.model = it
+            if (it.id == 2)
+                bindingArticle.imageViewRecommendedArticle.setImageResource(R.drawable.example_recommended_article_2)
 //            val idArticle = it.id
 //            bindingArticle.root.setOnClickListener(object: View.OnClickListener {
 //                override fun onClick(p0: View?) {
