@@ -28,7 +28,8 @@
             android:layout_marginEnd="@dimen/margin_start_password_edit_text"
             android:layout_marginBottom="@dimen/margin_bottom_edit_text_password_login_fragment"
             android:inputType="textPassword"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:text="@={viewModel.liveData.password}"/>
 
         <TextView
             android:id="@+id/title_app"
@@ -52,7 +53,8 @@
             app:layout_constraintBottom_toTopOf="@id/edit_text_password"
             android:layout_marginStart="@dimen/margin_start_password_edit_text"
             android:layout_marginEnd="@dimen/margin_start_password_edit_text"
-            android:hint="@string/login_hint" />
+            android:hint="@string/login_hint"
+            android:text="@={viewModel.liveData.email}"/>
 
         <Button
             android:id="@+id/button_sign_in"

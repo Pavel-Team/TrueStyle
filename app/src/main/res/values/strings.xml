@@ -99,4 +99,18 @@
 
     <string name="recommendation">Recommendation</string>
 
+    <string name="title_registration">Join True Style</string>
+    <string name="username">Username</string>
+    <string name="email">E-mail address</string>
+    <string name="hint_password">For security, your password must be 6 characters (latin letters, digits, symbols \'_?!\' ) or more</string>
+    <string name="strong_password_0">Incorrect</string>
+    <string name="strong_password_1">Weak</string>
+    <string name="strong_password_2">Medium</string>
+    <string name="strong_password_3">Strong</string>
+    <string name="strong_password_4">Very strong</string>
+    <string name="error_username">The username is already in use</string>
+    <string name="error_email">Incorrect E-mail address</string>
+    <string name="register">Register</string>
+    <string name="has_account">Already registred? <b>Login me.</b></string>
+
 </resources>

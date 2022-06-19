@@ -62,8 +62,8 @@ public class RecommendationFragment : Fragment() {
             override fun onClick(p0: View?) {
                 Log.d(TAG, "onClick")
                 val fragmentTo = ClothesSearchFragment()
-                callbacks.clearStackFragment(R.id.navigation_clothes_search)
                 callbacks.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+                callbacks.clearStackFragment(R.id.navigation_clothes_search)
             }
         })
 

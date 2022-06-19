@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentLoginBinding
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.viewmodel.LoginViewModel
@@ -38,6 +39,14 @@ class LoginFragment : Fragment(){
 
         binding.lifecycleOwner = this@LoginFragment
         binding.viewModel = loginViewModel
+
+        //Слушатель кнопки регистрация
+        binding.buttonSignUp.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(view: View?) {
+                val fragmentTo = RegistrationFragment()
+                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+            }
+        })
 
         return root
     }

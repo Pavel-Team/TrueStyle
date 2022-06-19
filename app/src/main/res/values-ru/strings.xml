@@ -83,4 +83,13 @@
 
     <string name="recommendation">Рекомендации</string>
 
+    <string name="username">Имя пользователя</string>
+    <string name="email">E-mail адресс</string>
+    <string name="hint_password">В целях безопасности, Ваш пароль должен состоять не менее чем из 6 символов</string>
+    <string name="error_username">Такое имя уже используется</string>
+    <string name="error_email">Некорректный E-mail адресс</string>
+    <string name="error_password">Пароль должен состоять из 6 и более символов и включать буквы латинского алфавита, цифры и символ нижнего подчеркивания</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
+
 </resources>

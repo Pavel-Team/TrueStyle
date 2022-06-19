@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-
-    <corners
-        android:radius="@dimen/radius_button"/>
-
-    <solid
-        android:color="@color/light_blue"/>
-
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/light_blue_button_disenabled"
+        android:state_enabled="false" />
+    <item android:drawable="@drawable/light_blue_button_enabled"
+        android:state_enabled="true"/>
+</selector>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="ru.dm.android.truestyle.viewmodel.RegistrationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/padding_horizontal_registration_screen">
+
+        <TextView
+            style="@style/boldTextViewStyle"
+            android:id="@+id/title_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/title_registration"
+            android:layout_marginTop="@dimen/padding_top_title_registration"
+            android:textSize="@dimen/font_size_title_registration"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/edit_text_username"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_registration"
+            android:text="@={viewModel.liveData.username}"
+            android:layout_marginTop="@dimen/margin_top_edit_text_username"
+            android:hint="@string/username"/>
+
+        <TextView
+            android:id="@+id/text_hint_username"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_username"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginBottom="@dimen/margin_bottom_hint_edit_text_registration"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/text_error_username"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error_username"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_username"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginTop="@dimen/margin_top_error_edit_text_registration"
+            android:textColor="@color/red"
+            android:visibility="invisible"/>
+
+        <EditText
+            android:id="@+id/edit_text_email"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_username"
+            android:text="@={viewModel.liveData.email}"
+            android:layout_marginTop="@dimen/margin_top_edit_text_email"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"/>
+
+        <TextView
+            android:id="@+id/text_hint_email"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_email"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginBottom="@dimen/margin_bottom_hint_edit_text_registration"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/text_error_email"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error_email"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_email"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginTop="@dimen/margin_top_error_edit_text_registration"
+            android:textColor="@color/red"
+            android:visibility="invisible"/>
+
+        <EditText
+            android:id="@+id/edit_text_password"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_email"
+            android:text="@={viewModel.liveData.password}"
+            android:layout_marginTop="@dimen/margin_top_edit_text_email"
+            android:hint="@string/password"
+            android:inputType="textPassword"/>
+
+        <TextView
+            android:id="@+id/text_hint_password"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_password"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginBottom="@dimen/margin_bottom_hint_edit_text_registration"
+            android:visibility="invisible"/>
+
+        <LinearLayout
+            android:id="@+id/line_strong_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_line_strong_password"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_password"
+            android:layout_marginTop="@dimen/margin_top_line_strong_password"
+            android:layout_marginHorizontal="@dimen/margin_start_hint_edit_text_registration"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/line_strong_password_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_line_strong_password"
+                android:background="@color/gray_4"
+                android:layout_weight="1"/>
+
+            <View
+                android:id="@+id/line_strong_password_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_line_strong_password"
+                android:background="@color/gray_4"
+                android:layout_weight="1"/>
+
+            <View
+                android:id="@+id/line_strong_password_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_line_strong_password"
+                android:background="@color/gray_4"
+                android:layout_weight="1"/>
+
+            <View
+                android:id="@+id/line_strong_password_4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_line_strong_password"
+                android:background="@color/gray_4"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_strong_password"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/line_strong_password"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_top_hint_password"
+            android:layout_marginHorizontal="@dimen/margin_start_hint_edit_text_registration"
+            android:textSize="@dimen/font_size_hint_edit_text_registration" />
+
+        <TextView
+            android:id="@+id/text_error_password"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_password"
+            app:layout_constraintTop_toBottomOf="@id/line_strong_password"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_top_hint_password"
+            android:layout_marginHorizontal="@dimen/margin_start_hint_edit_text_registration"
+            android:textSize="@dimen/font_size_hint_password"
+            android:textColor="@color/gray_3"/>
+
+        <Button
+            android:id="@+id/button_register"
+            style="@style/buttonStyle.LightBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_error_password"
+            android:layout_marginTop="@dimen/margin_top_button_register"
+            android:layout_marginHorizontal="@dimen/margin_start_hint_edit_text_registration"
+            android:enabled="false"/>
+
+        <TextView
+            android:id="@+id/text_has_account"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/has_account"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/margin_bottom_has_account"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

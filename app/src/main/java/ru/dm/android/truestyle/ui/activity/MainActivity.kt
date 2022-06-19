@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     private var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
 
     init {
+        Log.d(TAG, "init")
         //Инициализация стэков фрагментов для каждого пункта меню
         mapStackFragments.put(R.id.navigation_recommendation, Stack())
         mapStackFragments.put(R.id.navigation_clothes_search, Stack())
@@ -63,7 +64,8 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)*/
-        supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
+        if (supportFragmentManager.findFragmentById(R.id.container) == null)
+            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
         navView.setOnItemSelectedListener(this)
     }
 
