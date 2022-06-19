@@ -3,7 +3,6 @@ package ru.dm.android.truestyle.ui.screen
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +10,25 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentRegistrationBinding
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.RegistrationViewModel
+import javax.inject.Inject
 
 private const val TAG = "RegistrationFragment"
 
+@AndroidEntryPoint
 class RegistrationFragment: Fragment() {
-    private lateinit var registrationViewModel: RegistrationViewModel
+    //private lateinit var registrationViewModel: RegistrationViewModel
+    private val registrationViewModel by viewModels<RegistrationViewModel>()
     private var _binding: FragmentRegistrationBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
 
     private var isCorrectUsername = true
     private var isCorrectEmail = false
@@ -35,7 +39,6 @@ class RegistrationFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbacks = context as NavigationCallbacks
     }
 
 
@@ -44,7 +47,7 @@ class RegistrationFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        registrationViewModel = ViewModelProvider(this).get(RegistrationViewModel::class.java)
+        //registrationViewModel = ViewModelProvider(this).get(RegistrationViewModel::class.java)
 
         _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -185,10 +188,15 @@ class RegistrationFragment: Fragment() {
         binding.buttonRegister.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 //...Запрос на сервер
+                registrationViewModel.registerUser(
+                    binding.editTextUsername.text.toString(),
+                    binding.editTextEmail.text.toString(),
+                    binding.editTextPassword.text.toString()
+                )
                 //...Заполнение рум
                 val fragmentTo = ProfileFragment()
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
-                callbacks.clearStackFragment(R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.clearStackFragment(R.id.navigation_profile)
             }
         })
 
@@ -197,8 +205,8 @@ class RegistrationFragment: Fragment() {
         binding.textHasAccount.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = LoginFragment()
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
-                callbacks.clearStackFragment(R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.clearStackFragment(R.id.navigation_profile)
             }
         })
 

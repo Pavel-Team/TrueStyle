@@ -6,15 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemClothesInWardrobeBinding
 import ru.dm.android.truestyle.model.WardrobeClothes
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ClothesFragment
 
-class WardrobeClothesHolder(private val binding: ItemClothesInWardrobeBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener  {
-    private var callbacks: NavigationCallbacks
+class WardrobeClothesHolder(val navigation: Navigation,
+                            private val binding: ItemClothesInWardrobeBinding,
+                            context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener  {
 
     init {
         itemView.setOnClickListener(this)
-        callbacks = context as NavigationCallbacks
+        
     }
 
     fun bind(wardrobeClothes: WardrobeClothes) {
@@ -31,6 +32,6 @@ class WardrobeClothesHolder(private val binding: ItemClothesInWardrobeBinding, c
         val id = binding.model!!.id
 
         val fragmentTo = ClothesFragment.newInstance(id)
-        callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+        navigation.navigateTo(fragmentTo, R.id.navigation_profile)
     }
 }

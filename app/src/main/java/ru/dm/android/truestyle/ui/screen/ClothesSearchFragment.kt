@@ -16,16 +16,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentClothesSearchBinding
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ClothesSearchViewModel
 import java.io.File
+import javax.inject.Inject
 
 private const val TAG = "ClothesSearchFragment"
 private const val FILE_NAME = "temporaryPhoto.jpg" //Название временно сохраненного файла
 private const val FILE_PROVIDER = "ru.dm.android.truestyle.fileprovider" //Путь до хранилища file-provider'а (указан в манифесте)
 
+@AndroidEntryPoint
 class ClothesSearchFragment : Fragment() {
 
     private lateinit var clothesSearchViewModel: ClothesSearchViewModel
@@ -35,7 +38,8 @@ class ClothesSearchFragment : Fragment() {
     private lateinit var photoFile: File //Файл с выбранной фотографией
     private lateinit var photoUri: Uri   //URI файла
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
 
 
     //Обработчики результата активити с камерой и галереей
@@ -61,14 +65,14 @@ class ClothesSearchFragment : Fragment() {
 
             //ВРЕМЕННО ДЛЯ ВИДОСА
             val fragmentTo = GetRecommendationFragment()
-            callbacks.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+            navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
         }
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbacks = context as NavigationCallbacks
+        
     }
 
 

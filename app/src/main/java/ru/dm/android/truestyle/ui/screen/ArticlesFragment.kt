@@ -11,22 +11,23 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ViewFlipper
-import androidx.core.view.children
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentArticlesBinding
 import ru.dm.android.truestyle.databinding.ItemRecommendedArticleBinding
 import ru.dm.android.truestyle.model.RecommendedArticle
 import ru.dm.android.truestyle.ui.activity.MainActivity
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ArticlesViewModel
+import javax.inject.Inject
 
 
 private const val TAG = "ArticlesFragment"
 private const val DELTA_Y = 450 //Число пикселей, необходимых для слайдинга статьи
 
+@AndroidEntryPoint
 public class ArticlesFragment : Fragment()  {
 
     private lateinit var articlesViewModel: ArticlesViewModel
@@ -39,12 +40,13 @@ public class ArticlesFragment : Fragment()  {
     private lateinit var listCircle: MutableList<ImageView>
     private var indexActiveArticle = 0 //Индекс текущего активированного кружка
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbacks = context as NavigationCallbacks
+        
     }
 
 
@@ -107,7 +109,7 @@ public class ArticlesFragment : Fragment()  {
                             val idArticle = listArticles.get(indexActiveArticle).id
                             Log.d(TAG, "Нажата статья id = " + idArticle.toString())
                             val fragmentTo = ArticleFragment.newInstance(idArticle)
-                            callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
+                            navigation.navigateTo(fragmentTo, R.id.navigation_articles)
                         }
                         isScroll = false
                     }
@@ -122,7 +124,7 @@ public class ArticlesFragment : Fragment()  {
         binding.imageButtonTopics.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = TopicsFragment()
-                callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
+                navigation.navigateTo(fragmentTo, R.id.navigation_articles)
             }
         })
 
@@ -187,9 +189,9 @@ public class ArticlesFragment : Fragment()  {
 //            bindingArticle.root.setOnClickListener(object: View.OnClickListener {
 //                override fun onClick(p0: View?) {
 //                    Log.d(TAG, "Нажата статья id = " + idArticle.toString())
-//                    val callbacks = context as NavigationCallbacks
+//                    val 
 //                    val fragmentTo = ArticleFragment.newInstance(idArticle)
-//                    //callbacks.navigateTo(fragmentTo, R.id.navigation_articles))
+//                    //navigation.navigateTo(fragmentTo, R.id.navigation_articles))
 //                }
 //            })
             viewFlipper.addView(bindingArticle.root)

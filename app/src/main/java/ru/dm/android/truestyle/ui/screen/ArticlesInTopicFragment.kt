@@ -3,7 +3,6 @@ package ru.dm.android.truestyle.ui.screen
 
 import android.app.Activity
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -13,23 +12,26 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.databinding.FragmentArticlesInTopicBinding
-import ru.dm.android.truestyle.model.ArticleInTopic
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticlesInTopicAdapter
 import ru.dm.android.truestyle.viewmodel.ArticlesInTopicViewModel
 import java.util.*
+import javax.inject.Inject
 
 private const val TAG = "ArticlesInTopic"
 private const val ARG_TITLE_TOPIC = "titleTopic" //Константа для Bundle с названием тематики статей
 
+@AndroidEntryPoint
 class ArticlesInTopicFragment: Fragment() {
 
     private lateinit var articlesInTopicViewModel: ArticlesInTopicViewModel
     private var _binding: FragmentArticlesInTopicBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
     private lateinit var adapterArticles: ArticlesInTopicAdapter
 
     private lateinit var titleTopic: String
@@ -37,7 +39,7 @@ class ArticlesInTopicFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbacks = context as NavigationCallbacks
+        
     }
 
 
@@ -47,13 +49,13 @@ class ArticlesInTopicFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         articlesInTopicViewModel = ViewModelProvider(this).get(ArticlesInTopicViewModel::class.java)
-        articlesInTopicViewModel.liveDataTopic.value = arguments!!.getString(ARG_TITLE_TOPIC, "")
+        articlesInTopicViewModel.liveDataTopic.value = requireArguments().getString(ARG_TITLE_TOPIC, "")
 
         _binding = FragmentArticlesInTopicBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         binding.lifecycleOwner = this@ArticlesInTopicFragment
-        adapterArticles = ArticlesInTopicAdapter(context!!)
+        adapterArticles = ArticlesInTopicAdapter(navigation, requireContext())
         adapterArticles.submitList(articlesInTopicViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         binding.recyclerViewArticles.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

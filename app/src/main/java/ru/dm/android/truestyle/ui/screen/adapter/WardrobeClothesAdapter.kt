@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemClothesInWardrobeBinding
 import ru.dm.android.truestyle.model.WardrobeClothes
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.WardrobeClothesHolder
 
-class WardrobeClothesAdapter(private val context: Context): ListAdapter<WardrobeClothes, WardrobeClothesHolder>(DiffCallbackWardrobeClothes())  {
+class WardrobeClothesAdapter(val navigation: Navigation,
+                             private val context: Context): ListAdapter<WardrobeClothes, WardrobeClothesHolder>(DiffCallbackWardrobeClothes())  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WardrobeClothesHolder {
         val binding = DataBindingUtil.inflate<ItemClothesInWardrobeBinding>(
             LayoutInflater.from(context),
@@ -19,7 +21,7 @@ class WardrobeClothesAdapter(private val context: Context): ListAdapter<Wardrobe
             parent,
             false
         )
-        return WardrobeClothesHolder(binding, context)
+        return WardrobeClothesHolder(navigation, binding, context)
     }
 
     override fun onBindViewHolder(holder: WardrobeClothesHolder, position: Int) {

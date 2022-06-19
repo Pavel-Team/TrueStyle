@@ -7,16 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemArticleRecommendationBinding
 import ru.dm.android.truestyle.model.ArticleRecommendation
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ArticleFragment
 
-class ArticleHolder(private val binding: ItemArticleRecommendationBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
-
-    private var callbacks: NavigationCallbacks
+class ArticleHolder(val navigation: Navigation,
+                    private val binding: ItemArticleRecommendationBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
 
     init {
         itemView.setOnClickListener(this)
-        callbacks = context as NavigationCallbacks
     }
 
     fun bind(article: ArticleRecommendation) {
@@ -39,6 +37,6 @@ class ArticleHolder(private val binding: ItemArticleRecommendationBinding, conte
         val id = binding.model!!.id
 
         val fragmentTo = ArticleFragment.newInstance(id)
-        callbacks.navigateTo(fragmentTo, R.id.navigation_recommendation)
+        navigation.navigateTo(fragmentTo, R.id.navigation_recommendation)
     }
 }

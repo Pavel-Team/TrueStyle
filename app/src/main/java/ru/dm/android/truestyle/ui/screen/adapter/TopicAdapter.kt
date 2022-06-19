@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemTopicBinding
 import ru.dm.android.truestyle.model.Topic
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.TopicHolder
 
-class TopicAdapter(private val context: Context,
+class TopicAdapter(val navigation: Navigation,
+                   private val context: Context,
                    private val listTopics: List<Topic>): RecyclerView.Adapter<TopicHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicHolder {
@@ -20,7 +22,7 @@ class TopicAdapter(private val context: Context,
             parent,
             false
         )
-        return TopicHolder(binding, context)
+        return TopicHolder(navigation, binding, context)
     }
 
     override fun onBindViewHolder(holder: TopicHolder, position: Int) {

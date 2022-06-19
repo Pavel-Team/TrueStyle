@@ -8,20 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentSettingsBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.SettingsViewModel
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SettingsFragment: Fragment() {
 
     private lateinit var settingsViewModel: SettingsViewModel
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +33,7 @@ class SettingsFragment: Fragment() {
         //Нужно для обновления языка
         val ctx: Context = LanguageContextWrapper.wrap(getContext()!!, ApplicationPreferences.getLanguage(getContext()!!))
         resources.updateConfiguration(ctx.getResources().getConfiguration(), ctx.getResources().getDisplayMetrics())
-        callbacks = context as NavigationCallbacks
+        
     }
 
 
@@ -59,7 +63,7 @@ class SettingsFragment: Fragment() {
         binding.layoutLanguage.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = SettingFragment.newInstance(binding.textViewLanguage.text.toString())
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })
 

@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.ListAdapter
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemArticleInTopicBinding
 import ru.dm.android.truestyle.model.ArticleInTopic
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.ArticleInTopicHolder
 
-class ArticlesInTopicAdapter(private val context: Context): ListAdapter<ArticleInTopic,ArticleInTopicHolder>(DiffCallbackArticles())  {
+class ArticlesInTopicAdapter(val navigation: Navigation, private val context: Context): ListAdapter<ArticleInTopic,ArticleInTopicHolder>(DiffCallbackArticles())  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleInTopicHolder {
         val binding = DataBindingUtil.inflate<ItemArticleInTopicBinding>(
             LayoutInflater.from(context),
@@ -19,7 +20,7 @@ class ArticlesInTopicAdapter(private val context: Context): ListAdapter<ArticleI
             parent,
             false
         )
-        return ArticleInTopicHolder(binding, context)
+        return ArticleInTopicHolder(navigation, binding, context)
     }
 
     override fun onBindViewHolder(holder: ArticleInTopicHolder, position: Int) {

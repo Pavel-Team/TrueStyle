@@ -13,8 +13,10 @@ import android.os.Build
 
 import android.annotation.TargetApi
 import android.util.Log
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 
+//@HiltViewModel
 class SettingViewModel(application: Application): AndroidViewModel(application) {
 
     private var app = application

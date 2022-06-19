@@ -7,27 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
-import ru.dm.android.truestyle.databinding.DialogFragmentErrorServerBinding
 import ru.dm.android.truestyle.databinding.FragmentProfileBinding
-import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
-import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
-import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ProfileViewModel
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private lateinit var profileViewModel: ProfileViewModel
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbacks = context as NavigationCallbacks
+        
     }
 
 
@@ -54,7 +54,7 @@ class ProfileFragment : Fragment() {
         binding.imageButtonSettings.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = SettingsFragment()
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })
 
@@ -62,25 +62,25 @@ class ProfileFragment : Fragment() {
         binding.buttonAutumn.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = WardrobeFragment.newInstance(resources.getString(R.string.title_autumn))
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })
         binding.buttonSummer.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = WardrobeFragment.newInstance(resources.getString(R.string.title_summer))
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })
         binding.buttonSpring.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = WardrobeFragment.newInstance(resources.getString(R.string.title_spring))
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })
         binding.buttonWinter.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = WardrobeFragment.newInstance(resources.getString(R.string.title_winter))
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })
 

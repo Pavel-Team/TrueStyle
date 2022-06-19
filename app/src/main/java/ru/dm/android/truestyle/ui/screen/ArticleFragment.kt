@@ -12,6 +12,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.databinding.FragmentArticleBinding
 import ru.dm.android.truestyle.viewmodel.ArticleViewModel
 
@@ -19,6 +20,7 @@ private const val TAG = "ArticleFragment"
 private const val ARG_ID_ARTICLE = "idArticle" //Константа для получения из Bundle id статьи
 
 
+@AndroidEntryPoint
 class ArticleFragment : Fragment() {
 
     private lateinit var articleViewModel: ArticleViewModel

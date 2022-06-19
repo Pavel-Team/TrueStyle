@@ -8,23 +8,27 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.databinding.FragmentTopicsBinding
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.TopicAdapter
 import ru.dm.android.truestyle.viewmodel.TopicsViewModel
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TopicsFragment: Fragment() {
 
     private lateinit var topicsViewModel: TopicsViewModel
     private var _binding: FragmentTopicsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbacks = context as NavigationCallbacks
+        
     }
 
 
@@ -41,7 +45,7 @@ class TopicsFragment: Fragment() {
         binding.lifecycleOwner = this@TopicsFragment
         binding.recyclerViewTopics.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = TopicAdapter(context, topicsViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = TopicAdapter(navigation, context, topicsViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
 
         //Слушатель на кнопку назад

@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
 import ru.dm.android.truestyle.viewmodel.ClothesViewModel
 
 private const val TAG = "ClothesFragment"
 private const val ARG_CLOTHES_ID = "clothes_id" //Константа для получения аргументов из Bundle
 
+@AndroidEntryPoint
 class ClothesFragment : Fragment() {
 
     private lateinit var clothesViewModel: ClothesViewModel

@@ -1,6 +1,9 @@
 package ru.dm.android.truestyle.viewmodel
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ClothesSearchViewModel : ViewModel() {
+@HiltViewModel
+class ClothesSearchViewModel @Inject constructor(): ViewModel() {
 }

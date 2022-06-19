@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemTopicBinding
 import ru.dm.android.truestyle.model.Topic
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ArticlesInTopicFragment
 
-class TopicHolder(private val binding: ItemTopicBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
-
-    private var callbacks: NavigationCallbacks
+class TopicHolder(val navigation: Navigation,
+                  private val binding: ItemTopicBinding,
+                  context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     init {
         itemView.setOnClickListener(this)
-        callbacks = context as NavigationCallbacks
+        
     }
 
     fun bind(topic: Topic) {
@@ -33,7 +33,7 @@ class TopicHolder(private val binding: ItemTopicBinding, context: Context): Recy
         val titleTopic = binding.model!!.title
 
         val fragmentTo = ArticlesInTopicFragment.newInstance(titleTopic)
-        callbacks.navigateTo(fragmentTo, R.id.navigation_articles)
+        navigation.navigateTo(fragmentTo, R.id.navigation_articles)
     }
 
 }

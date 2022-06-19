@@ -3,9 +3,12 @@ package ru.dm.android.truestyle.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.dm.android.truestyle.model.User
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
+@HiltViewModel
+class ProfileViewModel @Inject constructor(): ViewModel() {
     var liveData: MutableLiveData<User> = MutableLiveData()
 
     //ВРЕМЕННО

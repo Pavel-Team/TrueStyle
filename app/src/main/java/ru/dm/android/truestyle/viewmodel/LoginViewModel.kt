@@ -5,11 +5,14 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.dm.android.truestyle.model.Login
+import javax.inject.Inject
 
 private const val TAG = "LoginViewModel"
 
-class LoginViewModel: ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(): ViewModel() {
     var liveData: MutableLiveData<Login> = MutableLiveData()
 
     init {

@@ -3,11 +3,13 @@ package ru.dm.android.truestyle
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 
 private const val TAG = "Application"
 
+@HiltAndroidApp
 class Application : Application() {
 
     override fun onCreate() {

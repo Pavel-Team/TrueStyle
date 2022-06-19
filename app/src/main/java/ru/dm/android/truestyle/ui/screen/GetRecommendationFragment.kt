@@ -8,23 +8,27 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.databinding.FragmentGetRecommendationBinding
-import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.GetRecommendationAdapter
 import ru.dm.android.truestyle.viewmodel.GetRecommendationViewModel
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class GetRecommendationFragment: Fragment() {
     private lateinit var getRecommendationViewModel: GetRecommendationViewModel
     private var _binding: FragmentGetRecommendationBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var callbacks: NavigationCallbacks
+    @Inject
+    lateinit var navigation: Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbacks = context as NavigationCallbacks
+        
     }
 
 
@@ -41,7 +45,7 @@ class GetRecommendationFragment: Fragment() {
         binding.lifecycleOwner = this@GetRecommendationFragment
         binding.recyclerViewRecommendedClothes.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = GetRecommendationAdapter(context, getRecommendationViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = GetRecommendationAdapter(navigation, context, getRecommendationViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
 
         //Слушатель на кнопку назад

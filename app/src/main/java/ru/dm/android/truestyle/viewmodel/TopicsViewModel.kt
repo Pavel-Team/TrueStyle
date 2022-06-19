@@ -2,9 +2,12 @@ package ru.dm.android.truestyle.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.dm.android.truestyle.model.Topic
+import javax.inject.Inject
 
-class TopicsViewModel: ViewModel() {
+@HiltViewModel
+class TopicsViewModel @Inject constructor(): ViewModel() {
     var liveData: MutableLiveData<List<Topic>> = MutableLiveData()
 
     //ВРЕМЕННО

@@ -2,9 +2,12 @@ package ru.dm.android.truestyle.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.dm.android.truestyle.model.RecommendedArticle
+import javax.inject.Inject
 
-public class ArticlesViewModel : ViewModel() {
+@HiltViewModel
+public class ArticlesViewModel @Inject constructor(): ViewModel() {
     var liveData: MutableLiveData<List<RecommendedArticle>> = MutableLiveData()
 
     //ВРЕМЕННО
