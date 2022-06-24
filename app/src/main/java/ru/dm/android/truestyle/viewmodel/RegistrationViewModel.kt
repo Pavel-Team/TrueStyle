@@ -1,13 +1,23 @@
 package ru.dm.android.truestyle.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.dm.android.truestyle.model.Registration
+import ru.dm.android.truestyle.repository.RegistrationRepository
+
+private const val TAG = "RegistrationViewModel"
 
 class RegistrationViewModel: ViewModel() {
     var liveData: MutableLiveData<Registration> = MutableLiveData()
+
+    val repository = RegistrationRepository
 
     private val regexPasswordCorrect = Regex("[_?!a-zA-Z0-9]{6,}")
     private val regexSmallSymbols = Regex("[a-z]+")
@@ -33,6 +43,20 @@ class RegistrationViewModel: ViewModel() {
         } else {
             return 0
         }
+    }
+
+
+    //Регистрация пользователя
+    fun registerUser(username: String, email: String, password: String) {
+            Log.d(TAG, "launch")
+            repository.registerUser(username, email, password)
+        Log.d(TAG, "afterLaunch")
+    }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d(TAG, "onCleared")
     }
 
 }

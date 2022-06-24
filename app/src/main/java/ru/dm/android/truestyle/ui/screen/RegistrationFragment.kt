@@ -185,10 +185,15 @@ class RegistrationFragment: Fragment() {
         binding.buttonRegister.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 //...Запрос на сервер
+                registrationViewModel.registerUser(
+                    username = binding.editTextUsername.text.toString(),
+                    email = binding.editTextEmail.text.toString(),
+                    password = binding.editTextPassword.text.toString()
+                )
                 //...Заполнение рум
                 val fragmentTo = ProfileFragment()
-                callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
-                callbacks.clearStackFragment(R.id.navigation_profile)
+                    //callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+                //callbacks.clearStackFragment(R.id.navigation_profile)
             }
         })
 
