@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:start="@dimen/padding_start_icon_image_button"
+        android:width="@dimen/width_icon_image_button"
+        android:height="@dimen/width_icon_image_button"
+        android:drawable="@drawable/google"
+        android:gravity="center">
+    </item>
+</layer-list>

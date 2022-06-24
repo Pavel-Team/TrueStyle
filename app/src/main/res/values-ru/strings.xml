@@ -41,4 +41,59 @@
     <string name="title_winter">Зима</string>
     <string name="title_spring">Весна</string>
 
+    <string name="not_connection">Упс...\nНет соединения с Интернетом</string>
+    <string name="error_server">Похоже ведутся технические работы. \nПерезайдите чуть позже</string>
+
+    <string name="content_description_ic_all_articles">Отркрыть все статьи</string>
+    <string name="example_title_recommended_article">Название статьи</string>
+
+    <string name="back">Назад</string>
+    <string name="image_topic">Тема</string>
+    <string name="hint_title_topic">Название темы</string>
+
+    <string name="hint_title_article">Статья</string>
+    <string name="hint_description_article">Описание</string>
+    <string name="search">Вы ищите...</string>
+
+    <string name="season">Сезон</string>
+    <string name="description_wardrobe_clothes">Одежда</string>
+    <string name="hint_title_wardrobe_clothes">Название одежды</string>
+    <string name="hint_description_wardrobe_clothes">Описание одежды</string>
+
+    <string name="not_camera">Извините, Ваше устройство не поддерживает камеру</string>
+    <string name="choose_gallery">Загрузить фото с помощью...</string>
+
+    <string name="row_settings_language">Язык</string>
+    <string name="row_settings_theme">Тема</string>
+    <string name="row_settings_push">Уведомления</string>
+    <string name="soon">Скоро</string>
+
+    <string name="hint_setting">Настройка</string>
+
+    <string name="button_ok_dialog_fragment">Понятно</string>
+    <string name="button_retry_dialog_fragment">Обновить</string>
+
+    <string name="password">Пароль</string>
+    <string name="login_hint">Номер, email или имя пользователя</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="forgot_password">Забыли пароль? <b>Войти</b></string>
+    <string name="privacy_policy">Продолжая, Вы соглашаетесть с <b>правилами</b> True Style и <b>политикой конфиденциальности</b></string>
+    <string name="or_continue_with">или продолжить с</string>
+
+    <string name="recommendation">Рекомендации</string>
+
+    <string name="username">Имя пользователя</string>
+    <string name="email">E-mail адресс</string>
+    <string name="hint_password">В целях безопасности, Ваш пароль должен состоять не менее чем из 6 символов (буквы латинского алфавита, цифры и знаки \'_!?\')</string>
+    <string name="strong_password_0">Incorrect</string>
+    <string name="strong_password_1">Weak</string>
+    <string name="strong_password_2">Medium</string>
+    <string name="strong_password_3">Strong</string>
+    <string name="strong_password_4">Very strong</string>
+    <string name="error_username">Такое имя уже используется</string>
+    <string name="error_email">Некорректный E-mail адресс</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
+
 </resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/image_button_back"
+            android:layout_width="@dimen/width_ic_back"
+            android:layout_height="@dimen/width_ic_back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_window"
+            android:layout_marginStart="@dimen/margin_ic_back"
+            android:scaleType="centerCrop"
+            android:background="@null"
+            android:contentDescription="@string/back" />
+
+        <TextView
+            android:id="@+id/title_style"
+            style="@style/titleAppTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/style"
+            app:layout_constraintStart_toEndOf="@id/image_button_back"
+            app:layout_constraintTop_toTopOf="@id/image_button_back"
+            app:layout_constraintBottom_toBottomOf="@id/image_button_back"
+            android:layout_marginStart="@dimen/margin_start_title_style" />
+
+        <ImageButton
+            android:id="@+id/button_open_search"
+            android:layout_width="@dimen/width_ic_search"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_window"
+            android:background="@null"
+            android:src="@drawable/ic_search"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="@id/title_style"
+            app:layout_constraintBottom_toBottomOf="@id/title_style"/>
+
+        <ImageButton
+            android:id="@+id/send_search"
+            android:layout_width="@dimen/width_ic_send"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_window"
+            android:background="@null"
+            android:src="@drawable/ic_send"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="@id/image_button_back"
+            app:layout_constraintBottom_toBottomOf="@id/image_button_back"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/edit_text_search"
+            style="@style/editTextStyle.Search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/image_button_back"
+            android:layout_marginStart="@dimen/margin_start_title_style"
+            app:layout_constraintEnd_toStartOf="@id/send_search"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_window"
+            android:background="@drawable/background_layout_characteristics"
+            android:hint="@string/search"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/margin_start_title_style" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_articles"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_button_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/margin_top_recycler_view_topics"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

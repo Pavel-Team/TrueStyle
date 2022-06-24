@@ -46,4 +46,71 @@
     <string name="title_winter">Winter</string>
     <string name="title_spring">Spring</string>
 
+    <string name="not_connection">Not connection</string>
+    <string name="error_server">Technical work. \nRe-apply later</string>
+
+    <string name="articles">Articles</string>
+    <string name="content_description_ic_all_articles">Open all articles</string>
+    <string name="example_title_recommended_article">Article title</string>
+
+    <string name="back">Back</string>
+    <string name="style">Style</string>
+    <string name="image_topic">Theme</string>
+    <string name="hint_title_topic">Title name</string>
+
+    <string name="hint_title_article">Article</string>
+    <string name="hint_description_article">Description</string>
+    <string name="search">Search...</string>
+
+    <string name="season">Season</string>
+    <string name="description_wardrobe_clothes">Clothes</string>
+    <string name="hint_title_wardrobe_clothes">Title clothes</string>
+    <string name="hint_description_wardrobe_clothes">Description clothes</string>
+
+    <string name="not_camera">Sorry, your device does not support the camera</string>
+    <string name="choose_gallery">Upload photo with...</string>
+
+    <string name="row_settings_language">Language</string>
+    <string name="row_settings_theme">Theme</string>
+    <string name="row_settings_push">Push</string>
+    <string name="soon">Soon</string>
+
+    <array name="array_languages">
+        <item>Русский</item>
+        <item>English</item>
+    </array>
+
+    <string name="hint_setting">Setting</string>
+
+    <string name="login">Login</string>
+
+    <string name="button_ok_dialog_fragment">Ok</string>
+    <string name="button_retry_dialog_fragment">Refresh</string>
+
+    <string name="password">Password</string>
+    <string name="login_hint">Phone number, email or username</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="forgot_password">Forgot your password? <b>Login me.</b></string>
+    <string name="privacy_policy">By continuing, you agree to True Style <b>Terms &#38; Conditions</b> and <b>Privacy Policy</b></string>
+    <string name="or_continue_with">or continue with</string>
+    <string name="google">Google</string>
+    <string name="vk">Vk</string>
+
+    <string name="recommendation">Recommendation</string>
+
+    <string name="title_registration">Join True Style</string>
+    <string name="username">Username</string>
+    <string name="email">E-mail address</string>
+    <string name="hint_password">For security, your password must be 6 characters (latin letters, digits, symbols \'_?!\' ) or more</string>
+    <string name="strong_password_0">Incorrect</string>
+    <string name="strong_password_1">Weak</string>
+    <string name="strong_password_2">Medium</string>
+    <string name="strong_password_3">Strong</string>
+    <string name="strong_password_4">Very strong</string>
+    <string name="error_username">The username is already in use</string>
+    <string name="error_email">Incorrect E-mail address</string>
+    <string name="register">Register</string>
+    <string name="has_account">Already registred? <b>Login me.</b></string>
+
 </resources>

@@ -4,12 +4,15 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.dm.android.truestyle.model.ArticleRecommendation
 import ru.dm.android.truestyle.model.ClothesRecommendation
 import ru.dm.android.truestyle.model.Recommendation
 import ru.dm.android.truestyle.ui.screen.RecommendationFragmentDirections
+import javax.inject.Inject
 
-class RecommendationViewModel : ViewModel() {
+@HiltViewModel
+class RecommendationViewModel @Inject constructor(): ViewModel() {
     var liveDataQuote: MutableLiveData<Recommendation> = MutableLiveData()
     var liveDataClothes: MutableLiveData<List<ClothesRecommendation>> = MutableLiveData()
     var liveDataArticles: MutableLiveData<List<ArticleRecommendation>> = MutableLiveData()
@@ -26,7 +29,7 @@ class RecommendationViewModel : ViewModel() {
         liveDataArticles.value = listOf(
             ArticleRecommendation(1, "Помада под твое платье", "www.url4"),
             ArticleRecommendation(2, "Пончики как стиль одежды", "www.url5"),
-            ArticleRecommendation(3, "Тренды 2022", "www.url6"),
+            ArticleRecommendation(3, "Что такое мода", "www.url6"),
             ArticleRecommendation(4, "История моды", "www.url7"),
             ArticleRecommendation(5, "Первое пальто", "www.url8")
         )

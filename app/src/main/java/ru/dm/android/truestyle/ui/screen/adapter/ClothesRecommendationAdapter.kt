@@ -8,11 +8,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemClothesRecommendationBinding
-import ru.dm.android.truestyle.model.Clothes
 import ru.dm.android.truestyle.model.ClothesRecommendation
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.ClothesHolder
 
-class ClothesRecommendationAdapter(private val context: Context,
+class ClothesRecommendationAdapter(val navigation: Navigation,
+                                   private val context: Context,
                                    private val listClothes: List<ClothesRecommendation>): RecyclerView.Adapter<ClothesHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothesHolder {
@@ -22,7 +23,7 @@ class ClothesRecommendationAdapter(private val context: Context,
             parent,
             false
         )
-        return ClothesHolder(binding)
+        return ClothesHolder(navigation, binding, context)
     }
 
     override fun onBindViewHolder(holder: ClothesHolder, position: Int) {

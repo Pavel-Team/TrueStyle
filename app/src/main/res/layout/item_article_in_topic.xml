@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="ru.dm.android.truestyle.model.ArticleInTopic" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_window"
+        android:layout_marginEnd="@dimen/margin_window"
+        android:layout_marginTop="@dimen/margin_top_bottom_item_topics"
+        android:layout_marginBottom="@dimen/margin_top_bottom_item_topics">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_article_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/radius_image_item_topics">
+
+            <ImageView
+                android:id="@+id/image_view_article_in_topic"
+                android:layout_width="@dimen/width_image_topic"
+                android:layout_height="@dimen/width_image_topic"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/example_article"
+                android:contentDescription="@string/hint_title_article"
+
+                android:src="@drawable/example_article"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title_article"
+            style="@style/textTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/card_view_article_image"
+            app:layout_constraintTop_toTopOf="@id/card_view_article_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/text_size_item_topics"
+            android:layout_marginTop="@dimen/padding_text_item_topic"
+            android:layout_marginStart="@dimen/padding_text_item_topic"
+            android:justificationMode="inter_word"
+            tools:targetApi="o"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:hint="@string/hint_title_article"
+            android:text="@{model.title}"/>
+
+        <TextView
+            style="@style/textTextViewStyle.additionalText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/title_article"
+            app:layout_constraintEnd_toEndOf="@id/title_article"
+            app:layout_constraintTop_toBottomOf="@id/title_article"
+            android:maxLines="1"
+            android:layout_marginTop="@dimen/margin_top_description_article"
+            android:text="@{model.description}"
+            android:hint="@string/hint_description_article"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

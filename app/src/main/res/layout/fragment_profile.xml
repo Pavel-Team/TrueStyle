@@ -13,7 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.screen.ProfileFragment">
+        tools:context=".ui.screen.ProfileFragment"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/user_name"
@@ -29,6 +30,7 @@
             android:layout_marginTop="@dimen/margin_window"/>
 
         <ImageButton
+            android:id="@+id/image_button_settings"
             android:layout_width="@dimen/width_ic_settings"
             android:layout_height="@dimen/width_ic_settings"
             app:layout_constraintTop_toTopOf="@id/user_name"
@@ -222,7 +224,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_window"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/margin_top_seasons"
             android:layout_marginEnd="@dimen/margin_horizontal_between_season"
             android:adjustViewBounds="true"
             android:src="@drawable/background_winter"
@@ -251,7 +253,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/margin_horizontal_between_season"
             android:layout_marginEnd="@dimen/margin_window"
-            android:layout_marginTop="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_top_seasons"
             android:adjustViewBounds="true"
             android:contentDescription="@string/title_spring"/>
 

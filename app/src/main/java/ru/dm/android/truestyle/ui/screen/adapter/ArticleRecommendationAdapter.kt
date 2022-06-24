@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ItemArticleRecommendationBinding
 import ru.dm.android.truestyle.model.ArticleRecommendation
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.ArticleHolder
 
-class ArticleRecommendationAdapter(private val context: Context,
+class ArticleRecommendationAdapter(val navigation: Navigation, private val context: Context,
                                    private val listArticles: List<ArticleRecommendation>): RecyclerView.Adapter<ArticleHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
@@ -21,7 +22,7 @@ class ArticleRecommendationAdapter(private val context: Context,
             parent,
             false
         )
-        return ArticleHolder(binding)
+        return ArticleHolder(navigation, binding, context)
     }
 
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {

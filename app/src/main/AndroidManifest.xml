@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.dm.android.truestyle">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+
     <application
         android:name=".Application"
         android:allowBackup="true"
@@ -9,7 +14,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TrueStyle">
+        android:theme="@style/Theme.TrueStyle"
+
+        android:usesCleartextTraffic="true">
 
         <!--Загрузочная активити-->
         <activity
@@ -25,8 +32,21 @@
         <!--Главная активити-->
         <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan">
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="ru.dm.android.truestyle.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/files"/>
+
+        </provider>
     </application>
 
 </manifest>

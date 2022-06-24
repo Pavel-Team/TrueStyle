@@ -5,8 +5,8 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 
 data class ArticleRecommendation(val id: Int,
-                                 val _title: String,
-                                 val _imageUrl: String): BaseObservable() {
+                                 private val _title: String,
+                                 private val _imageUrl: String): BaseObservable() {
 
     @get:Bindable
     var title: String = _title

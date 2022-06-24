@@ -51,7 +51,75 @@
     <dimen name="margin_start_text_user_style">6dp</dimen>
     <dimen name="width_ic_settings">26dp</dimen>
     <dimen name="margin_top_user_style">24dp</dimen>
-    <dimen name="margin_top_seasons">12dp</dimen>
+    <dimen name="margin_top_seasons">16dp</dimen>
     <dimen name="margin_horizontal_between_season">8dp</dimen>
     <dimen name="margin_top_wardrobe">24dp</dimen>
+
+    <dimen name="width_image_not_connect">200dp</dimen>
+    <dimen name="margin_bottom_image_no_connect">100dp</dimen>
+
+    <dimen name="text_size_recommended_article">28sp</dimen>
+    <dimen name="width_circle_article">10dp</dimen>
+
+    <dimen name="width_ic_back">31dp</dimen>
+    <dimen name="margin_ic_back">20dp</dimen>
+    <dimen name="margin_start_title_style">20dp</dimen>
+    <dimen name="margin_top_recycler_view_topics">24dp</dimen>
+
+    <dimen name="radius_image_item_topics">12dp</dimen>
+    <dimen name="padding_text_item_topic">8dp</dimen>
+    <dimen name="text_size_item_topics">15sp</dimen>
+    <dimen name="margin_top_bottom_item_topics">8dp</dimen>
+    <dimen name="width_image_topic">64dp</dimen>
+    <dimen name="margin_top_description_article">5dp</dimen>
+    <dimen name="width_ic_search">24dp</dimen>
+    <dimen name="width_ic_send">28dp</dimen>
+
+    <dimen name="padding_edit_text">8dp</dimen>
+    <dimen name="width_cursor">1dp</dimen>
+
+    <dimen name="margin_top_table_settings">32dp</dimen>
+    <dimen name="text_size_settings">25sp</dimen>
+    <dimen name="radius_background_dialog">32dp</dimen>
+
+    <dimen name="margin_bottom_edit_text_password_login_fragment">20dp</dimen>
+    <dimen name="radius_black_line">5dp</dimen>
+    <dimen name="margin_start_password_edit_text">42dp</dimen>
+    <dimen name="text_size_app_name_in_login_fragment">39sp</dimen>
+    <dimen name="margin_top_sign_in">47dp</dimen>
+    <dimen name="text_size_button_sign">20sp</dimen>
+    <dimen name="margin_top_sign_up">6dp</dimen>
+    <dimen name="margin_bottom_privacy_policy">9dp</dimen>
+    <dimen name="margin_start_privacy_policy">47dp</dimen>
+    <dimen name="width_black_line_login_fragment">134dp</dimen>
+    <dimen name="height_black_line_login_fragment">5dp</dimen>
+    <dimen name="margin_bottom_black_line_login_fragment">8dp</dimen>
+    <dimen name="text_size_continue">20sp</dimen>
+    <dimen name="padding_start_icon_image_button">10dp</dimen>
+    <dimen name="inner_padding_image_button">3dp</dimen>
+    <dimen name="width_icon_image_button">22sp</dimen>
+    <dimen name="margin_top_image_button_google">5dp</dimen>
+    <dimen name="margin_top_image_button_vk">2dp</dimen>
+    <dimen name="margin_start_dashed_border">32dp</dimen>
+    <dimen name="margin_end_dashed_border">10dp</dimen>
+    <dimen name="margin_top_dashed_border">2dp</dimen>
+    <dimen name="dash_gap_dashed_border">3dp</dimen>
+    <dimen name="dash_width_dashed_border">2dp</dimen>
+    <dimen name="width_dash_border">1dp</dimen>
+
+    <dimen name="padding_horizontal_registration_screen">40dp</dimen>
+    <dimen name="padding_top_title_registration">40dp</dimen>
+    <dimen name="font_size_title_registration">24sp</dimen>
+    <dimen name="font_size_hint_edit_text_registration">10sp</dimen>
+    <dimen name="margin_start_hint_edit_text_registration">4dp</dimen>
+    <dimen name="margin_bottom_hint_edit_text_registration">-7dp</dimen>
+    <dimen name="margin_top_error_edit_text_registration">-5dp</dimen>
+    <dimen name="margin_top_edit_text_username">40dp</dimen>
+    <dimen name="margin_top_edit_text_email">30dp</dimen>
+    <dimen name="margin_top_line_strong_password">20dp</dimen>
+    <dimen name="margin_top_hint_password">2dp</dimen>
+    <dimen name="font_size_hint_password">12sp</dimen>
+    <dimen name="height_line_strong_password">2dp</dimen>
+    <dimen name="margin_top_button_register">30dp</dimen>
+    <dimen name="margin_bottom_has_account">4dp</dimen>
 </resources>
