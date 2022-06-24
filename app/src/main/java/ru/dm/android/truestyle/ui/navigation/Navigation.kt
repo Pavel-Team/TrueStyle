@@ -21,6 +21,7 @@ class Navigation @Inject constructor(){
     private lateinit var fragmentManager: FragmentManager
     private var mapStackFragments: HashMap<Int, Stack<Fragment>> = HashMap() //<id выбранного пункта меню, стэк фрагментов>
     private var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
+    var lastFragment: Fragment = RecommendationFragment()
 
     init {
         Log.d("RegistrationNavigation", "init")
@@ -46,6 +47,7 @@ class Navigation @Inject constructor(){
         //navView.menu.findItem(idItemMenu).isChecked=true
 
         lastMenuItem = idItemMenu
+        lastFragment = toFragment
         fragmentManager
             .beginTransaction()
             .replace(R.id.nav_host_fragment_activity_main, toFragment)
@@ -73,6 +75,7 @@ class Navigation @Inject constructor(){
                         .beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, newFragment)
                         .commit()
+                    lastFragment = newFragment
                 }
             } else {
                 //Последний фрагмент из стека
@@ -81,6 +84,7 @@ class Navigation @Inject constructor(){
                     .beginTransaction()
                     .replace(R.id.nav_host_fragment_activity_main, fragmentFromStack)
                     .commit()
+                lastFragment = fragmentFromStack
             }
             lastMenuItem = item.itemId
         }
@@ -106,6 +110,7 @@ class Navigation @Inject constructor(){
                 .beginTransaction()
                 .replace(R.id.nav_host_fragment_activity_main, lastFragment)
                 .commit()
+            this.lastFragment = lastFragment
             return false
         }
     }

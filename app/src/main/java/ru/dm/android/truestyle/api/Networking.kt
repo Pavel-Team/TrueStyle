@@ -18,5 +18,5 @@ class Networking {
         .build()
 
     val api : Api
-        get() = retrofit.create()
+        get() = retrofit.create(Api::class.java)
 }

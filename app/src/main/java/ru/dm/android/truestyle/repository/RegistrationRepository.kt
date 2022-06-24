@@ -28,9 +28,10 @@ class RegistrationRepository @Inject constructor(val networking: Networking) {
             Registration(username=username, email=email, password=password)
         )
         Log.d(TAG, "after response")
-        val result = response.body().orEmpty()
+        //val result = response.body().orEmpty()
+        val result = response.execute().body()
         Log.d(TAG, "after result")
-        Log.d(TAG, result)
+        Log.d(TAG, result!!)
         return Result.success(result)
     }
 

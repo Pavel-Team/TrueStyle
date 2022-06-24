@@ -57,8 +57,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)*/
-        if (supportFragmentManager.findFragmentById(R.id.container) == null)
-            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
+//        if (supportFragmentManager.findFragmentById(R.id.container) == null)
+//            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, navigation.lastFragment).commit()
         navView.setOnItemSelectedListener(this)
     }
 
