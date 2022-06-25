@@ -13,6 +13,7 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
+import ru.dm.android.truestyle.repository.SQLiteRepository
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.ui.screen.*
 import java.util.*
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     private var mapStackFragments: HashMap<Int, Stack<Fragment>> = HashMap() //<id выбранного пункта меню, стэк фрагментов>
     private var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
+
+    private val sqLiteRepository = SQLiteRepository.get()
 
     init {
         Log.d(TAG, "init")

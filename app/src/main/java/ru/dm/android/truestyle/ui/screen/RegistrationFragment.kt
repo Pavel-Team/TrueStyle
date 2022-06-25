@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentRegistrationBinding
@@ -25,10 +26,6 @@ class RegistrationFragment: Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var callbacks: NavigationCallbacks
-
-    private var isCorrectUsername = true
-    private var isCorrectEmail = false
-    private var isCorrectPassword = false
 
     private val REGEX_EMAIL by lazy { Regex("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") }
 
@@ -63,14 +60,14 @@ class RegistrationFragment: Fragment() {
 
                 if(!hasFocus) {
                     if (binding.editTextUsername.text.isNotEmpty()) {
-                        //...Отправка запроса на сервер
-                        //...меняем isCorrectUsername
+                        //Отправка запроса на сервер
+                        registrationViewModel.checkUserName(binding.editTextUsername.text.toString())
                     } else {
-                        isCorrectUsername = false;
+                        registrationViewModel.liveDataIsCorrectUsername.value = false;
                     }
 
-                    binding.textErrorUsername.visibility = if (isCorrectUsername) View.INVISIBLE else View.VISIBLE
-                    setEnabledButtonRegister(isCorrectUsername, isCorrectEmail, isCorrectPassword)
+                    binding.textErrorUsername.visibility = if (registrationViewModel.liveDataIsCorrectUsername.value!!) View.INVISIBLE else View.VISIBLE
+                    //setEnabledButtonRegister()
                 }
             }
 
@@ -84,9 +81,15 @@ class RegistrationFragment: Fragment() {
                     binding.textHintEmail.visibility = View.INVISIBLE
 
                 if (!hasFocus) {
-                    isCorrectEmail = REGEX_EMAIL.matches(binding.editTextEmail.text)
+                    registrationViewModel.liveDataIsCorrectEmail.value = REGEX_EMAIL.matches(binding.editTextEmail.text)
+                    //Если такой Email есть
+                    binding.textErrorEmail.text = if (registrationViewModel.checkEmail(binding.editTextEmail.text.toString()))
+                        resources.getString(R.string.error_email)
+                     else
+                        resources.getString(R.string.error_email_2)
 
-                    if (isCorrectEmail) {
+
+                    if (registrationViewModel.liveDataIsCorrectEmail.value!!) {
                         val color = ContextCompat.getColor(requireContext(), R.color.black)
                         binding.textErrorEmail.visibility = View.INVISIBLE
                         binding.textHintEmail.setTextColor(color)
@@ -108,7 +111,7 @@ class RegistrationFragment: Fragment() {
                             BlendModeColorFilterCompat.createBlendModeColorFilterCompat(color, BlendModeCompat.SRC_ATOP)
                     }
 
-                    setEnabledButtonRegister(isCorrectUsername, isCorrectEmail, isCorrectPassword)
+                    //setEnabledButtonRegister()
                 }
             }
 
@@ -126,8 +129,8 @@ class RegistrationFragment: Fragment() {
                     binding.lineStrongPassword3.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gray_4))
                     binding.lineStrongPassword4.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gray_4))
 
-                    isCorrectPassword = false
-                    setEnabledButtonRegister(isCorrectUsername, isCorrectEmail, isCorrectPassword)
+                    registrationViewModel.liveDataIsCorrectPassword.value = false
+                    setEnabledButtonRegister()
                     return
                 }
 
@@ -175,8 +178,8 @@ class RegistrationFragment: Fragment() {
                     }
                 }
 
-                isCorrectPassword = strong != 0
-                setEnabledButtonRegister(isCorrectUsername, isCorrectEmail, isCorrectPassword)
+                registrationViewModel.liveDataIsCorrectPassword.value = strong != 0
+                //setEnabledButtonRegister()
             }
         })
 
@@ -184,16 +187,14 @@ class RegistrationFragment: Fragment() {
         //Слушатель на кнопку регистрации
         binding.buttonRegister.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
-                //...Запрос на сервер
+                //...запускаем анимацию
+
+                //Запрос на сервер
                 registrationViewModel.registerUser(
                     username = binding.editTextUsername.text.toString(),
                     email = binding.editTextEmail.text.toString(),
                     password = binding.editTextPassword.text.toString()
                 )
-                //...Заполнение рум
-                val fragmentTo = ProfileFragment()
-                    //callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
-                //callbacks.clearStackFragment(R.id.navigation_profile)
             }
         })
 
@@ -211,6 +212,33 @@ class RegistrationFragment: Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        registrationViewModel.liveDataIsCorrectUsername.observe(viewLifecycleOwner, Observer {
+            setEnabledButtonRegister()
+        })
+
+        registrationViewModel.liveDataIsCorrectEmail.observe(viewLifecycleOwner, Observer {
+            setEnabledButtonRegister()
+        })
+
+        registrationViewModel.liveDataIsCorrectPassword.observe(viewLifecycleOwner, Observer {
+            setEnabledButtonRegister()
+        })
+
+        registrationViewModel.liveDataSuccessRegistration.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "update viewModel")
+
+            //...убираем анимацию
+
+            val fragmentTo = ProfileFragment()
+            callbacks.navigateTo(fragmentTo, R.id.navigation_profile)
+            callbacks.clearStackFragment(R.id.navigation_profile)
+        })
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -218,7 +246,9 @@ class RegistrationFragment: Fragment() {
 
 
     //Функция устанавливающая возможность нажатия на кнопку регистрации
-    private fun setEnabledButtonRegister(isCorrectUsername: Boolean, isCorrectEmail: Boolean, isCorrectPassword: Boolean) {
-        binding.buttonRegister.isEnabled = (isCorrectUsername && isCorrectEmail && isCorrectPassword)
+    private fun setEnabledButtonRegister() {
+        binding.buttonRegister.isEnabled = (registrationViewModel.liveDataIsCorrectUsername.value!! &&
+                registrationViewModel.liveDataIsCorrectEmail.value!! &&
+                registrationViewModel.liveDataIsCorrectPassword.value!!)
     }
 }

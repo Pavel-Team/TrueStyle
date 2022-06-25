@@ -2,10 +2,12 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.DialogFragmentErrorServerBinding
@@ -15,6 +17,8 @@ import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.viewmodel.ProfileViewModel
+
+private const val TAG = "ProfileFragment"
 
 class ProfileFragment : Fragment() {
 
@@ -85,6 +89,21 @@ class ProfileFragment : Fragment() {
         })
 
         return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        profileViewModel.liveDataSqlite.observe(
+            viewLifecycleOwner,
+            Observer {
+                Log.d(TAG, "update sqlite livedata")
+                Log.d(TAG, profileViewModel.liveDataSqlite.value?.get(0).toString())
+
+                //Здесь запросики с токеном
+                //...
+            }
+        )
     }
 
 

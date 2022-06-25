@@ -110,6 +110,7 @@
     <string name="strong_password_4">Very strong</string>
     <string name="error_username">The username is already in use</string>
     <string name="error_email">Incorrect E-mail address</string>
+    <string name="error_email_2">This E-mail already used</string>
     <string name="register">Register</string>
     <string name="has_account">Already registred? <b>Login me.</b></string>
 

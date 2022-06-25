@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
+import ru.dm.android.truestyle.repository.SQLiteRepository
 
 private const val TAG = "Application"
 
@@ -12,6 +13,7 @@ class Application : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        SQLiteRepository.initialize(this)
     }
 
 

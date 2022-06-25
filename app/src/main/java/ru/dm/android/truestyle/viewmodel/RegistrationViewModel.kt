@@ -9,15 +9,30 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.dm.android.truestyle.api.response.Auth
 import ru.dm.android.truestyle.model.Registration
+import ru.dm.android.truestyle.model.User
 import ru.dm.android.truestyle.repository.RegistrationRepository
+import ru.dm.android.truestyle.thread.CheckEmailAsyncTask
+import ru.dm.android.truestyle.thread.CheckUsernameAsyncTask
+import ru.dm.android.truestyle.thread.RegistrationAsyncTask
 
 private const val TAG = "RegistrationViewModel"
 
 class RegistrationViewModel: ViewModel() {
     var liveData: MutableLiveData<Registration> = MutableLiveData()
+    var liveDataSuccessRegistration: MutableLiveData<Auth> = MutableLiveData()
+    var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData()
+    var liveDataIsCorrectEmail: MutableLiveData<Boolean> = MutableLiveData()
+    var liveDataIsCorrectPassword: MutableLiveData<Boolean> = MutableLiveData()
 
-    val repository = RegistrationRepository
+    val registrationRepository = RegistrationRepository
+
+    init {
+        liveDataIsCorrectUsername.value = false
+        liveDataIsCorrectEmail.value = false
+        liveDataIsCorrectPassword.value = false
+    }
 
     private val regexPasswordCorrect = Regex("[_?!a-zA-Z0-9]{6,}")
     private val regexSmallSymbols = Regex("[a-z]+")
@@ -46,11 +61,28 @@ class RegistrationViewModel: ViewModel() {
     }
 
 
+    //Проверка на существование никнейма
+    fun checkUserName(username: String) {
+        val result = CheckUsernameAsyncTask().execute(username).get()
+        liveDataIsCorrectUsername.value = result
+    }
+
+
+    //Проверка на существование email
+    fun checkEmail(email: String) : Boolean {
+        val result = CheckEmailAsyncTask().execute(email).get()
+        liveDataIsCorrectEmail.value = result
+        return result
+    }
+
+
     //Регистрация пользователя
     fun registerUser(username: String, email: String, password: String) {
-            Log.d(TAG, "launch")
-            repository.registerUser(username, email, password)
-        Log.d(TAG, "afterLaunch")
+        //Переделать потом под корутины
+        val registrationAuth = RegistrationAsyncTask()
+        val response = registrationAuth.execute(username, email, password).get()
+        if (response!=null)
+            liveDataSuccessRegistration.value = response!!
     }
 
 
