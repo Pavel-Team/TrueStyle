@@ -57,6 +57,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'androidx.room:room-runtime:2.4.0'
     implementation 'androidx.preference:preference:1.2.0'
+
+    // ML
+//    implementation 'org.tensorflow:tensorflow-lite:2.8.0'
+//    implementation 'org.tensorflow:tensorflow-lite-gpu:2.8.0'
+//    implementation 'org.tensorflow:tensorflow-lite-support:2.8.0'
+//    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.3.1'
+//    implementation 'org.tensorflow:tensorflow-lite:2.5.0'
+    implementation 'org.tensorflow:tensorflow-lite:+'
+
     //DI Hilt
     implementation("com.google.dagger:hilt-android:2.42")
     kapt("com.google.dagger:hilt-android-compiler:2.42")

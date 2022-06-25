@@ -5,9 +5,12 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +18,23 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import org.tensorflow.lite.Interpreter
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentClothesSearchBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ClothesSearchViewModel
 import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+import java.nio.MappedByteBuffer
+import java.nio.channels.FileChannel
 import javax.inject.Inject
+
 
 private const val TAG = "ClothesSearchFragment"
 private const val FILE_NAME = "temporaryPhoto.jpg" //Название временно сохраненного файла
@@ -37,6 +49,7 @@ class ClothesSearchFragment : Fragment() {
 
     private lateinit var photoFile: File //Файл с выбранной фотографией
     private lateinit var photoUri: Uri   //URI файла
+    protected var tflite: Interpreter? = null
 
     @Inject
     lateinit var navigation: Navigation
@@ -46,9 +59,15 @@ class ClothesSearchFragment : Fragment() {
     var resultLauncherCamera = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
-            /*//Для получения миниатюры:
-            val bitmap: Bitmap? = data?.extras?.getParcelable("data") as Bitmap?
-            Log.d(TAG, bitmap?.width.toString())*/
+//            Log.d(TAG, photoFile.toString())
+            //Для получения миниатюры:
+//            val bitmap: Bitmap? = data?.extras?.getParcelable("data") as Bitmap?
+//            Log.d(TAG, bitmap?.width.toString())
+            // Получаем изображение и получаем его Bitmap
+            val filePath: String = photoFile.getPath()
+            val bitmap:Bitmap = BitmapFactory.decodeFile(filePath);
+
+            val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
 
             //Наш файл для передачи лежит в photoFile
             //...отправка на сервер
@@ -69,10 +88,80 @@ class ClothesSearchFragment : Fragment() {
         }
     }
 
+    // Определяем класс модели
+    private fun runObjectDetection(bitmap: Bitmap):List<Int> {
+        val modelsFirstPart:Map<String, Int> = mapOf("model_class" to 143, "model_color" to 47, "model_gender" to 5)
+        val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5, "model_subCategory" to 45)
+        var dataClothes: ArrayList<Int> = ArrayList<Int>()
+
+        // Прогоняем все модели
+        for ((model, value) in modelsFirstPart){
+            dataClothes.add(getResultDetection(bitmap, model, value, 56))
+        }
+        for ((model, value) in modelsSecondPart){
+            dataClothes.add(getResultDetection(bitmap, model, value, 28))
+        }
+//        Log.d(TAG, "-----")
+//        for (i in 0 until 6){
+//            Log.d(TAG,  dataClothes[i].toString())
+//        }
+        return dataClothes;
+    }
+
+    // Получение результата для одной модели
+    private fun getResultDetection(bitmap:Bitmap, model:String, value:Int, sizeImage: Int): Int{
+        //TODO: Add object detection code here
+        try {
+            tflite = activity?.let { loadModelFile(it, model + ".tflite")?.let { Interpreter(it) } }
+            val out = arrayOf(FloatArray(value))
+            tflite!!.run(convertBitmapToByteBuffer(bitmap, sizeImage), out)
+            val result: Int = out[0].indices.maxByOrNull { out[0][it] } ?: -1 ;
+            return result;
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Log.e(TAG, "гг")
+        }
+        return 0; // Это прям херня, нужно будет исправить потом
+    }
+
+    // Оптимизация изображения для модели
+    private fun convertBitmapToByteBuffer(bp: Bitmap, sizeImage: Int): ByteBuffer? {
+        val imgData: ByteBuffer = ByteBuffer.allocateDirect(java.lang.Float.BYTES * sizeImage * sizeImage * 3)
+        imgData.order(ByteOrder.nativeOrder())
+        val bitmap = Bitmap.createScaledBitmap(bp, sizeImage, sizeImage, true)
+        val intValues = IntArray(sizeImage * sizeImage)
+
+        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+        // Convert the image to floating point.
+        var pixel = 0
+        for (i in 0 until sizeImage) {
+            for (j in 0 until sizeImage) {
+                val `val` = intValues[pixel++]
+                imgData.putFloat((`val` shr 16 and 0xFF) / 255f)
+                imgData.putFloat((`val` shr 8 and 0xFF) / 255f)
+                imgData.putFloat((`val` and 0xFF) / 255f)
+            }
+        }
+        return imgData
+    }
+
+
+    //Memory-map the model file in Assets.
+    // Загрузка модели из assets
+    @Throws(IOException::class)
+    private fun loadModelFile(activity: FragmentActivity, filename:String): MappedByteBuffer? {
+        val fileDescriptor = activity.assets.openFd(filename)
+        val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
+        val fileChannel = inputStream.channel
+        val startOffset = fileDescriptor.startOffset
+        val declaredLength = fileDescriptor.declaredLength
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
     }
 
 
