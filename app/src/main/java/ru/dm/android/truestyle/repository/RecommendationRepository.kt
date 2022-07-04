@@ -22,10 +22,10 @@ object RecommendationRepository {
 
 
     //Получение рекомендуемой одежды
-    fun getRecommendedClothes(token: String): LiveData<List<Stuff>> {
+    fun getRecommendedClothes(token: String, type: String): LiveData<List<Stuff>> {
 
         val result: MutableLiveData<List<Stuff>> = MutableLiveData()
-        val request = networking.api.getRecommendedClothes()
+        val request = networking.api.getRecommendedClothes("$type $token")
 
         request.enqueue(object: Callback<List<Stuff>> {
             override fun onResponse(call: Call<List<Stuff>>, response: Response<List<Stuff>>) {

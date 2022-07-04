@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -14,6 +15,8 @@ import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.repository.SQLiteRepository
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.ui.screen.*
 import java.util.*
@@ -69,6 +72,10 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         setupActionBarWithNavController(navController, appBarConfiguration)*/
         if (supportFragmentManager.findFragmentById(R.id.container) == null)
             supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
+
+
+        navView.visibility = View.INVISIBLE //Временно
+
         navView.setOnItemSelectedListener(this)
     }
 

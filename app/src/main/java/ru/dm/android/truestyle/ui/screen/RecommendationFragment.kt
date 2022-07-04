@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentRecommendationBinding
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
 import ru.dm.android.truestyle.ui.navigation.NavigationCallbacks
 import ru.dm.android.truestyle.ui.screen.adapter.ArticleRecommendationAdapter
 import ru.dm.android.truestyle.ui.screen.adapter.ClothesRecommendationAdapter
@@ -40,6 +42,10 @@ public class RecommendationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         recommendationViewModel = ViewModelProvider(this).get(RecommendationViewModel::class.java)
+
+        ErrorServerDialogFragment().apply {
+            show(this@RecommendationFragment.requireFragmentManager(), ConstantsDialog.DIALOG_ERROR_SERVER)
+        }
 
         //Настраиваем dataBinding
         _binding = FragmentRecommendationBinding.inflate(inflater, container, false)

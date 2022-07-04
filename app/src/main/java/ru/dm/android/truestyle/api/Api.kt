@@ -2,10 +2,7 @@ package ru.dm.android.truestyle.api
 
 import com.google.gson.JsonObject
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 import ru.dm.android.truestyle.api.request.LoginRequest
 import ru.dm.android.truestyle.api.response.Auth
 import ru.dm.android.truestyle.api.response.Stuff
@@ -30,5 +27,5 @@ interface Api {
 
     //API рекомендаций (главная страница)
     @GET("clothes/recommended")
-    fun getRecommendedClothes(): Call<List<Stuff>>
+    fun getRecommendedClothes(@Header("Authorization") token: String): Call<List<Stuff>>
 }

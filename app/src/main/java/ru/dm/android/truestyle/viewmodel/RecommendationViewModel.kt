@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.database.entity.User
 import ru.dm.android.truestyle.model.ArticleRecommendation
 import ru.dm.android.truestyle.model.ClothesRecommendation
@@ -19,7 +20,7 @@ class RecommendationViewModel : ViewModel() {
     val liveDataSqlite: LiveData<List<User>>
     var liveDataQuote: MutableLiveData<Recommendation> = MutableLiveData()
     var liveDataClothes: MutableLiveData<List<ClothesRecommendation>> = MutableLiveData()
-    //lateinit var liveDataClothes: LiveData<List<ClothesRecommendation>>
+    //lateinit var liveDataClothes: LiveData<List<Stuff>>
     var liveDataArticles: MutableLiveData<List<ArticleRecommendation>> = MutableLiveData()
 
     val recommendationRepository = RecommendationRepository
@@ -49,7 +50,7 @@ class RecommendationViewModel : ViewModel() {
     //Получение рекомендованной одежды
     fun getRecommendedClothes() {
         Log.d(TAG, "getRecommendedClothes")
-        //liveDataClothes = recommendationRepository.getRecommendedClothes(liveDataSqlite.value.get(0).token)
+        //liveDataClothes = recommendationRepository.getRecommendedClothes(liveDataSqlite.value!!.get(0).token, liveDataSqlite.value!!.get(0).type)
     }
 
 
