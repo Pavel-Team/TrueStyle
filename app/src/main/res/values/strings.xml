@@ -83,6 +83,7 @@
     <string name="hint_setting">Setting</string>
 
     <string name="login">Login</string>
+    <string name="error_login">Error E-mail or password</string>
 
     <string name="button_ok_dialog_fragment">Ok</string>
     <string name="button_retry_dialog_fragment">Refresh</string>
@@ -109,7 +110,7 @@
     <string name="strong_password_3">Strong</string>
     <string name="strong_password_4">Very strong</string>
     <string name="error_username">The username is already in use</string>
-    <string name="error_email">Incorrect E-mail address</string>
+    <string name="error_email">Incorrect E-mail address/This email is already in use</string>
     <string name="register">Register</string>
     <string name="has_account">Already registred? <b>Login me.</b></string>
 

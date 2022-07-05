@@ -70,6 +70,8 @@
 
     <string name="hint_setting">Настройка</string>
 
+    <string name="error_login">Неправильный E-mail или пароль</string>
+
     <string name="button_ok_dialog_fragment">Понятно</string>
     <string name="button_retry_dialog_fragment">Обновить</string>
 
@@ -92,7 +94,7 @@
     <string name="strong_password_3">Strong</string>
     <string name="strong_password_4">Very strong</string>
     <string name="error_username">Такое имя уже используется</string>
-    <string name="error_email">Некорректный E-mail адресс</string>
+    <string name="error_email">Некорректный E-mail адресс/Такой E-mail уже используется</string>
     <string name="register">Зарегистрироваться</string>
     <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
 
