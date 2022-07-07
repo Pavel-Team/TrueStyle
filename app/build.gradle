@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -69,4 +70,7 @@ dependencies {
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
 }

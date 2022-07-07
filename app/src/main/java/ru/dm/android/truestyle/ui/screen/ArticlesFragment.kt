@@ -108,7 +108,7 @@ public class ArticlesFragment : Fragment()  {
                         if (!isScroll && fromPosition-event.getY()==0f) {
                             val idArticle = listArticles.get(indexActiveArticle).id
                             Log.d(TAG, "Нажата статья id = " + idArticle.toString())
-                            val fragmentTo = ArticleFragment.newInstance(idArticle)
+                            val fragmentTo = ArticleFragment.newInstance(idArticle.toLong())
                             navigation.navigateTo(fragmentTo, R.id.navigation_articles)
                         }
                         isScroll = false

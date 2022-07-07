@@ -1,43 +1,48 @@
 package ru.dm.android.truestyle.viewmodel
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import ru.dm.android.truestyle.api.response.Article
+import ru.dm.android.truestyle.api.response.Quote
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.model.ArticleRecommendation
 import ru.dm.android.truestyle.model.ClothesRecommendation
 import ru.dm.android.truestyle.model.Recommendation
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
+import ru.dm.android.truestyle.repository.RecommendationRepository
 import ru.dm.android.truestyle.ui.screen.RecommendationFragmentDirections
+import ru.dm.android.truestyle.util.Constants
 import javax.inject.Inject
 
 @HiltViewModel
-class RecommendationViewModel @Inject constructor(): ViewModel() {
-    var liveDataQuote: MutableLiveData<Recommendation> = MutableLiveData()
-    var liveDataClothes: MutableLiveData<List<ClothesRecommendation>> = MutableLiveData()
-    var liveDataArticles: MutableLiveData<List<ArticleRecommendation>> = MutableLiveData()
+class RecommendationViewModel @Inject constructor(application: Application,
+                                                  val recommendationRepository: RecommendationRepository): AndroidViewModel(application) {
+    var liveDataQuote: MutableLiveData<Quote> = MutableLiveData()
+    var liveDataClothes: MutableLiveData<List<Stuff>> = MutableLiveData()
+    var liveDataArticles: MutableLiveData<List<Article>> = MutableLiveData()
 
     //ВРЕМЕННО
     init {
-        liveDataQuote.value = Recommendation("Мода - это игра, в которую нужно играть серьезно",
-            "Карел Лагерфельд")
-        liveDataClothes.value = listOf(
-            ClothesRecommendation(1, "Кофта женская осень-весна", "www.url1"),
-            ClothesRecommendation(2, "Новогодняя кофта с оленями", "www.url2"),
-            ClothesRecommendation(3, "Свитер со снежинками", "www.url3")
-        )
-        liveDataArticles.value = listOf(
-            ArticleRecommendation(1, "Помада под твое платье", "www.url4"),
-            ArticleRecommendation(2, "Пончики как стиль одежды", "www.url5"),
-            ArticleRecommendation(3, "Что такое мода", "www.url6"),
-            ArticleRecommendation(4, "История моды", "www.url7"),
-            ArticleRecommendation(5, "Первое пальто", "www.url8")
-        )
+        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
+
+        //Берем данные с сервера
+        viewModelScope.launch {
+            liveDataQuote.value = recommendationRepository.getQuote(token)
+            liveDataClothes.value = recommendationRepository.getRecommendedClothes(token)
+            liveDataArticles.value = recommendationRepository.getRecommendedArticles(token)
+        }
     }
 
 
     //Обработчик кнопки "плюсик" (сделать фото)
-    public fun onClickPlus(){
+    fun onClickPlus(){
         Log.d("sss", "onClick")
 
 //        val navController =

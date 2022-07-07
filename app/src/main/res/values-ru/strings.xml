@@ -22,6 +22,9 @@
     <string name="row_characters_season">Сезон</string>
     <string name="row_characters_size">Размер</string>
     <string name="row_characters_gender">Пол</string>
+    <string name="row_characters_category">Категория</string>
+    <string name="row_characters_subcategory">Подкатегория</string>
+    <string name="row_characters_usage">Применение</string>
     <string name="row_characters_type">Тип</string>
 
     <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>

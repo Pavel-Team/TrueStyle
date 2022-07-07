@@ -2,10 +2,12 @@
 package ru.dm.android.truestyle.api
 
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import ru.dm.android.truestyle.util.Constants
+
 
 class Networking {
     private val okHttpClient = OkHttpClient.Builder()

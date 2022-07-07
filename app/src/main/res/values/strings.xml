@@ -37,6 +37,9 @@
     <string name="row_user_height">Height</string>
     <string name="row_user_weight">Weight</string>
     <string name="row_user_gender">Gender</string>
+    <string name="row_characters_category">Category</string>
+    <string name="row_characters_subcategory">Subcategory</string>
+    <string name="row_characters_usage">Usage</string>
     <string name="hint_user_name">user.name</string>
     <string name="hint_style_user">Unknown style</string>
     <string name="value_user_table">Fill in</string>

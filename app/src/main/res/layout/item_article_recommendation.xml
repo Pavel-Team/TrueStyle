@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="ru.dm.android.truestyle.model.ArticleRecommendation" />
+            type="ru.dm.android.truestyle.api.response.Article" />
     </data>
 
     <LinearLayout
@@ -28,8 +28,7 @@
                 android:scaleType="centerCrop"
                 tools:src="@drawable/example_article"
                 android:contentDescription="@string/image_clothes"
-
-                android:src="@drawable/example_article"/>
+                imageUrl="@{model.imageUrl}"/>
 
         </androidx.cardview.widget.CardView>
 

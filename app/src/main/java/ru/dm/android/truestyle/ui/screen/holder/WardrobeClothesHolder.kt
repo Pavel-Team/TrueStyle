@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.ItemClothesInWardrobeBinding
 import ru.dm.android.truestyle.model.WardrobeClothes
 import ru.dm.android.truestyle.ui.navigation.Navigation
@@ -29,9 +30,10 @@ class WardrobeClothesHolder(val navigation: Navigation,
     }
 
     override fun onClick(view: View?) {
-        val id = binding.model!!.id
+        val clothes = binding.model!!
 
-        val fragmentTo = ClothesFragment.newInstance(id)
+        //ВРЕМЕННО!!!!!!!!!!
+        val fragmentTo = ClothesFragment.newInstance(Stuff())
         navigation.navigateTo(fragmentTo, R.id.navigation_profile)
     }
 }

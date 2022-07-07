@@ -76,7 +76,7 @@ class ArticleFragment : Fragment() {
 
 
     companion object {
-        fun newInstance(idArticle: Int) : ArticleFragment{
+        fun newInstance(idArticle: Long) : ArticleFragment{
             val args = Bundle().apply {
                 putSerializable(ARG_ID_ARTICLE, idArticle)
             }

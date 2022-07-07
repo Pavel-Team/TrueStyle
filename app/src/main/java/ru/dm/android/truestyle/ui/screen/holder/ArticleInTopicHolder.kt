@@ -31,7 +31,7 @@ class ArticleInTopicHolder(val navigation: Navigation, private val binding: Item
     override fun onClick(view: View?) {
         val id = binding.model!!.id
 
-        val fragmentTo = ArticleFragment.newInstance(id)
+        val fragmentTo = ArticleFragment.newInstance(id.toLong())
         navigation.navigateTo(fragmentTo, R.id.navigation_articles)
     }
 }
