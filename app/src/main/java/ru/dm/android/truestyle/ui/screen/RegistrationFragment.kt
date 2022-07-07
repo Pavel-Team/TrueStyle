@@ -232,6 +232,7 @@ class RegistrationFragment: Fragment() {
             //...убираем анимацию
 
             val fragmentTo = ProfileFragment()
+            navigation.setVisibleNavView() //Включаем нижнее меню при успешном входе
             navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             navigation.clearStackFragment(R.id.navigation_profile)
         })
