@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="ru.dm.android.truestyle.model.ArticleInTopic" />
+            type="ru.dm.android.truestyle.api.response.Article" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

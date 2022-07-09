@@ -26,7 +26,8 @@ fun setWebViewClient(view: WebView, client: WebChromeClient) {
 
 @BindingAdapter("loadUrl")
 fun loadUrl(view: WebView, url: String) {
-    view.loadUrl(url)
+    Log.d("ArticleD", url)
+    view.loadUrl(Constants.URL + url)
 }
 
 

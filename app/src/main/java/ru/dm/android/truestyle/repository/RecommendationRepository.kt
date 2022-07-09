@@ -36,7 +36,7 @@ class RecommendationRepository @Inject constructor(val networking: Networking) {
     }
 
 
-    //Получение рекомендованных статей
+    //Получение рекомендованных статей для главной страницы
     //Возвращает список с рекомендованными статьями
     suspend fun getRecommendedArticles(token: String): List<Article> {
         val list = networking.api.getRecommendedArticles(token).body().orEmpty()

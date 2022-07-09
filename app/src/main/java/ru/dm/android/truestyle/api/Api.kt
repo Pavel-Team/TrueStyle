@@ -32,4 +32,8 @@ interface Api {
 
     @GET("art/recommended/five")
     suspend fun getRecommendedArticles(@Header("Authorization") token: String): Response<List<Article>>
+
+    //API статей (страница со слайдером)
+    @GET("art/recommended/tree")
+    suspend fun getSliderArticles(@Header("Authorization") token: String): Response<List<Article>>
 }
