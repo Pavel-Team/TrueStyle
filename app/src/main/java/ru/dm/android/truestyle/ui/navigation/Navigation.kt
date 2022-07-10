@@ -2,13 +2,12 @@ package ru.dm.android.truestyle.ui.navigation
 
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.dm.android.truestyle.R
-import ru.dm.android.truestyle.ui.screen.ArticlesFragment
-import ru.dm.android.truestyle.ui.screen.ClothesSearchFragment
-import ru.dm.android.truestyle.ui.screen.LoginFragment
-import ru.dm.android.truestyle.ui.screen.RecommendationFragment
+import ru.dm.android.truestyle.ui.screen.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,6 +18,8 @@ import kotlin.collections.HashMap
 class Navigation @Inject constructor(){
 
     private lateinit var fragmentManager: FragmentManager
+    private lateinit var navView: BottomNavigationView
+
     private var mapStackFragments: HashMap<Int, Stack<Fragment>> = HashMap() //<id выбранного пункта меню, стэк фрагментов>
     private var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
     var lastFragment: Fragment = RecommendationFragment()
@@ -33,8 +34,22 @@ class Navigation @Inject constructor(){
     }
 
 
+    //ПРОВЕРИТЬ ПОТОМ НА УТЕЧКУ
     fun setFragmentManager(fragmentManager: FragmentManager) {
         this.fragmentManager = fragmentManager
+    }
+
+
+    //ПРОВЕРИТЬ ПОТОМ НА УТЕЧКУ
+    fun setNavView(navView: BottomNavigationView) {
+        this.navView = navView
+    }
+
+
+    fun setVisibleNavView(){
+        navView.visibility = View.VISIBLE
+        navView.selectedItemId = R.id.navigation_profile
+        clearStackFragment(R.id.navigation_recommendation)
     }
 
 
@@ -44,7 +59,7 @@ class Navigation @Inject constructor(){
         mapStackFragments.get(lastMenuItem)!!.push(currentFragment)
 
         //На случай если надо запустить фрагмент в другой вкладке (не равной lastItem)
-        //navView.menu.findItem(idItemMenu).isChecked=true
+        navView.menu.findItem(idItemMenu).isChecked=true
 
         lastMenuItem = idItemMenu
         lastFragment = toFragment
@@ -68,7 +83,7 @@ class Navigation @Inject constructor(){
                     R.id.navigation_recommendation -> { newFragment = RecommendationFragment() }
                     R.id.navigation_clothes_search -> { newFragment = ClothesSearchFragment() }
                     R.id.navigation_articles -> { newFragment = ArticlesFragment() }
-                    R.id.navigation_profile -> { newFragment = LoginFragment() } //Добавить проверку
+                    R.id.navigation_profile -> { newFragment = ProfileFragment() }
                 }
                 if (newFragment != null) {
                     fragmentManager

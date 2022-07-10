@@ -37,6 +37,9 @@
     <string name="row_user_height">Height</string>
     <string name="row_user_weight">Weight</string>
     <string name="row_user_gender">Gender</string>
+    <string name="row_characters_category">Category</string>
+    <string name="row_characters_subcategory">Subcategory</string>
+    <string name="row_characters_usage">Usage</string>
     <string name="hint_user_name">user.name</string>
     <string name="hint_style_user">Unknown style</string>
     <string name="value_user_table">Fill in</string>
@@ -83,6 +86,7 @@
     <string name="hint_setting">Setting</string>
 
     <string name="login">Login</string>
+    <string name="error_login">Error E-mail or password</string>
 
     <string name="button_ok_dialog_fragment">Ok</string>
     <string name="button_retry_dialog_fragment">Refresh</string>
@@ -109,7 +113,7 @@
     <string name="strong_password_3">Strong</string>
     <string name="strong_password_4">Very strong</string>
     <string name="error_username">The username is already in use</string>
-    <string name="error_email">Incorrect E-mail address</string>
+    <string name="error_email">Incorrect E-mail address/This email is already in use</string>
     <string name="register">Register</string>
     <string name="has_account">Already registred? <b>Login me.</b></string>
 

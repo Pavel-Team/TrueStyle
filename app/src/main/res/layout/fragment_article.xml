@@ -27,7 +27,6 @@
             android:id="@+id/web_view_article"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:loadUrl="@{viewModel.liveData.uri}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/progress_bar_article"

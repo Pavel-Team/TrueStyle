@@ -12,9 +12,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ViewFlipper
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.databinding.FragmentArticlesBinding
 import ru.dm.android.truestyle.databinding.ItemRecommendedArticleBinding
 import ru.dm.android.truestyle.model.RecommendedArticle
@@ -65,70 +67,30 @@ public class ArticlesFragment : Fragment()  {
         listCircle = mutableListOf()
 
         setNightMode()
-        var listArticles = articlesViewModel.liveData.value!! //ВРЕМЕННО
-        updateViewFlipper(listArticles)
+        updateViewFlipper(articlesViewModel.liveData.value!!)
         listCircle.get(indexActiveArticle).isActivated = true //Установка кружочка
 
-        //Слушатель для слайдинга пальцем
-        var fromPosition = 0f
-        var isScroll = false //Была ли проскроллена статья
-        viewFlipper.setOnTouchListener(object: View.OnTouchListener {
-            override fun onTouch(view: View, event: MotionEvent): Boolean {
-
-                when(event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        fromPosition = event.getY();
-                    }
-                    MotionEvent.ACTION_MOVE -> {
-                        if (!isScroll) {
-                            var toPosition = event.getY()
-
-                            if (fromPosition > toPosition && fromPosition - toPosition > DELTA_Y) {
-                                showNextArticle()
-                                isScroll=true
-                                listCircle.get(indexActiveArticle).isActivated = false
-                                indexActiveArticle =
-                                    if (indexActiveArticle == listArticles.size - 1) 0 else indexActiveArticle + 1
-                                listCircle.get(indexActiveArticle).isActivated = true
-                                fromPosition = toPosition
-                                return true
-                            } else if (fromPosition < toPosition && toPosition - fromPosition > DELTA_Y) {
-                                showPreviousArticle()
-                                isScroll=true
-                                listCircle.get(indexActiveArticle).isActivated = false
-                                indexActiveArticle =
-                                    if (indexActiveArticle == 0) listArticles.size - 1 else indexActiveArticle - 1
-                                listCircle.get(indexActiveArticle).isActivated = true
-                                fromPosition = toPosition
-                                return true
-                            }
-                        }
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        if (!isScroll && fromPosition-event.getY()==0f) {
-                            val idArticle = listArticles.get(indexActiveArticle).id
-                            Log.d(TAG, "Нажата статья id = " + idArticle.toString())
-                            val fragmentTo = ArticleFragment.newInstance(idArticle)
-                            navigation.navigateTo(fragmentTo, R.id.navigation_articles)
-                        }
-                        isScroll = false
-                    }
-                }
-
-                return true
-            }
-        })
-
+        setOnTouchListenerViewFlipper()
 
         //Слушатель для кнопки показа всех тем
         binding.imageButtonTopics.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                val fragmentTo = TopicsFragment()
+                val fragmentTo = ArticlesInTopicFragment.newInstance("test")
                 navigation.navigateTo(fragmentTo, R.id.navigation_articles)
             }
         })
 
         return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        articlesViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "observe = " + articlesViewModel.liveData.value!!)
+            updateViewFlipper(articlesViewModel.liveData.value!!)
+        })
     }
 
 
@@ -178,20 +140,75 @@ public class ArticlesFragment : Fragment()  {
     }
 
 
+    //Установка слушателя для ViewFlipper
+    private fun setOnTouchListenerViewFlipper() {
+        //Слушатель для слайдинга пальцем
+        var fromPosition = 0f
+        var isScroll = false //Была ли проскроллена статья
+
+        viewFlipper.setOnTouchListener(object: View.OnTouchListener {
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+
+                when(event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        fromPosition = event.getY();
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        if (!isScroll) {
+                            var toPosition = event.getY()
+
+                            if (fromPosition > toPosition && fromPosition - toPosition > DELTA_Y) {
+                                showNextArticle()
+                                isScroll=true
+                                listCircle.get(indexActiveArticle).isActivated = false
+                                indexActiveArticle =
+                                    if (indexActiveArticle == articlesViewModel.liveData.value!!.size - 1) 0 else indexActiveArticle + 1
+                                listCircle.get(indexActiveArticle).isActivated = true
+                                fromPosition = toPosition
+                                return true
+                            } else if (fromPosition < toPosition && toPosition - fromPosition > DELTA_Y) {
+                                showPreviousArticle()
+                                isScroll=true
+                                listCircle.get(indexActiveArticle).isActivated = false
+                                indexActiveArticle =
+                                    if (indexActiveArticle == 0) articlesViewModel.liveData.value!!.size - 1 else indexActiveArticle - 1
+                                listCircle.get(indexActiveArticle).isActivated = true
+                                fromPosition = toPosition
+                                return true
+                            }
+                        }
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        if (!isScroll && fromPosition-event.getY()==0f) {
+                            val idArticle = articlesViewModel.liveData.value!!.get(indexActiveArticle)
+                            Log.d(TAG, "Нажата статья id = " + idArticle.id.toString())
+                            val fragmentTo = ArticleFragment.newInstance(idArticle)
+                            navigation.navigateTo(fragmentTo, R.id.navigation_articles)
+                        }
+                        isScroll = false
+                    }
+                }
+
+                return true
+            }
+        })
+    }
+
+
     //Заполнение viewFlipper'а статьями
-    private fun updateViewFlipper(listArticles: List<RecommendedArticle> ) {
+    private fun updateViewFlipper(listArticles: List<Article> ) {
+        viewFlipper.removeAllViews()
+        layoutWithCircles.removeAllViews()
+        listCircle.removeAll(listCircle)
+
         listArticles.forEach {
             val bindingArticle = ItemRecommendedArticleBinding.inflate(layoutInflater, viewFlipper, false)
             bindingArticle.model = it
-            if (it.id == 2)
-                bindingArticle.imageViewRecommendedArticle.setImageResource(R.drawable.example_recommended_article_2)
 //            val idArticle = it.id
 //            bindingArticle.root.setOnClickListener(object: View.OnClickListener {
 //                override fun onClick(p0: View?) {
 //                    Log.d(TAG, "Нажата статья id = " + idArticle.toString())
-//                    val 
-//                    val fragmentTo = ArticleFragment.newInstance(idArticle)
-//                    //navigation.navigateTo(fragmentTo, R.id.navigation_articles))
+//                    //val fragmentTo = ArticleFragment.newInstance(idArticle)
 //                }
 //            })
             viewFlipper.addView(bindingArticle.root)
@@ -199,6 +216,8 @@ public class ArticlesFragment : Fragment()  {
             //Добавляем кружок
             addCircle()
         }
+
+        listCircle.get(0).isActivated = true
     }
 
 

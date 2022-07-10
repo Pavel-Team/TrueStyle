@@ -56,7 +56,7 @@ class ArticlesInTopicFragment: Fragment() {
 
         binding.lifecycleOwner = this@ArticlesInTopicFragment
         adapterArticles = ArticlesInTopicAdapter(navigation, requireContext())
-        adapterArticles.submitList(articlesInTopicViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+        adapterArticles.submitList(listOf()) //ВРЕМЕННО (потом готовить аж с OnCreate)
         binding.recyclerViewArticles.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = adapterArticles
@@ -104,6 +104,15 @@ class ArticlesInTopicFragment: Fragment() {
         })
 
         return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        articlesInTopicViewModel.liveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapterArticles.submitList(articlesInTopicViewModel.liveData.value!!)
+        })
     }
 
 

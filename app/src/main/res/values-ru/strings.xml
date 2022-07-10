@@ -22,6 +22,9 @@
     <string name="row_characters_season">Сезон</string>
     <string name="row_characters_size">Размер</string>
     <string name="row_characters_gender">Пол</string>
+    <string name="row_characters_category">Категория</string>
+    <string name="row_characters_subcategory">Подкатегория</string>
+    <string name="row_characters_usage">Применение</string>
     <string name="row_characters_type">Тип</string>
 
     <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>
@@ -70,6 +73,8 @@
 
     <string name="hint_setting">Настройка</string>
 
+    <string name="error_login">Неправильный E-mail или пароль</string>
+
     <string name="button_ok_dialog_fragment">Понятно</string>
     <string name="button_retry_dialog_fragment">Обновить</string>
 
@@ -92,7 +97,7 @@
     <string name="strong_password_3">Strong</string>
     <string name="strong_password_4">Very strong</string>
     <string name="error_username">Такое имя уже используется</string>
-    <string name="error_email">Некорректный E-mail адресс</string>
+    <string name="error_email">Некорректный E-mail адресс/Такой E-mail уже используется</string>
     <string name="register">Зарегистрироваться</string>
     <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
 

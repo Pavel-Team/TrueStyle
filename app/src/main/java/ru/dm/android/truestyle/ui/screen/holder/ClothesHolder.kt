@@ -2,9 +2,11 @@
 package ru.dm.android.truestyle.ui.screen.holder
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.ItemClothesRecommendationBinding
 import ru.dm.android.truestyle.model.ClothesRecommendation
 import ru.dm.android.truestyle.ui.navigation.Navigation
@@ -14,26 +16,19 @@ class ClothesHolder(val navigation: Navigation, private val binding: ItemClothes
 
     init {
         itemView.setOnClickListener(this)
-        //
     }
 
-    fun bind(clothes: ClothesRecommendation) {
+    fun bind(clothes: Stuff) {
         binding.apply {
             model = clothes
             executePendingBindings()
-            if (clothes.id == 1)
-                imageViewRecommendedClothes.setImageResource(R.drawable.example_clothes_1)
-            else if (clothes.id == 2)
-                imageViewRecommendedClothes.setImageResource(R.drawable.example_clothes_2)
-            else if (clothes.id == 3)
-                imageViewRecommendedClothes.setImageResource(R.drawable.example_clothes_3)
         }
     }
 
     override fun onClick(view: View?) {
-        val id = binding.model!!.id
+        val clothes = binding.model!!
 
-        val fragmentTo = ClothesFragment.newInstance(id)
+        val fragmentTo = ClothesFragment.newInstance(clothes)
         navigation.navigateTo(fragmentTo, R.id.navigation_recommendation)
     }
 

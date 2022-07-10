@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.databinding.ItemArticleInTopicBinding
 import ru.dm.android.truestyle.model.ArticleInTopic
 import ru.dm.android.truestyle.ui.navigation.Navigation
@@ -16,22 +17,17 @@ class ArticleInTopicHolder(val navigation: Navigation, private val binding: Item
         
     }
 
-    fun bind(articleInTopic: ArticleInTopic) {
+    fun bind(article: Article) {
         binding.apply {
-            model = articleInTopic
+            model = article
             executePendingBindings()
-
-            if (articleInTopic.id == 2)
-                imageViewArticleInTopic.setImageResource(R.drawable.example_article_in_topic_2)
-            else if (articleInTopic.id == 3)
-                imageViewArticleInTopic.setImageResource(R.drawable.example_article_in_topic_3)
         }
     }
 
     override fun onClick(view: View?) {
-        val id = binding.model!!.id
+        val article = binding.model!!
 
-        val fragmentTo = ArticleFragment.newInstance(id)
+        val fragmentTo = ArticleFragment.newInstance(article)
         navigation.navigateTo(fragmentTo, R.id.navigation_articles)
     }
 }

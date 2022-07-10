@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,11 +44,12 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        navigation.setFragmentManager(supportFragmentManager)
-
         navView = binding.navView
         navView.itemIconTintList = null //Чтобы не накладывался цвет из темы
         navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED //Для того, чтобы не отображался текст
+
+        navigation.setFragmentManager(supportFragmentManager)
+        navigation.setNavView(navView)
 
         /*val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
@@ -59,8 +61,16 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         setupActionBarWithNavController(navController, appBarConfiguration)*/
 //        if (supportFragmentManager.findFragmentById(R.id.container) == null)
 //            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
-        supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, navigation.lastFragment).commit()
         navView.setOnItemSelectedListener(this)
+
+        //ApplicationPreferences.setToken(this, "")
+        if (ApplicationPreferences.getToken(this).equals("")) {
+            navView.selectedItemId = R.id.navigation_profile
+            navView.visibility = View.GONE
+            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, LoginFragment()).commit()
+        } else {
+            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, navigation.lastFragment).commit()
+        }
     }
 
 

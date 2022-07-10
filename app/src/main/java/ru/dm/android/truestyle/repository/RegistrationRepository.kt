@@ -17,22 +17,36 @@ class RegistrationRepository @Inject constructor(val networking: Networking) {
 
 
     //Метод для регистрации пользователя
+    //Возвращает Boolean - успешно ли прошла регистрация
     suspend fun registerUser(
         username: String,
         email: String,
         password: String
-    ) : Result<String> {
+    ) : Result<Boolean> {
         Log.d(TAG, "registerUser()")
-        Log.d(TAG, networking.api.toString())
         val response = networking.api.registerUser(
             Registration(username=username, email=email, password=password)
         )
-        Log.d(TAG, "after response")
-        //val result = response.body().orEmpty()
-        val result = response.execute().body()
-        Log.d(TAG, "after result")
-        Log.d(TAG, result!!)
+        val result = response.isSuccessful
         return Result.success(result)
+    }
+
+
+    //Функция проверки существует ли пользователь с таким же именем
+    //Возвращает Boolean - существует ли пользователь с таким же именем
+    suspend fun checkUsername(username: String): Boolean {
+        val response = networking.api.checkUsername(username)
+        val result = response.isSuccessful
+        return result
+    }
+
+
+    //Функция проверки существует ли пользователь с таким же email
+    //Возвращает Boolean - существует ли пользователь с таким же email
+    suspend fun checkEmail(email: String): Boolean {
+        val response = networking.api.checkEmail(email)
+        val result = response.isSuccessful
+        return result
     }
 
 }

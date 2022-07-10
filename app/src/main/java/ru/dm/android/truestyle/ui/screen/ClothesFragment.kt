@@ -7,11 +7,12 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
 import ru.dm.android.truestyle.viewmodel.ClothesViewModel
 
 private const val TAG = "ClothesFragment"
-private const val ARG_CLOTHES_ID = "clothes_id" //Константа для получения аргументов из Bundle
+private const val ARG_CLOTHES = "clothes" //Константа для получения аргументов из Bundle
 
 @AndroidEntryPoint
 class ClothesFragment : Fragment() {
@@ -20,7 +21,7 @@ class ClothesFragment : Fragment() {
     private var _binding: FragmentClothesBinding? = null
     private val binding get() = _binding!!
 
-    private var clothesId: Int? = -1
+    private var clothes: Stuff? = Stuff()
     private var width = 0
 
 
@@ -28,7 +29,7 @@ class ClothesFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         //Достаем аргументы
-        clothesId = arguments?.getInt(ARG_CLOTHES_ID, -1)
+        clothes = arguments?.getParcelable(ARG_CLOTHES)
 
         //Получаем размеры ширины экрана
         val windowManager: WindowManager = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -45,6 +46,7 @@ class ClothesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         clothesViewModel = ViewModelProvider(this).get(ClothesViewModel::class.java)
+        clothesViewModel.liveData.value = clothes
 
         //Настраиваем dataBinding
         _binding = FragmentClothesBinding.inflate(inflater, container, false)
@@ -73,9 +75,10 @@ class ClothesFragment : Fragment() {
 
 
     companion object {
-        fun newInstance(clothesId: Int): ClothesFragment {
+        fun newInstance(clothes: Stuff): ClothesFragment {
             val args = Bundle().apply {
-                putSerializable(ARG_CLOTHES_ID, clothesId)
+                //putSerializable(ARG_CLOTHES_ID, clothesId)
+                putParcelable(ARG_CLOTHES, clothes)
             }
             return ClothesFragment().apply {
                 arguments = args

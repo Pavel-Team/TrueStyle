@@ -1,8 +1,6 @@
 /**Фрагмент со статьей*/
 package ru.dm.android.truestyle.ui.screen
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,14 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.databinding.FragmentArticleBinding
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
+import ru.dm.android.truestyle.ui.activity.MainActivity
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.ArticleViewModel
 
 private const val TAG = "ArticleFragment"
-private const val ARG_ID_ARTICLE = "idArticle" //Константа для получения из Bundle id статьи
+private const val ARG_ARTICLE = "article" //Константа для получения из Bundle статьи
 
 
 @AndroidEntryPoint
@@ -27,14 +30,14 @@ class ArticleFragment : Fragment() {
     private var _binding: FragmentArticleBinding? = null
     private val binding get() = _binding!!
 
-    private var idArticle: Int? = null
+    private var article: Article? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        idArticle = arguments?.getInt(ARG_ID_ARTICLE)
-        Log.d(TAG, idArticle.toString())
+        article = arguments?.getParcelable(ARG_ARTICLE)
+        Log.d(TAG, article.toString())
     }
 
 
@@ -44,7 +47,7 @@ class ArticleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         articleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
-        articleViewModel.loadArticle(idArticle)
+        articleViewModel.liveData.value = article
 
         _binding = FragmentArticleBinding.inflate(inflater, container, false)
         binding.webViewArticle.webChromeClient = object : WebChromeClient() { //webChromeClient - для обработки событий
@@ -59,6 +62,8 @@ class ArticleFragment : Fragment() {
                 }
             }
         }
+
+        binding.webViewArticle.loadUrl(Constants.URL + article!!.url.substring(1))
         val root: View = binding.root
 
         binding.lifecycleOwner = this@ArticleFragment
@@ -76,9 +81,9 @@ class ArticleFragment : Fragment() {
 
 
     companion object {
-        fun newInstance(idArticle: Int) : ArticleFragment{
+        fun newInstance(article: Article) : ArticleFragment{
             val args = Bundle().apply {
-                putSerializable(ARG_ID_ARTICLE, idArticle)
+                putParcelable(ARG_ARTICLE, article)
             }
             return ArticleFragment().apply {
                 arguments = args

@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Article
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentRecommendationBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticleRecommendationAdapter
@@ -53,11 +56,11 @@ class RecommendationFragment : Fragment() {
         //Настраиваем RecyclerView с рекомендациями для одежды и статей
         binding.clothesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ClothesRecommendationAdapter(navigation, context, recommendationViewModel.liveDataClothes.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = ClothesRecommendationAdapter(navigation, context, listOf(Stuff(), Stuff(), Stuff())) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
         binding.articlesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ArticleRecommendationAdapter(navigation, context, recommendationViewModel.liveDataArticles.value!!) //ВРЕМЕННО
+            adapter = ArticleRecommendationAdapter(navigation, context, listOf(Article(), Article(), Article())) //ВРЕМЕННО
         }
 
         //Слушатель кнопки "Добавить фото"
@@ -71,6 +74,20 @@ class RecommendationFragment : Fragment() {
         })
 
         return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recommendationViewModel.liveDataClothes.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "observe liveDataClothes")
+            binding.clothesRecommendationRecyclerView.adapter = ClothesRecommendationAdapter(navigation, requireContext(), recommendationViewModel.liveDataClothes.value.orEmpty())
+        })
+
+        recommendationViewModel.liveDataArticles.observe(viewLifecycleOwner, Observer {
+            binding.articlesRecommendationRecyclerView.adapter = ArticleRecommendationAdapter(navigation, requireContext(), recommendationViewModel.liveDataArticles.value.orEmpty())
+        })
     }
 
 

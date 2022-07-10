@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="ru.dm.android.truestyle.model.RecommendedArticle" />
+            type="ru.dm.android.truestyle.api.response.Article" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
             android:id="@+id/image_view_recommended_article"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/example_recommended_article"
+            imageUrl="@{model.imageUrl}"
             android:scaleType="centerCrop"
             android:contentDescription="@string/title_articles"/>
 
