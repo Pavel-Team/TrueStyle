@@ -33,7 +33,13 @@ interface Api {
     @GET("art/recommended/five")
     suspend fun getRecommendedArticles(@Header("Authorization") token: String): Response<List<Article>>
 
-    //API статей (страница со слайдером)
+    //API статей
     @GET("art/recommended/tree")
     suspend fun getSliderArticles(@Header("Authorization") token: String): Response<List<Article>>
+
+    @GET("art/{id}")
+    suspend fun getArticleById(@Header("Authorization") token: String, @Path("id") id: Long): Response<Article>
+
+    @GET("art/all")
+    suspend fun getAllArticles(@Header("Authorization") token: String): Response<List<Article>>
 }

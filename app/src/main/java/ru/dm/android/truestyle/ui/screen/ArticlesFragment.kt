@@ -75,7 +75,7 @@ public class ArticlesFragment : Fragment()  {
         //Слушатель для кнопки показа всех тем
         binding.imageButtonTopics.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                val fragmentTo = TopicsFragment()
+                val fragmentTo = ArticlesInTopicFragment.newInstance("test")
                 navigation.navigateTo(fragmentTo, R.id.navigation_articles)
             }
         })

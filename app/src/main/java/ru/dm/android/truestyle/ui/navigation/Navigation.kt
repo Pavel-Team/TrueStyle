@@ -59,7 +59,7 @@ class Navigation @Inject constructor(){
         mapStackFragments.get(lastMenuItem)!!.push(currentFragment)
 
         //На случай если надо запустить фрагмент в другой вкладке (не равной lastItem)
-        //navView.menu.findItem(idItemMenu).isChecked=true
+        navView.menu.findItem(idItemMenu).isChecked=true
 
         lastMenuItem = idItemMenu
         lastFragment = toFragment

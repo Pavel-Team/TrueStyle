@@ -21,4 +21,18 @@ class ArticlesRepository @Inject constructor(val networking: Networking) {
         val list = networking.api.getSliderArticles(token).body().orEmpty()
         return list
     }
+
+
+    //Получение статьи по её id
+    suspend fun getArticleById(token: String, id: Long): Article? {
+        val article = networking.api.getArticleById(token, id).body()
+        return article
+    }
+
+
+    //Получение всех статей
+    suspend fun getAllArticles(token: String): List<Article> {
+        val list = networking.api.getAllArticles(token).body().orEmpty()
+        return list
+    }
 }

@@ -63,10 +63,7 @@ class ArticleFragment : Fragment() {
             }
         }
 
-        //ПОПРОБОВАТЬ loadData(html, "text/html", "utf-8")
-        Log.d(TAG,mapOf("Authorization" to Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(requireContext())).toString())
-        binding.webViewArticle.loadUrl(Constants.URL + article!!.url,
-            mapOf("Authorization" to Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(requireContext())))
+        binding.webViewArticle.loadUrl(Constants.URL + article!!.url.substring(1))
         val root: View = binding.root
 
         binding.lifecycleOwner = this@ArticleFragment
