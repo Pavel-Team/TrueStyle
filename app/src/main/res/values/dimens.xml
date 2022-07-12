@@ -71,6 +71,7 @@
     <dimen name="text_size_item_topics">15sp</dimen>
     <dimen name="margin_top_bottom_item_topics">8dp</dimen>
     <dimen name="width_image_topic">64dp</dimen>
+    <dimen name="width_image_delete_wardrobe_clothes">24dp</dimen>
     <dimen name="margin_top_description_article">5dp</dimen>
     <dimen name="width_ic_search">24dp</dimen>
     <dimen name="width_ic_send">28dp</dimen>
@@ -122,4 +123,13 @@
     <dimen name="height_line_strong_password">2dp</dimen>
     <dimen name="margin_top_button_register">30dp</dimen>
     <dimen name="margin_bottom_has_account">4dp</dimen>
+
+    <dimen name="margin_top_edit_text_username_edit_profile">20dp</dimen>
+    <dimen name="font_size_title_edit_profile">20sp</dimen>
+    <dimen name="margin_top_radio_group_edit_profile">10dp</dimen>
+    <dimen name="font_size_gender_edit_profile">18sp</dimen>
+    <dimen name="margin_top_title_user_style">15dp</dimen>
+    <dimen name="margin_top_hint_user_style">5dp</dimen>
+    <dimen name="font_size_soon">14sp</dimen>
+    <dimen name="margin_start_title_edit_profile">10dp</dimen>
 </resources>

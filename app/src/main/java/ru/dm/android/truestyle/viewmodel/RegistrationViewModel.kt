@@ -15,6 +15,7 @@ import ru.dm.android.truestyle.model.Registration
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.LoginRepository
 import ru.dm.android.truestyle.repository.RegistrationRepository
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 private const val TAG = "RegistrationViewModel"
@@ -66,9 +67,14 @@ class RegistrationViewModel @Inject constructor(application: Application, val re
     //Метод проверки на существования пользователя с таким же именем
     fun checkUsername(username: String) {
         viewModelScope.launch {
-            val isCorrect = registrationRepository.checkUsername(username)
-            liveDataIsCorrectUsername.value = isCorrect
-            Log.d(TAG, "username = " + liveDataIsCorrectUsername.value.toString())
+            try {
+                val isCorrect = registrationRepository.checkUsername(username)
+                liveDataIsCorrectUsername.value = isCorrect
+                Log.d(TAG, "username = " + liveDataIsCorrectUsername.value.toString())
+            } catch (e: SocketTimeoutException) {
+                e.printStackTrace()
+                Log.d("sss", "No internet connection")
+            }
         }
     }
 
@@ -76,8 +82,13 @@ class RegistrationViewModel @Inject constructor(application: Application, val re
     //Метод проверки на существования пользователя с таким же email
     fun checkEmail(email: String) {
         viewModelScope.launch {
-            liveDataIsCorrectEmail.value = registrationRepository.checkEmail(email)
-            Log.d(TAG, "email = " + liveDataIsCorrectEmail.value.toString())
+            try {
+                liveDataIsCorrectEmail.value = registrationRepository.checkEmail(email)
+                Log.d(TAG, "email = " + liveDataIsCorrectEmail.value.toString())
+            } catch (e: SocketTimeoutException) {
+                e.printStackTrace()
+                Log.d("sss", "No internet connection")
+            }
         }
     }
 
@@ -89,19 +100,28 @@ class RegistrationViewModel @Inject constructor(application: Application, val re
         var auth: Auth? = null
 
         viewModelScope.launch {
-            val isSuccessful = registrationRepository.registerUser(username, email, password).isSuccess
-            if (isSuccessful) {
-                auth = loginRepository.networking.api.signIn(
-                    LoginRequest(username, password)
-                ).body()
+            try {
+                val isSuccessful =
+                    registrationRepository.registerUser(username, email, password).isSuccess
+                if (isSuccessful) {
+                    auth = loginRepository.networking.api.signIn(
+                        LoginRequest(username, password)
+                    ).body()
 
-                if (auth != null) {
-                    ApplicationPreferences.setToken(getApplication<Application>().applicationContext, auth!!.token)
-                    liveDataSuccessRegistration.value = auth!!
+                    if (auth != null) {
+                        ApplicationPreferences.setToken(
+                            getApplication<Application>().applicationContext,
+                            auth!!.token
+                        )
+                        liveDataSuccessRegistration.value = auth!!
+                    }
                 }
-            }
 
-            Log.d(TAG, auth?.token.toString())
+                Log.d(TAG, auth?.token.toString())
+            } catch (e: SocketTimeoutException) {
+                e.printStackTrace()
+                Log.d("sss", "No internet connection")
+            }
         }
     }
 

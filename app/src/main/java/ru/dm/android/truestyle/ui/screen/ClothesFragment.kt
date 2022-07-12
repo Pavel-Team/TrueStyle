@@ -4,9 +4,11 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
 import ru.dm.android.truestyle.viewmodel.ClothesViewModel
@@ -57,6 +59,14 @@ class ClothesFragment : Fragment() {
 
         //Делаем высоту imageView равную ширине
         _binding!!.imageViewClothes.layoutParams = ViewGroup.LayoutParams(width, width)
+
+        //Листенер для кнопки "Добавить в гардероб"
+        binding.buttonAddWardrobe.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                clothesViewModel.addClothesInWardrobe()
+                Toast.makeText(requireContext(), R.string.toast_clothes_added, Toast.LENGTH_SHORT).show()
+            }
+        })
 
         return root
     }

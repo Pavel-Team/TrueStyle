@@ -26,6 +26,7 @@
     <string name="row_characters_gender">Gender</string>
     <string name="row_characters_type">Type</string>
     <string name="row_characters_example_value">value</string>
+    <string name="toast_clothes_added">Clothes added in wardrobe</string>
 
     <string name="title_search_clothes">Search</string>
     <string name="descriprion_image_clothes_search">Make photo - find clothes</string>
@@ -34,9 +35,8 @@
 
     <string name="settings">Settings</string>
     <string name="user_style">User style</string>
-    <string name="row_user_height">Height</string>
-    <string name="row_user_weight">Weight</string>
     <string name="row_user_gender">Gender</string>
+    <string name="row_user_country">Country</string>
     <string name="row_characters_category">Category</string>
     <string name="row_characters_subcategory">Subcategory</string>
     <string name="row_characters_usage">Usage</string>
@@ -116,5 +116,13 @@
     <string name="error_email">Incorrect E-mail address/This email is already in use</string>
     <string name="register">Register</string>
     <string name="has_account">Already registred? <b>Login me.</b></string>
+
+    <string name="edit_profile">Profile editing</string>
+    <string name="gender">Gender</string>
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
+    <string name="user_style_edit_profile">User style</string>
+    <string name="soon_edit_profile">Soon!</string>
+    <string name="edit">Edit</string>
 
 </resources>

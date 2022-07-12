@@ -2,11 +2,13 @@
 package ru.dm.android.truestyle.ui.activity
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.ActivityInfo
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,8 +16,10 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
-import ru.dm.android.truestyle.ui.screen.*
+import ru.dm.android.truestyle.ui.screen.LoginFragment
 import javax.inject.Inject
 
 
@@ -40,6 +44,15 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
+
+        //ВРЕМЕННО
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if(!hasWifi(this)) {
+            NotConnectionDialogFragment().apply {
+                show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
+            }
+            return
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -67,9 +80,11 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         if (ApplicationPreferences.getToken(this).equals("")) {
             navView.selectedItemId = R.id.navigation_profile
             navView.visibility = View.GONE
-            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, LoginFragment()).commit()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.nav_host_fragment_activity_main, LoginFragment()).commit()
         } else {
-            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, navigation.lastFragment).commit()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.nav_host_fragment_activity_main, navigation.lastFragment).commit()
         }
     }
 
@@ -89,6 +104,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onBackPressed() {
         if (navigation.onBackPressed())
             finish()
+    }
+
+
+    //ВРЕМЕННО: метод проверки на наличие инета
+    private fun hasWifi(context: Context): Boolean {
+        val cm = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = cm.activeNetworkInfo
+        return (netInfo != null && netInfo.isConnectedOrConnecting)
     }
 
 }

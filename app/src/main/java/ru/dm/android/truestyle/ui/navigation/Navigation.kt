@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
+import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.screen.*
 import java.util.*
 import javax.inject.Inject
@@ -50,6 +53,14 @@ class Navigation @Inject constructor(){
         navView.visibility = View.VISIBLE
         navView.selectedItemId = R.id.navigation_profile
         clearStackFragment(R.id.navigation_recommendation)
+    }
+
+
+    //Открытие окна с ошибкой на сервере
+    fun openErrorServerDialogFragment(){
+        ErrorServerDialogFragment().apply {
+            show(this.fragmentManager!!, ConstantsDialog.DIALOG_ERROR_SERVER)
+        }
     }
 
 

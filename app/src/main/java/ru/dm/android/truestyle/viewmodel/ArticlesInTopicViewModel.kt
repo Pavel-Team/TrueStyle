@@ -22,6 +22,7 @@ class ArticlesInTopicViewModel @Inject constructor(application: Application,
     var liveDataTopic: MutableLiveData<String> = MutableLiveData()
 
     init {
+        liveData.value = listOf()
         val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
 
         viewModelScope.launch {
