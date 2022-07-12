@@ -13,6 +13,7 @@ import ru.dm.android.truestyle.model.Login
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.LoginRepository
 import ru.dm.android.truestyle.repository.RegistrationRepository
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 private const val TAG = "LoginViewModel"
@@ -34,18 +35,23 @@ class LoginViewModel @Inject constructor(application: Application,
     //В случае успеха - изменяет значение liveDataIsSignIn, а в фрагменте сработает обсервер этой ливДаты
     fun signIn(username: String, password: String) {
         viewModelScope.launch {
-            val auth = loginRepository.networking.api.signIn(
-                LoginRequest(username, password)
-            ).body()
+            try {
+                val auth = loginRepository.networking.api.signIn(
+                    LoginRequest(username, password)
+                ).body()
 
-            if (auth != null) {
-                ApplicationPreferences.setToken(
-                    getApplication<Application>().applicationContext,
-                    auth!!.token
-                )
-                liveDataIsSignIn.value = true
-            } else {
-                liveDataIsSignIn.value = false
+                if (auth != null) {
+                    ApplicationPreferences.setToken(
+                        getApplication<Application>().applicationContext,
+                        auth!!.token
+                    )
+                    liveDataIsSignIn.value = true
+                } else {
+                    liveDataIsSignIn.value = false
+                }
+            } catch (e: SocketTimeoutException) {
+                e.printStackTrace()
+                Log.d("sss", "No internet connection")
             }
         }
     }

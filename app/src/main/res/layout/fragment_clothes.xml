@@ -225,6 +225,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/button_add_wardrobe"
                 style="@style/buttonStyle.LightBlue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -232,7 +233,8 @@
                 android:text="@string/button_add_to_wardrobe"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/characteristics_table" />
+                app:layout_constraintTop_toBottomOf="@id/characteristics_table"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

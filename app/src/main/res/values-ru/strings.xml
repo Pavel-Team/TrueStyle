@@ -26,6 +26,7 @@
     <string name="row_characters_subcategory">Подкатегория</string>
     <string name="row_characters_usage">Применение</string>
     <string name="row_characters_type">Тип</string>
+    <string name="toast_clothes_added">Добавлено в гардероб</string>
 
     <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>
     <string name="button_load_photo">Выбрать из галереи</string>
@@ -33,9 +34,8 @@
 
     <string name="settings">Настройки</string>
     <string name="user_style">Стиль пользователя</string>
-    <string name="row_user_height">Рост</string>
-    <string name="row_user_weight">Вес</string>
     <string name="row_user_gender">Пол</string>
+    <string name="row_user_country">Страна</string>
     <string name="hint_style_user">Неизвестный стиль</string>
     <string name="value_user_table">Заполните</string>
     <string name="wardrobe">Ваш гардероб</string>
@@ -100,5 +100,13 @@
     <string name="error_email">Некорректный E-mail адресс/Такой E-mail уже используется</string>
     <string name="register">Зарегистрироваться</string>
     <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
+
+    <string name="edit_profile">Редактирование профиля</string>
+    <string name="gender">Пол</string>
+    <string name="man">Мужской</string>
+    <string name="woman">Женский</string>
+    <string name="user_style_edit_profile">Ваш стиль</string>
+    <string name="soon_edit_profile">Скоро!</string>
+    <string name="edit">Изменить</string>
 
 </resources>

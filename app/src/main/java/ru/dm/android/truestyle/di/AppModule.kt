@@ -5,10 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.dm.android.truestyle.api.Networking
-import ru.dm.android.truestyle.repository.ArticlesRepository
-import ru.dm.android.truestyle.repository.LoginRepository
-import ru.dm.android.truestyle.repository.RecommendationRepository
-import ru.dm.android.truestyle.repository.RegistrationRepository
+import ru.dm.android.truestyle.repository.*
 import javax.inject.Singleton
 
 @Module
@@ -37,6 +34,24 @@ object AppModule {
     @Singleton
     fun providesArticlesRepository(networking: Networking): ArticlesRepository {
         return ArticlesRepository(networking)
+    }
+
+    @Provides
+    @Singleton
+    fun providesProfileRepository(networking: Networking): ProfileRepository {
+        return ProfileRepository(networking)
+    }
+
+    @Provides
+    @Singleton
+    fun providesWardrobeRepository(networking: Networking): WardrobeRepository {
+        return WardrobeRepository(networking)
+    }
+
+    @Provides
+    @Singleton
+    fun providesStuffRepository(networking: Networking): StuffRepository {
+        return StuffRepository(networking)
     }
 
 }

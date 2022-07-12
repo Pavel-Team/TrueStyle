@@ -19,6 +19,7 @@ import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.RecommendationRepository
 import ru.dm.android.truestyle.ui.screen.RecommendationFragmentDirections
 import ru.dm.android.truestyle.util.Constants
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,9 +35,14 @@ class RecommendationViewModel @Inject constructor(application: Application,
 
         //Берем данные с сервера
         viewModelScope.launch {
-            liveDataQuote.value = recommendationRepository.getQuote(token)
-            liveDataClothes.value = recommendationRepository.getRecommendedClothes(token)
-            liveDataArticles.value = recommendationRepository.getRecommendedArticles(token)
+            try {
+                liveDataQuote.value = recommendationRepository.getQuote(token)
+                liveDataClothes.value = recommendationRepository.getRecommendedClothes(token)
+                liveDataArticles.value = recommendationRepository.getRecommendedArticles(token)
+            } catch (e: SocketTimeoutException) {
+                e.printStackTrace()
+                Log.d("sss", "No internet connection")
+            }
         }
     }
 
