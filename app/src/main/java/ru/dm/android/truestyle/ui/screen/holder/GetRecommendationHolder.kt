@@ -10,9 +10,8 @@ import ru.dm.android.truestyle.model.GetRecommendationClothes
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ClothesFragment
 
-class GetRecommendationHolder(val navigation: Navigation,
-                              private val binding: ItemClothesInGetRecommendationBinding,
-                              context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+class GetRecommendationHolder(private val binding: ItemClothesInGetRecommendationBinding):
+    RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     init {
         itemView.setOnClickListener(this)
@@ -32,6 +31,6 @@ class GetRecommendationHolder(val navigation: Navigation,
         val clothes = binding.model!!
 
         val fragmentTo = ClothesFragment.newInstance(clothes)
-        navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+        Navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
     }
 }

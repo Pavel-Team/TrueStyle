@@ -11,9 +11,7 @@ import ru.dm.android.truestyle.model.ArticleRecommendation
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ArticleFragment
 
-class ArticleHolder(val navigation: Navigation,
-                    private val binding: ItemArticleRecommendationBinding,
-                    context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
+class ArticleHolder(private val binding: ItemArticleRecommendationBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
 
     init {
         itemView.setOnClickListener(this)
@@ -30,6 +28,6 @@ class ArticleHolder(val navigation: Navigation,
         val article = binding.model!!
 
         val fragmentTo = ArticleFragment.newInstance(article)
-        navigation.navigateTo(fragmentTo, R.id.navigation_recommendation)
+        Navigation.navigateTo(fragmentTo, R.id.navigation_recommendation)
     }
 }

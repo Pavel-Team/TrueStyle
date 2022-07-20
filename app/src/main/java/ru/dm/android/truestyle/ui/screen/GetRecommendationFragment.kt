@@ -50,7 +50,7 @@ class GetRecommendationFragment: Fragment() {
         binding.lifecycleOwner = this@GetRecommendationFragment
         binding.recyclerViewRecommendedClothes.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = GetRecommendationAdapter(navigation, context, getRecommendationViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = GetRecommendationAdapter(context, getRecommendationViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
 
         //Слушатель на кнопку назад
@@ -68,7 +68,7 @@ class GetRecommendationFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getRecommendationViewModel.liveData.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewRecommendedClothes.adapter = GetRecommendationAdapter(navigation,
+            binding.recyclerViewRecommendedClothes.adapter = GetRecommendationAdapter(
                 requireContext(),
                 getRecommendationViewModel.liveData.value!!
             )

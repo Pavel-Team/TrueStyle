@@ -13,7 +13,7 @@ import ru.dm.android.truestyle.model.ArticleInTopic
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.ArticleInTopicHolder
 
-class ArticlesInTopicAdapter(val navigation: Navigation, private val context: Context): ListAdapter<Article,ArticleInTopicHolder>(DiffCallbackArticles())  {
+class ArticlesInTopicAdapter(private val context: Context): ListAdapter<Article,ArticleInTopicHolder>(DiffCallbackArticles())  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleInTopicHolder {
         val binding = DataBindingUtil.inflate<ItemArticleInTopicBinding>(
             LayoutInflater.from(context),
@@ -21,7 +21,7 @@ class ArticlesInTopicAdapter(val navigation: Navigation, private val context: Co
             parent,
             false
         )
-        return ArticleInTopicHolder(navigation, binding, context)
+        return ArticleInTopicHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ArticleInTopicHolder, position: Int) {

@@ -14,6 +14,7 @@ import ru.dm.android.truestyle.ui.screen.ClothesSearchFragment
 import ru.dm.android.truestyle.ui.screen.ProfileFragment
 import ru.dm.android.truestyle.ui.screen.RecommendationFragment
 import java.util.*
+import kotlin.collections.HashMap
 
 
 object Navigation{
@@ -22,7 +23,7 @@ object Navigation{
     private lateinit var navView: BottomNavigationView
 
     private var mapStackFragments: HashMap<Int, Stack<Fragment>> = HashMap() //<id выбранного пункта меню, стэк фрагментов>
-    private var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
+    var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
     var lastFragment: Fragment = RecommendationFragment()
 
     init {
@@ -57,7 +58,7 @@ object Navigation{
     //Открытие окна с ошибкой на сервере
     fun openErrorServerDialogFragment(){
         ErrorServerDialogFragment().apply {
-            show(this.fragmentManager!!, ConstantsDialog.DIALOG_ERROR_SERVER)
+            show(fragmentManager!!, ConstantsDialog.DIALOG_ERROR_SERVER)
         }
     }
 
@@ -75,6 +76,7 @@ object Navigation{
         fragmentManager
             .beginTransaction()
             .replace(R.id.nav_host_fragment_activity_main, toFragment)
+            .addToBackStack(null)
             .commit()
     }
 
@@ -98,6 +100,7 @@ object Navigation{
                     fragmentManager
                         .beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, newFragment)
+                        .addToBackStack(null)
                         .commit()
                     lastFragment = newFragment
                 }
@@ -107,6 +110,7 @@ object Navigation{
                 fragmentManager
                     .beginTransaction()
                     .replace(R.id.nav_host_fragment_activity_main, fragmentFromStack)
+                    .addToBackStack(null)
                     .commit()
                 lastFragment = fragmentFromStack
             }
@@ -116,10 +120,20 @@ object Navigation{
     }
 
 
-    //Очистка стека фрагмента
+    //Очистка стека фрагмента по определенному Id
     fun clearStackFragment(idItemMenu: Int) {
         while (!mapStackFragments.get(idItemMenu)!!.isEmpty())
             mapStackFragments.get(idItemMenu)!!.pop()
+    }
+
+
+    //Очистка всего стека фрагментов
+    fun clearStackFragment() {
+        mapStackFragments = HashMap()
+        mapStackFragments.put(R.id.navigation_recommendation, Stack())
+        mapStackFragments.put(R.id.navigation_clothes_search, Stack())
+        mapStackFragments.put(R.id.navigation_articles, Stack())
+        mapStackFragments.put(R.id.navigation_profile, Stack())
     }
 
 

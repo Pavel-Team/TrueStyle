@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import ru.dm.android.truestyle.R
@@ -19,6 +20,7 @@ import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.LoginFragment
+import ru.dm.android.truestyle.ui.screen.RecommendationFragment
 
 
 private const val TAG = "MainActivity"
@@ -74,13 +76,13 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         //ApplicationPreferences.setToken(this, "")
         if (ApplicationPreferences.getToken(this).equals("")) {
-            navView.selectedItemId = R.id.navigation_profile
             navView.visibility = View.GONE
             supportFragmentManager.beginTransaction()
-                .add(R.id.nav_host_fragment_activity_main, LoginFragment()).commit()
+                .add(R.id.nav_host_fragment_activity_main, LoginFragment()).addToBackStack(null).commit()
         } else {
+            navView.selectedItemId = Navigation.lastMenuItem
             supportFragmentManager.beginTransaction()
-                .add(R.id.nav_host_fragment_activity_main, navigation.lastFragment).commit()
+                .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()
         }
     }
 

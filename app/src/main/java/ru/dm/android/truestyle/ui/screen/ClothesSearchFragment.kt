@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
@@ -53,45 +54,156 @@ class ClothesSearchFragment : Fragment() {
 
 
     //Обработчики результата активити с камерой и галереей
-    var resultLauncherCamera = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        Log.d(TAG, "Сделать снимок")
-        Log.d(TAG, result.resultCode.toString())
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            /*//Для получения миниатюры:
-            val bitmap: Bitmap? = data?.extras?.getParcelable("data") as Bitmap?
-            Log.d(TAG, bitmap?.width.toString())*/
+    private var resultLauncherCamera: ActivityResultLauncher<Intent>? = null
+    private var resultLauncherGallery : ActivityResultLauncher<Intent>? = null
 
-            // Получаем изображение и получаем его Bitmap
-            Log.d(TAG, "start decode file")
-            val filePath: String = photoFile.getPath()
-            val bitmap: Bitmap = BitmapFactory.decodeFile(filePath)
-            Log.d(TAG, "end decode file")
 
-            Log.d(TAG, "start analyze photo")
-            val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
-            Log.d(TAG, "end analyze photo")
-            clothesSearchViewModel.findClothes(dataClothes)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate")
 
-            //Наш файл для передачи лежит в photoFile
-            //...отправка на сервер
+        resultLauncherCamera = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            Log.d(TAG, "Сделать снимок")
+            Log.d(TAG, result.resultCode.toString())
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                /*//Для получения миниатюры:
+                val bitmap: Bitmap? = data?.extras?.getParcelable("data") as Bitmap?
+                Log.d(TAG, bitmap?.width.toString())*/
 
-            //Забираем разрешения и удаляем фото (УДАЛЕНИЕ СДЕЛАТЬ ПОСЛЕ УДАЧНОЙ ОТПРАВКИ)
-            requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-            photoFile.delete()
+                // Получаем изображение и получаем его Bitmap
+                Log.d(TAG, "start decode file")
+                val filePath: String = photoFile.getPath()
+                val bitmap: Bitmap = BitmapFactory.decodeFile(filePath)
+                Log.d(TAG, "end decode file")
+
+                Log.d(TAG, "start analyze photo")
+                val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
+                Log.d(TAG, "end analyze photo")
+                clothesSearchViewModel.findClothes(dataClothes)
+
+                //Наш файл для передачи лежит в photoFile
+                //...отправка на сервер
+
+                //Забираем разрешения и удаляем фото (УДАЛЕНИЕ СДЕЛАТЬ ПОСЛЕ УДАЧНОЙ ОТПРАВКИ)
+                requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                photoFile.delete()
+            }
+        }
+
+        resultLauncherGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            Log.d(TAG, "Выбрать из галереи")
+            Log.d(TAG, result.resultCode.toString())
+            if (result.resultCode == Activity.RESULT_OK) {
+                val inputStream  = context?.contentResolver?.openInputStream(result.data!!.data!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                Log.d(TAG, "start analyze photo")
+                val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
+                Log.d(TAG, "end analyze photo")
+                clothesSearchViewModel.findClothes(dataClothes)
+            }
         }
     }
-    var resultLauncherGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        Log.d(TAG, "Выбрать из галереи")
-        Log.d(TAG, result.resultCode.toString())
-        if (result.resultCode == Activity.RESULT_OK) {
-            val inputStream  = context?.contentResolver?.openInputStream(result.data!!.data!!)
-            val bitmap = BitmapFactory.decodeStream(inputStream)
-            Log.d(TAG, "start analyze photo")
-            val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
-            Log.d(TAG, "end analyze photo")
-            clothesSearchViewModel.findClothes(dataClothes)
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Log.d(TAG, "onCreateView")
+        clothesSearchViewModel = ViewModelProvider(this).get(ClothesSearchViewModel::class.java)
+
+        _binding = FragmentClothesSearchBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        //Обработчик кнопки "Сделать фото"
+        binding.buttonMakePhoto.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View?) {
+                Log.d(TAG, "onClick makePhoto")
+                makePhoto()
+            }
+        })
+
+        //Обработчик для кнопки "Выбрать из галереи"
+        binding.buttonLoadPhoto.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                Log.d(TAG, "onClick loadPhoto")
+                loadPhotoFromGallery()
+            }
+        })
+
+        return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        clothesSearchViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
+            navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+        })
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "destroy")
+        _binding = null
+    }
+
+
+    //Функция вызова камеры и деланья снимка
+    private fun makePhoto() {
+        //Проверка на наличие камеры
+        val packageManager: PackageManager = requireActivity().packageManager
+        val captureImage = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val resolvedActivity: ResolveInfo? = packageManager.resolveActivity(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
+        if (resolvedActivity == null) {
+            Toast.makeText(
+                context,
+                resources.getString(R.string.not_camera),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
         }
+
+        //Временный файл с фото
+        val filesDir = context?.applicationContext?.filesDir
+        photoFile = File(filesDir, FILE_NAME)
+        photoUri = FileProvider.getUriForFile(requireActivity(),
+            FILE_PROVIDER,
+            photoFile)
+
+        //Указываем, куда сохранять фото
+        captureImage.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+
+        //Получаем все активити, способные выполнить данный интент
+        val cameraActivities: List<ResolveInfo> =
+            packageManager.queryIntentActivities(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
+
+        //Выдаем им разрещения для записи только в укзаанный photoUri
+        for (cameraActivity in cameraActivities) {
+            requireActivity().grantUriPermission(
+                cameraActivity.activityInfo.packageName,
+                photoUri,
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
+        }
+
+        Log.d(TAG, "resultCamera " + resultLauncherCamera.toString())
+        resultLauncherCamera?.launch(captureImage)
+    }
+
+
+    //Функция загрузки фото из галереи
+    private fun loadPhotoFromGallery() {
+        val pickIntent = Intent(Intent.ACTION_PICK)
+        pickIntent.type = "image/*"
+
+        Log.d(TAG, "resultGallery " + resultLauncherGallery.toString())
+        resultLauncherGallery?.launch(pickIntent)
     }
 
 
@@ -164,108 +276,5 @@ class ClothesSearchFragment : Fragment() {
         val startOffset = fileDescriptor.startOffset
         val declaredLength = fileDescriptor.declaredLength
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "OnCreate")
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        Log.d(TAG, "onCreateView")
-        clothesSearchViewModel = ViewModelProvider(this).get(ClothesSearchViewModel::class.java)
-
-        _binding = FragmentClothesSearchBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        //Обработчик кнопки "Сделать фото"
-        binding.buttonMakePhoto.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?) {
-                makePhoto()
-            }
-        })
-
-        //Обработчик для кнопки "Выбрать из галереи"
-        binding.buttonLoadPhoto.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                loadPhotoFromGallery()
-            }
-        })
-
-        return root
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        clothesSearchViewModel.liveData.observe(viewLifecycleOwner, Observer {
-            val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
-            navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-        })
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "destroy")
-        _binding = null
-    }
-
-
-    //Функция вызова камеры и деланья снимка
-    private fun makePhoto() {
-        //Проверка на наличие камеры
-        val packageManager: PackageManager = requireActivity().packageManager
-        val captureImage = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        val resolvedActivity: ResolveInfo? = packageManager.resolveActivity(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
-        if (resolvedActivity == null) {
-            Toast.makeText(
-                context,
-                resources.getString(R.string.not_camera),
-                Toast.LENGTH_SHORT
-            ).show()
-            return
-        }
-
-        //Временный файл с фото
-        val filesDir = context?.applicationContext?.filesDir
-        photoFile = File(filesDir, FILE_NAME)
-        photoUri = FileProvider.getUriForFile(requireActivity(),
-            FILE_PROVIDER,
-            photoFile)
-
-        //Указываем, куда сохранять фото
-        captureImage.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
-
-        //Получаем все активити, способные выполнить данный интент
-        val cameraActivities: List<ResolveInfo> =
-            packageManager.queryIntentActivities(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
-
-        //Выдаем им разрещения для записи только в укзаанный photoUri
-        for (cameraActivity in cameraActivities) {
-            requireActivity().grantUriPermission(
-                cameraActivity.activityInfo.packageName,
-                photoUri,
-                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
-        }
-
-        resultLauncherCamera.launch(captureImage)
-    }
-
-
-    //Функция загрузки фото из галереи
-    private fun loadPhotoFromGallery() {
-        val pickIntent = Intent(Intent.ACTION_PICK)
-        pickIntent.type = "image/*"
-
-        resultLauncherGallery.launch(pickIntent)
     }
 }

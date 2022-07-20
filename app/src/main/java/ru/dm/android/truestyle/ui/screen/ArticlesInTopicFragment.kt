@@ -55,7 +55,7 @@ class ArticlesInTopicFragment: Fragment() {
         val root: View = binding.root
 
         binding.lifecycleOwner = this@ArticlesInTopicFragment
-        adapterArticles = ArticlesInTopicAdapter(navigation, requireContext())
+        adapterArticles = ArticlesInTopicAdapter(requireContext())
         adapterArticles.submitList(articlesInTopicViewModel.liveData.value) //ВРЕМЕННО (потом готовить аж с OnCreate)
         binding.recyclerViewArticles.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

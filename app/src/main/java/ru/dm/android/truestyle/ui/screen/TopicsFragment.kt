@@ -42,7 +42,7 @@ class TopicsFragment: Fragment() {
         binding.lifecycleOwner = this@TopicsFragment
         binding.recyclerViewTopics.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = TopicAdapter(navigation, context, topicsViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = TopicAdapter(context, topicsViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
 
         //Слушатель на кнопку назад

@@ -11,8 +11,7 @@ import ru.dm.android.truestyle.model.Topic
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.TopicHolder
 
-class TopicAdapter(val navigation: Navigation,
-                   private val context: Context,
+class TopicAdapter(private val context: Context,
                    private val listTopics: List<Topic>): RecyclerView.Adapter<TopicHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicHolder {
@@ -22,7 +21,7 @@ class TopicAdapter(val navigation: Navigation,
             parent,
             false
         )
-        return TopicHolder(navigation, binding, context)
+        return TopicHolder(binding)
     }
 
     override fun onBindViewHolder(holder: TopicHolder, position: Int) {

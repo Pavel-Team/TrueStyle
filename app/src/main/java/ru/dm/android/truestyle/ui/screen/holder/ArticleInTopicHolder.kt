@@ -10,7 +10,7 @@ import ru.dm.android.truestyle.model.ArticleInTopic
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ArticleFragment
 
-class ArticleInTopicHolder(val navigation: Navigation, private val binding: ItemArticleInTopicBinding, context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener  {
+class ArticleInTopicHolder(private val binding: ItemArticleInTopicBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener  {
 
     init {
         itemView.setOnClickListener(this)
@@ -28,6 +28,6 @@ class ArticleInTopicHolder(val navigation: Navigation, private val binding: Item
         val article = binding.model!!
 
         val fragmentTo = ArticleFragment.newInstance(article)
-        navigation.navigateTo(fragmentTo, R.id.navigation_articles)
+        Navigation.navigateTo(fragmentTo, R.id.navigation_articles)
     }
 }

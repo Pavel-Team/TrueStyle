@@ -33,7 +33,7 @@ class RecommendationFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //
+        Log.d(TAG, "onCreate")
     }
 
 
@@ -42,6 +42,7 @@ class RecommendationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "onCreateView")
         recommendationViewModel = ViewModelProvider(this).get(RecommendationViewModel::class.java)
 
         //Настраиваем dataBinding
@@ -54,11 +55,11 @@ class RecommendationFragment : Fragment() {
         //Настраиваем RecyclerView с рекомендациями для одежды и статей
         binding.clothesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ClothesRecommendationAdapter(navigation, context, listOf(Stuff(), Stuff(), Stuff())) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = ClothesRecommendationAdapter(context, listOf(Stuff(), Stuff(), Stuff())) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
         binding.articlesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ArticleRecommendationAdapter(navigation, context, listOf(Article(), Article(), Article())) //ВРЕМЕННО
+            adapter = ArticleRecommendationAdapter(context, listOf(Article(), Article(), Article())) //ВРЕМЕННО
         }
 
         //Слушатель кнопки "Добавить фото"
@@ -80,11 +81,11 @@ class RecommendationFragment : Fragment() {
 
         recommendationViewModel.liveDataClothes.observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "observe liveDataClothes")
-            binding.clothesRecommendationRecyclerView.adapter = ClothesRecommendationAdapter(navigation, requireContext(), recommendationViewModel.liveDataClothes.value.orEmpty())
+            binding.clothesRecommendationRecyclerView.adapter = ClothesRecommendationAdapter(requireContext(), recommendationViewModel.liveDataClothes.value.orEmpty())
         })
 
         recommendationViewModel.liveDataArticles.observe(viewLifecycleOwner, Observer {
-            binding.articlesRecommendationRecyclerView.adapter = ArticleRecommendationAdapter(navigation, requireContext(), recommendationViewModel.liveDataArticles.value.orEmpty())
+            binding.articlesRecommendationRecyclerView.adapter = ArticleRecommendationAdapter(requireContext(), recommendationViewModel.liveDataArticles.value.orEmpty())
         })
     }
 

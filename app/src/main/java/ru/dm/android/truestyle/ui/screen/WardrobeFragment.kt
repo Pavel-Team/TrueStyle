@@ -74,7 +74,7 @@ class WardrobeFragment: Fragment() {
         binding.imageButtonAddClothes.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = ClothesSearchFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
             }
         })
 

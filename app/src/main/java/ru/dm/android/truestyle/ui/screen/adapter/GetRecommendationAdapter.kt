@@ -12,7 +12,7 @@ import ru.dm.android.truestyle.model.GetRecommendationClothes
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.GetRecommendationHolder
 
-class GetRecommendationAdapter(val navigation: Navigation, private val context: Context,
+class GetRecommendationAdapter(private val context: Context,
                                private val listRecommendedClothes: List<Stuff>): RecyclerView.Adapter<GetRecommendationHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetRecommendationHolder {
@@ -22,7 +22,7 @@ class GetRecommendationAdapter(val navigation: Navigation, private val context: 
             parent,
             false
         )
-        return GetRecommendationHolder(navigation, binding, context)
+        return GetRecommendationHolder(binding)
     }
 
     override fun onBindViewHolder(holder: GetRecommendationHolder, position: Int) {
