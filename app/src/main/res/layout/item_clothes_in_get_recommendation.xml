@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="ru.dm.android.truestyle.model.GetRecommendationClothes" />
+            type="ru.dm.android.truestyle.api.response.Stuff" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,10 +30,9 @@
                 android:layout_width="@dimen/width_image_topic"
                 android:layout_height="@dimen/width_image_topic"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/example_clothes_3"
+                tools:src="@drawable/example_clothes"
                 android:contentDescription="@string/description_wardrobe_clothes"
-
-                android:src="@drawable/example_clothes_3"/>
+                imageUrl="@{model.imageUrl}"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -52,7 +51,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:hint="@string/hint_title_wardrobe_clothes"
-            android:text="@{model.title}"/>
+            android:text="@{model.productDisplayName}"/>
 
         <TextView
             style="@style/textTextViewStyle.additionalText"
@@ -63,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@id/title_get_recommendation_clothes"
             android:maxLines="1"
             android:layout_marginTop="@dimen/margin_top_description_article"
-            android:text="@{model.description}"
+            android:text='@{model.masterCategory + ", " + model.subCategory + ", " + model.baseColor + ", " + model.usage}'
             android:hint="@string/hint_description_wardrobe_clothes"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
