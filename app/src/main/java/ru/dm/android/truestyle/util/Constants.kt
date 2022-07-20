@@ -2,7 +2,7 @@ package ru.dm.android.truestyle.util
 
 object Constants {
     //Константы для подключения
-    const val URL = "http://192.168.1.71:8080/"
+    const val URL = "http://185.221.153.118:8080/"
     const val TYPE_TOKEN = "Bearer"
 
     //Константы для названия сезона в БД на сервере

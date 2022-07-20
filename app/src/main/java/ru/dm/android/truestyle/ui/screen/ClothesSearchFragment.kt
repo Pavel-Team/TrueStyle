@@ -15,10 +15,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import org.tensorflow.lite.Interpreter
@@ -56,6 +58,8 @@ class ClothesSearchFragment : Fragment() {
 
     //Обработчики результата активити с камерой и галереей
     var resultLauncherCamera = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        Log.d(TAG, "Сделать снимок")
+        Log.d(TAG, result.resultCode.toString())
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
             /*//Для получения миниатюры:
@@ -82,13 +86,15 @@ class ClothesSearchFragment : Fragment() {
         }
     }
     var resultLauncherGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        Log.d(TAG, "Выбрать из галереи")
+        Log.d(TAG, result.resultCode.toString())
         if (result.resultCode == Activity.RESULT_OK) {
             val inputStream  = context?.contentResolver?.openInputStream(result.data!!.data!!)
-            //Отправляем на сервер
-
-            //ВРЕМЕННО ДЛЯ ВИДОСА
-            val fragmentTo = GetRecommendationFragment()
-            navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            Log.d(TAG, "start analyze photo")
+            val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
+            Log.d(TAG, "end analyze photo")
+            clothesSearchViewModel.findClothes(dataClothes)
         }
     }
 
@@ -167,7 +173,7 @@ class ClothesSearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+        Log.d(TAG, "OnCreate")
     }
 
 
@@ -176,6 +182,7 @@ class ClothesSearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "onCreateView")
         clothesSearchViewModel = ViewModelProvider(this).get(ClothesSearchViewModel::class.java)
 
         _binding = FragmentClothesSearchBinding.inflate(inflater, container, false)
@@ -199,8 +206,19 @@ class ClothesSearchFragment : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        clothesSearchViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
+            navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+        })
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
+        Log.d(TAG, "destroy")
         _binding = null
     }
 

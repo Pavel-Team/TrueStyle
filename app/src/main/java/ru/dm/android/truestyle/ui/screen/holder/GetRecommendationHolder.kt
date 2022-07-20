@@ -20,13 +20,10 @@ class GetRecommendationHolder(val navigation: Navigation,
     }
 
 
-    fun bind(getRecommendationClothes: GetRecommendationClothes) {
+    fun bind(clothes: Stuff) {
         binding.apply {
-            model = getRecommendationClothes
+            model = clothes
             executePendingBindings()
-
-            if (getRecommendationClothes.id == 2)
-                imageViewGetRecommendationClothes.setImageResource(R.drawable.example_clothes_2)
         }
     }
 
@@ -34,8 +31,7 @@ class GetRecommendationHolder(val navigation: Navigation,
     override fun onClick(p0: View?) {
         val clothes = binding.model!!
 
-        //ВРЕМЕННО!!!!!!!!
-        val fragmentTo = ClothesFragment.newInstance(Stuff())
+        val fragmentTo = ClothesFragment.newInstance(clothes)
         navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
     }
 }
