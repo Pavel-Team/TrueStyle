@@ -1,6 +1,7 @@
 /**Класс для работы с API*/
 package ru.dm.android.truestyle.api
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
@@ -10,15 +11,16 @@ import ru.dm.android.truestyle.util.Constants
 
 
 object Networking {
-    private val okHttpClient = OkHttpClient.Builder()
+
+    //P.S. Interceptor добавляется в классе Application
+    var okHttpClient = OkHttpClient.Builder()
         .build()
 
-    private val retrofit = Retrofit.Builder()
+    var retrofit = Retrofit.Builder()
         .baseUrl(Constants.URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
 
-    val api : Api
-        get() = retrofit.create()
+    var api : Api = retrofit.create()
 }

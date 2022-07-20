@@ -10,9 +10,14 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import okhttp3.OkHttpClient
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.ConnectionLiveData
+import ru.dm.android.truestyle.api.InternetConnectionInterceptor
+import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     lateinit var navView: BottomNavigationView
 
     private var navigation = Navigation
+    private lateinit var connectionLiveData: ConnectionLiveData
 
 
     override fun attachBaseContext(newBase: Context) {
@@ -43,14 +49,15 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
 
-        //ВРЕМЕННО
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if(!hasWifi(this)) {
-            NotConnectionDialogFragment().apply {
-                show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
+        //Проверка на интернет
+        connectionLiveData = ConnectionLiveData(this)
+        connectionLiveData.observe(this, Observer {
+            if (!it) {
+                NotConnectionDialogFragment().apply {
+                    show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
+                }
             }
-            return
-        }
+        })
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

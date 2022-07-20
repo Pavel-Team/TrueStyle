@@ -30,7 +30,7 @@
 
     <string name="title_search_clothes">Search</string>
     <string name="descriprion_image_clothes_search">Make photo - find clothes</string>
-    <string name="button_load_photo">Select from gallery</string>
+    <string name="button_load_photo">Select</string>
     <string name="button_make_photo">Make photo</string>
 
     <string name="settings">Settings</string>
@@ -92,7 +92,7 @@
     <string name="button_retry_dialog_fragment">Refresh</string>
 
     <string name="password">Password</string>
-    <string name="login_hint">Phone number, email or username</string>
+    <string name="login_hint">Username</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="forgot_password">Forgot your password? <b>Login me.</b></string>

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
@@ -23,7 +24,7 @@ class ClothesSearchViewModel  constructor(application: Application): AndroidView
     fun findClothes(stuffData: List<Int>) {
         val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
 
-        viewModelScope.launch {
+        viewModelScope.async {
             Log.d(TAG, "stuffData:")
             Log.d(TAG, stuffData.toString())
             Log.d(TAG, "start find photo")

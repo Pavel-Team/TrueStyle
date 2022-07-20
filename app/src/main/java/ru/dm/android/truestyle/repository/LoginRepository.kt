@@ -23,17 +23,10 @@ object LoginRepository {
     //Функция входа пользователя
     //Возвращает Auth
     suspend fun signIn(username: String, password: String): Auth? {
-        try {
-            val auth = networking.api.signIn(
-                LoginRequest(username, password)
-            ).body()
-
-            return auth
-        } catch (e: SocketTimeoutException) {
-            e.printStackTrace()
-            Log.d("sss", "No internet connection")
-        }
-        return null
+        var auth : Auth? = null
+        auth = networking.api.signIn(LoginRequest(username, password)).body()
+        Log.d(TAG, auth.toString())
+        return auth
     }
 
 
@@ -43,7 +36,7 @@ object LoginRepository {
         val auth = networking.api.signIn(
             LoginRequest(username = username, password = password)
         )
-        Log.d(TAG, auth.body()?.token.toString())
+        Log.d(TAG, auth.body().toString())
         return auth.body()
     }
 }

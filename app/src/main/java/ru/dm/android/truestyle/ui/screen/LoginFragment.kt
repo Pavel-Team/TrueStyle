@@ -73,8 +73,7 @@ class LoginFragment : Fragment(){
                 navigation.setVisibleNavView() //Включаем нижнее меню при успешном входе
                 navigation.navigateTo(fragmentTo, R.id.navigation_profile)
                 navigation.clearStackFragment(R.id.navigation_profile)
-            }
-            else {
+            } else {
                 if (binding.editTextLogin.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty())
                     Toast.makeText(requireContext(), resources.getString(R.string.error_login), Toast.LENGTH_SHORT).show()
             }

@@ -24,6 +24,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import org.tensorflow.lite.Interpreter
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesSearchBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ClothesSearchViewModel
@@ -49,6 +50,7 @@ class ClothesSearchFragment : Fragment() {
     private lateinit var photoFile: File //Файл с выбранной фотографией
     private lateinit var photoUri: Uri   //URI файла
     protected var tflite: Interpreter? = null
+    private var isFirstObserve = true
 
     private val navigation = Navigation
 
@@ -140,9 +142,18 @@ class ClothesSearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var isFirstObserveAntiBug = true
+        if (isFirstObserve)
+            isFirstObserveAntiBug = false
+
         clothesSearchViewModel.liveData.observe(viewLifecycleOwner, Observer {
-            val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
-            navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+            if (isFirstObserveAntiBug) {
+                isFirstObserveAntiBug = false
+            } else {
+                val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
+                navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+                isFirstObserve = false
+            }
         })
     }
 

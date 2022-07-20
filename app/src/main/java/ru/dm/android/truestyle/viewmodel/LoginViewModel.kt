@@ -34,6 +34,8 @@ class LoginViewModel  constructor(application: Application): AndroidViewModel(ap
     fun signIn(username: String, password: String) {
         viewModelScope.launch {
             val auth = loginRepository.authUser(username, password)
+            Log.d(TAG, auth.toString())
+            Log.d(TAG, (auth==null).toString())
             if (auth != null) {
                 ApplicationPreferences.setToken(
                     getApplication<Application>().applicationContext,

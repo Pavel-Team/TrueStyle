@@ -29,7 +29,7 @@
     <string name="toast_clothes_added">Добавлено в гардероб</string>
 
     <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>
-    <string name="button_load_photo">Выбрать из галереи</string>
+    <string name="button_load_photo">Выбрать</string>
     <string name="button_make_photo">Сделать фото</string>
 
     <string name="settings">Настройки</string>
@@ -79,7 +79,7 @@
     <string name="button_retry_dialog_fragment">Обновить</string>
 
     <string name="password">Пароль</string>
-    <string name="login_hint">Номер, email или имя пользователя</string>
+    <string name="login_hint">Имя пользователя</string>
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="forgot_password">Забыли пароль? <b>Войти</b></string>
