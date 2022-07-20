@@ -13,24 +13,21 @@ import androidx.core.graphics.BlendModeCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentRegistrationBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.RegistrationViewModel
-import javax.inject.Inject
 
 private const val TAG = "RegistrationFragment"
 
-@AndroidEntryPoint
+
 class RegistrationFragment: Fragment() {
     //private lateinit var registrationViewModel: RegistrationViewModel
     private val registrationViewModel by viewModels<RegistrationViewModel>()
     private var _binding: FragmentRegistrationBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
 
     private val REGEX_EMAIL by lazy { Regex("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") }
 

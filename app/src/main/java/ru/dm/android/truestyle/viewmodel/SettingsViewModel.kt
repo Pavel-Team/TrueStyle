@@ -1,17 +1,14 @@
 package ru.dm.android.truestyle.viewmodel
 
 import android.app.Application
-import android.util.Log
-import androidx.databinding.Bindable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.model.Settings
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import java.util.*
 
-//@HiltViewModel
+
 class SettingsViewModel(application: Application): AndroidViewModel(application) {
     var liveData: MutableLiveData<Settings> = MutableLiveData()
 

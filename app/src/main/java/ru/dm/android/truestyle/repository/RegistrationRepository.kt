@@ -3,13 +3,13 @@ package ru.dm.android.truestyle.repository
 import android.util.Log
 import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.model.Registration
-import javax.inject.Inject
-import javax.inject.Singleton
 
 private const val TAG = "RegistrationRepository"
 
-@Singleton
-class RegistrationRepository @Inject constructor(val networking: Networking) {
+
+object RegistrationRepository{
+
+    private val networking = Networking
 
     init {
         Log.d(TAG, "init")

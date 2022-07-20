@@ -9,26 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentGetRecommendationBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.GetRecommendationAdapter
 import ru.dm.android.truestyle.viewmodel.GetRecommendationViewModel
-import javax.inject.Inject
 
 
 private const val ARG_CLOTHES = "Clothes" //Константа для получения листа с одеждой из Bundle
 
 
-@AndroidEntryPoint
+
 class GetRecommendationFragment: Fragment() {
     private lateinit var getRecommendationViewModel: GetRecommendationViewModel
     private var _binding: FragmentGetRecommendationBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
 
     private var listClothes: List<Stuff>? = null
 

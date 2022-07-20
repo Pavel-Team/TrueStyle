@@ -8,27 +8,24 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentOneSettingBinding
 import ru.dm.android.truestyle.databinding.ItemSettingBinding
 import ru.dm.android.truestyle.model.Setting
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.SettingViewModel
-import javax.inject.Inject
 
 private const val TAG = "SettingFragment"
 private const val ARG_TITLE_SETTING = "titleSetting"
 
-@AndroidEntryPoint
+
 class SettingFragment : Fragment(){
 
     private lateinit var settingViewModel: SettingViewModel
     private var _binding: FragmentOneSettingBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
     private lateinit var titleSetting: String
 
 

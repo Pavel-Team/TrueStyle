@@ -5,20 +5,20 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.model.User
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.ProfileRepository
 import ru.dm.android.truestyle.util.Constants
-import javax.inject.Inject
 
 private const val TAG = "ProfileViewModel"
 
-@HiltViewModel
-class ProfileViewModel @Inject constructor(application: Application,
-                                           private val profileRepository: ProfileRepository): AndroidViewModel(application) {
+
+class ProfileViewModel  constructor(application: Application): AndroidViewModel(application) {
+
+    private val profileRepository = ProfileRepository
+
     var liveData: MutableLiveData<User> = MutableLiveData()
 
     //ВРЕМЕННО

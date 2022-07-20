@@ -10,22 +10,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentLoginBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.LoginViewModel
-import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class LoginFragment : Fragment(){
     private lateinit var loginViewModel: LoginViewModel
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

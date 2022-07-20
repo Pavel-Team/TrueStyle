@@ -8,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.databinding.FragmentArticleBinding
-import ru.dm.android.truestyle.preferences.ApplicationPreferences
-import ru.dm.android.truestyle.ui.activity.MainActivity
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.ArticleViewModel
 
@@ -23,7 +19,7 @@ private const val TAG = "ArticleFragment"
 private const val ARG_ARTICLE = "article" //Константа для получения из Bundle статьи
 
 
-@AndroidEntryPoint
+
 class ArticleFragment : Fragment() {
 
     private lateinit var articleViewModel: ArticleViewModel

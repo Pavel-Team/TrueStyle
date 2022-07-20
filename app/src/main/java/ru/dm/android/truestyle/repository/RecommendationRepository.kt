@@ -2,18 +2,16 @@ package ru.dm.android.truestyle.repository
 
 import android.util.Log
 import ru.dm.android.truestyle.api.Networking
-import ru.dm.android.truestyle.api.request.LoginRequest
 import ru.dm.android.truestyle.api.response.Article
-import ru.dm.android.truestyle.api.response.Auth
 import ru.dm.android.truestyle.api.response.Quote
 import ru.dm.android.truestyle.api.response.Stuff
-import javax.inject.Inject
-import javax.inject.Singleton
 
 private const val TAG = "RecommendRepository"
 
-@Singleton
-class RecommendationRepository @Inject constructor(val networking: Networking) {
+
+object RecommendationRepository{
+
+    private val networking = Networking
 
     init {
         Log.d(TAG, "init")

@@ -14,22 +14,19 @@ import android.widget.ViewFlipper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.databinding.FragmentArticlesBinding
 import ru.dm.android.truestyle.databinding.ItemRecommendedArticleBinding
-import ru.dm.android.truestyle.model.RecommendedArticle
 import ru.dm.android.truestyle.ui.activity.MainActivity
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ArticlesViewModel
-import javax.inject.Inject
 
 
 private const val TAG = "ArticlesFragment"
 private const val DELTA_Y = 450 //Число пикселей, необходимых для слайдинга статьи
 
-@AndroidEntryPoint
+
 public class ArticlesFragment : Fragment()  {
 
     private lateinit var articlesViewModel: ArticlesViewModel
@@ -42,8 +39,7 @@ public class ArticlesFragment : Fragment()  {
     private lateinit var listCircle: MutableList<ImageView>
     private var indexActiveArticle = 0 //Индекс текущего активированного кружка
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

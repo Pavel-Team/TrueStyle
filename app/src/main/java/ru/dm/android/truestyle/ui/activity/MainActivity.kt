@@ -11,7 +11,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
@@ -20,19 +19,16 @@ import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.LoginFragment
-import javax.inject.Inject
 
 
 private const val TAG = "MainActivity"
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener{
 
     private lateinit var binding: ActivityMainBinding
     lateinit var navView: BottomNavigationView
 
-    @Inject
-    lateinit var navigation: Navigation
+    private var navigation = Navigation
 
 
     override fun attachBaseContext(newBase: Context) {

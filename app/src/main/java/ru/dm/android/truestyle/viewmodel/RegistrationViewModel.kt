@@ -4,11 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.api.request.LoginRequest
 import ru.dm.android.truestyle.api.response.Auth
 import ru.dm.android.truestyle.model.Registration
@@ -16,13 +13,15 @@ import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.LoginRepository
 import ru.dm.android.truestyle.repository.RegistrationRepository
 import java.net.SocketTimeoutException
-import javax.inject.Inject
 
 private const val TAG = "RegistrationViewModel"
 
-@HiltViewModel
-class RegistrationViewModel @Inject constructor(application: Application, val registrationRepository: RegistrationRepository,
-                                                val loginRepository: LoginRepository) : AndroidViewModel(application) {
+
+class RegistrationViewModel  constructor(application: Application) : AndroidViewModel(application) {
+
+    private val registrationRepository = RegistrationRepository
+    private val loginRepository = LoginRepository
+
     var liveData: MutableLiveData<Registration> = MutableLiveData()
     var liveDataSuccessRegistration: MutableLiveData<Auth> = MutableLiveData()
     var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData()
@@ -104,9 +103,7 @@ class RegistrationViewModel @Inject constructor(application: Application, val re
                 val isSuccessful =
                     registrationRepository.registerUser(username, email, password).isSuccess
                 if (isSuccessful) {
-                    auth = loginRepository.networking.api.signIn(
-                        LoginRequest(username, password)
-                    ).body()
+                    auth = loginRepository.signIn(username, password)
 
                     if (auth != null) {
                         ApplicationPreferences.setToken(

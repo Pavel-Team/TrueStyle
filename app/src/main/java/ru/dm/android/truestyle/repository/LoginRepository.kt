@@ -1,19 +1,39 @@
 package ru.dm.android.truestyle.repository
 
+import android.app.Application
 import android.util.Log
 import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.api.request.LoginRequest
 import ru.dm.android.truestyle.api.response.Auth
-import javax.inject.Inject
-import javax.inject.Singleton
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
+import java.net.SocketTimeoutException
 
 private const val TAG = "LoginRepository"
 
-@Singleton
-class LoginRepository @Inject constructor(val networking: Networking){
+
+object LoginRepository {
+
+    private val networking = Networking
 
     init {
         Log.d(TAG, "init")
+    }
+
+
+    //Функция входа пользователя
+    //Возвращает Auth
+    suspend fun signIn(username: String, password: String): Auth? {
+        try {
+            val auth = networking.api.signIn(
+                LoginRequest(username, password)
+            ).body()
+
+            return auth
+        } catch (e: SocketTimeoutException) {
+            e.printStackTrace()
+            Log.d("sss", "No internet connection")
+        }
+        return null
     }
 
 

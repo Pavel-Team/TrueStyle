@@ -2,33 +2,28 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentEditProfileBinding
 import ru.dm.android.truestyle.model.User
-import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.EditProfileViewModel
-import javax.inject.Inject
 
 private const val TAG = "EditProfileFragment"
 private const val ARG_USER = "User" //Для аргумента Bundle с информацией о пользователе
 
-@AndroidEntryPoint
+
 class EditProfileFragment: Fragment() {
 
     private lateinit var editProfileViewModel: EditProfileViewModel
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    
 
 
     override fun onCreateView(

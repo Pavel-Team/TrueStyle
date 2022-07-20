@@ -1,22 +1,13 @@
 package ru.dm.android.truestyle.viewmodel
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.content.res.Configuration
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.model.Setting
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
-import java.util.*
-import android.os.Build
-
-import android.annotation.TargetApi
-import android.util.Log
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 
-//@HiltViewModel
+//
 class SettingViewModel(application: Application): AndroidViewModel(application) {
 
     private var app = application

@@ -9,16 +9,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
 import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
-import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
-import ru.dm.android.truestyle.ui.screen.*
+import ru.dm.android.truestyle.ui.screen.ArticlesFragment
+import ru.dm.android.truestyle.ui.screen.ClothesSearchFragment
+import ru.dm.android.truestyle.ui.screen.ProfileFragment
+import ru.dm.android.truestyle.ui.screen.RecommendationFragment
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
-import kotlin.collections.HashMap
 
 
-@Singleton
-class Navigation @Inject constructor(){
+object Navigation{
 
     private lateinit var fragmentManager: FragmentManager
     private lateinit var navView: BottomNavigationView

@@ -5,33 +5,33 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.databinding.FragmentArticlesInTopicBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticlesInTopicAdapter
 import ru.dm.android.truestyle.viewmodel.ArticlesInTopicViewModel
 import java.util.*
-import javax.inject.Inject
 
 private const val TAG = "ArticlesInTopic"
 private const val ARG_TITLE_TOPIC = "titleTopic" //Константа для Bundle с названием тематики статей
 
-@AndroidEntryPoint
+
 class ArticlesInTopicFragment: Fragment() {
 
     private lateinit var articlesInTopicViewModel: ArticlesInTopicViewModel
     private var _binding: FragmentArticlesInTopicBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
     private lateinit var adapterArticles: ArticlesInTopicAdapter
 
     private lateinit var titleTopic: String

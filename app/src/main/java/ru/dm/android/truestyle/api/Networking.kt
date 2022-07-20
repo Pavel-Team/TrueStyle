@@ -9,7 +9,7 @@ import retrofit2.create
 import ru.dm.android.truestyle.util.Constants
 
 
-class Networking {
+object Networking {
     private val okHttpClient = OkHttpClient.Builder()
         .build()
 

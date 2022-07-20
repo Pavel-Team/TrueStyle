@@ -15,27 +15,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentWardrobeBinding
 import ru.dm.android.truestyle.databinding.ItemClothesInWardrobeBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.WardrobeViewModel
-import javax.inject.Inject
 
 private const val TAG = "WardrobeFragment"
 private const val ARG_TITLE_SEASON = "titleSeason" //Константа для Bundle с названием выбранного сезона
 
-@AndroidEntryPoint
+
 class WardrobeFragment: Fragment() {
 
     private lateinit var wardrobeViewModel: WardrobeViewModel
     private var _binding: FragmentWardrobeBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
     private lateinit var adapterWardrobeClothes: WardrobeClothesAdapter
 
 

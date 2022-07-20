@@ -3,11 +3,13 @@ package ru.dm.android.truestyle.ui.screen
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
@@ -16,7 +18,7 @@ import ru.dm.android.truestyle.viewmodel.ClothesViewModel
 private const val TAG = "ClothesFragment"
 private const val ARG_CLOTHES = "clothes" //Константа для получения аргументов из Bundle
 
-@AndroidEntryPoint
+
 class ClothesFragment : Fragment() {
 
     private lateinit var clothesViewModel: ClothesViewModel

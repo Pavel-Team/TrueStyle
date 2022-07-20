@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.api.response.Stuff
@@ -19,18 +18,17 @@ import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticleRecommendationAdapter
 import ru.dm.android.truestyle.ui.screen.adapter.ClothesRecommendationAdapter
 import ru.dm.android.truestyle.viewmodel.RecommendationViewModel
-import javax.inject.Inject
 
 private const val TAG = "RecommendationFragment"
 
-@AndroidEntryPoint
+
 class RecommendationFragment : Fragment() {
 
     private lateinit var recommendationViewModel: RecommendationViewModel
     private var _binding: FragmentRecommendationBinding? = null
     private val binding get() = _binding!!
-    @Inject 
-    lateinit var navigation: Navigation
+
+    private val navigation = Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

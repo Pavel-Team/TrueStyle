@@ -4,13 +4,13 @@ import android.util.Log
 import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.api.request.SettingRequest
 import ru.dm.android.truestyle.api.response.User
-import javax.inject.Inject
-import javax.inject.Singleton
 
 private const val TAG = "ProfileRepository"
 
-@Singleton
-class ProfileRepository @Inject constructor(val networking: Networking){
+
+object ProfileRepository{
+
+    private val networking = Networking
 
     init {
         Log.d(TAG, "init")
