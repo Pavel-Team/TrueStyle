@@ -76,7 +76,7 @@
                 style="@style/textTextViewStyle.charactersTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.liveData.style}"
+                android:text="@{viewModel.liveData.style ?? @string/hint_style_user}"
                 android:hint="@string/hint_style_user"
                 android:layout_marginStart="@dimen/margin_start_text_user_style"/>
 
@@ -112,7 +112,7 @@
                     android:layout_height="match_parent"
                     tools:hint="@string/value_user_table"
                     android:layout_weight="1"
-                    android:text="@{viewModel.liveData.country}"/>
+                    android:text="@{viewModel.liveData.country ?? @string/value_user_table}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -135,7 +135,7 @@
                     android:layout_height="match_parent"
                     android:hint="@string/value_user_table"
                     android:layout_weight="1"
-                    android:text="@{viewModel.liveData.gender}"/>
+                    android:text="@{viewModel.liveData.gender ?? @string/value_user_table}"/>
             </LinearLayout>
         </LinearLayout>
 

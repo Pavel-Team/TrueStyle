@@ -62,6 +62,8 @@ class ClothesFragment : Fragment() {
         //Делаем высоту imageView равную ширине
         _binding!!.imageViewClothes.layoutParams = ViewGroup.LayoutParams(width, width)
 
+        //Проверка, есть ли данная одежда в гардеробе
+
         //Листенер для кнопки "Добавить в гардероб"
         binding.buttonAddWardrobe.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
@@ -82,6 +84,14 @@ class ClothesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+
+    //Метод изменения состояния кнопки
+    //Если isAdd - красная кнопка "Удалить из гардероба"
+    //Иначе - синяя кнопка "Добавить в гардероб"
+    private fun setNewTextInButton(isAdd: Boolean) {
+
     }
 
 

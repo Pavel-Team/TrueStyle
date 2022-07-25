@@ -1,6 +1,7 @@
 package ru.dm.android.truestyle.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.model.Setting

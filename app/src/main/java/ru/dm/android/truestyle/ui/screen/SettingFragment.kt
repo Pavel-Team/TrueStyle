@@ -1,7 +1,9 @@
 /**Фрагмент с одной настройкой*/
 package ru.dm.android.truestyle.ui.screen
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,8 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentOneSettingBinding
 import ru.dm.android.truestyle.databinding.ItemSettingBinding
 import ru.dm.android.truestyle.model.Setting
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
+import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.SettingViewModel
 
@@ -99,6 +103,12 @@ class SettingFragment : Fragment(){
         textView.root.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 settingViewModel.onClickSetting(titleSetting, setting)
+
+                //ВРЕМЕННО!
+                //Нужно для обновления языка
+                val ctx: Context = LanguageContextWrapper.wrap(getContext()!!, ApplicationPreferences.getLanguage(getContext()!!))
+                resources.updateConfiguration(ctx.getResources().getConfiguration(), ctx.getResources().getDisplayMetrics())
+
                 activity?.onBackPressed()
             }
         })

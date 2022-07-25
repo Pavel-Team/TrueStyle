@@ -86,6 +86,12 @@ class WardrobeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         wardrobeViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            //Проверка на пустоту
+            if (it.size == 0)
+                binding.textViewEmptyWardrobe.visibility = View.VISIBLE
+            else
+                binding.textViewEmptyWardrobe.visibility = View.GONE
+
             Log.d(TAG, wardrobeViewModel.liveData.value.toString())
             adapterWardrobeClothes.submitList(wardrobeViewModel.liveData.value!!)
         })

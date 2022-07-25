@@ -3,6 +3,7 @@ package ru.dm.android.truestyle.ui.screen
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,15 +26,6 @@ class SettingsFragment: Fragment() {
     private val navigation = Navigation
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //Нужно для обновления языка
-        val ctx: Context = LanguageContextWrapper.wrap(getContext()!!, ApplicationPreferences.getLanguage(getContext()!!))
-        resources.updateConfiguration(ctx.getResources().getConfiguration(), ctx.getResources().getDisplayMetrics())
-        
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +40,8 @@ class SettingsFragment: Fragment() {
         val root: View = binding.root
 
         binding.lifecycleOwner = this@SettingsFragment
+
+        settingsViewModel.initViewModel() //Для окончательного обновления языка
 
         //Слушатель на кнопку назад
         binding.imageButtonBack.setOnClickListener(object: View.OnClickListener {

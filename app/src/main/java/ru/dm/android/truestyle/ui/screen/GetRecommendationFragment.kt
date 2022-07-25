@@ -68,6 +68,12 @@ class GetRecommendationFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getRecommendationViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            //Проверка на пустоту
+            if (it.isEmpty())
+                binding.textViewEmptyGetRecommendation.visibility = View.VISIBLE
+            else
+                binding.textViewEmptyGetRecommendation.visibility = View.GONE
+
             binding.recyclerViewRecommendedClothes.adapter = GetRecommendationAdapter(
                 requireContext(),
                 getRecommendationViewModel.liveData.value!!

@@ -8,10 +8,11 @@
     <string name="fragment_clothes">Обзор одежды</string>
 
     <string name="content_description_ic_plus">Сделать фото</string>
+    <string name="example_quote">Мода - это игра, в которую нужно играть серьезно</string>
     <string name="tech_support">Техподдержка</string>
     <string name="estimate">Оценить</string>
     <string name="subscribe">Подписаться</string>
-    <string name="title_recommendation_articles">Ваш стиль</string>
+    <string name="title_recommendation_articles">Стиль</string>
     <string name="title_recommendation_clothes">Рекомендуем</string>
 
     <string name="image_clothes">Изображение одежды</string>
@@ -87,6 +88,7 @@
     <string name="or_continue_with">или продолжить с</string>
 
     <string name="recommendation">Рекомендации</string>
+    <string name="empty_recommendation">Ничего не найдено</string>
 
     <string name="username">Имя пользователя</string>
     <string name="email">E-mail адресс</string>
@@ -108,5 +110,7 @@
     <string name="user_style_edit_profile">Ваш стиль</string>
     <string name="soon_edit_profile">Скоро!</string>
     <string name="edit">Изменить</string>
+
+    <string name="empty_list">Пусто</string>
 
 </resources>

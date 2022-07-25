@@ -13,10 +13,17 @@ class SettingsViewModel(application: Application): AndroidViewModel(application)
     var liveData: MutableLiveData<Settings> = MutableLiveData()
 
     init {
-        var shortLanguage =  ApplicationPreferences.getLanguage(application.applicationContext)
+        initViewModel()
+    }
+
+
+    //Инициализиурет значения в соответствии с языком
+    fun initViewModel() {
+        val context = getApplication<Application>().applicationContext
+        var shortLanguage =  ApplicationPreferences.getLanguage(context)
         if (shortLanguage == "") {
             shortLanguage = Locale.getDefault().language
-            ApplicationPreferences.setLanguage(application.applicationContext, shortLanguage)
+            ApplicationPreferences.setLanguage(context, shortLanguage)
         }
         var language = ""
         when (shortLanguage) {
@@ -26,8 +33,8 @@ class SettingsViewModel(application: Application): AndroidViewModel(application)
 
         liveData.value = Settings(
             language,
-            application.applicationContext.resources.getString(R.string.soon),
-            application.applicationContext.resources.getString(R.string.soon)
+            context.resources.getString(R.string.soon),
+            context.resources.getString(R.string.soon)
         )
     }
 }

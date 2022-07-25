@@ -1,164 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="ru.dm.android.truestyle.viewmodel.RecommendationViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.screen.RecommendationFragment"
-        android:background="@color/white">
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/title_app"
-            style="@style/titleAppTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="@dimen/margin_window"
-            android:layout_marginTop="@dimen/margin_window"/>
-
-        <ImageButton
-            android:id="@+id/make_photo_image_button"
-            android:layout_width="@dimen/width_ic_plus"
-            android:layout_height="@dimen/width_ic_plus"
-            android:src="@drawable/ic_plus"
-            app:layout_constraintTop_toTopOf="@id/title_app"
-            app:layout_constraintBottom_toBottomOf="@id/title_app"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/margin_window"
-            android:scaleType="centerCrop"
-            android:background="@null"
-            android:contentDescription="@string/content_description_ic_plus" />
-
-        <TextView
-            android:id="@+id/quote"
-            style="@style/quoteTextViewStile"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.liveDataQuote.quote}"
-            app:layout_constraintTop_toBottomOf="@id/title_app"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:hint="@string/example_quote"
-            android:layout_marginTop="@dimen/margin_quote_top"
-            android:layout_marginStart="@dimen/margin_quote"
-            android:layout_marginEnd="@dimen/margin_quote"/>
-
-        <View
-            android:layout_width="@dimen/width_quote_line"
-            android:layout_height="@dimen/height_quote_line"
-            app:layout_constraintBottom_toBottomOf="@id/quote"
-            app:layout_constraintEnd_toEndOf="@id/quote"
-            android:background="@drawable/quote_line" />
-
-        <TextView
-            android:id="@+id/author_quote"
-            style="@style/authorQuoteTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.liveDataQuote.author}"
-            app:layout_constraintTop_toBottomOf="@id/quote"
-            app:layout_constraintEnd_toEndOf="@id/quote" />
-
-        <TextView
-            android:id="@+id/title_recommendation_clothes"
-            style="@style/titleTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/author_quote"
-            app:layout_constraintStart_toStartOf="@id/title_app"
-            android:text="@string/title_recommendation_clothes"
-            android:layout_marginTop="@dimen/margin_top_title_recommendation_clothes"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/clothes_recommendation_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_recommendation_clothes"
-            android:layout_marginTop="@dimen/margin_recommendation_recycler_view"
-            android:layout_marginEnd="@dimen/margin_window"/>
-
-        <TextView
-            android:id="@+id/title_recommendation_articles"
-            style="@style/titleTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/clothes_recommendation_recycler_view"
-            app:layout_constraintStart_toStartOf="@id/title_app"
-            android:text="@string/title_recommendation_articles"
-            android:layout_marginTop="@dimen/margin_top_title_recommendation_articles"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/articles_recommendation_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_recommendation_articles"
-            android:layout_marginTop="@dimen/margin_recommendation_recycler_view"
-            android:layout_marginEnd="@dimen/margin_window" />
-
-        <LinearLayout
-            android:id="@+id/layout_add_actions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="@dimen/margin_bottom_layout_add_actions"
-            android:orientation="horizontal">
+            android:background="@color/white"
+            tools:context=".ui.screen.RecommendationFragment">
 
             <TextView
-                android:id="@+id/subscribe"
-                style="@style/linkTextViewStyle"
+                android:id="@+id/title_app"
+                style="@style/titleAppTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/subscribe"
-                android:layout_marginEnd="@dimen/margin_circle_add_actions"/>
+                android:layout_marginStart="@dimen/margin_window"
+                android:layout_marginTop="@dimen/margin_window"
+                android:text="@string/app_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/make_photo_image_button"
+                android:layout_width="@dimen/width_ic_plus"
+                android:layout_height="@dimen/width_ic_plus"
+                android:layout_marginEnd="@dimen/margin_window"
+                android:background="@null"
+                android:contentDescription="@string/content_description_ic_plus"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_plus"
+                app:layout_constraintBottom_toBottomOf="@id/title_app"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/title_app" />
+
+            <TextView
+                android:id="@+id/quote"
+                style="@style/quoteTextViewStile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_quote"
+                android:layout_marginTop="@dimen/margin_quote_top"
+                android:layout_marginEnd="@dimen/margin_quote"
+                android:hint="@string/example_quote"
+                android:text="@{viewModel.liveDataQuote.quote}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_app" />
 
             <View
-                android:layout_width="@dimen/width_circle_add_actions"
-                android:layout_height="@dimen/width_circle_add_actions"
-                android:background="@drawable/black_circle"
-                android:layout_marginEnd="@dimen/margin_circle_add_actions"
-                android:layout_gravity="center"/>
+                android:layout_width="@dimen/width_quote_line"
+                android:layout_height="@dimen/height_quote_line"
+                android:layout_marginTop="@dimen/margin_top_view_quote"
+                android:background="@drawable/quote_line"
+                app:layout_constraintBottom_toBottomOf="@id/quote"
+                app:layout_constraintEnd_toEndOf="@id/quote" />
 
             <TextView
-                android:id="@+id/estimate"
-                style="@style/linkTextViewStyle"
+                android:id="@+id/author_quote"
+                style="@style/authorQuoteTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/estimate" />
-
-            <View
-                android:layout_width="@dimen/width_circle_add_actions"
-                android:layout_height="@dimen/width_circle_add_actions"
-                android:background="@drawable/black_circle"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/margin_circle_add_actions"/>
+                android:text="@{viewModel.liveDataQuote.author}"
+                app:layout_constraintEnd_toEndOf="@id/quote"
+                app:layout_constraintTop_toBottomOf="@id/quote" />
 
             <TextView
-                android:id="@+id/tech_support"
-                style="@style/linkTextViewStyle"
+                android:id="@+id/title_recommendation_clothes"
+                style="@style/titleTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tech_support"
-                android:layout_marginStart="@dimen/margin_circle_add_actions"/>
+                android:layout_marginTop="@dimen/margin_top_title_recommendation_clothes"
+                android:text="@string/title_recommendation_clothes"
+                app:layout_constraintStart_toStartOf="@id/title_app"
+                app:layout_constraintTop_toBottomOf="@id/author_quote" />
 
-        </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/clothes_recommendation_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_recommendation_recycler_view"
+                android:layout_marginEnd="@dimen/margin_window"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_recommendation_clothes" />
 
+            <TextView
+                android:id="@+id/title_recommendation_articles"
+                style="@style/titleTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_title_recommendation_articles"
+                android:text="@string/title_recommendation_articles"
+                app:layout_constraintStart_toStartOf="@id/title_app"
+                app:layout_constraintTop_toBottomOf="@id/clothes_recommendation_recycler_view" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/articles_recommendation_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_recommendation_recycler_view"
+                android:layout_marginEnd="@dimen/margin_window"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_recommendation_articles" />
+
+            <LinearLayout
+                android:id="@+id/layout_add_actions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/margin_bottom_layout_add_actions"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/articles_recommendation_recycler_view">
+
+                <TextView
+                    android:id="@+id/subscribe"
+                    style="@style/linkTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_circle_add_actions"
+                    android:text="@string/subscribe" />
+
+                <View
+                    android:layout_width="@dimen/width_circle_add_actions"
+                    android:layout_height="@dimen/width_circle_add_actions"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/margin_circle_add_actions"
+                    android:background="@drawable/black_circle" />
+
+                <TextView
+                    android:id="@+id/estimate"
+                    style="@style/linkTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/estimate" />
+
+                <View
+                    android:layout_width="@dimen/width_circle_add_actions"
+                    android:layout_height="@dimen/width_circle_add_actions"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_circle_add_actions"
+                    android:background="@drawable/black_circle" />
+
+                <TextView
+                    android:id="@+id/tech_support"
+                    style="@style/linkTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_circle_add_actions"
+                    android:text="@string/tech_support" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

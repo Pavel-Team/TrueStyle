@@ -60,13 +60,8 @@ public class ArticlesFragment : Fragment()  {
         val root: View = binding.root
         viewFlipper = binding.viewFlipper
         layoutWithCircles = binding.layoutCircles
-        listCircle = mutableListOf()
 
         setNightMode()
-        updateViewFlipper(articlesViewModel.liveData.value!!)
-        listCircle.get(indexActiveArticle).isActivated = true //Установка кружочка
-
-        setOnTouchListenerViewFlipper()
 
         //Слушатель для кнопки показа всех тем
         binding.imageButtonTopics.setOnClickListener(object : View.OnClickListener {
@@ -195,7 +190,7 @@ public class ArticlesFragment : Fragment()  {
     private fun updateViewFlipper(listArticles: List<Article> ) {
         viewFlipper.removeAllViews()
         layoutWithCircles.removeAllViews()
-        listCircle.removeAll(listCircle)
+        listCircle = mutableListOf()
 
         listArticles.forEach {
             val bindingArticle = ItemRecommendedArticleBinding.inflate(layoutInflater, viewFlipper, false)
@@ -213,7 +208,10 @@ public class ArticlesFragment : Fragment()  {
             addCircle()
         }
 
-        listCircle.get(0).isActivated = true
+        indexActiveArticle = 0
+        listCircle.get(indexActiveArticle).isActivated = true
+
+        setOnTouchListenerViewFlipper()
     }
 
 

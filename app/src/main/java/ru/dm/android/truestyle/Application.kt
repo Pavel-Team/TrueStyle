@@ -3,6 +3,7 @@ package ru.dm.android.truestyle
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

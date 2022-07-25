@@ -30,12 +30,12 @@
 
         <TextView
             style="@style/titleTextViewStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{model.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginHorizontal="@dimen/margin_window"
             android:layout_marginBottom="@dimen/margin_window"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_recommended_article"

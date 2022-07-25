@@ -16,6 +16,7 @@
     <dimen name="width_quote_line">96dp</dimen>
     <dimen name="height_quote_line">2dp</dimen>
     <dimen name="radius_corners_quote_line">1dp</dimen>
+    <dimen name="margin_top_view_quote">2dp</dimen>
     <dimen name="margin_bottom_layout_add_actions">10dp</dimen>
     <dimen name="margin_circle_add_actions">5dp</dimen>
     <dimen name="width_circle_add_actions">2dp</dimen>

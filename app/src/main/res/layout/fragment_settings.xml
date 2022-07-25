@@ -66,14 +66,15 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/row_settings_language" />
+
                 <TextView
                     style="@style/textTextViewStyle.charactersTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:hint="@string/row_characters_example_value"
                     android:layout_centerVertical="true"
-                    android:text="@{viewModel.liveData.language}"/>
+                    android:hint="@string/row_characters_example_value"
+                    android:text="@{viewModel.liveData.language}" />
             </RelativeLayout>
 
             <RelativeLayout

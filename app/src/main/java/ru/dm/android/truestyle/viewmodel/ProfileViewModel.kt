@@ -32,13 +32,12 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
             val style = profileRepository.getUserStyle(token)
 
             val res = getApplication<Application>().resources
-            val fillField = res.getString(R.string.value_user_table)
 
             liveData.value = User(
                 username = userResponse?.username ?: res.getString(R.string.hint_user_name),
-                style = style ?: res.getString(R.string.hint_style_user),
-                gender =  userResponse?.gender?.name ?: fillField,
-                country = userResponse?.country ?: fillField,
+                style = style,
+                gender =  userResponse?.gender?.name,
+                country = userResponse?.country,
                 photoUrl = userResponse?.photoUrl ?: ""
             )
         }
