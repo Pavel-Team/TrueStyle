@@ -180,12 +180,31 @@ class RegistrationFragment: Fragment() {
         //Слушатель на кнопку регистрации
         binding.buttonRegister.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
-                //...Запрос на сервер
-                registrationViewModel.registerUser(
-                    binding.editTextUsername.text.toString(),
-                    binding.editTextEmail.text.toString(),
-                    binding.editTextPassword.text.toString()
-                )
+                //Проверяем еще раз ник пользователя, т.к. там стоит onFocus, а тыщу запросов нам не нужно
+                registrationViewModel.checkUsername(binding.editTextUsername.text.toString())
+
+                //Аналогично чекаем email
+                val isCorrectEmail = REGEX_EMAIL.matches(binding.editTextEmail.text)
+                registrationViewModel.liveDataIsCorrectEmail.value = isCorrectEmail
+                if (isCorrectEmail)
+                    registrationViewModel.checkEmail(binding.editTextEmail.text.toString())
+
+                //Ну и для надежности - пароль
+                val strong = registrationViewModel.checkStrongPassword(binding.editTextPassword.text.toString())
+                registrationViewModel.liveDataIsCorrectPassword.value = strong > 0
+
+                //Запрос на сервер только если всё верно
+                if (registrationViewModel.liveDataIsCorrectUsername.value!! &&
+                    registrationViewModel.liveDataIsCorrectEmail.value!! &&
+                    registrationViewModel.liveDataIsCorrectPassword.value!!) {
+                    registrationViewModel.registerUser(
+                        binding.editTextUsername.text.toString(),
+                        binding.editTextEmail.text.toString(),
+                        binding.editTextPassword.text.toString()
+                    )
+                } else {
+                    binding.buttonRegister.isEnabled = false
+                }
             }
         })
 

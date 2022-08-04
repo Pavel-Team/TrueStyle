@@ -11,4 +11,7 @@ object Constants {
     const val SEASON_SPRING = "Spring"
     const val SEASON_AUTUMN = "Fall"
     const val SEASON_NAN = "NaN"
+
+    //Константы для подписки
+    const val TELEGRAM_CHANEL = "https://t.me/TrueStyleDev"
 }

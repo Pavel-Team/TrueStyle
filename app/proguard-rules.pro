@@ -20,6 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class ru.dm.android.truestyle.api.request.*
--keep class ru.dm.android.truestyle.api.response.*
--keep class ru.dm.android.truestyle.model.*
+-keep class ru.dm.android.truestyle.api.request.** { *; }
+-keep class ru.dm.android.truestyle.api.response.** { *; }
+-keep class ru.dm.android.truestyle.model.** { *; }
+-keep class ru.dm.android.truestyle.model.networking.** { *; }

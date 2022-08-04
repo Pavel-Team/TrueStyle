@@ -41,4 +41,12 @@ object WardrobeRepository{
         val response = networking.api.deleteClothesInWardrobe(token, id).message()
         return response
     }
+
+
+    //Проверка, есть ли одежда с данным id в гардеробе пользователя
+    suspend fun checkClothesInWardrobe(token: String, id: Long): Boolean {
+        val response = networking.api.checkClothesInWardrobe(token, id).isSuccessful
+        return response
+    }
+
 }

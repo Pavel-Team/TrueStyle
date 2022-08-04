@@ -9,15 +9,11 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
-import okhttp3.OkHttpClient
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.ConnectionLiveData
-import ru.dm.android.truestyle.api.InternetConnectionInterceptor
-import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
@@ -25,7 +21,6 @@ import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.LoginFragment
-import ru.dm.android.truestyle.ui.screen.RecommendationFragment
 
 
 private const val TAG = "MainActivity"
@@ -48,6 +43,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
+
+        //ВРЕМЕННО
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if(!hasWifi(this)) {
+            NotConnectionDialogFragment().apply {
+                show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
+            }
+        }
 
         //Проверка на интернет
         connectionLiveData = ConnectionLiveData(this)
@@ -82,11 +85,13 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         navView.setOnItemSelectedListener(this)
 
         //ApplicationPreferences.setToken(this, "")
-        if (ApplicationPreferences.getToken(this).equals("")) {
+        val token = ApplicationPreferences.getToken(this)!!
+        if (token.equals("")) {
             navView.visibility = View.GONE
             supportFragmentManager.beginTransaction()
                 .add(R.id.nav_host_fragment_activity_main, LoginFragment()).addToBackStack(null).commit()
         } else {
+            //P.S. проверка валидности токена происходит в RecommendationViewModel
             navView.selectedItemId = Navigation.lastMenuItem
             supportFragmentManager.beginTransaction()
                 .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()

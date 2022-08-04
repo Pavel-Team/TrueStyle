@@ -30,6 +30,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/image_button_back"
+                android:layout_width="@dimen/width_ic_back"
+                android:layout_height="@dimen/width_ic_back"
+                android:src="@drawable/ic_back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_ic_back"
+                android:layout_marginTop="@dimen/margin_ic_back"
+                android:scaleType="centerCrop"
+                android:background="@null"
+                android:contentDescription="@string/back" />
+
             <LinearLayout
                 android:id="@+id/characteristics_table"
                 android:layout_width="match_parent"

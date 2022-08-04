@@ -2,6 +2,8 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import ru.dm.android.truestyle.databinding.FragmentSettingsBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.ui.navigation.Navigation
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.SettingsViewModel
 
 
@@ -50,10 +53,47 @@ class SettingsFragment: Fragment() {
             }
         })
 
+        //Слушатель на кнопку "Выйти"
+        binding.imageButtonQuit.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                settingsViewModel.quit()
+
+                val fragmentTo = LoginFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.initNewState()
+            }
+        })
+
         //Слушатели для настроек (ВРЕМЕННО ТОЛЬКО ДЛЯ ЯЗЫКА)
         binding.layoutLanguage.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = SettingFragment.newInstance(binding.textViewLanguage.text.toString())
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+            }
+        })
+
+        //Слушатель кнопки "Подписаться"
+        binding.subscribe.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val intentTg = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(Constants.TELEGRAM_CHANEL)
+                )
+                startActivity(intentTg)
+            }
+        })
+
+        //Слушатель кнопки "Оценить"
+        binding.estimate.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                //...
+            }
+        })
+
+        //Слушатель кнопки "Техподдержка"
+        binding.techSupport.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = TechnicalSupportFragment()
                 navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })

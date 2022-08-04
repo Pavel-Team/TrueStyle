@@ -1,9 +1,7 @@
 package ru.dm.android.truestyle.api
 
 import android.content.Context
-import okhttp3.Interceptor
-import okhttp3.Protocol
-import okhttp3.Response
+import okhttp3.*
 import ru.dm.android.truestyle.service.SystemService
 
 class InternetConnectionInterceptor(private val context: Context) : Interceptor {
@@ -13,6 +11,7 @@ class InternetConnectionInterceptor(private val context: Context) : Interceptor 
                 .code(418)
                 .protocol(Protocol.HTTP_2)
                 .message("No internet")
+                .body(ResponseBody.create(MediaType.parse("text/plain"), "No internet connection"))
                 .request(chain.request())
                 .build()
         }

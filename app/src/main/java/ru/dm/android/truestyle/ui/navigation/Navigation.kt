@@ -17,6 +17,8 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
+private const val TAG = "Navigation"
+
 object Navigation{
 
     private lateinit var fragmentManager: FragmentManager
@@ -55,6 +57,13 @@ object Navigation{
     }
 
 
+    fun initNewState() {
+        clearStackFragment()
+        navView.visibility = View.GONE
+        navView.selectedItemId = R.id.navigation_profile
+    }
+
+
     //Открытие окна с ошибкой на сервере
     fun openErrorServerDialogFragment(){
         ErrorServerDialogFragment().apply {
@@ -65,6 +74,7 @@ object Navigation{
 
     //Навигация по фрагментам
     fun navigateTo(toFragment: Fragment, idItemMenu: Int) {
+        Log.d(TAG, fragmentManager.backStackEntryCount.toString())
         val currentFragment = fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
         mapStackFragments.get(lastMenuItem)!!.push(currentFragment)
 

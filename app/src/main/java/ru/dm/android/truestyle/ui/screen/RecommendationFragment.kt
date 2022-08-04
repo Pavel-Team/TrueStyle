@@ -1,6 +1,8 @@
 /**Фрагмент первой страницы с рекомендациями*/
 package ru.dm.android.truestyle.ui.screen
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,10 +16,13 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentRecommendationBinding
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticleRecommendationAdapter
 import ru.dm.android.truestyle.ui.screen.adapter.ClothesRecommendationAdapter
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.RecommendationViewModel
+
 
 private const val TAG = "RecommendationFragment"
 
@@ -72,6 +77,32 @@ class RecommendationFragment : Fragment() {
             }
         })
 
+        //Слушатель кнопки "Подписаться"
+        binding.subscribe.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val intentTg = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(Constants.TELEGRAM_CHANEL)
+                )
+                startActivity(intentTg)
+            }
+        })
+
+        //Слушатель кнопки "Оценить"
+        binding.estimate.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                //...
+            }
+        })
+
+        //Слушатель кнопки "Техподдержка"
+        binding.techSupport.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = TechnicalSupportFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_recommendation)
+            }
+        })
+
         return root
     }
 
@@ -86,6 +117,16 @@ class RecommendationFragment : Fragment() {
 
         recommendationViewModel.liveDataArticles.observe(viewLifecycleOwner, Observer {
             binding.articlesRecommendationRecyclerView.adapter = ArticleRecommendationAdapter(requireContext(), recommendationViewModel.liveDataArticles.value.orEmpty())
+        })
+
+        recommendationViewModel.liveDataValidToken.observe(viewLifecycleOwner, Observer {
+            if (!it) {
+                ApplicationPreferences.setToken(requireContext(), "")
+
+                val fragmentTo = LoginFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.initNewState()
+            }
         })
     }
 

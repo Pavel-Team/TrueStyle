@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">True Style</string>
 
+    <string name="soon_update">Will be available in the next update!</string>
+
     <string name="title_recommendation">Recommendation</string>
     <string name="title_clothes_search">Search</string>
     <string name="title_articles">Articles</string>
@@ -19,6 +21,7 @@
     <string name="image_clothes">Image clothes</string>
 
     <string name="button_add_to_wardrobe">Add to wardrobe</string>
+    <string name="button_delete_from_wardrobe">Delete from wardrobe</string>
     <string name="row_characters_title">Title</string>
     <string name="row_characters_color">Color</string>
     <string name="row_characters_season">Season</string>
@@ -27,6 +30,7 @@
     <string name="row_characters_type">Type</string>
     <string name="row_characters_example_value">value</string>
     <string name="toast_clothes_added">Clothes added in wardrobe</string>
+    <string name="toast_clothes_deleted">Clothes deleted from wardrobe</string>
 
     <string name="title_search_clothes">Search</string>
     <string name="descriprion_image_clothes_search">Make photo - find clothes</string>
@@ -77,6 +81,7 @@
     <string name="row_settings_theme">Theme</string>
     <string name="row_settings_push">Push</string>
     <string name="soon">Soon</string>
+    <string name="quit">Quit</string>
 
     <array name="array_languages">
         <item>Русский</item>
@@ -127,5 +132,14 @@
     <string name="edit">Edit</string>
 
     <string name="empty_list">Empty</string>
+
+    <string name="technical_support">Technical support</string>
+    <string name="contact_us">Contact us!</string>
+    <string name="email_technical_support">miroslav.kuzin1@yandex.ru</string>
+    <string name="vk_technical_support">vk.com/funny_guy_so_that</string>
+    <string name="tg_technical_support">\@Forward_XXI</string>
+    <string name="email_copy">Email is copied</string>
+    <string name="vk_copy">VK is copied</string>
+    <string name="tg_copy">Telegram is copied</string>
 
 </resources>

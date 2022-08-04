@@ -133,4 +133,9 @@
     <dimen name="margin_top_hint_user_style">5dp</dimen>
     <dimen name="font_size_soon">14sp</dimen>
     <dimen name="margin_start_title_edit_profile">10dp</dimen>
+
+    <dimen name="margin_top_layout_technical_support">10dp</dimen>
+    <dimen name="text_size_info_technical_support">18sp</dimen>
+    <dimen name="margin_start_info_technical_support">5.7dp</dimen>
+    <dimen name="width_icon_technical_support">24dp</dimen>
 </resources>

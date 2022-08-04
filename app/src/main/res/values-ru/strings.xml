@@ -5,6 +5,8 @@
     <string name="title_articles">Статьи</string>
     <string name="title_profile">Профиль</string>
 
+    <string name="soon_update">Будет доступно в ближайшем обновлении!</string>
+
     <string name="fragment_clothes">Обзор одежды</string>
 
     <string name="content_description_ic_plus">Сделать фото</string>
@@ -18,6 +20,7 @@
     <string name="image_clothes">Изображение одежды</string>
 
     <string name="button_add_to_wardrobe">Добавить в гардероб</string>
+    <string name="button_delete_from_wardrobe">Удалить из гардероба</string>
     <string name="row_characters_title">Название</string>
     <string name="row_characters_color">Цвет</string>
     <string name="row_characters_season">Сезон</string>
@@ -28,6 +31,7 @@
     <string name="row_characters_usage">Применение</string>
     <string name="row_characters_type">Тип</string>
     <string name="toast_clothes_added">Добавлено в гардероб</string>
+    <string name="toast_clothes_deleted">Удалено из гардероба</string>
 
     <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>
     <string name="button_load_photo">Выбрать</string>
@@ -71,6 +75,7 @@
     <string name="row_settings_theme">Тема</string>
     <string name="row_settings_push">Уведомления</string>
     <string name="soon">Скоро</string>
+    <string name="quit">Выйти</string>
 
     <string name="hint_setting">Настройка</string>
 
@@ -112,5 +117,11 @@
     <string name="edit">Изменить</string>
 
     <string name="empty_list">Пусто</string>
+
+    <string name="technical_support">Техподдержка</string>
+    <string name="contact_us">Свяжитесь с нами!</string>
+    <string name="email_copy">Email скопирован</string>
+    <string name="vk_copy">VK скопирован</string>
+    <string name="tg_copy">Telegram скопирован</string>
 
 </resources>

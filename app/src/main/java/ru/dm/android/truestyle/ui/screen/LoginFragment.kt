@@ -60,6 +60,20 @@ class LoginFragment : Fragment(){
             }
         })
 
+        //Слушатель кнопки "Войти с помощью Google"
+        binding.buttonLoginGoogle.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                Toast.makeText(activity, resources.getString(R.string.soon_update), Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        //Слушатель кнопки "Войти с помощью Vk"
+        binding.buttonLoginVk.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                Toast.makeText(activity, resources.getString(R.string.soon_update), Toast.LENGTH_SHORT).show()
+            }
+        })
+
         return root
     }
 

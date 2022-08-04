@@ -20,6 +20,8 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/dashed_border.xml" value="0.1355" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/example_style_user.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_articles.xml" value="0.15885416666666666" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_back.xml" value="0.1155" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_back_in_circle.xml" value="0.1135" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_google.xml" value="0.183" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2890625" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_photo.xml" value="0.15885416666666666" />
@@ -30,10 +32,15 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/icon_plus.xml" value="0.2890625" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/light_blue_button.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/light_blue_button_disenabled.xml" value="0.131" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/light_blue_button_enabled.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/quote_line.xml" value="0.2890625" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/red_button.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/red_button_dienabled.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/red_button_enabled.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/rounded_image_view.xml" value="0.15885416666666666" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/splash_screen.xml" value="0.12435897435897436" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/white_button.xml" value="0.12393162393162394" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/white_circle.xml" value="0.1155" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout-v26/item_theme_articles.xml" value="0.22871376811594202" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout-v31/item_clothes_recommendation.xml" value="0.14270833333333333" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
@@ -49,10 +56,11 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_get_recommendation.xml" value="0.22393162393162394" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_login.xml" value="0.14" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_one_setting.xml" value="0.33" />
-        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_profile.xml" value="0.12" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_profile.xml" value="0.15" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_recommendation.xml" value="0.22" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_registration.xml" value="0.4298605414273995" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_settings.xml" value="0.14" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_technical_support.xml" value="0.16" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_themes_article.xml" value="0.2" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_topics.xml" value="0.10944026733500417" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_wardrobe.xml" value="0.12" />

@@ -37,4 +37,10 @@ class SettingsViewModel(application: Application): AndroidViewModel(application)
             context.resources.getString(R.string.soon)
         )
     }
+
+
+    //Выход из приложения (удаление токена из настроек)
+    fun quit() {
+        ApplicationPreferences.setToken(getApplication<Application>().applicationContext, "")
+    }
 }

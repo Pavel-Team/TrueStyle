@@ -24,9 +24,9 @@ class RegistrationViewModel  constructor(application: Application) : AndroidView
 
     var liveData: MutableLiveData<Registration> = MutableLiveData()
     var liveDataSuccessRegistration: MutableLiveData<Auth> = MutableLiveData()
-    var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData()
-    var liveDataIsCorrectEmail: MutableLiveData<Boolean> = MutableLiveData()
-    var liveDataIsCorrectPassword: MutableLiveData<Boolean> = MutableLiveData()
+    var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData(false)
+    var liveDataIsCorrectEmail: MutableLiveData<Boolean> = MutableLiveData(false)
+    var liveDataIsCorrectPassword: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private val regexPasswordCorrect = Regex("[_?!a-zA-Z0-9]{6,}")
     private val regexSmallSymbols = Regex("[a-z]+")

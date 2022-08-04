@@ -74,6 +74,10 @@ interface Api {
     suspend fun deleteClothesInWardrobe(@Header("Authorization") token: String,
                                         @Query("id_stuff") id: Long): Response<TextMessage>
 
+    @GET("wardrobe/check")
+    suspend fun checkClothesInWardrobe(@Header("Authorization") token: String,
+                                       @Query("id") id: Long): Response<TextMessage>
+
     //API поиска одежды
     @POST("clothes/get/cv")
     suspend fun getCvStuff(@Body stuffData: List<Int>,

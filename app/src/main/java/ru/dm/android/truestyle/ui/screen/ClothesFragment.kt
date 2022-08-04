@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
@@ -52,6 +53,9 @@ class ClothesFragment : Fragment() {
         clothesViewModel = ViewModelProvider(this).get(ClothesViewModel::class.java)
         clothesViewModel.liveData.value = clothes
 
+        //Проверка, есть ли данная одежда в гардеробе
+        clothesViewModel.checkClothesInWardrobe()
+
         //Настраиваем dataBinding
         _binding = FragmentClothesBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -62,13 +66,10 @@ class ClothesFragment : Fragment() {
         //Делаем высоту imageView равную ширине
         _binding!!.imageViewClothes.layoutParams = ViewGroup.LayoutParams(width, width)
 
-        //Проверка, есть ли данная одежда в гардеробе
-
-        //Листенер для кнопки "Добавить в гардероб"
-        binding.buttonAddWardrobe.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                clothesViewModel.addClothesInWardrobe()
-                Toast.makeText(requireContext(), R.string.toast_clothes_added, Toast.LENGTH_SHORT).show()
+        //Слушатель на кнопку назад
+        binding.imageButtonBack.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                activity?.onBackPressed()
             }
         })
 
@@ -78,20 +79,42 @@ class ClothesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        clothesViewModel.liveDataHasInWardrobe.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                //Меняем стиль кнопки
+                binding.buttonAddWardrobe.background = resources.getDrawable(R.drawable.red_button)
+                binding.buttonAddWardrobe.text = resources.getString(R.string.button_delete_from_wardrobe)
+
+                //Листенер для кнопки "Удалить из гардероба"
+                binding.buttonAddWardrobe.setOnClickListener(object : View.OnClickListener {
+                    override fun onClick(view: View?) {
+                        clothesViewModel.deleteClothesFromWardrobe()
+                        clothesViewModel.liveDataHasInWardrobe.value = false
+                        Toast.makeText(requireContext(), R.string.toast_clothes_deleted, Toast.LENGTH_SHORT).show()
+                    }
+                })
+            } else {
+                //Меняем стиль кнопки
+                binding.buttonAddWardrobe.background = resources.getDrawable(R.drawable.light_blue_button)
+                binding.buttonAddWardrobe.text = resources.getString(R.string.button_add_to_wardrobe)
+
+                //Листенер для кнопки "Добавить в гардероб"
+                binding.buttonAddWardrobe.setOnClickListener(object : View.OnClickListener {
+                    override fun onClick(view: View?) {
+                        clothesViewModel.addClothesInWardrobe()
+                        clothesViewModel.liveDataHasInWardrobe.value = true
+                        Toast.makeText(requireContext(), R.string.toast_clothes_added, Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+        })
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-
-    //Метод изменения состояния кнопки
-    //Если isAdd - красная кнопка "Удалить из гардероба"
-    //Иначе - синяя кнопка "Добавить в гардероб"
-    private fun setNewTextInButton(isAdd: Boolean) {
-
     }
 
 
