@@ -138,4 +138,8 @@
     <dimen name="text_size_info_technical_support">18sp</dimen>
     <dimen name="margin_start_info_technical_support">5.7dp</dimen>
     <dimen name="width_icon_technical_support">24dp</dimen>
+
+    <dimen name="padding_layout_dialog_fragment">24dp</dimen>
+    <dimen name="margin_bottom_title_edit_info_user">20dp</dimen>
+    <dimen name="margin_top_button_edit_info_user">10dp</dimen>
 </resources>

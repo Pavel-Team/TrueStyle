@@ -142,4 +142,7 @@
     <string name="vk_copy">VK is copied</string>
     <string name="tg_copy">Telegram is copied</string>
 
+    <string name="change_username">Change username</string>
+    <string name="apply">Apply</string>
+
 </resources>

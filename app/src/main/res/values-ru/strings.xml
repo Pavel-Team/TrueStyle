@@ -124,4 +124,7 @@
     <string name="vk_copy">VK скопирован</string>
     <string name="tg_copy">Telegram скопирован</string>
 
+    <string name="change_username">Изменить имя</string>
+    <string name="apply">Применить</string>
+
 </resources>

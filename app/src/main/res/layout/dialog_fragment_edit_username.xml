@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_dialog_fragment"
+    android:padding="@dimen/padding_layout_dialog_fragment">
+    
+    <TextView
+        style="@style/titleTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_username"
+        android:layout_marginBottom="@dimen/margin_bottom_title_edit_info_user"/>
+
+    <TextView
+        style="@style/textTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:textSize="@dimen/font_size_hint_edit_text_registration"
+        android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+        android:layout_marginBottom="@dimen/margin_bottom_hint_edit_text_registration"/>
+
+    <EditText
+        android:id="@+id/edit_text_username"
+        style="@style/editTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"/>
+
+    <TextView
+        android:id="@+id/text_error_username"
+        style="@style/textTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_username"
+        android:textSize="@dimen/font_size_hint_edit_text_registration"
+        android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+        android:layout_marginTop="@dimen/margin_top_error_edit_text_registration"
+        android:textColor="@color/red"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/button_apply"
+        style="@style/buttonStyle.LightBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_button_edit_info_user"
+        android:text="@string/apply"
+        android:layout_gravity="center" />
+
+</LinearLayout>

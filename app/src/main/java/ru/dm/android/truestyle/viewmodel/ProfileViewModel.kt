@@ -10,7 +10,9 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.model.User
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.ProfileRepository
+import ru.dm.android.truestyle.repository.RegistrationRepository
 import ru.dm.android.truestyle.util.Constants
+import java.net.SocketTimeoutException
 
 private const val TAG = "ProfileViewModel"
 
@@ -18,8 +20,10 @@ private const val TAG = "ProfileViewModel"
 class ProfileViewModel  constructor(application: Application): AndroidViewModel(application) {
 
     private val profileRepository = ProfileRepository
+    private val registrationRepository = RegistrationRepository
 
     var liveData: MutableLiveData<User> = MutableLiveData()
+    var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData(false)
 
     //ВРЕМЕННО
     init {
@@ -34,12 +38,35 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
             val res = getApplication<Application>().resources
 
             liveData.value = User(
-                username = userResponse?.username ?: res.getString(R.string.hint_user_name),
-                style = style,
-                gender =  userResponse?.gender?.name,
-                country = userResponse?.country,
-                photoUrl = userResponse?.photoUrl ?: ""
+                _username = userResponse?.username ?: res.getString(R.string.hint_user_name),
+                _style = style,
+                _gender =  userResponse?.gender?.name,
+                _country = userResponse?.country,
+                _photoUrl = userResponse?.photoUrl ?: ""
             )
+        }
+    }
+
+
+    //Проверка - существует ли пользователь с таким же ником
+    fun checkUsername(username: String) {
+        viewModelScope.launch {
+            try {
+                val isCorrect = registrationRepository.checkUsername(username)
+                liveDataIsCorrectUsername.value = isCorrect
+                Log.d(TAG, "username = " + liveDataIsCorrectUsername.value.toString())
+            } catch (e: SocketTimeoutException) {
+                e.printStackTrace()
+                Log.d("sss", "No internet connection")
+            }
+        }
+    }
+
+
+    //Установка нового имени для пользователя
+    fun setNewUsername(username: String) {
+        viewModelScope.launch {
+            //profileRepository.
         }
     }
 }
