@@ -21,8 +21,8 @@ private const val ARG_USERNAME = "username" //Имя пользователя, �
 
 class EditUsernameDialogFragment : DialogFragment() {
 
-    var lastUsername: String? = null
-    lateinit var viewModel: ProfileViewModel
+    private var lastUsername: String? = null
+    private lateinit var viewModel: ProfileViewModel
 
     private var _binding: DialogFragmentEditUsernameBinding? = null
     private val binding get() = _binding!!
@@ -68,7 +68,6 @@ class EditUsernameDialogFragment : DialogFragment() {
                 binding.textErrorUsername.visibility = View.INVISIBLE
 
                 viewModel.setNewUsername(username)
-                viewModel.liveData.value?.username = username
                 viewModel.liveDataIsCorrectUsername.value = false //Сбрасываем корректность
 
                 dismiss() //Если всё успешно - закрываем окно

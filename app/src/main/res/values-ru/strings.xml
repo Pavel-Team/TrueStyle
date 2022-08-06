@@ -98,11 +98,11 @@
     <string name="username">Имя пользователя</string>
     <string name="email">E-mail адресс</string>
     <string name="hint_password">В целях безопасности, Ваш пароль должен состоять не менее чем из 6 символов (буквы латинского алфавита, цифры и знаки \'_!?\')</string>
-    <string name="strong_password_0">Incorrect</string>
-    <string name="strong_password_1">Weak</string>
-    <string name="strong_password_2">Medium</string>
-    <string name="strong_password_3">Strong</string>
-    <string name="strong_password_4">Very strong</string>
+    <string name="strong_password_0">Некорректный</string>
+    <string name="strong_password_1">Слабый</string>
+    <string name="strong_password_2">Средний</string>
+    <string name="strong_password_3">Сильный</string>
+    <string name="strong_password_4">Очень сильный</string>
     <string name="error_username">Такое имя уже используется</string>
     <string name="error_email">Некорректный E-mail адресс/Такой E-mail уже используется</string>
     <string name="register">Зарегистрироваться</string>
@@ -126,5 +126,7 @@
 
     <string name="change_username">Изменить имя</string>
     <string name="apply">Применить</string>
+
+    <string name="edit_user_info">Редактирование профиля</string>
 
 </resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_dialog_fragment"
+    android:padding="@dimen/padding_layout_dialog_fragment">
+
+    <TextView
+        style="@style/titleTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_user_info"
+        android:layout_marginBottom="@dimen/margin_bottom_title_edit_info_user"/>
+
+    <TextView
+        style="@style/textTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/row_user_country"
+        android:textSize="@dimen/font_size_hint_edit_text_registration"
+        android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"/>
+
+    <Spinner
+        android:id="@+id/spinner_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/countries" />
+
+    <TextView
+        android:id="@+id/title_gender"
+        style="@style/titleTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gender"
+        android:textSize="@dimen/font_size_gender_edit_profile"
+        android:layout_marginTop="@dimen/margin_top_edit_text_username_edit_profile"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_top_radio_group_edit_profile">
+
+        <RadioButton
+            android:id="@+id/radio_man"
+            style="@style/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/man"
+            android:checked="true" /> <!--ПОМЕНЯТЬ ПОТОМ НА УСЛОВИЕ-->
+
+        <RadioButton
+            android:id="@+id/radio_woman"
+            style="@style/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_radio_group_edit_profile"
+            android:text="@string/woman"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_apply"
+        style="@style/buttonStyle.LightBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_button_edit_info_user"
+        android:text="@string/apply"
+        android:layout_gravity="center" />
+
+</LinearLayout>

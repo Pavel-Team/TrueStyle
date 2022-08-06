@@ -65,8 +65,32 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
 
     //Установка нового имени для пользователя
     fun setNewUsername(username: String) {
+        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
+
         viewModelScope.launch {
             //profileRepository.
         }
+
+        liveData.value?.username = username
+    }
+
+
+    //Установка новой информации о пользователе
+    fun setNewUserInfo(country: String, gender: String) {
+        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
+
+        val idGender: Long = if (gender == Constants.GENDER_MAN) 1L else 2L
+        viewModelScope.launch {
+            profileRepository.setUserInfo(
+                token = token,
+                fullNumber = "",
+                idGender = idGender,
+                country = country,
+                photoUrl = ""
+            )
+        }
+
+        liveData.value?.country = country
+        liveData.value?.gender = gender
     }
 }

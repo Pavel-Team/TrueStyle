@@ -13,12 +13,15 @@ import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentProfileBinding
 import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.EditUserInfoDialogFragment
 import ru.dm.android.truestyle.ui.dialog.EditUsernameDialogFragment
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.ProfileViewModel
 
-private const val CODE_EDIT_USERNAME = 0 //Для таргет фрагмента к диалоговому окну редактирования имени
+private const val CODE_EDIT_USERNAME = 0  //Для таргет фрагмента к диалоговому окну редактирования имени
+private const val CODE_EDIT_USER_INFO = 1 //Для таргет фрагмента к диалоговому окну редактирования основной инфы профиля
 
 class ProfileFragment : Fragment() {
 
@@ -119,9 +122,16 @@ class ProfileFragment : Fragment() {
             })
             binding.userInfoTable.setOnClickListener(object: View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    //...
+                    EditUserInfoDialogFragment.newInstance(
+                        it.country,
+                        it.gender
+                    ).apply {
+                        setTargetFragment(this@ProfileFragment, CODE_EDIT_USER_INFO)
+                        show(this@ProfileFragment.parentFragmentManager, ConstantsDialog.DIALOG_EDIT_USER_INFO)
+                    }
                 }
             })
+            
         })
     }
 

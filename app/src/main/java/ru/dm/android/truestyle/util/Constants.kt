@@ -12,6 +12,10 @@ object Constants {
     const val SEASON_AUTUMN = "Fall"
     const val SEASON_NAN = "NaN"
 
+    //Константы пола
+    const val GENDER_MAN = "Men"
+    const val GENDER_WOMAN = "Women"
+
     //Константы для подписки
     const val TELEGRAM_CHANEL = "https://t.me/TrueStyleDev"
 }
