@@ -1,34 +1,35 @@
 /**Фрагмент с одной настройкой*/
 package ru.dm.android.truestyle.ui.screen
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentOneSettingBinding
 import ru.dm.android.truestyle.databinding.ItemSettingBinding
 import ru.dm.android.truestyle.model.Setting
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
+import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.SettingViewModel
-import javax.inject.Inject
 
 private const val TAG = "SettingFragment"
 private const val ARG_TITLE_SETTING = "titleSetting"
 
-@AndroidEntryPoint
+
 class SettingFragment : Fragment(){
 
     private lateinit var settingViewModel: SettingViewModel
     private var _binding: FragmentOneSettingBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
     private lateinit var titleSetting: String
 
 
@@ -102,6 +103,12 @@ class SettingFragment : Fragment(){
         textView.root.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 settingViewModel.onClickSetting(titleSetting, setting)
+
+                //ВРЕМЕННО!
+                //Нужно для обновления языка
+                val ctx: Context = LanguageContextWrapper.wrap(getContext()!!, ApplicationPreferences.getLanguage(getContext()!!))
+                resources.updateConfiguration(ctx.getResources().getConfiguration(), ctx.getResources().getDisplayMetrics())
+
                 activity?.onBackPressed()
             }
         })

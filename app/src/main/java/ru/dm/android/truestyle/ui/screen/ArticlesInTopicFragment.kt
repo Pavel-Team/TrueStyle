@@ -5,33 +5,33 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.databinding.FragmentArticlesInTopicBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticlesInTopicAdapter
 import ru.dm.android.truestyle.viewmodel.ArticlesInTopicViewModel
 import java.util.*
-import javax.inject.Inject
 
 private const val TAG = "ArticlesInTopic"
 private const val ARG_TITLE_TOPIC = "titleTopic" //Константа для Bundle с названием тематики статей
 
-@AndroidEntryPoint
+
 class ArticlesInTopicFragment: Fragment() {
 
     private lateinit var articlesInTopicViewModel: ArticlesInTopicViewModel
     private var _binding: FragmentArticlesInTopicBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
     private lateinit var adapterArticles: ArticlesInTopicAdapter
 
     private lateinit var titleTopic: String
@@ -55,8 +55,8 @@ class ArticlesInTopicFragment: Fragment() {
         val root: View = binding.root
 
         binding.lifecycleOwner = this@ArticlesInTopicFragment
-        adapterArticles = ArticlesInTopicAdapter(navigation, requireContext())
-        adapterArticles.submitList(articlesInTopicViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+        adapterArticles = ArticlesInTopicAdapter(requireContext())
+        adapterArticles.submitList(articlesInTopicViewModel.liveData.value) //ВРЕМЕННО (потом готовить аж с OnCreate)
         binding.recyclerViewArticles.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = adapterArticles
@@ -104,6 +104,15 @@ class ArticlesInTopicFragment: Fragment() {
         })
 
         return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        articlesInTopicViewModel.liveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapterArticles.submitList(articlesInTopicViewModel.liveData.value!!)
+        })
     }
 
 

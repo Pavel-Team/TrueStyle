@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="ru.dm.android.truestyle.model.ClothesRecommendation" />
+            type="ru.dm.android.truestyle.api.response.Stuff" />
     </data>
 
     <LinearLayout
@@ -27,8 +27,7 @@
                 android:scaleType="centerCrop"
                 tools:src="@drawable/example_clothes"
                 android:contentDescription="@string/image_clothes"
-
-                android:src="@drawable/example_clothes"/>
+                imageUrl="@{model.imageUrl}"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -37,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Название одежды"
-            android:text="@{model.title}"
+            android:text="@{model.productDisplayName}"
             android:lines="2"
             android:layout_marginStart="@dimen/margin_text_clothes"/>
 

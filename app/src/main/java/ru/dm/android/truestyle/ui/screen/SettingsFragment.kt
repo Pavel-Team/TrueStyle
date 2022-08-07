@@ -2,39 +2,31 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentSettingsBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.ui.navigation.Navigation
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.SettingsViewModel
-import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class SettingsFragment: Fragment() {
 
     private lateinit var settingsViewModel: SettingsViewModel
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //Нужно для обновления языка
-        val ctx: Context = LanguageContextWrapper.wrap(getContext()!!, ApplicationPreferences.getLanguage(getContext()!!))
-        resources.updateConfiguration(ctx.getResources().getConfiguration(), ctx.getResources().getDisplayMetrics())
-        
-    }
+    private val navigation = Navigation
 
 
     override fun onCreateView(
@@ -52,6 +44,8 @@ class SettingsFragment: Fragment() {
 
         binding.lifecycleOwner = this@SettingsFragment
 
+        settingsViewModel.initViewModel() //Для окончательного обновления языка
+
         //Слушатель на кнопку назад
         binding.imageButtonBack.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
@@ -59,10 +53,47 @@ class SettingsFragment: Fragment() {
             }
         })
 
+        //Слушатель на кнопку "Выйти"
+        binding.imageButtonQuit.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                settingsViewModel.quit()
+
+                val fragmentTo = LoginFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.initNewState()
+            }
+        })
+
         //Слушатели для настроек (ВРЕМЕННО ТОЛЬКО ДЛЯ ЯЗЫКА)
         binding.layoutLanguage.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val fragmentTo = SettingFragment.newInstance(binding.textViewLanguage.text.toString())
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+            }
+        })
+
+        //Слушатель кнопки "Подписаться"
+        binding.subscribe.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val intentTg = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(Constants.TELEGRAM_CHANEL)
+                )
+                startActivity(intentTg)
+            }
+        })
+
+        //Слушатель кнопки "Оценить"
+        binding.estimate.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                //...
+            }
+        })
+
+        //Слушатель кнопки "Техподдержка"
+        binding.techSupport.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = TechnicalSupportFragment()
                 navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })

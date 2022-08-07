@@ -2,32 +2,36 @@
 package ru.dm.android.truestyle.ui.activity
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.ActivityInfo
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.ConnectionLiveData
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
-import ru.dm.android.truestyle.ui.screen.*
-import javax.inject.Inject
+import ru.dm.android.truestyle.ui.screen.LoginFragment
 
 
 private const val TAG = "MainActivity"
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener{
 
     private lateinit var binding: ActivityMainBinding
     lateinit var navView: BottomNavigationView
 
-    @Inject
-    lateinit var navigation: Navigation
+    private var navigation = Navigation
+    private lateinit var connectionLiveData: ConnectionLiveData
 
 
     override fun attachBaseContext(newBase: Context) {
@@ -40,14 +44,33 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
 
+        //ВРЕМЕННО
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if(!hasWifi(this)) {
+            NotConnectionDialogFragment().apply {
+                show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
+            }
+        }
+
+        //Проверка на интернет
+        connectionLiveData = ConnectionLiveData(this)
+        connectionLiveData.observe(this, Observer {
+            if (!it) {
+                NotConnectionDialogFragment().apply {
+                    show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
+                }
+            }
+        })
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        navigation.setFragmentManager(supportFragmentManager)
 
         navView = binding.navView
         navView.itemIconTintList = null //Чтобы не накладывался цвет из темы
         navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED //Для того, чтобы не отображался текст
+
+        navigation.setFragmentManager(supportFragmentManager)
+        navigation.setNavView(navView)
 
         /*val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
@@ -59,8 +82,20 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         setupActionBarWithNavController(navController, appBarConfiguration)*/
 //        if (supportFragmentManager.findFragmentById(R.id.container) == null)
 //            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
-        supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, navigation.lastFragment).commit()
         navView.setOnItemSelectedListener(this)
+
+        //ApplicationPreferences.setToken(this, "")
+        val token = ApplicationPreferences.getToken(this)!!
+        if (token.equals("")) {
+            navView.visibility = View.GONE
+            supportFragmentManager.beginTransaction()
+                .add(R.id.nav_host_fragment_activity_main, LoginFragment()).addToBackStack(null).commit()
+        } else {
+            //P.S. проверка валидности токена происходит в RecommendationViewModel
+            navView.selectedItemId = Navigation.lastMenuItem
+            supportFragmentManager.beginTransaction()
+                .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()
+        }
     }
 
 
@@ -79,6 +114,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onBackPressed() {
         if (navigation.onBackPressed())
             finish()
+    }
+
+
+    //ВРЕМЕННО: метод проверки на наличие инета
+    private fun hasWifi(context: Context): Boolean {
+        val cm = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = cm.activeNetworkInfo
+        return (netInfo != null && netInfo.isConnectedOrConnecting)
     }
 
 }

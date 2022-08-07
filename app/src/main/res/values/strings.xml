@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">True Style</string>
 
+    <string name="soon_update">Will be available in the next update!</string>
+
     <string name="title_recommendation">Recommendation</string>
     <string name="title_clothes_search">Search</string>
     <string name="title_articles">Articles</string>
@@ -9,16 +11,17 @@
     <string name="fragment_clothes">Clothes</string>
 
     <string name="content_description_ic_plus">Make photo</string>
-    <string name="example_quote">Мода - это игра, в которую нужно играть серьезно</string>
+    <string name="example_quote">Fashion is a game to be played seriously</string>
     <string name="tech_support">Support</string>
     <string name="estimate">Estimate</string>
     <string name="subscribe">Subscribe</string>
-    <string name="title_recommendation_articles">Your style</string>
+    <string name="title_recommendation_articles">Style</string>
     <string name="title_recommendation_clothes">Recommended</string>
 
     <string name="image_clothes">Image clothes</string>
 
     <string name="button_add_to_wardrobe">Add to wardrobe</string>
+    <string name="button_delete_from_wardrobe">Delete from wardrobe</string>
     <string name="row_characters_title">Title</string>
     <string name="row_characters_color">Color</string>
     <string name="row_characters_season">Season</string>
@@ -26,17 +29,21 @@
     <string name="row_characters_gender">Gender</string>
     <string name="row_characters_type">Type</string>
     <string name="row_characters_example_value">value</string>
+    <string name="toast_clothes_added">Clothes added in wardrobe</string>
+    <string name="toast_clothes_deleted">Clothes deleted from wardrobe</string>
 
     <string name="title_search_clothes">Search</string>
     <string name="descriprion_image_clothes_search">Make photo - find clothes</string>
-    <string name="button_load_photo">Select from gallery</string>
+    <string name="button_load_photo">Select</string>
     <string name="button_make_photo">Make photo</string>
 
     <string name="settings">Settings</string>
     <string name="user_style">User style</string>
-    <string name="row_user_height">Height</string>
-    <string name="row_user_weight">Weight</string>
     <string name="row_user_gender">Gender</string>
+    <string name="row_user_country">Country</string>
+    <string name="row_characters_category">Category</string>
+    <string name="row_characters_subcategory">Subcategory</string>
+    <string name="row_characters_usage">Usage</string>
     <string name="hint_user_name">user.name</string>
     <string name="hint_style_user">Unknown style</string>
     <string name="value_user_table">Fill in</string>
@@ -74,6 +81,7 @@
     <string name="row_settings_theme">Theme</string>
     <string name="row_settings_push">Push</string>
     <string name="soon">Soon</string>
+    <string name="quit">Quit</string>
 
     <array name="array_languages">
         <item>Русский</item>
@@ -83,12 +91,13 @@
     <string name="hint_setting">Setting</string>
 
     <string name="login">Login</string>
+    <string name="error_login">Error E-mail or password</string>
 
     <string name="button_ok_dialog_fragment">Ok</string>
     <string name="button_retry_dialog_fragment">Refresh</string>
 
     <string name="password">Password</string>
-    <string name="login_hint">Phone number, email or username</string>
+    <string name="login_hint">Username</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="forgot_password">Forgot your password? <b>Login me.</b></string>
@@ -98,6 +107,7 @@
     <string name="vk">Vk</string>
 
     <string name="recommendation">Recommendation</string>
+    <string name="empty_recommendation">Not found</string>
 
     <string name="title_registration">Join True Style</string>
     <string name="username">Username</string>
@@ -109,8 +119,27 @@
     <string name="strong_password_3">Strong</string>
     <string name="strong_password_4">Very strong</string>
     <string name="error_username">The username is already in use</string>
-    <string name="error_email">Incorrect E-mail address</string>
+    <string name="error_email">Incorrect E-mail address/This email is already in use</string>
     <string name="register">Register</string>
     <string name="has_account">Already registred? <b>Login me.</b></string>
+
+    <string name="edit_profile">Profile editing</string>
+    <string name="gender">Gender</string>
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
+    <string name="user_style_edit_profile">User style</string>
+    <string name="soon_edit_profile">Soon!</string>
+    <string name="edit">Edit</string>
+
+    <string name="empty_list">Empty</string>
+
+    <string name="technical_support">Technical support</string>
+    <string name="contact_us">Contact us!</string>
+    <string name="email_technical_support">miroslav.kuzin1@yandex.ru</string>
+    <string name="vk_technical_support">vk.com/funny_guy_so_that</string>
+    <string name="tg_technical_support">\@Forward_XXI</string>
+    <string name="email_copy">Email is copied</string>
+    <string name="vk_copy">VK is copied</string>
+    <string name="tg_copy">Telegram is copied</string>
 
 </resources>

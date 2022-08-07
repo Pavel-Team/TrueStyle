@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.databinding.ItemArticleRecommendationBinding
 import ru.dm.android.truestyle.model.ArticleRecommendation
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.ArticleHolder
 
-class ArticleRecommendationAdapter(val navigation: Navigation, private val context: Context,
-                                   private val listArticles: List<ArticleRecommendation>): RecyclerView.Adapter<ArticleHolder>(){
+class ArticleRecommendationAdapter(private val context: Context,
+                                   private val listArticles: List<Article>): RecyclerView.Adapter<ArticleHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
         val binding = DataBindingUtil.inflate<ItemArticleRecommendationBinding>(
@@ -22,7 +23,7 @@ class ArticleRecommendationAdapter(val navigation: Navigation, private val conte
             parent,
             false
         )
-        return ArticleHolder(navigation, binding, context)
+        return ArticleHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {

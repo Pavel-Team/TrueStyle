@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="ru.dm.android.truestyle.viewmodel.EditProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/padding_horizontal_registration_screen">
+
+        <ImageButton
+            android:id="@+id/image_button_back"
+            android:layout_width="@dimen/width_ic_back"
+            android:layout_height="@dimen/width_ic_back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintTop_toTopOf="@id/title_edit_profile"
+            app:layout_constraintBottom_toBottomOf="@id/title_edit_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            android:scaleType="centerCrop"
+            android:background="@null"
+            android:contentDescription="@string/back" />
+
+        <TextView
+            android:id="@+id/title_edit_profile"
+            style="@style/titleTextViewStyle"
+            android:textSize="@dimen/font_size_title_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/image_button_back"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/margin_start_title_edit_profile"
+            android:layout_marginTop="@dimen/margin_window"
+            android:text="@string/edit_profile"/>
+
+        <EditText
+            android:id="@+id/edit_text_username"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_edit_profile"
+            android:text="@={viewModel.liveData.username}"
+            android:layout_marginTop="@dimen/margin_top_edit_text_username"
+            android:hint="@string/username"/>
+
+        <TextView
+            android:id="@+id/text_hint_username"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_username"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginBottom="@dimen/margin_bottom_hint_edit_text_registration"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/text_error_username"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error_username"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_username"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginTop="@dimen/margin_top_error_edit_text_registration"
+            android:textColor="@color/red"
+            android:visibility="invisible"/>
+
+        <EditText
+            android:id="@+id/edit_text_country"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_username"
+            android:text="@={viewModel.liveData.country}"
+            android:layout_marginTop="@dimen/margin_top_edit_text_username_edit_profile"
+            android:hint="@string/row_user_country"/>
+
+        <TextView
+            android:id="@+id/text_hint_country"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/row_user_country"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_country"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_size_hint_edit_text_registration"
+            android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
+            android:layout_marginBottom="@dimen/margin_bottom_hint_edit_text_registration"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/title_gender"
+            style="@style/titleTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_country"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/gender"
+            android:textSize="@dimen/font_size_gender_edit_profile"
+            android:layout_marginTop="@dimen/margin_top_edit_text_username_edit_profile"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/title_gender"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_top_radio_group_edit_profile">
+
+            <RadioButton
+                android:id="@+id/radio_man"
+                style="@style/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/man"
+                android:checked="true" /> <!--ПОМЕНЯТЬ ПОТОМ НА УСЛОВИЕ-->
+
+            <RadioButton
+                android:id="@+id/radio_woman"
+                style="@style/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_radio_group_edit_profile"
+                android:text="@string/woman"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/style_user"
+            style="@style/titleTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_style_edit_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radio_group_gender"
+            android:layout_marginTop="@dimen/margin_top_title_user_style"
+            android:textSize="@dimen/font_size_gender_edit_profile"/>
+
+        <TextView
+            android:id="@+id/soon"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/style_user"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_top_hint_user_style"
+            android:layout_marginStart="@dimen/margin_top_hint_user_style"
+            android:text="@string/soon_edit_profile"
+            android:textSize="@dimen/font_size_soon"
+            android:textColor="@color/strong_gray"/>
+
+        <Button
+            android:id="@+id/button_edit"
+            style="@style/buttonStyle.LightBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/soon"
+            android:layout_marginTop="@dimen/margin_top_button_register"
+            android:layout_marginHorizontal="@dimen/margin_start_hint_edit_text_registration" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

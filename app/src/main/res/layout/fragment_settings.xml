@@ -39,6 +39,19 @@
             android:layout_marginStart="@dimen/margin_start_title_style"
             android:layout_marginTop="@dimen/margin_window"/>
 
+        <ImageButton
+            android:id="@+id/image_button_quit"
+            android:layout_width="@dimen/width_ic_back"
+            android:layout_height="@dimen/width_ic_back"
+            android:src="@drawable/ic_quit"
+            app:layout_constraintTop_toTopOf="@id/title_settings"
+            app:layout_constraintBottom_toBottomOf="@id/title_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_ic_back"
+            android:scaleType="centerCrop"
+            android:background="@null"
+            android:contentDescription="@string/quit" />
+
         <LinearLayout
             android:id="@+id/table_settings"
             android:layout_width="match_parent"
@@ -66,14 +79,15 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/row_settings_language" />
+
                 <TextView
                     style="@style/textTextViewStyle.charactersTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:hint="@string/row_characters_example_value"
                     android:layout_centerVertical="true"
-                    android:text="@{viewModel.liveData.language}"/>
+                    android:hint="@string/row_characters_example_value"
+                    android:text="@{viewModel.liveData.language}" />
             </RelativeLayout>
 
             <RelativeLayout

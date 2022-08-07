@@ -1,38 +1,44 @@
 /**Фрагмент первой страницы с рекомендациями*/
 package ru.dm.android.truestyle.ui.screen
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Article
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentRecommendationBinding
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticleRecommendationAdapter
 import ru.dm.android.truestyle.ui.screen.adapter.ClothesRecommendationAdapter
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.RecommendationViewModel
-import javax.inject.Inject
+
 
 private const val TAG = "RecommendationFragment"
 
-@AndroidEntryPoint
+
 class RecommendationFragment : Fragment() {
 
     private lateinit var recommendationViewModel: RecommendationViewModel
     private var _binding: FragmentRecommendationBinding? = null
     private val binding get() = _binding!!
-    @Inject 
-    lateinit var navigation: Navigation
+
+    private val navigation = Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //
+        Log.d(TAG, "onCreate")
     }
 
 
@@ -41,6 +47,7 @@ class RecommendationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "onCreateView")
         recommendationViewModel = ViewModelProvider(this).get(RecommendationViewModel::class.java)
 
         //Настраиваем dataBinding
@@ -53,11 +60,11 @@ class RecommendationFragment : Fragment() {
         //Настраиваем RecyclerView с рекомендациями для одежды и статей
         binding.clothesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ClothesRecommendationAdapter(navigation, context, recommendationViewModel.liveDataClothes.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = ClothesRecommendationAdapter(context, listOf(Stuff(), Stuff(), Stuff())) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
         binding.articlesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ArticleRecommendationAdapter(navigation, context, recommendationViewModel.liveDataArticles.value!!) //ВРЕМЕННО
+            adapter = ArticleRecommendationAdapter(context, listOf(Article(), Article(), Article())) //ВРЕМЕННО
         }
 
         //Слушатель кнопки "Добавить фото"
@@ -70,7 +77,57 @@ class RecommendationFragment : Fragment() {
             }
         })
 
+        //Слушатель кнопки "Подписаться"
+        binding.subscribe.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val intentTg = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(Constants.TELEGRAM_CHANEL)
+                )
+                startActivity(intentTg)
+            }
+        })
+
+        //Слушатель кнопки "Оценить"
+        binding.estimate.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                //...
+            }
+        })
+
+        //Слушатель кнопки "Техподдержка"
+        binding.techSupport.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = TechnicalSupportFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_recommendation)
+            }
+        })
+
         return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recommendationViewModel.liveDataClothes.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "observe liveDataClothes")
+            binding.clothesRecommendationRecyclerView.adapter = ClothesRecommendationAdapter(requireContext(), recommendationViewModel.liveDataClothes.value.orEmpty())
+        })
+
+        recommendationViewModel.liveDataArticles.observe(viewLifecycleOwner, Observer {
+            binding.articlesRecommendationRecyclerView.adapter = ArticleRecommendationAdapter(requireContext(), recommendationViewModel.liveDataArticles.value.orEmpty())
+        })
+
+        recommendationViewModel.liveDataValidToken.observe(viewLifecycleOwner, Observer {
+            if (!it) {
+                ApplicationPreferences.setToken(requireContext(), "")
+
+                val fragmentTo = LoginFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                navigation.initNewState()
+            }
+        })
     }
 
 

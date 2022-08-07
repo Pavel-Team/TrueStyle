@@ -2,25 +2,30 @@ package ru.dm.android.truestyle.ui.navigation
 
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
 import ru.dm.android.truestyle.ui.screen.ArticlesFragment
 import ru.dm.android.truestyle.ui.screen.ClothesSearchFragment
-import ru.dm.android.truestyle.ui.screen.LoginFragment
+import ru.dm.android.truestyle.ui.screen.ProfileFragment
 import ru.dm.android.truestyle.ui.screen.RecommendationFragment
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
 import kotlin.collections.HashMap
 
 
-@Singleton
-class Navigation @Inject constructor(){
+private const val TAG = "Navigation"
+
+object Navigation{
 
     private lateinit var fragmentManager: FragmentManager
+    private lateinit var navView: BottomNavigationView
+
     private var mapStackFragments: HashMap<Int, Stack<Fragment>> = HashMap() //<id выбранного пункта меню, стэк фрагментов>
-    private var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
+    var lastMenuItem: Int = R.id.navigation_recommendation           //Последний выбранный пункт меню
     var lastFragment: Fragment = RecommendationFragment()
 
     init {
@@ -33,24 +38,55 @@ class Navigation @Inject constructor(){
     }
 
 
+    //ПРОВЕРИТЬ ПОТОМ НА УТЕЧКУ
     fun setFragmentManager(fragmentManager: FragmentManager) {
         this.fragmentManager = fragmentManager
     }
 
 
+    //ПРОВЕРИТЬ ПОТОМ НА УТЕЧКУ
+    fun setNavView(navView: BottomNavigationView) {
+        this.navView = navView
+    }
+
+
+    fun setVisibleNavView(){
+        navView.visibility = View.VISIBLE
+        navView.selectedItemId = R.id.navigation_profile
+        clearStackFragment(R.id.navigation_recommendation)
+    }
+
+
+    fun initNewState() {
+        clearStackFragment()
+        navView.visibility = View.GONE
+        navView.selectedItemId = R.id.navigation_profile
+    }
+
+
+    //Открытие окна с ошибкой на сервере
+    fun openErrorServerDialogFragment(){
+        ErrorServerDialogFragment().apply {
+            show(fragmentManager!!, ConstantsDialog.DIALOG_ERROR_SERVER)
+        }
+    }
+
+
     //Навигация по фрагментам
     fun navigateTo(toFragment: Fragment, idItemMenu: Int) {
+        Log.d(TAG, fragmentManager.backStackEntryCount.toString())
         val currentFragment = fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
         mapStackFragments.get(lastMenuItem)!!.push(currentFragment)
 
         //На случай если надо запустить фрагмент в другой вкладке (не равной lastItem)
-        //navView.menu.findItem(idItemMenu).isChecked=true
+        navView.menu.findItem(idItemMenu).isChecked=true
 
         lastMenuItem = idItemMenu
         lastFragment = toFragment
         fragmentManager
             .beginTransaction()
             .replace(R.id.nav_host_fragment_activity_main, toFragment)
+            .addToBackStack(null)
             .commit()
     }
 
@@ -68,12 +104,13 @@ class Navigation @Inject constructor(){
                     R.id.navigation_recommendation -> { newFragment = RecommendationFragment() }
                     R.id.navigation_clothes_search -> { newFragment = ClothesSearchFragment() }
                     R.id.navigation_articles -> { newFragment = ArticlesFragment() }
-                    R.id.navigation_profile -> { newFragment = LoginFragment() } //Добавить проверку
+                    R.id.navigation_profile -> { newFragment = ProfileFragment() }
                 }
                 if (newFragment != null) {
                     fragmentManager
                         .beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, newFragment)
+                        .addToBackStack(null)
                         .commit()
                     lastFragment = newFragment
                 }
@@ -83,6 +120,7 @@ class Navigation @Inject constructor(){
                 fragmentManager
                     .beginTransaction()
                     .replace(R.id.nav_host_fragment_activity_main, fragmentFromStack)
+                    .addToBackStack(null)
                     .commit()
                 lastFragment = fragmentFromStack
             }
@@ -92,10 +130,20 @@ class Navigation @Inject constructor(){
     }
 
 
-    //Очистка стека фрагмента
+    //Очистка стека фрагмента по определенному Id
     fun clearStackFragment(idItemMenu: Int) {
         while (!mapStackFragments.get(idItemMenu)!!.isEmpty())
             mapStackFragments.get(idItemMenu)!!.pop()
+    }
+
+
+    //Очистка всего стека фрагментов
+    fun clearStackFragment() {
+        mapStackFragments = HashMap()
+        mapStackFragments.put(R.id.navigation_recommendation, Stack())
+        mapStackFragments.put(R.id.navigation_clothes_search, Stack())
+        mapStackFragments.put(R.id.navigation_articles, Stack())
+        mapStackFragments.put(R.id.navigation_profile, Stack())
     }
 
 

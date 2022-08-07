@@ -27,11 +27,22 @@
             android:id="@+id/web_view_article"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:loadUrl="@{viewModel.liveData.uri}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/progress_bar_article"
             app:layout_constraintBottom_toBottomOf="parent" />
+        <ImageButton
+            android:id="@+id/image_button_back"
+            android:layout_width="@dimen/width_ic_back"
+            android:layout_height="@dimen/width_ic_back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/margin_ic_back"
+            android:layout_marginTop="@dimen/margin_ic_back"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/back"
+            android:background="@drawable/white_circle"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

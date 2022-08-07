@@ -9,9 +9,7 @@ import ru.dm.android.truestyle.model.Topic
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ArticlesInTopicFragment
 
-class TopicHolder(val navigation: Navigation,
-                  private val binding: ItemTopicBinding,
-                  context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+class TopicHolder(private val binding: ItemTopicBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     init {
         itemView.setOnClickListener(this)
@@ -22,10 +20,6 @@ class TopicHolder(val navigation: Navigation,
         binding.apply {
             model = topic
             executePendingBindings()
-            if (topic.id == 1)
-                imageViewTopic.setImageResource(R.drawable.example_topic_1)
-            else if (topic.id == 2)
-                imageViewTopic.setImageResource(R.drawable.example_topic_2)
         }
     }
 
@@ -33,7 +27,7 @@ class TopicHolder(val navigation: Navigation,
         val titleTopic = binding.model!!.title
 
         val fragmentTo = ArticlesInTopicFragment.newInstance(titleTopic)
-        navigation.navigateTo(fragmentTo, R.id.navigation_articles)
+        Navigation.navigateTo(fragmentTo, R.id.navigation_articles)
     }
 
 }

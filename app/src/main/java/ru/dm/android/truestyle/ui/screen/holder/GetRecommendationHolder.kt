@@ -4,14 +4,14 @@ import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.ItemClothesInGetRecommendationBinding
 import ru.dm.android.truestyle.model.GetRecommendationClothes
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.ClothesFragment
 
-class GetRecommendationHolder(val navigation: Navigation,
-                              private val binding: ItemClothesInGetRecommendationBinding,
-                              context: Context): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+class GetRecommendationHolder(private val binding: ItemClothesInGetRecommendationBinding):
+    RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     init {
         itemView.setOnClickListener(this)
@@ -19,21 +19,18 @@ class GetRecommendationHolder(val navigation: Navigation,
     }
 
 
-    fun bind(getRecommendationClothes: GetRecommendationClothes) {
+    fun bind(clothes: Stuff) {
         binding.apply {
-            model = getRecommendationClothes
+            model = clothes
             executePendingBindings()
-
-            if (getRecommendationClothes.id == 2)
-                imageViewGetRecommendationClothes.setImageResource(R.drawable.example_clothes_2)
         }
     }
 
 
     override fun onClick(p0: View?) {
-        val id = binding.model!!.id
+        val clothes = binding.model!!
 
-        val fragmentTo = ClothesFragment.newInstance(id)
-        navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+        val fragmentTo = ClothesFragment.newInstance(clothes)
+        Navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
     }
 }

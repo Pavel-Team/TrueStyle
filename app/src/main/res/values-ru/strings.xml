@@ -5,34 +5,42 @@
     <string name="title_articles">Статьи</string>
     <string name="title_profile">Профиль</string>
 
+    <string name="soon_update">Будет доступно в ближайшем обновлении!</string>
+
     <string name="fragment_clothes">Обзор одежды</string>
 
     <string name="content_description_ic_plus">Сделать фото</string>
+    <string name="example_quote">Мода - это игра, в которую нужно играть серьезно</string>
     <string name="tech_support">Техподдержка</string>
     <string name="estimate">Оценить</string>
     <string name="subscribe">Подписаться</string>
-    <string name="title_recommendation_articles">Ваш стиль</string>
+    <string name="title_recommendation_articles">Стиль</string>
     <string name="title_recommendation_clothes">Рекомендуем</string>
 
     <string name="image_clothes">Изображение одежды</string>
 
     <string name="button_add_to_wardrobe">Добавить в гардероб</string>
+    <string name="button_delete_from_wardrobe">Удалить из гардероба</string>
     <string name="row_characters_title">Название</string>
     <string name="row_characters_color">Цвет</string>
     <string name="row_characters_season">Сезон</string>
     <string name="row_characters_size">Размер</string>
     <string name="row_characters_gender">Пол</string>
+    <string name="row_characters_category">Категория</string>
+    <string name="row_characters_subcategory">Подкатегория</string>
+    <string name="row_characters_usage">Применение</string>
     <string name="row_characters_type">Тип</string>
+    <string name="toast_clothes_added">Добавлено в гардероб</string>
+    <string name="toast_clothes_deleted">Удалено из гардероба</string>
 
     <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>
-    <string name="button_load_photo">Выбрать из галереи</string>
+    <string name="button_load_photo">Выбрать</string>
     <string name="button_make_photo">Сделать фото</string>
 
     <string name="settings">Настройки</string>
     <string name="user_style">Стиль пользователя</string>
-    <string name="row_user_height">Рост</string>
-    <string name="row_user_weight">Вес</string>
     <string name="row_user_gender">Пол</string>
+    <string name="row_user_country">Страна</string>
     <string name="hint_style_user">Неизвестный стиль</string>
     <string name="value_user_table">Заполните</string>
     <string name="wardrobe">Ваш гардероб</string>
@@ -67,14 +75,17 @@
     <string name="row_settings_theme">Тема</string>
     <string name="row_settings_push">Уведомления</string>
     <string name="soon">Скоро</string>
+    <string name="quit">Выйти</string>
 
     <string name="hint_setting">Настройка</string>
+
+    <string name="error_login">Неправильный E-mail или пароль</string>
 
     <string name="button_ok_dialog_fragment">Понятно</string>
     <string name="button_retry_dialog_fragment">Обновить</string>
 
     <string name="password">Пароль</string>
-    <string name="login_hint">Номер, email или имя пользователя</string>
+    <string name="login_hint">Имя пользователя</string>
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="forgot_password">Забыли пароль? <b>Войти</b></string>
@@ -82,6 +93,7 @@
     <string name="or_continue_with">или продолжить с</string>
 
     <string name="recommendation">Рекомендации</string>
+    <string name="empty_recommendation">Ничего не найдено</string>
 
     <string name="username">Имя пользователя</string>
     <string name="email">E-mail адресс</string>
@@ -92,8 +104,24 @@
     <string name="strong_password_3">Strong</string>
     <string name="strong_password_4">Very strong</string>
     <string name="error_username">Такое имя уже используется</string>
-    <string name="error_email">Некорректный E-mail адресс</string>
+    <string name="error_email">Некорректный E-mail адресс/Такой E-mail уже используется</string>
     <string name="register">Зарегистрироваться</string>
     <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
+
+    <string name="edit_profile">Редактирование профиля</string>
+    <string name="gender">Пол</string>
+    <string name="man">Мужской</string>
+    <string name="woman">Женский</string>
+    <string name="user_style_edit_profile">Ваш стиль</string>
+    <string name="soon_edit_profile">Скоро!</string>
+    <string name="edit">Изменить</string>
+
+    <string name="empty_list">Пусто</string>
+
+    <string name="technical_support">Техподдержка</string>
+    <string name="contact_us">Свяжитесь с нами!</string>
+    <string name="email_copy">Email скопирован</string>
+    <string name="vk_copy">VK скопирован</string>
+    <string name="tg_copy">Telegram скопирован</string>
 
 </resources>

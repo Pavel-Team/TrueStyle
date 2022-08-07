@@ -6,29 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentGetRecommendationBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.GetRecommendationAdapter
 import ru.dm.android.truestyle.viewmodel.GetRecommendationViewModel
-import javax.inject.Inject
 
 
-@AndroidEntryPoint
+private const val ARG_CLOTHES = "Clothes" //Константа для получения листа с одеждой из Bundle
+
+
+
 class GetRecommendationFragment: Fragment() {
     private lateinit var getRecommendationViewModel: GetRecommendationViewModel
     private var _binding: FragmentGetRecommendationBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
+
+    private var listClothes: List<Stuff>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+        listClothes = arguments?.get(ARG_CLOTHES) as List<Stuff>
     }
 
 
@@ -38,6 +42,7 @@ class GetRecommendationFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         getRecommendationViewModel = ViewModelProvider(this).get(GetRecommendationViewModel::class.java)
+        getRecommendationViewModel.liveData.value = listClothes
 
         _binding = FragmentGetRecommendationBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -45,7 +50,7 @@ class GetRecommendationFragment: Fragment() {
         binding.lifecycleOwner = this@GetRecommendationFragment
         binding.recyclerViewRecommendedClothes.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = GetRecommendationAdapter(navigation, context, getRecommendationViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = GetRecommendationAdapter(context, getRecommendationViewModel.liveData.value!!) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
 
         //Слушатель на кнопку назад
@@ -59,8 +64,39 @@ class GetRecommendationFragment: Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        getRecommendationViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            //Проверка на пустоту
+            if (it.isEmpty())
+                binding.textViewEmptyGetRecommendation.visibility = View.VISIBLE
+            else
+                binding.textViewEmptyGetRecommendation.visibility = View.GONE
+
+            binding.recyclerViewRecommendedClothes.adapter = GetRecommendationAdapter(
+                requireContext(),
+                getRecommendationViewModel.liveData.value!!
+            )
+        })
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+
+
+    companion object {
+        fun newInstance(clothes: ArrayList<Stuff>): GetRecommendationFragment {
+            val args = Bundle().apply {
+                putParcelableArrayList(ARG_CLOTHES, clothes)
+            }
+            return GetRecommendationFragment().apply {
+                arguments = args
+            }
+        }
     }
 }

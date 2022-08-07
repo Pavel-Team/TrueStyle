@@ -157,4 +157,9 @@
         <item name="windowFixedHeightMinor">84%</item>
     </style>
 
+    <!--Стиль для RadioButton-->
+    <style name="radioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:buttonTint">@color/light_blue</item>
+    </style>
+
 </resources>

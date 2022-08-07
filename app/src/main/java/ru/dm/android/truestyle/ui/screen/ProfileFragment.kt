@@ -6,23 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentProfileBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ProfileViewModel
-import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class ProfileFragment : Fragment() {
 
     private lateinit var profileViewModel: ProfileViewModel
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var navigation: Navigation
+    private val navigation = Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +83,34 @@ class ProfileFragment : Fragment() {
         })
 
         return root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //Как только получаем инфу о пользователе - делаем доступными вкладки для изменения информации
+        profileViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            //Слушатели на View с основной информацией о пользователе
+            binding.userName.setOnClickListener(object: View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    val fragmentTo = EditProfileFragment.newInstance(profileViewModel.liveData.value!!)
+                    navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                }
+            })
+            binding.userStyleLayout.setOnClickListener(object: View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    val fragmentTo = EditProfileFragment.newInstance(profileViewModel.liveData.value!!)
+                    navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                }
+            })
+            binding.userInfoTable.setOnClickListener(object: View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    val fragmentTo = EditProfileFragment.newInstance(profileViewModel.liveData.value!!)
+                    navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                }
+            })
+        })
     }
 
 
