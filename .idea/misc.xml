@@ -40,12 +40,21 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/red_button_enabled.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/rounded_image_view.xml" value="0.15885416666666666" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/splash_screen.xml" value="0.12435897435897436" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_an_inforgettable_person.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_an_unforgettable_person.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_bright_personality.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_mystery_lady.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_stylish_programmer.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_unknown_style.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_unplayable_noble.xml" value="0.194" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_urban_style.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/white_button.xml" value="0.12393162393162394" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/white_circle.xml" value="0.1155" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout-v26/item_theme_articles.xml" value="0.22871376811594202" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout-v31/item_clothes_recommendation.xml" value="0.14270833333333333" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/dialog_fragment_edit_user_info.xml" value="0.18989071038251365" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/dialog_fragment_edit_user_style.xml" value="0.22" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/dialog_fragment_edit_username.xml" value="0.22" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/dialog_fragment_error_server.xml" value="0.14583333333333334" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/dialog_fragment_not_connection.xml" value="0.22393162393162394" />
@@ -59,7 +68,7 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_get_recommendation.xml" value="0.22393162393162394" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_login.xml" value="0.14" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_one_setting.xml" value="0.33" />
-        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_profile.xml" value="0.15" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_recommendation.xml" value="0.22" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_registration.xml" value="0.4298605414273995" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/fragment_settings.xml" value="0.14" />
@@ -76,6 +85,8 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_recommended_article.xml" value="0.1111111111111111" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_setting.xml" value="0.18704710144927536" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_spinner_country.xml" value="0.35477178423236516" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_spinner_styles.xml" value="0.5" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_spinner_styles_selected.xml" value="0.67" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_theme_articles.xml" value="0.25" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/item_topic.xml" value="0.22" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/layout/view_edit_text_registration.xml" value="0.22393162393162394" />

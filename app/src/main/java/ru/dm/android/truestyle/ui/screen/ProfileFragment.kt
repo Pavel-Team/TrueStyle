@@ -12,16 +12,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentProfileBinding
-import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
-import ru.dm.android.truestyle.ui.dialog.EditUserInfoDialogFragment
-import ru.dm.android.truestyle.ui.dialog.EditUsernameDialogFragment
-import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
+import ru.dm.android.truestyle.ui.dialog.*
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.ProfileViewModel
 
-private const val CODE_EDIT_USERNAME = 0  //Для таргет фрагмента к диалоговому окну редактирования имени
-private const val CODE_EDIT_USER_INFO = 1 //Для таргет фрагмента к диалоговому окну редактирования основной инфы профиля
+private const val TAG = "ProfileFragment"
+private const val CODE_EDIT_USERNAME = 0   //Для таргет фрагмента к диалоговому окну редактирования имени
+private const val CODE_EDIT_USER_INFO = 1  //Для таргет фрагмента к диалоговому окну редактирования основной инфы профиля
+private const val CODE_EDIT_USER_STYLE = 2 //Для таргет фрагмента к диалоговому окну редактирования стиля пользователя
 
 class ProfileFragment : Fragment() {
 
@@ -30,6 +29,17 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val navigation = Navigation
+
+    //Массив изображений для стиля
+    private val arrayDrawablesStyles = arrayOf(
+        R.drawable.style_unknown_style,
+        R.drawable.style_urban_style,
+        R.drawable.style_mystery_lady,
+        R.drawable.style_bright_personality,
+        R.drawable.style_unplayable_noble,
+        R.drawable.style_stylish_programmer,
+        R.drawable.style_an_unforgettable_person
+    )
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,6 +112,10 @@ class ProfileFragment : Fragment() {
         //Как только получаем инфу о пользователе - делаем доступными вкладки для изменения информации
         profileViewModel.liveData.observe(viewLifecycleOwner, Observer {
 
+            //Меняем на рандомную картинку
+            val randomDrawableStyle = arrayDrawablesStyles.get(Math.round(Math.random()*arrayDrawablesStyles.size).toInt())
+            binding.imageViewStyle.setImageResource(randomDrawableStyle)
+
             //Слушатели на View с основной информацией о пользователе
             binding.userName.setOnClickListener(object: View.OnClickListener {
                 override fun onClick(p0: View?) {
@@ -116,8 +130,14 @@ class ProfileFragment : Fragment() {
             })
             binding.userStyleLayout.setOnClickListener(object: View.OnClickListener {
                 override fun onClick(p0: View?) {
-//                    val fragmentTo = EditProfileFragment.newInstance(profileViewModel.liveData.value!!)
-//                    navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                    EditUserStyleDialogFragment.newInstance(
+                        it.style,
+                        profileViewModel.liveDataListOfStyles.value!!.toTypedArray(), //НО ЭТО НЕ ТОЧНО
+                        randomDrawableStyle
+                    ).apply {
+                        setTargetFragment(this@ProfileFragment, CODE_EDIT_USER_STYLE)
+                        show(this@ProfileFragment.parentFragmentManager, ConstantsDialog.DIALOG_EDIT_USER_STYLE)
+                    }
                 }
             })
             binding.userInfoTable.setOnClickListener(object: View.OnClickListener {
@@ -131,7 +151,7 @@ class ProfileFragment : Fragment() {
                     }
                 }
             })
-            
+
         })
     }
 

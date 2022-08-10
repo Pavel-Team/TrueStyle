@@ -376,4 +376,17 @@
 
     <string name="edit_user_info">Edit profile</string>
 
+    <string name="edit_user_style">Edit style</string>
+    <string name="title_style">Style</string>
+    <!-- !!! Изменять только вместе с кодом в EditStyleDialogFragment !!! -->
+    <string-array name="styles">
+        <item>Unknown style</item>
+        <item>Urban style</item>
+        <item>Mystery Lady</item>
+        <item>Bright personality</item>
+        <item>Unplayable Noble</item>
+        <item>Stylish programmer</item>
+        <item>An unforgettable person</item>
+    </string-array>
+
 </resources>

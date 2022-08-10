@@ -53,6 +53,9 @@ interface Api {
     @GET("user/get/styleuser")
     suspend fun getUserStyle(@Header("Authorization") token: String): Response<StyleUser>
 
+    @GET("user/get/allphrases")
+    suspend fun getStyles(@Header("Authorization") token: String): Response<List<StyleUser>>
+
     @POST("user/set/styleuser")
     suspend fun setUserStyle(@Header("Authorization") token: String,
                              @Query("id") id: Long): Response<List<String>> //ПРОВЕРИТЬ

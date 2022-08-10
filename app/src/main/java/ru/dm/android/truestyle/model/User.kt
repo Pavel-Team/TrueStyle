@@ -6,11 +6,13 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 import ru.dm.android.truestyle.BR
+import ru.dm.android.truestyle.api.response.StyleUser
 
 @Parcelize
 data class User(private var _username: String?,
-                private var _style: String?,
+                private var _style: StyleUser?,
                 private var _gender: String?,
                 private var _country: String?,
                 private var _photoUrl: String?) : BaseObservable(), Parcelable {
@@ -23,7 +25,7 @@ data class User(private var _username: String?,
         }
 
     @get:Bindable
-    var style: String? = _style
+    var style: StyleUser? = _style
         set(value) {
             field = value
             notifyPropertyChanged(BR.style)

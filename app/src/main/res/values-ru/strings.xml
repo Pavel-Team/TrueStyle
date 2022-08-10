@@ -129,4 +129,16 @@
 
     <string name="edit_user_info">Редактирование профиля</string>
 
+    <string name="edit_user_style">Изменить стиль</string>
+    <string name="title_style">Стиль</string>
+    <string-array name="styles">
+        <item>Неизвестный стиль</item>
+        <item>Городской стиляга</item>
+        <item>Загадочная леди</item>
+        <item>Яркая личность</item>
+        <item>Неподражаемый аристократ</item>
+        <item>Программист-стиляга</item>
+        <item>Незабываемая персона</item>
+    </string-array>
+
 </resources>

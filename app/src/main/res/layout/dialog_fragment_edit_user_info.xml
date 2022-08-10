@@ -26,7 +26,8 @@
         android:id="@+id/spinner_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/countries" />
+        android:entries="@array/countries"
+        android:spinnerMode="dialog"/>
 
     <TextView
         android:id="@+id/title_gender"

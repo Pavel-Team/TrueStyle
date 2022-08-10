@@ -142,4 +142,6 @@
     <dimen name="padding_layout_dialog_fragment">24dp</dimen>
     <dimen name="margin_bottom_title_edit_info_user">20dp</dimen>
     <dimen name="margin_top_button_edit_info_user">10dp</dimen>
+
+    <dimen name="padding_unselected_user_style_in_spinner">10dp</dimen>
 </resources>

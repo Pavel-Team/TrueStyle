@@ -3,6 +3,7 @@ package ru.dm.android.truestyle.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment

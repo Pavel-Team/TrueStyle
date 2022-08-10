@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.StyleUser
 import ru.dm.android.truestyle.model.User
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.ProfileRepository
@@ -24,6 +25,7 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
 
     var liveData: MutableLiveData<User> = MutableLiveData()
     var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData(false)
+    var liveDataListOfStyles: MutableLiveData<List<StyleUser>> = MutableLiveData(listOf())
 
     //ВРЕМЕННО
     init {
@@ -34,6 +36,7 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
             Log.d(TAG, userResponse.toString())
             Log.d(TAG, token)
             val style = profileRepository.getUserStyle(token)
+            getUserStyles()
 
             val res = getApplication<Application>().resources
 
@@ -92,5 +95,27 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
 
         liveData.value?.country = country
         liveData.value?.gender = gender
+    }
+
+
+    //Получение всех пользовательских стилей
+    fun getUserStyles() {
+        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
+
+        viewModelScope.launch {
+            liveDataListOfStyles.value = profileRepository.getStyles(token)
+        }
+    }
+
+
+    //Установка нового стиля пользователя
+    fun setNewUserStyle(styleUser: StyleUser) {
+        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
+
+        viewModelScope.launch {
+            profileRepository.setUserStyle(token, styleUser.id)
+        }
+
+        liveData.value?.style = styleUser
     }
 }
