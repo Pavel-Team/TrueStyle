@@ -219,18 +219,24 @@ class ClothesSearchFragment : Fragment() {
 
 
     // Определяем класс модели
+    // МЕГА КОСТЫЛЬ ДЛЯ МАШИНОК - СКОРО ПОПЫТАЮСЬ ИСПРАВИТЬ
     private fun runObjectDetection(bitmap: Bitmap):List<Int> {
-        val modelsFirstPart:Map<String, Int> = mapOf("model_class" to 143, "model_color" to 47, "model_gender" to 5)
-        val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5, "model_subCategory" to 45)
+//        val modelsFirstPart:Map<String, Int> = mapOf("model_class" to 143, "model_color" to 47, "model_gender" to 5)
+//        val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5, "model_subCategory" to 45)
+        val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5)
         var dataClothes: ArrayList<Int> = ArrayList<Int>()
 
-        // Прогоняем все модели
-        for ((model, value) in modelsFirstPart){
-            dataClothes.add(getResultDetection(bitmap, model, value, 56))
-        }
+        dataClothes.add(getResultDetection(bitmap, "model_class", 143, 56))
+        dataClothes.add(0)
+        dataClothes.add(getResultDetection(bitmap, "model_gender", 5, 56))
+//        // Прогоняем все модели
+//        for ((model, value) in modelsFirstPart){
+//            dataClothes.add(getResultDetection(bitmap, model, value, 56))
+//        }
         for ((model, value) in modelsSecondPart){
             dataClothes.add(getResultDetection(bitmap, model, value, 28))
         }
+        dataClothes.add(0)
 //        Log.d(TAG, "-----")
 //        for (i in 0 until 6){
 //            Log.d(TAG,  dataClothes[i].toString())
