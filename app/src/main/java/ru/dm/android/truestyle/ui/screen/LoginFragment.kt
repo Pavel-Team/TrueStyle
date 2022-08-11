@@ -15,6 +15,7 @@ import ru.dm.android.truestyle.databinding.FragmentLoginBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.LoginViewModel
 
+private const val TAG = "LoginFragment"
 
 class LoginFragment : Fragment(){
     private lateinit var loginViewModel: LoginViewModel
@@ -22,6 +23,8 @@ class LoginFragment : Fragment(){
     private val binding get() = _binding!!
 
     private val navigation = Navigation
+
+    private var isFirstOpen = true //Первый ли запуск окна (антибаг для обсервера)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +83,7 @@ class LoginFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        isFirstOpen = true
 
         loginViewModel.liveDataIsSignIn.observe(viewLifecycleOwner, Observer {
             if (it) {
@@ -88,9 +92,10 @@ class LoginFragment : Fragment(){
                 navigation.navigateTo(fragmentTo, R.id.navigation_profile)
                 navigation.clearStackFragment(R.id.navigation_profile)
             } else {
-                if (binding.editTextLogin.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty())
+                if (binding.editTextLogin.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty() && !isFirstOpen)
                     Toast.makeText(requireContext(), resources.getString(R.string.error_login), Toast.LENGTH_SHORT).show()
             }
+            isFirstOpen = false
         })
     }
 

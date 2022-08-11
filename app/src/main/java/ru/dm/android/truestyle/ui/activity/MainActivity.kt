@@ -110,15 +110,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 //ApplicationPreferences.setToken(this, "")
                 val token = ApplicationPreferences.getToken(this)!!
                 if (token.equals("")) {
+                    Navigation.lastMenuItem = R.id.navigation_profile
                     navView.visibility = View.GONE
-                    supportFragmentManager.beginTransaction()
-                        .add(R.id.nav_host_fragment_activity_main, LoginFragment()).addToBackStack(null).commit()
-                } else {
-                    //P.S. проверка валидности токена происходит в RecommendationViewModel
-                    navView.selectedItemId = Navigation.lastMenuItem
-                    supportFragmentManager.beginTransaction()
-                        .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()
+                    Navigation.lastFragment = LoginFragment()
                 }
+                //P.S. проверка валидности токена происходит в RecommendationViewModel
+                navView.selectedItemId = Navigation.lastMenuItem
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()
             }
         })
 
