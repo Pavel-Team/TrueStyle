@@ -131,14 +131,10 @@
 
     <string name="edit_user_style">Изменить стиль</string>
     <string name="title_style">Стиль</string>
-    <string-array name="styles">
-        <item>Неизвестный стиль</item>
-        <item>Городской стиляга</item>
-        <item>Загадочная леди</item>
-        <item>Яркая личность</item>
-        <item>Неподражаемый аристократ</item>
-        <item>Программист-стиляга</item>
-        <item>Незабываемая персона</item>
-    </string-array>
+
+    <string name="update_app">Обновить</string>
+    <string name="is_necessary_update"><b>Вышло крутое обновление!</b> Пожалуйста, обновите приложение!\nМы стараемся сделать удобнее использование нашего продукта для Вас!</string>
+    <string name="is_not_necessary_update"><b>Вышло крутое обновление!</b> Желаете обновить приложение?</string>
+
 
 </resources>

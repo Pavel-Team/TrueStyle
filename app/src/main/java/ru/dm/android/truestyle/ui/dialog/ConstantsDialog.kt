@@ -7,4 +7,5 @@ object ConstantsDialog {
     const val DIALOG_EDIT_USERNAME = "DIALOG_EDIT_USERNAME"     //Диалоговое окно с изменением имени пользователя
     const val DIALOG_EDIT_USER_INFO = "DIALOG_EDIT_USER_INFO"   //Диалоговое окно с изменением основной информации о пользователе
     const val DIALOG_EDIT_USER_STYLE = "DIALOG_EDIT_USER_STYLE" //Диалоговое окно с изменением стиля пользователя
+    const val DIALOG_NEW_VERSION = "NEW_VERSION"                //Диалоговое окно с доступным обновлением
 }

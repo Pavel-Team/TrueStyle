@@ -8,19 +8,25 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import ru.dm.android.truestyle.BuildConfig
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.ConnectionLiveData
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
 import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.NewVersionDialogFragment
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.LoginFragment
+import ru.dm.android.truestyle.util.Constants
+import ru.dm.android.truestyle.viewmodel.MainActivityViewModel
+import java.util.*
 
 
 private const val TAG = "MainActivity"
@@ -44,6 +50,8 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
 
+        val viewModel: MainActivityViewModel by viewModels()
+
         //ВРЕМЕННО
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if(!hasWifi(this)) {
@@ -58,6 +66,58 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             if (!it) {
                 NotConnectionDialogFragment().apply {
                     show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
+                }
+            }
+        })
+
+        //Проверка на актуальную версию
+        viewModel.checkCurrentAppVersion()
+        viewModel.liveDataAppVersion.observe(this, Observer {
+            Log.d(TAG, "observe appVersion")
+            val versionName = BuildConfig.VERSION_NAME
+
+            //Если не последняя актуальная версия - в зависимости от минимально допустимой, запускаем диалоговое окно с возможностью выйти или нет
+            if (versionName != it.actualVersionNumber) {
+                //Если еще можем пользоваться приложением - раз в сутки показываем окно с новой версией
+                if (viewModel.compareVersion(versionName, it.minActualVersionNumber!!)) {
+                    viewModel.liveDataCorrectAppVersion.value = true //Запускаем отрисовку фрагментов
+
+                    val nowDate = Date().time
+                    val lastDateOpenDialog = ApplicationPreferences.getDateDialogCurrentVersion(this)
+
+                    //Если прошли сутки - показываем уведомление об возможном обновлении
+                    if (nowDate - lastDateOpenDialog >= Constants.MIN_DIFF_DATE_FOR_VISIBLE_DIALOG_APP_VERSION) {
+                        ApplicationPreferences.setDateDialogCurrentVersion(this, nowDate)
+
+                        NewVersionDialogFragment.newInstance(false).apply {
+                            show(supportFragmentManager, ConstantsDialog.DIALOG_NEW_VERSION)
+                        }
+                    }
+                } else {
+                    //Иначе - запускаем диалоговое окно без возможности выйти с него
+                    NewVersionDialogFragment.newInstance(true).apply {
+                        show(supportFragmentManager, ConstantsDialog.DIALOG_NEW_VERSION)
+                    }
+                }
+            } else {
+                viewModel.liveDataCorrectAppVersion.value = true
+            }
+        })
+        viewModel.liveDataCorrectAppVersion.observe(this, Observer {
+            Log.d(TAG, "observer correctAppVersion")
+            //Если версия корректна - отрисовываем фрагменты
+            if (it) {
+                //ApplicationPreferences.setToken(this, "")
+                val token = ApplicationPreferences.getToken(this)!!
+                if (token.equals("")) {
+                    navView.visibility = View.GONE
+                    supportFragmentManager.beginTransaction()
+                        .add(R.id.nav_host_fragment_activity_main, LoginFragment()).addToBackStack(null).commit()
+                } else {
+                    //P.S. проверка валидности токена происходит в RecommendationViewModel
+                    navView.selectedItemId = Navigation.lastMenuItem
+                    supportFragmentManager.beginTransaction()
+                        .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()
                 }
             }
         })
@@ -83,19 +143,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 //        if (supportFragmentManager.findFragmentById(R.id.container) == null)
 //            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
         navView.setOnItemSelectedListener(this)
-
-        //ApplicationPreferences.setToken(this, "")
-        val token = ApplicationPreferences.getToken(this)!!
-        if (token.equals("")) {
-            navView.visibility = View.GONE
-            supportFragmentManager.beginTransaction()
-                .add(R.id.nav_host_fragment_activity_main, LoginFragment()).addToBackStack(null).commit()
-        } else {
-            //P.S. проверка валидности токена происходит в RecommendationViewModel
-            navView.selectedItemId = Navigation.lastMenuItem
-            supportFragmentManager.beginTransaction()
-                .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()
-        }
     }
 
 

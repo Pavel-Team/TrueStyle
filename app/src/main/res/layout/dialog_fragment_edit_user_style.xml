@@ -25,8 +25,7 @@
     <Spinner
         android:id="@+id/spinner_styles"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/styles" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button_apply"

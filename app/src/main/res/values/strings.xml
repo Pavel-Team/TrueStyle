@@ -378,15 +378,9 @@
 
     <string name="edit_user_style">Edit style</string>
     <string name="title_style">Style</string>
-    <!-- !!! Изменять только вместе с кодом в EditStyleDialogFragment !!! -->
-    <string-array name="styles">
-        <item>Unknown style</item>
-        <item>Urban style</item>
-        <item>Mystery Lady</item>
-        <item>Bright personality</item>
-        <item>Unplayable Noble</item>
-        <item>Stylish programmer</item>
-        <item>An unforgettable person</item>
-    </string-array>
+
+    <string name="update_app">Update</string>
+    <string name="is_necessary_update"><b>A cool update is out!</b> Please update the app!\nWe try to make it easier to use the application for you!</string>
+    <string name="is_not_necessary_update"><b>An awesome update is out!</b>\nWould you like to update the application?</string>
 
 </resources>

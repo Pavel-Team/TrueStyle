@@ -11,6 +11,10 @@ import ru.dm.android.truestyle.model.Registration
 
 interface Api {
 
+    //API проверки актуальной версии
+    @GET("version/info")
+    suspend fun getCurrentAppVersion(): Response<AppVersion>
+
     //API регистрации
     @POST("auth/signup")
     suspend fun registerUser(@Body registration: Registration): Response<TextMessage>

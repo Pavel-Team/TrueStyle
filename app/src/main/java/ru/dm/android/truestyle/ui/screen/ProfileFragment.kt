@@ -113,7 +113,7 @@ class ProfileFragment : Fragment() {
         profileViewModel.liveData.observe(viewLifecycleOwner, Observer {
 
             //Меняем на рандомную картинку
-            val randomDrawableStyle = arrayDrawablesStyles.get(Math.round(Math.random()*arrayDrawablesStyles.size).toInt())
+            val randomDrawableStyle = arrayDrawablesStyles.get(Math.round(Math.random()*(arrayDrawablesStyles.size-1)).toInt())
             binding.imageViewStyle.setImageResource(randomDrawableStyle)
 
             //Слушатели на View с основной информацией о пользователе

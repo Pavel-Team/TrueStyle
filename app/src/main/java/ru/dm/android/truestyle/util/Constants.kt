@@ -5,6 +5,10 @@ object Constants {
     const val URL = "http://185.221.153.118:8080/"
     const val TYPE_TOKEN = "Bearer"
 
+    //Константы для проверки версии
+    const val MIN_DIFF_DATE_FOR_VISIBLE_DIALOG_APP_VERSION = 24 * 60* 60 * 1000L
+    const val LINK_IN_PLAY_MARKET = "https://play.google.com/store/apps/details?id=yio.tro.antiyoy.android&hl=ru&gl=US"
+
     //Константы для названия сезона в БД на сервере
     const val SEASON_SUMMER = "Summer"
     const val SEASON_WINTER = "Winter"

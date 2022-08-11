@@ -58,6 +58,7 @@
 
     <dimen name="width_image_not_connect">200dp</dimen>
     <dimen name="margin_bottom_image_no_connect">100dp</dimen>
+    <dimen name="text_size_not_connection">20sp</dimen>
 
     <dimen name="text_size_recommended_article">28sp</dimen>
     <dimen name="width_circle_article">10dp</dimen>
@@ -144,4 +145,7 @@
     <dimen name="margin_top_button_edit_info_user">10dp</dimen>
 
     <dimen name="padding_unselected_user_style_in_spinner">10dp</dimen>
+
+    <dimen name="width_image_new_version">150dp</dimen>
+    <dimen name="text_size_new_version">18sp</dimen>
 </resources>
