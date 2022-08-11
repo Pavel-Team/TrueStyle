@@ -107,26 +107,48 @@ object Navigation{
                     R.id.navigation_profile -> { newFragment = ProfileFragment() }
                 }
                 if (newFragment != null) {
+                    lockMenu()
                     fragmentManager
                         .beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, newFragment)
                         .addToBackStack(null)
                         .commit()
+                    unlockMenu()
                     lastFragment = newFragment
                 }
             } else {
                 //Последний фрагмент из стека
                 val fragmentFromStack = mapStackFragments.get(item.itemId)!!.pop()
+                lockMenu()
                 fragmentManager
                     .beginTransaction()
                     .replace(R.id.nav_host_fragment_activity_main, fragmentFromStack)
                     .addToBackStack(null)
                     .commit()
+                unlockMenu()
                 lastFragment = fragmentFromStack
             }
             lastMenuItem = item.itemId
         }
         return true
+    }
+
+
+    //Запрет на пользование меню
+    private fun lockMenu() {
+        navView.menu.getItem(0).isEnabled=false
+        navView.menu.getItem(1).isEnabled=false
+        navView.menu.getItem(2).isEnabled=false
+        navView.menu.getItem(3).isEnabled=false
+    }
+
+
+    //Разрешение на использование меню
+    private fun unlockMenu() {
+        navView.menu.getItem(0).isEnabled=true
+        navView.menu.getItem(1).isEnabled=true
+        navView.menu.getItem(2).isEnabled=true
+        navView.menu.getItem(3).isEnabled=true
     }
 
 
