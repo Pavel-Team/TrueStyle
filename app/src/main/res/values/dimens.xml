@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="width_icon_splash_screen">150dp</dimen>
+    <dimen name="width_icon_splash_screen">200dp</dimen>
 
     <dimen name="margin_window">16dp</dimen>
 
