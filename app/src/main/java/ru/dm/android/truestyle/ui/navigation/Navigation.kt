@@ -5,6 +5,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
@@ -85,6 +86,7 @@ object Navigation{
         lastFragment = toFragment
         fragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.anim.to_fragment_open, R.anim.to_fragment_close)
             .replace(R.id.nav_host_fragment_activity_main, toFragment)
             .addToBackStack(null)
             .commit()
@@ -178,6 +180,7 @@ object Navigation{
             val lastFragment = mapStackFragments.get(lastMenuItem)!!.pop()
             fragmentManager
                 .beginTransaction()
+                .setCustomAnimations(R.anim.back_fragment_open, R.anim.back_fragment_close)
                 .replace(R.id.nav_host_fragment_activity_main, lastFragment)
                 .commit()
             this.lastFragment = lastFragment

@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable-anydpi/ic_plus.xml" value="0.2890625" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.23717948717948717" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/animated_gradient_loading.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/animation_retry_connection.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/background_dialog_fragment.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/background_layout_characteristics.xml" value="0.23717948717948717" />
@@ -18,6 +19,7 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/circle_white.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/cursor_edit_text.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/dashed_border.xml" value="0.1355" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/end_gradient_loading.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/example_style_user.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_articles.xml" value="0.15885416666666666" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/ic_back.xml" value="0.1155" />
@@ -41,6 +43,7 @@
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/red_button_enabled.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/rounded_image_view.xml" value="0.15885416666666666" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/splash_screen.xml" value="0.12435897435897436" />
+        <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/start_gradient_loading.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_an_inforgettable_person.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_an_unforgettable_person.xml" value="0.194" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/style_bright_personality.xml" value="0.194" />
