@@ -104,9 +104,9 @@
     <string name="strong_password_3">Сильный</string>
     <string name="strong_password_4">Очень сильный</string>
     <string name="error_username">Такое имя уже используется</string>
-    <string name="error_email">Некорректный E-mail адресс/Такой E-mail уже используется</string>
+    <string name="error_email">Некорректный E-mail адрес/Такой E-mail уже используется</string>
     <string name="register">Зарегистрироваться</string>
-    <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
+    <string name="has_account">Уже зарегистрированы? <b>Войти</b></string>
 
     <string name="edit_profile">Редактирование профиля</string>
     <string name="gender">Пол</string>
@@ -117,6 +117,7 @@
     <string name="edit">Изменить</string>
 
     <string name="empty_list">Пусто</string>
+    <string name="empty_search">Ничего не найдено</string>
 
     <string name="technical_support">Техподдержка</string>
     <string name="contact_us">Свяжитесь с нами!</string>
@@ -136,5 +137,7 @@
     <string name="is_necessary_update"><b>Вышло крутое обновление!</b> Пожалуйста, обновите приложение!\nМы стараемся сделать удобнее использование нашего продукта для Вас!</string>
     <string name="is_not_necessary_update"><b>Вышло крутое обновление!</b> Желаете обновить приложение?</string>
 
+    <string name="confirm_quit">Выйти из аккаунта?</string>
+    <string name="confirm">Да</string>
 
 </resources>

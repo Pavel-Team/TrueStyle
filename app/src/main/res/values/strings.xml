@@ -361,6 +361,7 @@
     <string name="edit">Edit</string>
 
     <string name="empty_list">Empty</string>
+    <string name="empty_search">Nothing found</string>
 
     <string name="technical_support">Technical support</string>
     <string name="contact_us">Contact us!</string>
@@ -382,5 +383,8 @@
     <string name="update_app">Update</string>
     <string name="is_necessary_update"><b>A cool update is out!</b> Please update the app!\nWe try to make it easier to use the application for you!</string>
     <string name="is_not_necessary_update"><b>An awesome update is out!</b>\nWould you like to update the application?</string>
+
+    <string name="confirm_quit">Sign out?</string>
+    <string name="confirm">Yes</string>
 
 </resources>

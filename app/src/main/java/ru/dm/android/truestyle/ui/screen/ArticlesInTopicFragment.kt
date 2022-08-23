@@ -139,6 +139,8 @@ class ArticlesInTopicFragment: Fragment() {
 
     //Метод закрытия поиска
     private fun closeSearch() {
+        resetSearch()
+
         binding.sendSearch.visibility=View.GONE
         binding.editTextSearch.visibility=View.GONE
         binding.titleStyle.visibility=View.VISIBLE
@@ -150,9 +152,10 @@ class ArticlesInTopicFragment: Fragment() {
     private fun search() {
         val textForSearch = binding.editTextSearch.text.toString().lowercase(Locale.getDefault())
         Log.d(TAG, textForSearch)
-        if (textForSearch.length==0)
+        if (textForSearch.length==0) {
             adapterArticles.submitList(articlesInTopicViewModel.liveData.value)
-        else {
+            binding.textViewEmptySearch.visibility = View.GONE
+        } else {
             var newList = articlesInTopicViewModel.liveData.value?.toMutableList()
             var iterator = newList?.iterator()
             while (iterator!!.hasNext())
@@ -160,7 +163,23 @@ class ArticlesInTopicFragment: Fragment() {
                     iterator.remove()
             Log.d(TAG, newList.toString())
             adapterArticles.submitList(newList)
+
+            //Проверка на пустоту
+            if (newList?.size == 0)
+                binding.textViewEmptySearch.visibility = View.VISIBLE
+            else
+                binding.textViewEmptySearch.visibility = View.GONE
         }
+    }
+
+
+    //Метод сброса поиска
+    private fun resetSearch() {
+        adapterArticles.submitList(articlesInTopicViewModel.liveData.value) //Возвращаем все статьи
+        binding.editTextSearch.text.clear()
+        //Скрываем клавиатуру
+        val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
 

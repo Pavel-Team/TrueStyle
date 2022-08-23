@@ -148,4 +148,6 @@
 
     <dimen name="width_image_new_version">150dp</dimen>
     <dimen name="text_size_new_version">18sp</dimen>
+
+    <dimen name="width_image_confirm_quit">100dp</dimen>
 </resources>

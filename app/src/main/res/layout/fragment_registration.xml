@@ -101,7 +101,8 @@
             android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
             android:layout_marginTop="@dimen/margin_top_error_edit_text_registration"
             android:textColor="@color/red"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:maxLines="2"/>
 
         <EditText
             android:id="@+id/edit_text_password"
