@@ -34,7 +34,7 @@ class SuccessfulPasswordResetDialogFragment : DialogFragment(){
         })
 
         //Запускаем анимацию
-        val animation: Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.set_visible)
+        val animation: Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha)
         binding.imageViewSuccess.startAnimation(animation)
 
         val dialog = Dialog(requireActivity(), R.style.dialogStyle)

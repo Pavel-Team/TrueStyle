@@ -3,8 +3,8 @@
     <!-- Тема загрузочного экрана-->
     <style name="Theme.SplashTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>
-<!--        <item name="windowSplashScreenAnimationDuration">100</item>-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_splash_screen</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
         <item name="postSplashScreenTheme">@style/Theme.TrueStyle</item>
 
         <!-- Status bar and Nav bar configs -->

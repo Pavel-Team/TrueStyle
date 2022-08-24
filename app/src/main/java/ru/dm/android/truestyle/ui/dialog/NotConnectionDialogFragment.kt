@@ -17,7 +17,7 @@ import ru.dm.android.truestyle.service.SystemService
 import ru.dm.android.truestyle.ui.navigation.Navigation
 
 
-open class NotConnectionDialogFragment : DialogFragment() {
+class NotConnectionDialogFragment : DialogFragment() {
 
     lateinit var animation: AnimationDrawable
 
@@ -30,7 +30,7 @@ open class NotConnectionDialogFragment : DialogFragment() {
                     dismiss()
 
                     //Если не успело прогрузить данные при первом открытии приложения (ВРЕМЕННО)
-                    if (activity?.supportFragmentManager?.backStackEntryCount == 1)
+                    if (activity?.supportFragmentManager?.backStackEntryCount == 0)
                         activity?.recreate()
                 }
                 else {

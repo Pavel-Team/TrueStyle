@@ -96,7 +96,7 @@
     <string name="empty_recommendation">Ничего не найдено</string>
 
     <string name="username">Имя пользователя</string>
-    <string name="email">E-mail адресс</string>
+    <string name="email">E-mail адрес</string>
     <string name="hint_password">В целях безопасности, Ваш пароль должен состоять не менее чем из 6 символов (буквы латинского алфавита, цифры и знаки \'_!?\')</string>
     <string name="strong_password_0">Некорректный</string>
     <string name="strong_password_1">Слабый</string>

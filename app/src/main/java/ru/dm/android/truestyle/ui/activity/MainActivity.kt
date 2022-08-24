@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             NotConnectionDialogFragment().apply {
                 show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
             }
+            return
         }
 
         //Проверка на интернет
