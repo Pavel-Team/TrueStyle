@@ -22,4 +22,7 @@ object Constants {
 
     //Константы для подписки
     const val TELEGRAM_CHANEL = "https://t.me/TrueStyleDev"
+
+    //Константы для валидации
+    val REGEX_EMAIL = Regex("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 }

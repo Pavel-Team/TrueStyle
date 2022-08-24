@@ -19,7 +19,8 @@
         <ImageView
             android:layout_width="@dimen/width_image_new_version"
             android:layout_height="@dimen/width_image_new_version"
-            android:src="@drawable/ic_update_app"/>
+            android:src="@drawable/ic_update_app"
+            android:contentDescription="@string/is_necessary_update"/>
 
         <TextView
             android:id="@+id/text_view_new_version"

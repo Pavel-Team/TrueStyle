@@ -63,6 +63,14 @@ class LoginFragment : Fragment(){
             }
         })
 
+        //Слушатель поля "Забыли пароль?"
+        binding.textViewForgotPassword.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = PasswordResetFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+            }
+        })
+
         //Слушатель кнопки "Войти с помощью Google"
         binding.buttonLoginGoogle.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {

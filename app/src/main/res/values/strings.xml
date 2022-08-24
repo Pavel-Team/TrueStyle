@@ -387,4 +387,15 @@
     <string name="confirm_quit">Sign out?</string>
     <string name="confirm">Yes</string>
 
+    <string name="password_recovery">Password recovery</string>
+    <string name="hint_password_recovery">Please enter the email address of the profile whose password you want to recover. We will send an email to this email.</string>
+    <string name="error_email_reset_password">User with this email was not found</string>
+    <string name="send_a_letter">Send a letter</string>
+    <string name="token">Token</string>
+    <string name="hint_token">Enter the token received by email</string>
+    <string name="error_token">Invalid token</string>
+    <string name="change_password">Change password</string>
+    <string name="password_changed_successfully">Password changed successfully!</string>
+    <string name="to_main">To main</string>
+
 </resources>

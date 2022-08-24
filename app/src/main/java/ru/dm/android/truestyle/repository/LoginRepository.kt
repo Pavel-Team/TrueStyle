@@ -39,4 +39,16 @@ object LoginRepository {
         Log.d(TAG, auth.body().toString())
         return auth.body()
     }
+
+
+    //Функция сброса пароля и отправки нового токена на заданный email
+    suspend fun resetPassword(email: String): Boolean {
+        return true
+    }
+
+
+    //Функция установки нового пароля
+    suspend fun setNewPassword(token: String, newPassword: String): Boolean {
+        return true
+    }
 }

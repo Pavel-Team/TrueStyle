@@ -140,4 +140,15 @@
     <string name="confirm_quit">Выйти из аккаунта?</string>
     <string name="confirm">Да</string>
 
+    <string name="password_recovery">Сброс пароля</string>
+    <string name="hint_password_recovery">Пожалуйста, введите адрес электронной почты учетной записи, пароль которой вы хотите восстановить. Мы отправим письмо на этот адрес электронной почты.</string>
+    <string name="error_email_reset_password">Пользователь с таким email не найден</string>
+    <string name="send_a_letter">Отправить письмо</string>
+    <string name="token">Токен</string>
+    <string name="hint_token">Введите токен, полученный на почте</string>
+    <string name="error_token">Некорректный токен</string>
+    <string name="change_password">Сменить пароль</string>
+    <string name="password_changed_successfully">Пароль успешно сменен!</string>
+    <string name="to_main">На главную</string>
+
 </resources>

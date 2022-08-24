@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentRegistrationBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.RegistrationViewModel
 
 private const val TAG = "RegistrationFragment"
@@ -28,9 +29,6 @@ class RegistrationFragment: Fragment() {
     private val binding get() = _binding!!
 
     private val navigation = Navigation
-
-    private val REGEX_EMAIL by lazy { Regex("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +77,7 @@ class RegistrationFragment: Fragment() {
                     binding.textHintEmail.visibility = View.INVISIBLE
 
                 if (!hasFocus) {
-                    val isCorrectEmail = REGEX_EMAIL.matches(binding.editTextEmail.text)
+                    val isCorrectEmail = Constants.REGEX_EMAIL.matches(binding.editTextEmail.text)
                     registrationViewModel.liveDataIsCorrectEmail.value = isCorrectEmail
                     if (isCorrectEmail)
                         registrationViewModel.checkEmail(binding.editTextEmail.text.toString())
@@ -114,7 +112,7 @@ class RegistrationFragment: Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(text: Editable?) {
-                val strong = registrationViewModel.checkStrongPassword(text.toString())
+                val strong = RegistrationViewModel.checkStrongPassword(text.toString())
                 if (text?.length==0) {
                     binding.textStrongPassword.visibility = View.INVISIBLE
                     binding.lineStrongPassword1.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gray_4))
@@ -184,13 +182,13 @@ class RegistrationFragment: Fragment() {
                 registrationViewModel.checkUsername(binding.editTextUsername.text.toString())
 
                 //Аналогично чекаем email
-                val isCorrectEmail = REGEX_EMAIL.matches(binding.editTextEmail.text)
+                val isCorrectEmail = Constants.REGEX_EMAIL.matches(binding.editTextEmail.text)
                 registrationViewModel.liveDataIsCorrectEmail.value = isCorrectEmail
                 if (isCorrectEmail)
                     registrationViewModel.checkEmail(binding.editTextEmail.text.toString())
 
                 //Ну и для надежности - пароль
-                val strong = registrationViewModel.checkStrongPassword(binding.editTextPassword.text.toString())
+                val strong = RegistrationViewModel.checkStrongPassword(binding.editTextPassword.text.toString())
                 registrationViewModel.liveDataIsCorrectPassword.value = strong > 0
 
                 //Запрос на сервер только если всё верно
