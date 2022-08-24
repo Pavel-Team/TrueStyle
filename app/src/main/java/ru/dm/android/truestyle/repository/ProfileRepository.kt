@@ -60,4 +60,11 @@ object ProfileRepository{
         
         return isSuccess
     }
+
+
+    //Установка нового имени пользователя
+    suspend fun setNewUsername(token: String, username: String): Boolean {
+        val isSuccess = networking.api.setUsername(token, username).isSuccessful
+        return isSuccess
+    }
 }

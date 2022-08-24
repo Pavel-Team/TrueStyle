@@ -85,7 +85,7 @@
     <string name="button_retry_dialog_fragment">Обновить</string>
 
     <string name="password">Пароль</string>
-    <string name="login_hint">Имя пользователя</string>
+    <string name="login_hint">Имя пользователя или email</string>
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="forgot_password">Забыли пароль? <b>Войти</b></string>

@@ -71,7 +71,7 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
         val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
 
         viewModelScope.launch {
-            //profileRepository.
+            profileRepository.setNewUsername(token, username)
         }
 
         liveData.value?.username = username

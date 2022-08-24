@@ -23,7 +23,7 @@ class SetNewPasswordViewModel : ViewModel() {
     //Функция установки нового пароля
     fun setNewPassword(token: String, newPassword: String) {
         viewModelScope.launch {
-            liveDataIsSuccessfulChangePassword.value = loginRepository.setNewPassword(token, newPassword)
+            liveDataIsSuccessfulChangePassword.postValue(loginRepository.setNewPassword(token, newPassword))
         }
     }
 }

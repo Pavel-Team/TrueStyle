@@ -5,6 +5,7 @@ import retrofit2.Response
 import retrofit2.http.*
 import ru.dm.android.truestyle.api.request.LoginRequest
 import ru.dm.android.truestyle.api.request.MlRequest
+import ru.dm.android.truestyle.api.request.NewPasswordRequest
 import ru.dm.android.truestyle.api.request.SettingRequest
 import ru.dm.android.truestyle.api.response.*
 import ru.dm.android.truestyle.model.Registration
@@ -28,6 +29,12 @@ interface Api {
     //API авторизации
     @POST("auth/signin")
     suspend fun signIn(@Body loginRequest: LoginRequest): Response<Auth>
+
+    @POST("user/resetPassword")
+    suspend fun resetPassword(@Query("email") email: String): Response<TextMessage>
+
+    @POST("user/savePassword")
+    suspend fun savePassword(@Body newPassword: NewPasswordRequest): Response<TextMessage>
 
     //API рекомендаций (главная страница)
     @GET("quote/random")
@@ -62,11 +69,15 @@ interface Api {
 
     @POST("user/set/styleuser")
     suspend fun setUserStyle(@Header("Authorization") token: String,
-                             @Query("id") id: Long): Response<List<String>> //ПРОВЕРИТЬ
+                             @Query("id") id: Long): Response<List<String>>
+
+    @POST("user/changeUsername")
+    suspend fun setUsername(@Header("Authorization") token: String,
+                            @Query("username") username: String): Response<TextMessage>
 
     @POST("user/set/setting")
     suspend fun setUserInfo(@Header("Authorization") token: String,
-                            @Body settingRequest: SettingRequest): Response<TextMessage> //ПРОВЕРИТЬ
+                            @Body settingRequest: SettingRequest): Response<TextMessage>
 
     //API гардероба
     @GET("wardrobe/{season}")

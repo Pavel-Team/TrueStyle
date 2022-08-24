@@ -19,7 +19,7 @@ class PasswordResetViewModel: ViewModel() {
     //Метод отправки письма на почту (email) с токеном для сброса пароля
     fun resetPassword(email: String) {
         viewModelScope.launch {
-            liveDataIsCorrectEmail.value = loginRepository.resetPassword(email)
+            liveDataIsCorrectEmail.postValue(loginRepository.resetPassword(email))
         }
     }
 
