@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentProfileBinding
+import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.ui.dialog.*
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.util.Constants

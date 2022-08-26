@@ -1,13 +1,13 @@
 /**Фрагмент с обучающими статьями*/
 package ru.dm.android.truestyle.ui.screen
 
+import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ViewFlipper
@@ -44,7 +44,6 @@ public class ArticlesFragment : Fragment()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
     }
 
 

@@ -22,7 +22,7 @@ class RegistrationViewModel  constructor(application: Application) : AndroidView
     private val registrationRepository = RegistrationRepository
     private val loginRepository = LoginRepository
 
-    var liveData: MutableLiveData<Registration> = MutableLiveData()
+    var liveData: MutableLiveData<Registration> = MutableLiveData(Registration())
     var liveDataSuccessRegistration: MutableLiveData<Auth> = MutableLiveData()
     var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData(false)
     var liveDataIsCorrectEmail: MutableLiveData<Boolean> = MutableLiveData(false)

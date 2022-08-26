@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.NewToken
 import ru.dm.android.truestyle.api.response.StyleUser
 import ru.dm.android.truestyle.model.User
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
@@ -71,7 +72,10 @@ class ProfileViewModel  constructor(application: Application): AndroidViewModel(
         val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
 
         viewModelScope.launch {
-            profileRepository.setNewUsername(token, username)
+            val newToken = profileRepository.setNewUsername(token, username)
+            Log.d(TAG, newToken?.token.toString())
+            if (newToken != null)
+                ApplicationPreferences.setToken(getApplication<Application>().applicationContext, newToken.token)
         }
 
         liveData.value?.username = username

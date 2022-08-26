@@ -73,7 +73,7 @@ interface Api {
 
     @POST("user/changeUsername")
     suspend fun setUsername(@Header("Authorization") token: String,
-                            @Query("username") username: String): Response<TextMessage>
+                            @Query("username") username: String): Response<NewToken>
 
     @POST("user/set/setting")
     suspend fun setUserInfo(@Header("Authorization") token: String,

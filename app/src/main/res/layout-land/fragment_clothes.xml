@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="ru.dm.android.truestyle.viewmodel.ClothesViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <!-- ЧТО ТО СДЕЛАТЬ С HEIGHT-->
+            <ImageView
+                android:id="@+id/image_view_clothes"
+                imageUrl="@{viewModel.liveData.imageUrl}"
+                android:layout_width="400dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/image_clothes"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageButton
+                android:id="@+id/image_button_back"
+                android:layout_width="@dimen/width_ic_back"
+                android:layout_height="@dimen/width_ic_back"
+                android:src="@drawable/ic_back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_ic_back"
+                android:layout_marginTop="@dimen/margin_ic_back"
+                android:scaleType="centerCrop"
+                android:background="@null"
+                android:contentDescription="@string/back" />
+
+            <LinearLayout
+                android:id="@+id/characteristics_table"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_window"
+                android:background="@drawable/background_layout_characteristics"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/characters_table_padding_top_bottom"
+                android:paddingBottom="@dimen/characters_table_padding_top_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_view_clothes"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    style="@style/rowCharactersLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_title" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.productDisplayName}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/rowCharactersLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_category" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.masterCategory}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/rowCharactersLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_subcategory" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.subCategory}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/rowCharactersLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_color" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.baseColor}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/rowCharactersLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_season" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.season}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/rowCharactersLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_gender" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.gender.name}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/rowCharactersLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_usage" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.usage}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start_end_row_characters"
+                    android:layout_marginTop="@dimen/margin_top_row_characters"
+                    android:layout_marginEnd="@dimen/margin_start_end_row_characters"
+                    android:layout_marginBottom="@dimen/margin_bottom_row_characters"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="@string/row_characters_type" />
+
+                    <TextView
+                        style="@style/textTextViewStyle.charactersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/row_characters_example_value"
+                        android:text="@{viewModel.liveData.articleType}" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_add_wardrobe"
+                style="@style/buttonStyle.LightBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_window"
+                android:text="@string/button_add_to_wardrobe"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/characteristics_table"
+                app:layout_constraintTop_toBottomOf="@id/characteristics_table"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

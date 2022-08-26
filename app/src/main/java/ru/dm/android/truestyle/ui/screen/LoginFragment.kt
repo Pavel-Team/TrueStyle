@@ -30,7 +30,7 @@ class LoginFragment : Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //
-        Log.d("RegistrationLogin", "onCreate")
+        Log.d(TAG, "onCreate")
     }
 
 
@@ -39,6 +39,7 @@ class LoginFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "onCreateView")
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -108,8 +109,15 @@ class LoginFragment : Fragment(){
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume")
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
+        Log.d(TAG, "onDestroy")
         _binding = null
     }
 }

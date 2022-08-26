@@ -12,11 +12,12 @@
 
     <dimen name="width_ic_plus">29dp</dimen>
     <dimen name="margin_quote">48dp</dimen>
+    <dimen name="margin_quote_x2">96dp</dimen>
     <dimen name="margin_quote_top">24dp</dimen>
     <dimen name="width_quote_line">96dp</dimen>
     <dimen name="height_quote_line">2dp</dimen>
     <dimen name="radius_corners_quote_line">1dp</dimen>
-    <dimen name="margin_top_view_quote">2dp</dimen>
+    <dimen name="margin_top_view_quote">1dp</dimen>
     <dimen name="margin_bottom_layout_add_actions">10dp</dimen>
     <dimen name="margin_circle_add_actions">5dp</dimen>
     <dimen name="width_circle_add_actions">2dp</dimen>
@@ -94,6 +95,7 @@
     <dimen name="margin_top_sign_up">6dp</dimen>
     <dimen name="margin_bottom_privacy_policy">9dp</dimen>
     <dimen name="margin_start_privacy_policy">47dp</dimen>
+    <dimen name="padding_top_privacy_policy">40dp</dimen>
     <dimen name="width_black_line_login_fragment">134dp</dimen>
     <dimen name="height_black_line_login_fragment">5dp</dimen>
     <dimen name="margin_bottom_black_line_login_fragment">8dp</dimen>
@@ -125,6 +127,7 @@
     <dimen name="height_line_strong_password">2dp</dimen>
     <dimen name="margin_top_button_register">30dp</dimen>
     <dimen name="margin_bottom_has_account">4dp</dimen>
+    <dimen name="padding_bottom_button_register">40dp</dimen>
 
     <dimen name="margin_top_edit_text_username_edit_profile">20dp</dimen>
     <dimen name="font_size_title_edit_profile">20sp</dimen>

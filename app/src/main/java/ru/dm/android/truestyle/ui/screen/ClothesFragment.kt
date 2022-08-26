@@ -1,8 +1,10 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
+import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ClothesViewModel
 
 private const val TAG = "ClothesFragment"
@@ -38,10 +41,11 @@ class ClothesFragment : Fragment() {
 
         //Получаем размеры ширины экрана
         val windowManager: WindowManager = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             width = windowManager.currentWindowMetrics.bounds.width()
-        else
+        } else {
             width = windowManager.defaultDisplay.width
+        }
     }
 
 
@@ -63,8 +67,24 @@ class ClothesFragment : Fragment() {
         binding.lifecycleOwner = this@ClothesFragment
         binding.viewModel = clothesViewModel
 
-        //Делаем высоту imageView равную ширине
-        _binding!!.imageViewClothes.layoutParams = ViewGroup.LayoutParams(width, width)
+        //Делаем высоту imageView равную ширине для вертикальной ориентации. Для горизонтальной - после создания элемента
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
+            binding.imageViewClothes.layoutParams = ViewGroup.LayoutParams(width, width)
+        else {
+            //После рассчета берем высоту
+            binding.root.post(object : Runnable {
+                override fun run() {
+                    var height = 0
+                    if (container != null) {
+                        height = container.height
+                        binding.imageViewClothes.layoutParams = ViewGroup.LayoutParams(height, height)
+                        return
+                    }
+                    height = view!!.height
+                    binding.imageViewClothes.layoutParams = ViewGroup.LayoutParams(height, height)
+                }
+            })
+        }
 
         //Слушатель на кнопку назад
         binding.imageButtonBack.setOnClickListener(object: View.OnClickListener {

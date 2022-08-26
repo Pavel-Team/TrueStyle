@@ -3,6 +3,7 @@ package ru.dm.android.truestyle.repository
 import android.util.Log
 import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.api.request.SettingRequest
+import ru.dm.android.truestyle.api.response.NewToken
 import ru.dm.android.truestyle.api.response.StyleUser
 import ru.dm.android.truestyle.api.response.User
 
@@ -63,8 +64,8 @@ object ProfileRepository{
 
 
     //Установка нового имени пользователя
-    suspend fun setNewUsername(token: String, username: String): Boolean {
-        val isSuccess = networking.api.setUsername(token, username).isSuccessful
-        return isSuccess
+    suspend fun setNewUsername(token: String, username: String): NewToken? {
+        val response = networking.api.setUsername(token, username).body()
+        return response
     }
 }

@@ -9,9 +9,14 @@
             type="ru.dm.android.truestyle.viewmodel.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white">
 
         <!--От него завязана вся разметка-->
@@ -154,6 +159,13 @@
             android:text="@string/vk"
             android:drawableEnd="@drawable/ic_vk" />
 
+        <!--ВРЕМЕННАЯ ПАЛКА-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/padding_top_privacy_policy"
+            app:layout_constraintTop_toBottomOf="@id/button_login_vk"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <TextView
             android:id="@+id/text_view_privacy_policy"
             style="@style/textTextViewStyle"
@@ -166,7 +178,9 @@
             android:gravity="center"
             android:layout_marginBottom="@dimen/margin_bottom_privacy_policy"
             android:layout_marginStart="@dimen/margin_start_privacy_policy"
-            android:layout_marginEnd="@dimen/margin_start_privacy_policy"/>
+            android:layout_marginEnd="@dimen/margin_start_privacy_policy" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

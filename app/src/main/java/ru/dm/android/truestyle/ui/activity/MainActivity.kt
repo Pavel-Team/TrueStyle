@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         val viewModel: MainActivityViewModel by viewModels()
 
         //ВРЕМЕННО
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if(!hasWifi(this)) {
             NotConnectionDialogFragment().apply {
                 show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)
@@ -112,15 +112,21 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             if (it) {
                 //ApplicationPreferences.setToken(this, "")
                 val token = ApplicationPreferences.getToken(this)!!
-                if (token.equals("")) {
-                    Navigation.lastMenuItem = R.id.navigation_profile
+                //На слаучай с поворотом экрана
+                if (token == "") {
                     navView.visibility = View.GONE
-                    Navigation.lastFragment = LoginFragment()
                 }
-                //P.S. проверка валидности токена происходит в RecommendationViewModel
-                navView.selectedItemId = Navigation.lastMenuItem
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment).addToBackStack(null).commit()
+                if (supportFragmentManager?.backStackEntryCount == 0) {
+                    if (token.equals("")) {
+                        Navigation.lastMenuItem = R.id.navigation_profile
+                        Navigation.lastFragment = LoginFragment()
+                    }
+                    //P.S. проверка валидности токена происходит в RecommendationViewModel
+                    navView.selectedItemId = Navigation.lastMenuItem
+                    supportFragmentManager.beginTransaction()
+                        .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment)
+                        .addToBackStack(null).commit()
+                }
             }
         })
 
@@ -145,6 +151,12 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 //        if (supportFragmentManager.findFragmentById(R.id.container) == null)
 //            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
         navView.setOnItemSelectedListener(this)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume")
     }
 
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top_title_recommendation_clothes">16dp</dimen>
+
+    <dimen name="margin_image_clothes_search">220dp</dimen>
+    <dimen name="margin_horizontal_buttons_search_clothes">110dp</dimen>
+    <dimen name="margin_between_buttons_search_clothes">16dp</dimen>
+    <dimen name="margin_start_buttons_search_clothes">12dp</dimen>
+
+    <dimen name="margin_top_user_style">2dp</dimen>
+    <dimen name="margin_start_user_style">16dp</dimen>
+    <dimen name="min_width_table_user_info">200dp</dimen>
+
+    <dimen name="margin_start_password_edit_text">120dp</dimen>
+    <dimen name="margin_top_sign_in">18dp</dimen>
+    <dimen name="margin_start_dashed_border">120dp</dimen>
+    <dimen name="margin_vertical_title_app_landscape">40dp</dimen>
+    <dimen name="margin_top_forgot_password_landscape">20dp</dimen>
+
+    <dimen name="padding_horizontal_registration_screen">120dp</dimen>
+    <dimen name="margin_top_edit_text_email">18dp</dimen>
+    <dimen name="margin_top_line_strong_password">12dp</dimen>
+    <dimen name="margin_top_button_register">22dp</dimen>
+</resources>

@@ -20,12 +20,11 @@ class LoginViewModel  constructor(application: Application): AndroidViewModel(ap
     private val loginRepository = LoginRepository
 
     var liveData: MutableLiveData<Login> = MutableLiveData(Login())
-    var liveDataIsSignIn: MutableLiveData<Boolean> = MutableLiveData()
+    var liveDataIsSignIn: MutableLiveData<Boolean> = MutableLiveData(false)
 
     init {
         Log.d(TAG, "init")
         Log.d(TAG, liveData.toString())
-        liveDataIsSignIn.value = false
     }
 
 

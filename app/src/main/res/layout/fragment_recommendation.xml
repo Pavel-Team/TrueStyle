@@ -48,15 +48,14 @@
             <TextView
                 android:id="@+id/quote"
                 style="@style/quoteTextViewStile"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_quote"
+                android:paddingStart="@dimen/margin_quote_x2"
                 android:layout_marginTop="@dimen/margin_quote_top"
                 android:layout_marginEnd="@dimen/margin_quote"
                 android:hint="@string/example_quote"
                 android:text="@{viewModel.liveDataQuote.quote}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_app" />
 
             <View
@@ -64,7 +63,7 @@
                 android:layout_height="@dimen/height_quote_line"
                 android:layout_marginTop="@dimen/margin_top_view_quote"
                 android:background="@drawable/quote_line"
-                app:layout_constraintBottom_toBottomOf="@id/quote"
+                app:layout_constraintTop_toBottomOf="@id/quote"
                 app:layout_constraintEnd_toEndOf="@id/quote" />
 
             <TextView
@@ -73,6 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.liveDataQuote.author}"
+                android:layout_marginTop="@dimen/margin_top_view_quote"
                 app:layout_constraintEnd_toEndOf="@id/quote"
                 app:layout_constraintTop_toBottomOf="@id/quote" />
 
