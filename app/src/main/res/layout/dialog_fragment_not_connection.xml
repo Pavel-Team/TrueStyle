@@ -22,10 +22,8 @@
         android:gravity="center"
         android:layout_margin="@dimen/margin_window"
         android:text="@string/not_connection"
-        android:textSize="20sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/margin_window"
-        android:layout_marginEnd="@dimen/margin_window"/>
+        android:textSize="@dimen/text_size_not_connection"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:id="@+id/button_retry"

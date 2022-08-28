@@ -62,13 +62,14 @@
                 android:layout_gravity="center_vertical">
 
                 <ImageView
+                    android:id="@+id/image_view_style"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/example_style_user"
                     android:contentDescription="@string/user_style"
 
-                    android:src="@drawable/example_style_user"/>
+                    android:src="@drawable/style_unknown_style"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -76,8 +77,8 @@
                 style="@style/textTextViewStyle.charactersTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.liveData.style ?? @string/hint_style_user}"
-                android:hint="@string/hint_style_user"
+                android:text="@{viewModel.liveData.style.name ?? @string/hint_style_user}"
+                tools:text = "@string/hint_style_user"
                 android:layout_marginStart="@dimen/margin_start_text_user_style"/>
 
         </LinearLayout>
@@ -130,12 +131,13 @@
                     android:text="@string/row_user_gender"
                     android:layout_weight="2"/>
                 <TextView
+                    android:id="@+id/gender_text_view"
                     style="@style/textTextViewStyle.charactersTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/value_user_table"
                     android:layout_weight="1"
-                    android:text="@{viewModel.liveData.gender ?? @string/value_user_table}"/>
+                    android:text='@{viewModel.liveData.gender.equals("Men") ? @string/man : (viewModel.liveData.gender.equals("Women") ? @string/woman : @string/value_user_table)}'/>
             </LinearLayout>
         </LinearLayout>
 

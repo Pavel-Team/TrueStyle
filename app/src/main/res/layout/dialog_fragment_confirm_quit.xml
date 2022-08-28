@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background_dialog_fragment"
+    android:padding="@dimen/padding_layout_dialog_fragment">
+
+    <ImageView
+        android:layout_width="@dimen/width_image_confirm_quit"
+        android:layout_height="@dimen/width_image_confirm_quit"
+        android:src="@drawable/ic_confirm_quit"
+        android:contentDescription="@string/quit"/>
+
+    <TextView
+        style="@style/textTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_new_version"
+        android:text="@string/confirm_quit"
+        android:layout_margin="@dimen/margin_window"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/button_confirm_quit"
+        style="@style/buttonStyle.LightBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/confirm"/>
+
+</LinearLayout>

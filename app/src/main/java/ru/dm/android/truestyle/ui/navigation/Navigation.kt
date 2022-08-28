@@ -5,6 +5,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
@@ -85,6 +86,7 @@ object Navigation{
         lastFragment = toFragment
         fragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.anim.to_fragment_open, R.anim.to_fragment_close)
             .replace(R.id.nav_host_fragment_activity_main, toFragment)
             .addToBackStack(null)
             .commit()
@@ -107,26 +109,48 @@ object Navigation{
                     R.id.navigation_profile -> { newFragment = ProfileFragment() }
                 }
                 if (newFragment != null) {
+                    lockMenu()
                     fragmentManager
                         .beginTransaction()
                         .replace(R.id.nav_host_fragment_activity_main, newFragment)
                         .addToBackStack(null)
                         .commit()
+                    unlockMenu()
                     lastFragment = newFragment
                 }
             } else {
                 //Последний фрагмент из стека
                 val fragmentFromStack = mapStackFragments.get(item.itemId)!!.pop()
+                lockMenu()
                 fragmentManager
                     .beginTransaction()
                     .replace(R.id.nav_host_fragment_activity_main, fragmentFromStack)
                     .addToBackStack(null)
                     .commit()
+                unlockMenu()
                 lastFragment = fragmentFromStack
             }
             lastMenuItem = item.itemId
         }
         return true
+    }
+
+
+    //Запрет на пользование меню
+    private fun lockMenu() {
+        navView.menu.getItem(0).isEnabled=false
+        navView.menu.getItem(1).isEnabled=false
+        navView.menu.getItem(2).isEnabled=false
+        navView.menu.getItem(3).isEnabled=false
+    }
+
+
+    //Разрешение на использование меню
+    private fun unlockMenu() {
+        navView.menu.getItem(0).isEnabled=true
+        navView.menu.getItem(1).isEnabled=true
+        navView.menu.getItem(2).isEnabled=true
+        navView.menu.getItem(3).isEnabled=true
     }
 
 
@@ -156,6 +180,7 @@ object Navigation{
             val lastFragment = mapStackFragments.get(lastMenuItem)!!.pop()
             fragmentManager
                 .beginTransaction()
+                .setCustomAnimations(R.anim.back_fragment_open, R.anim.back_fragment_close)
                 .replace(R.id.nav_host_fragment_activity_main, lastFragment)
                 .commit()
             this.lastFragment = lastFragment

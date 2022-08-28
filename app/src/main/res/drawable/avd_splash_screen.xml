@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_vector_splash_screen">
+
+    <target
+        android:animation="@animator/ss_rotate_s"
+        android:name="s"/>
+
+    <target
+        android:animation="@animator/ss_rotate_left_t"
+        android:name="t_l"/>
+
+    <target
+        android:animation="@animator/ss_rotate_right_t"
+        android:name="t_r"/>
+
+</animated-vector>

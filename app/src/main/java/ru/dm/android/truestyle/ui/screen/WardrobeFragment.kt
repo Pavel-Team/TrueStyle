@@ -70,14 +70,6 @@ class WardrobeFragment: Fragment() {
             }
         })
 
-        //Слушатель для кнопки добавить фото
-        binding.imageButtonAddClothes.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                val fragmentTo = ClothesSearchFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-            }
-        })
-
         return root
     }
 
@@ -86,12 +78,6 @@ class WardrobeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         wardrobeViewModel.liveData.observe(viewLifecycleOwner, Observer {
-            //Проверка на пустоту
-            if (it.size == 0)
-                binding.textViewEmptyWardrobe.visibility = View.VISIBLE
-            else
-                binding.textViewEmptyWardrobe.visibility = View.GONE
-
             Log.d(TAG, wardrobeViewModel.liveData.value.toString())
             adapterWardrobeClothes.submitList(wardrobeViewModel.liveData.value!!)
         })

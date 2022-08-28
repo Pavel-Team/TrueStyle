@@ -8,9 +8,11 @@ import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.util.Constants
@@ -51,9 +53,16 @@ fun loadImage(view: ImageView, url: String?) {
 
         Log.d("Recom", fullUrl)
 
+        val indicatorLoading = CircularProgressDrawable(view.context)
+        indicatorLoading.centerRadius = 40f
+        indicatorLoading.strokeWidth = 8f
+        indicatorLoading.alpha = 90
+        //indicatorLoading.setColorSchemeColors(view.context.getColor(R.color.light_blue))
+        indicatorLoading.start()
+
         Glide.with(view.context)
             .load(glideUrl)
-            .placeholder(R.drawable.example_clothes)
+            .placeholder(indicatorLoading)
             .into(view)
     }
 }

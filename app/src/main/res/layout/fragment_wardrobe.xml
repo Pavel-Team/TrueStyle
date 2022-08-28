@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="ru.dm.android.truestyle.viewmodel.WardrobeViewModel" />
@@ -25,19 +26,6 @@
             android:scaleType="centerCrop"
             android:background="@null"
             android:contentDescription="@string/back" />
-
-        <ImageButton
-            android:id="@+id/image_button_add_clothes"
-            android:layout_width="@dimen/width_ic_back"
-            android:layout_height="@dimen/width_ic_back"
-            android:src="@drawable/ic_plus"
-            app:layout_constraintTop_toTopOf="@id/title_season"
-            app:layout_constraintBottom_toBottomOf="@id/title_season"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/margin_ic_back"
-            android:scaleType="centerCrop"
-            android:background="@null"
-            android:contentDescription="@string/button_make_photo" />
 
         <TextView
             android:id="@+id/title_season"
@@ -72,7 +60,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/empty_list"
-            android:visibility="gone"/>
+            android:visibility="@{viewModel.liveData.size() == 0 ? View.VISIBLE : View.GONE}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

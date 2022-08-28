@@ -29,6 +29,7 @@
             android:layout_marginBottom="@dimen/margin_bottom_edit_text_password_login_fragment"
             android:inputType="textPassword"
             android:hint="@string/password"
+            android:maxLength="255"
             android:text="@={viewModel.liveData.password}"/>
 
         <TextView
@@ -54,6 +55,7 @@
             android:layout_marginStart="@dimen/margin_start_password_edit_text"
             android:layout_marginEnd="@dimen/margin_start_password_edit_text"
             android:hint="@string/login_hint"
+            android:maxLength="34"
             android:text="@={viewModel.liveData.email}"/>
 
         <Button

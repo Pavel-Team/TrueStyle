@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="width_icon_splash_screen">150dp</dimen>
+    <dimen name="width_icon_splash_screen">200dp</dimen>
 
     <dimen name="margin_window">16dp</dimen>
 
@@ -58,6 +58,7 @@
 
     <dimen name="width_image_not_connect">200dp</dimen>
     <dimen name="margin_bottom_image_no_connect">100dp</dimen>
+    <dimen name="text_size_not_connection">20sp</dimen>
 
     <dimen name="text_size_recommended_article">28sp</dimen>
     <dimen name="width_circle_article">10dp</dimen>
@@ -138,4 +139,15 @@
     <dimen name="text_size_info_technical_support">18sp</dimen>
     <dimen name="margin_start_info_technical_support">5.7dp</dimen>
     <dimen name="width_icon_technical_support">24dp</dimen>
+
+    <dimen name="padding_layout_dialog_fragment">24dp</dimen>
+    <dimen name="margin_bottom_title_edit_info_user">20dp</dimen>
+    <dimen name="margin_top_button_edit_info_user">10dp</dimen>
+
+    <dimen name="padding_unselected_user_style_in_spinner">10dp</dimen>
+
+    <dimen name="width_image_new_version">150dp</dimen>
+    <dimen name="text_size_new_version">18sp</dimen>
+
+    <dimen name="width_image_confirm_quit">100dp</dimen>
 </resources>

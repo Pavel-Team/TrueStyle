@@ -219,13 +219,12 @@ class ClothesSearchFragment : Fragment() {
 
 
     // Определяем класс модели
-    //!!! Мега костыль для машинок, скоро постараюсь испарить
+    // МЕГА КОСТЫЛЬ ДЛЯ МАШИНОК - СКОРО ПОПЫТАЮСЬ ИСПРАВИТЬ
     private fun runObjectDetection(bitmap: Bitmap):List<Int> {
 //        val modelsFirstPart:Map<String, Int> = mapOf("model_class" to 143, "model_color" to 47, "model_gender" to 5)
 //        val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5, "model_subCategory" to 45)
         val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5)
         var dataClothes: ArrayList<Int> = ArrayList<Int>()
-
 
         dataClothes.add(getResultDetection(bitmap, "model_class", 143, 56))
         dataClothes.add(0)

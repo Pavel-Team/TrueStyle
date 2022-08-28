@@ -3,6 +3,7 @@ package ru.dm.android.truestyle.repository
 import android.util.Log
 import ru.dm.android.truestyle.api.Networking
 import ru.dm.android.truestyle.api.request.SettingRequest
+import ru.dm.android.truestyle.api.response.StyleUser
 import ru.dm.android.truestyle.api.response.User
 
 private const val TAG = "ProfileRepository"
@@ -24,16 +25,24 @@ object ProfileRepository{
     }
 
 
+    //Получение списка всех стилей
+    suspend fun getStyles(token: String): List<StyleUser> {
+        val styles = networking.api.getStyles(token).body().orEmpty()
+        return styles
+    }
+
+
     //Получение стиля пользователя
-    suspend fun getUserStyle(token: String): String? {
+    suspend fun getUserStyle(token: String): StyleUser? {
         val styleUser = networking.api.getUserStyle(token).body()
-        return styleUser?.name
+        return styleUser
     }
 
 
     //Установка стиля пользователя
-    suspend fun setUserStyle(token: String, id: Long) {
-        //...
+    suspend fun setUserStyle(token: String, id: Long): Boolean {
+        val response = networking.api.setUserStyle(token, id).isSuccessful
+        return response
     }
 
 
@@ -49,6 +58,13 @@ object ProfileRepository{
             SettingRequest(fullNumber, idGender, country, photoUrl)
         ).isSuccessful
         
+        return isSuccess
+    }
+
+
+    //Установка нового имени пользователя
+    suspend fun setNewUsername(token: String, username: String): Boolean {
+        val isSuccess = networking.api.setUsername(token, username).isSuccessful
         return isSuccess
     }
 }

@@ -36,6 +36,7 @@
             app:layout_constraintTop_toBottomOf="@id/title_registration"
             android:text="@={viewModel.liveData.username}"
             android:layout_marginTop="@dimen/margin_top_edit_text_username"
+            android:maxLength="34"
             android:hint="@string/username"/>
 
         <TextView
@@ -73,6 +74,7 @@
             app:layout_constraintTop_toBottomOf="@id/edit_text_username"
             android:text="@={viewModel.liveData.email}"
             android:layout_marginTop="@dimen/margin_top_edit_text_email"
+            android:maxLength="255"
             android:hint="@string/email"
             android:inputType="textEmailAddress"/>
 
@@ -101,7 +103,8 @@
             android:layout_marginStart="@dimen/margin_start_hint_edit_text_registration"
             android:layout_marginTop="@dimen/margin_top_error_edit_text_registration"
             android:textColor="@color/red"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:maxLines="2"/>
 
         <EditText
             android:id="@+id/edit_text_password"
@@ -111,6 +114,7 @@
             app:layout_constraintTop_toBottomOf="@id/edit_text_email"
             android:text="@={viewModel.liveData.password}"
             android:layout_marginTop="@dimen/margin_top_edit_text_email"
+            android:maxLength="255"
             android:hint="@string/password"
             android:inputType="textPassword"/>
 

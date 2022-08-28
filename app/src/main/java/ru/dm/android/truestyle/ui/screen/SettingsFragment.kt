@@ -15,6 +15,9 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentSettingsBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
+import ru.dm.android.truestyle.ui.dialog.ConfirmQuitDialogFragment
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.EditUsernameDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.SettingsViewModel
@@ -56,11 +59,9 @@ class SettingsFragment: Fragment() {
         //Слушатель на кнопку "Выйти"
         binding.imageButtonQuit.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                settingsViewModel.quit()
-
-                val fragmentTo = LoginFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
-                navigation.initNewState()
+                ConfirmQuitDialogFragment().apply {
+                    show(this@SettingsFragment.parentFragmentManager, ConstantsDialog.DIALOG_CONFIRM_QUIT)
+                }
             }
         })
 
@@ -86,7 +87,9 @@ class SettingsFragment: Fragment() {
         //Слушатель кнопки "Оценить"
         binding.estimate.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
-                //...
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(Constants.LINK_IN_PLAY_MARKET)
+                startActivity(intent)
             }
         })
 

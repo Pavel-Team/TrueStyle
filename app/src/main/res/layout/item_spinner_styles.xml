@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_unselected_user_style_in_spinner"
+    android:paddingEnd="@dimen/padding_end_user_style">
+
+    <TextView
+        android:id="@+id/text_view_user_style"
+        style="@style/textTextViewStyle.charactersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.liveData.style ?? @string/hint_style_user}"
+        android:hint="@string/hint_style_user"
+        android:layout_marginStart="@dimen/margin_start_text_user_style"/>
+
+</LinearLayout>

@@ -85,7 +85,7 @@
     <string name="button_retry_dialog_fragment">Обновить</string>
 
     <string name="password">Пароль</string>
-    <string name="login_hint">Имя пользователя</string>
+    <string name="login_hint">Имя пользователя или email</string>
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="forgot_password">Забыли пароль? <b>Войти</b></string>
@@ -96,17 +96,17 @@
     <string name="empty_recommendation">Ничего не найдено</string>
 
     <string name="username">Имя пользователя</string>
-    <string name="email">E-mail адресс</string>
+    <string name="email">E-mail адрес</string>
     <string name="hint_password">В целях безопасности, Ваш пароль должен состоять не менее чем из 6 символов (буквы латинского алфавита, цифры и знаки \'_!?\')</string>
-    <string name="strong_password_0">Incorrect</string>
-    <string name="strong_password_1">Weak</string>
-    <string name="strong_password_2">Medium</string>
-    <string name="strong_password_3">Strong</string>
-    <string name="strong_password_4">Very strong</string>
+    <string name="strong_password_0">Некорректный</string>
+    <string name="strong_password_1">Слабый</string>
+    <string name="strong_password_2">Средний</string>
+    <string name="strong_password_3">Сильный</string>
+    <string name="strong_password_4">Очень сильный</string>
     <string name="error_username">Такое имя уже используется</string>
-    <string name="error_email">Некорректный E-mail адресс/Такой E-mail уже используется</string>
+    <string name="error_email">Некорректный E-mail адрес/Такой E-mail уже используется</string>
     <string name="register">Зарегистрироваться</string>
-    <string name="has_account">Уже зарегестрированы? <b>Войти</b></string>
+    <string name="has_account">Уже зарегистрированы? <b>Войти</b></string>
 
     <string name="edit_profile">Редактирование профиля</string>
     <string name="gender">Пол</string>
@@ -117,11 +117,38 @@
     <string name="edit">Изменить</string>
 
     <string name="empty_list">Пусто</string>
+    <string name="empty_search">Ничего не найдено</string>
 
     <string name="technical_support">Техподдержка</string>
     <string name="contact_us">Свяжитесь с нами!</string>
     <string name="email_copy">Email скопирован</string>
     <string name="vk_copy">VK скопирован</string>
     <string name="tg_copy">Telegram скопирован</string>
+
+    <string name="change_username">Изменить имя</string>
+    <string name="apply">Применить</string>
+
+    <string name="edit_user_info">Редактирование профиля</string>
+
+    <string name="edit_user_style">Изменить стиль</string>
+    <string name="title_style">Стиль</string>
+
+    <string name="update_app">Обновить</string>
+    <string name="is_necessary_update"><b>Вышло крутое обновление!</b> Пожалуйста, обновите приложение!\nМы стараемся сделать удобнее использование нашего продукта для Вас!</string>
+    <string name="is_not_necessary_update"><b>Вышло крутое обновление!</b> Желаете обновить приложение?</string>
+
+    <string name="confirm_quit">Выйти из аккаунта?</string>
+    <string name="confirm">Да</string>
+
+    <string name="password_recovery">Сброс пароля</string>
+    <string name="hint_password_recovery">Пожалуйста, введите адрес электронной почты учетной записи, пароль которой вы хотите восстановить. Мы отправим письмо на этот адрес электронной почты.</string>
+    <string name="error_email_reset_password">Пользователь с таким email не найден</string>
+    <string name="send_a_letter">Отправить письмо</string>
+    <string name="token">Токен</string>
+    <string name="hint_token">Введите токен, полученный на почте</string>
+    <string name="error_token">Некорректный токен</string>
+    <string name="change_password">Сменить пароль</string>
+    <string name="password_changed_successfully">Пароль успешно сменен!</string>
+    <string name="to_main">На главную</string>
 
 </resources>
