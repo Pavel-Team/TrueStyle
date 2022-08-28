@@ -2,9 +2,11 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -22,19 +24,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import org.tensorflow.lite.Interpreter
+import org.pytorch.IValue
+import org.pytorch.Tensor
+import org.pytorch.Module
+import org.pytorch.torchvision.TensorImageUtils
 import ru.dm.android.truestyle.R
-import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesSearchBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ClothesSearchViewModel
-import java.io.File
-import java.io.FileInputStream
-import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import java.io.*
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
+
 
 private const val TAG = "ClothesSearchFragment"
 private const val FILE_NAME = "temporaryPhoto.jpg" //Название временно сохраненного файла
@@ -49,8 +50,14 @@ class ClothesSearchFragment : Fragment() {
 
     private lateinit var photoFile: File //Файл с выбранной фотографией
     private lateinit var photoUri: Uri   //URI файла
-    protected var tflite: Interpreter? = null
     private var isFirstObserve = true
+
+    // Classifier
+    val IMG_SIZE: Int = 224
+//    val IMAGENET_CLASSES = arrayOf("fire", "nofire")
+    val mean = floatArrayOf(0.485f, 0.456f, 0.406f)
+    val std = floatArrayOf(0.229f, 0.224f, 0.225f)
+    lateinit var model: Module
 
     private val navigation = Navigation
 
@@ -80,9 +87,11 @@ class ClothesSearchFragment : Fragment() {
                 Log.d(TAG, "end decode file")
 
                 Log.d(TAG, "start analyze photo")
-                val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
+                val dataClothes:Int = runObjectDetection(bitmap) // Передаем объект изображения для классификации
+//                Log.d(TAG, "res:" +dataClothes.toString())
                 Log.d(TAG, "end analyze photo")
                 clothesSearchViewModel.findClothes(dataClothes)
+
 
                 //Наш файл для передачи лежит в photoFile
                 //...отправка на сервер
@@ -100,7 +109,8 @@ class ClothesSearchFragment : Fragment() {
                 val inputStream  = context?.contentResolver?.openInputStream(result.data!!.data!!)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
                 Log.d(TAG, "start analyze photo")
-                val dataClothes:List<Int> = runObjectDetection(bitmap) // Передаем объект изображения для классификации
+                val dataClothes:Int = runObjectDetection(bitmap) // Передаем объект изображения для классификации
+
                 Log.d(TAG, "end analyze photo")
                 clothesSearchViewModel.findClothes(dataClothes)
             }
@@ -219,68 +229,76 @@ class ClothesSearchFragment : Fragment() {
 
 
     // Определяем класс модели
-    // МЕГА КОСТЫЛЬ ДЛЯ МАШИНОК - СКОРО ПОПЫТАЮСЬ ИСПРАВИТЬ
-    private fun runObjectDetection(bitmap: Bitmap):List<Int> {
-//        val modelsFirstPart:Map<String, Int> = mapOf("model_class" to 143, "model_color" to 47, "model_gender" to 5)
-//        val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5, "model_subCategory" to 45)
-        val modelsSecondPart:Map<String, Int> = mapOf("model_masterCategory" to 7, "model_season" to 5)
-        var dataClothes: ArrayList<Int> = ArrayList<Int>()
-
-        dataClothes.add(getResultDetection(bitmap, "model_class", 143, 56))
-        dataClothes.add(0)
-        dataClothes.add(getResultDetection(bitmap, "model_gender", 5, 56))
-//        // Прогоняем все модели
-//        for ((model, value) in modelsFirstPart){
-//            dataClothes.add(getResultDetection(bitmap, model, value, 56))
-//        }
-        for ((model, value) in modelsSecondPart){
-            dataClothes.add(getResultDetection(bitmap, model, value, 28))
-        }
-        dataClothes.add(0)
-//        Log.d(TAG, "-----")
-//        for (i in 0 until 6){
-//            Log.d(TAG,  dataClothes[i].toString())
-//        }
-        return dataClothes;
-    }
-
-    // Получение результата для одной модели
-    private fun getResultDetection(bitmap:Bitmap, model:String, value:Int, sizeImage: Int): Int{
+    private fun runObjectDetection(bitmap: Bitmap): Int {
+//        dataClothes.add(getResultDetection(bitmap, "model_class.pt", 143, 254))
         //TODO: Add object detection code here
+        var result:Int = 0
         try {
-            tflite = activity?.let { loadModelFile(it, model + ".tflite")?.let { Interpreter(it) } }
-            val out = arrayOf(FloatArray(value))
-            tflite!!.run(convertBitmapToByteBuffer(bitmap, sizeImage), out)
-            val result: Int = out[0].indices.maxByOrNull { out[0][it] } ?: -1 ;
+//            Log.e(TAG, "path:" + this.context?.let { assetFilePath(it, "article_tye.pt") })
+            this.model = Module.load(this.context?.let { assetFilePath(it, "article_type.pt") })
+            val out: Int
+            result = predict(bitmap)
             return result;
         } catch (e: IOException) {
             e.printStackTrace()
             Log.e(TAG, "гг")
         }
+
         return 0; // Это прям херня, нужно будет исправить потом
     }
 
-    // Оптимизация изображения для модели
-    private fun convertBitmapToByteBuffer(bp: Bitmap, sizeImage: Int): ByteBuffer? {
-        val imgData: ByteBuffer = ByteBuffer.allocateDirect(java.lang.Float.BYTES * sizeImage * sizeImage * 3)
-        imgData.order(ByteOrder.nativeOrder())
-        val bitmap = Bitmap.createScaledBitmap(bp, sizeImage, sizeImage, true)
-        val intValues = IntArray(sizeImage * sizeImage)
+    // приведение размера картинки и конвертация ее в тензор
+    fun preprocess(bitmap: Bitmap, size: Int): Tensor {
+        var bitmap = bitmap
+        bitmap = Bitmap.createScaledBitmap(bitmap, size, size, false)
+        return TensorImageUtils.bitmapToFloat32Tensor(bitmap, mean, std)
+    }
 
-        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-
-        // Convert the image to floating point.
-        var pixel = 0
-        for (i in 0 until sizeImage) {
-            for (j in 0 until sizeImage) {
-                val `val` = intValues[pixel++]
-                imgData.putFloat((`val` shr 16 and 0xFF) / 255f)
-                imgData.putFloat((`val` shr 8 and 0xFF) / 255f)
-                imgData.putFloat((`val` and 0xFF) / 255f)
+    // найти номер максимального элемента в массиве
+    fun argMax(inputs: FloatArray): Int {
+        var maxIndex = -1
+        var maxvalue = -10000000.0f
+        for (i in inputs.indices) {
+            if (inputs[i] > maxvalue) {
+                maxIndex = i
+                maxvalue = inputs[i]
             }
         }
-        return imgData
+        return maxIndex
     }
+
+    // использование НС
+    fun predict(bitmap: Bitmap): Int {
+        val tensor = preprocess(bitmap, IMG_SIZE)
+        val inputs = IValue.from(tensor)
+        val outputs = model.forward(inputs).toTensor()
+        val scores = outputs.dataAsFloatArray
+        val classIndex = argMax(scores)
+        return classIndex
+    }
+
+
+//    // Оптимизация изображения для модели
+//    private fun convertBitmapToByteBuffer(bp: Bitmap, sizeImage: Int): ByteBuffer? {
+//        val imgData: ByteBuffer = ByteBuffer.allocateDirect(java.lang.Float.BYTES * sizeImage * sizeImage * 3)
+//        imgData.order(ByteOrder.nativeOrder())
+//        val bitmap = Bitmap.createScaledBitmap(bp, sizeImage, sizeImage, true)
+//        val intValues = IntArray(sizeImage * sizeImage)
+//
+//        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+//
+//        // Convert the image to floating point.
+//        var pixel = 0
+//        for (i in 0 until sizeImage) {
+//            for (j in 0 until sizeImage) {
+//                val `val` = intValues[pixel++]
+//                imgData.putFloat((`val` shr 16 and 0xFF) / 255f)
+//                imgData.putFloat((`val` shr 8 and 0xFF) / 255f)
+//                imgData.putFloat((`val` and 0xFF) / 255f)
+//            }
+//        }
+//        return imgData
+//    }
 
 
     //Memory-map the model file in Assets.
@@ -293,5 +311,33 @@ class ClothesSearchFragment : Fragment() {
         val startOffset = fileDescriptor.startOffset
         val declaredLength = fileDescriptor.declaredLength
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+    }
+
+    fun assetFilePath(context: Context, asset: String): String {
+        val file = File(context.filesDir, asset)
+
+        try {
+            val inpStream: InputStream = context.assets.open(asset)
+            try {
+                val outStream = FileOutputStream(file, false)
+                val buffer = ByteArray(4 * 1024)
+                var read: Int
+
+                while (true) {
+                    read = inpStream.read(buffer)
+                    if (read == -1) {
+                        break
+                    }
+                    outStream.write(buffer, 0, read)
+                }
+                outStream.flush()
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
+            return file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return ""
     }
 }

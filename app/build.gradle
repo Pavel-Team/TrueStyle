@@ -85,7 +85,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
 
     // ML
-    implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation 'org.pytorch:pytorch_android:1.8.0'
+    implementation 'org.pytorch:pytorch_android_torchvision:1.8.0'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
