@@ -17,7 +17,7 @@ object StuffRepository{
 
 
     //Получение похожей одежды
-    suspend fun findClothes(stuffData: List<Int>, token: String): List<Stuff> {
+    suspend fun findClothes(stuffData: Int, token: String): List<Stuff> {
         val list = networking.api.getCvStuff(stuffData, token)
         Log.d(TAG, list.message())
         Log.d(TAG, list.code().toString())

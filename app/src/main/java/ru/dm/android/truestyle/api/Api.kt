@@ -98,7 +98,7 @@ interface Api {
 
     //API поиска одежды
     @POST("clothes/get/cv")
-    suspend fun getCvStuff(@Body stuffData: List<Int>,
+    suspend fun getCvStuff(@Body stuffData: Int,
                            @Header("Authorization") token: String): Response<List<Stuff>>
 
 }

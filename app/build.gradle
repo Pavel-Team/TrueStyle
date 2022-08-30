@@ -10,6 +10,13 @@ plugins {
 
 android {
     compileSdk 32
+//
+//    packagingOptions {
+//        pickFirst 'lib/x86/libc++_shared.so'
+//        pickFirst 'lib/x86_64/libc++_shared.so'
+//        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+//        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+//    }
 
     defaultConfig {
         applicationId "ru.dm.android.truestyle"
@@ -86,11 +93,14 @@ dependencies {
     //implementation 'jp.wasabeef:glide-transformations:4.3.0' //Для размытия
 
     // ML
-    implementation 'org.tensorflow:tensorflow-lite:+'
+//    implementation 'org.pytorch:pytorch_android:1.8.0'
+//    implementation 'org.pytorch:pytorch_android_torchvision:1.8.0'
+//    org.gradle.jvmargs=-Xmx4608m
+    implementation 'org.pytorch:pytorch_android_lite:1.12.2'
+    implementation 'org.pytorch:pytorch_android_torchvision_lite:1.12.2'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
-
 }
