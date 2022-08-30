@@ -25,8 +25,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import org.pytorch.IValue
-import org.pytorch.Tensor
+import org.pytorch.LiteModuleLoader
 import org.pytorch.Module
+import org.pytorch.Tensor
 import org.pytorch.torchvision.TensorImageUtils
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentClothesSearchBinding
@@ -235,7 +236,7 @@ class ClothesSearchFragment : Fragment() {
         var result:Int = 0
         try {
 //            Log.e(TAG, "path:" + this.context?.let { assetFilePath(it, "article_tye.pt") })
-            this.model = Module.load(this.context?.let { assetFilePath(it, "article_type.pt") })
+            this.model = LiteModuleLoader.load(this.context?.let { assetFilePath(it, "article_type.ptl") })
             val out: Int
             result = predict(bitmap)
             return result;
@@ -257,7 +258,7 @@ class ClothesSearchFragment : Fragment() {
     // найти номер максимального элемента в массиве
     fun argMax(inputs: FloatArray): Int {
         var maxIndex = -1
-        var maxvalue = -10000000.0f
+        var maxvalue = -1000000000.0f
         for (i in inputs.indices) {
             if (inputs[i] > maxvalue) {
                 maxIndex = i
