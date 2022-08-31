@@ -96,8 +96,8 @@ dependencies {
 //    implementation 'org.pytorch:pytorch_android:1.8.0'
 //    implementation 'org.pytorch:pytorch_android_torchvision:1.8.0'
 //    org.gradle.jvmargs=-Xmx4608m
-    implementation 'org.pytorch:pytorch_android_lite:1.12.2'
-    implementation 'org.pytorch:pytorch_android_torchvision_lite:1.12.2'
+    implementation 'org.pytorch:pytorch_android:1.12.2'
+    implementation 'org.pytorch:pytorch_android_torchvision:1.12.2'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
