@@ -25,7 +25,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import org.pytorch.IValue
-import org.pytorch.LiteModuleLoader
 import org.pytorch.Module
 import org.pytorch.Tensor
 import org.pytorch.torchvision.TensorImageUtils
@@ -236,7 +235,7 @@ class ClothesSearchFragment : Fragment() {
         var result:Int = 0
         try {
 //            Log.e(TAG, "path:" + this.context?.let { assetFilePath(it, "article_tye.pt") })
-            this.model = LiteModuleLoader.load(this.context?.let { assetFilePath(it, "article_type.ptl") })
+            this.model = Module.load(this.context?.let { assetFilePath(it, "article_type.pt") })
             val out: Int
             result = predict(bitmap)
             return result;
