@@ -3,6 +3,8 @@ package ru.dm.android.truestyle.ui.screen
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -175,6 +177,14 @@ class RegistrationFragment: Fragment() {
         })
 
 
+        //Слушатель кнопки "Показать пароль"
+        binding.imageViewShowPassword.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                registrationViewModel.liveDataIsShowPassword.value = !registrationViewModel.liveDataIsShowPassword.value!!
+            }
+        })
+
+
         //Слушатель на кнопку регистрации
         binding.buttonRegister.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
@@ -222,6 +232,14 @@ class RegistrationFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        registrationViewModel.liveDataIsShowPassword.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
+                binding.editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+        })
 
         registrationViewModel.liveDataIsCorrectUsername.observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "update username update")

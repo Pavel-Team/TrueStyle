@@ -21,6 +21,7 @@ class LoginViewModel  constructor(application: Application): AndroidViewModel(ap
 
     var liveData: MutableLiveData<Login> = MutableLiveData(Login())
     var liveDataIsSignIn: MutableLiveData<Boolean> = MutableLiveData(false)
+    var liveDataIsShowPassword: MutableLiveData<Boolean> = MutableLiveData(false)
 
     init {
         Log.d(TAG, "init")

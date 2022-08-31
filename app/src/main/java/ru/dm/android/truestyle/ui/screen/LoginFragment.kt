@@ -2,6 +2,8 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +50,13 @@ class LoginFragment : Fragment(){
         binding.lifecycleOwner = this@LoginFragment
         binding.viewModel = loginViewModel
 
+        //Слушатель кнопки "Показать пароль"
+        binding.imageViewShowPassword.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                loginViewModel.liveDataIsShowPassword.value = !loginViewModel.liveDataIsShowPassword.value!!
+            }
+        })
+
         //Слушатель кнопки регистрация
         binding.buttonSignUp.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View?) {
@@ -93,6 +102,14 @@ class LoginFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isFirstOpen = true
+
+        loginViewModel.liveDataIsShowPassword.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
+                binding.editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+        })
 
         loginViewModel.liveDataIsSignIn.observe(viewLifecycleOwner, Observer {
             if (it) {

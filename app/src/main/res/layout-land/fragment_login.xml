@@ -62,6 +62,17 @@
                 android:maxLength="255"
                 android:text="@={viewModel.liveData.password}"/>
 
+            <ImageView
+                android:id="@+id/image_view_show_password"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@id/edit_text_password"
+                app:layout_constraintBottom_toBottomOf="@id/edit_text_password"
+                app:layout_constraintEnd_toEndOf="@id/edit_text_password"
+                android:src="@{viewModel.liveDataIsShowPassword ? @drawable/ic_not_show_password : @drawable/ic_show_password}"
+                android:layout_marginEnd="@dimen/margin_end_show_password"
+                android:background="@null"/>
+
             <Button
                 android:id="@+id/button_sign_in"
                 style="@style/buttonStyle.LightBlue"

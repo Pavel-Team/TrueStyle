@@ -18,6 +18,7 @@ class SetNewPasswordViewModel : ViewModel() {
     var isCorrectNewPassword = false
 
     var liveDataIsSuccessfulChangePassword: MutableLiveData<Boolean> = MutableLiveData(false)
+    var liveDataIsShowPassword: MutableLiveData<Boolean> = MutableLiveData(false)
 
 
     //Функция установки нового пароля

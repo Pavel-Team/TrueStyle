@@ -27,6 +27,7 @@ class RegistrationViewModel  constructor(application: Application) : AndroidView
     var liveDataIsCorrectUsername: MutableLiveData<Boolean> = MutableLiveData(false)
     var liveDataIsCorrectEmail: MutableLiveData<Boolean> = MutableLiveData(false)
     var liveDataIsCorrectPassword: MutableLiveData<Boolean> = MutableLiveData(false)
+    var liveDataIsShowPassword: MutableLiveData<Boolean> = MutableLiveData(false)
 
 
     init {

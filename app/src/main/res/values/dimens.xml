@@ -89,6 +89,7 @@
     <dimen name="margin_bottom_edit_text_password_login_fragment">20dp</dimen>
     <dimen name="radius_black_line">5dp</dimen>
     <dimen name="margin_start_password_edit_text">42dp</dimen>
+    <dimen name="margin_end_show_password">5dp</dimen>
     <dimen name="text_size_app_name_in_login_fragment">39sp</dimen>
     <dimen name="margin_top_sign_in">47dp</dimen>
     <dimen name="text_size_button_sign">20sp</dimen>
