@@ -313,6 +313,7 @@ class ClothesSearchFragment : Fragment() {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
     }
 
+    // Загрузка модели
     fun assetFilePath(context: Context, asset: String): String {
         val file = File(context.filesDir, asset)
 
