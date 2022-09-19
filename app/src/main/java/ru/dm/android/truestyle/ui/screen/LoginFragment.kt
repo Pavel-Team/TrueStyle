@@ -95,6 +95,14 @@ class LoginFragment : Fragment(){
             }
         })
 
+        //Слушатель текста с политикой конфидециальности
+        binding.textViewPrivacyPolicy.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                val fragmentTo = PrivacyPolicyFragment()
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+            }
+        })
+
         return root
     }
 
