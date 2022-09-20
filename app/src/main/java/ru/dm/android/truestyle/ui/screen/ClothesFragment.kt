@@ -74,13 +74,7 @@ class ClothesFragment : Fragment() {
             //После рассчета берем высоту
             binding.root.post(object : Runnable {
                 override fun run() {
-                    var height = 0
-                    if (container != null) {
-                        height = container.height
-                        binding.imageViewClothes.layoutParams = ViewGroup.LayoutParams(height, height)
-                        return
-                    }
-                    height = view!!.height
+                    val height = binding.scrollViewClothes.getChildAt(0).measuredHeight
                     binding.imageViewClothes.layoutParams = ViewGroup.LayoutParams(height, height)
                 }
             })

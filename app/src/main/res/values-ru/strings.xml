@@ -20,6 +20,7 @@
     <string name="image_clothes">Изображение одежды</string>
 
     <string name="button_add_to_wardrobe">Добавить в гардероб</string>
+    <string name="button_where_buy">Где купить?</string>
     <string name="button_delete_from_wardrobe">Удалить из гардероба</string>
     <string name="row_characters_title">Название</string>
     <string name="row_characters_color">Цвет</string>

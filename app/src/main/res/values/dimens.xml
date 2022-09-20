@@ -40,6 +40,7 @@
     <dimen name="radius_button">10dp</dimen>
     <dimen name="row_characters_line_height">1dp</dimen>
     <dimen name="radius_table_characters">16dp</dimen>
+    <dimen name="margin_top_button_where_buy">8dp</dimen>
 
     <dimen name="margin_image_clothes_search">56dp</dimen>
     <dimen name="margin_start_buttons_search_clothes">24dp</dimen>

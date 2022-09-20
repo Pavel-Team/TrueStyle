@@ -9,6 +9,7 @@
     </data>
 
     <ScrollView
+        android:id="@+id/scroll_view_clothes"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white">
 
-            <!-- ЧТО ТО СДЕЛАТЬ С HEIGHT-->
+            <!-- ЧТО ТО СДЕЛАТЬ С WIDTH-->
             <ImageView
                 android:id="@+id/image_view_clothes"
                 imageUrl="@{viewModel.liveData.imageUrl}"
@@ -26,7 +27,7 @@
                 android:contentDescription="@string/image_clothes"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/characteristics_table"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <ImageButton
@@ -97,28 +98,6 @@
                         android:layout_weight="1"
                         android:hint="@string/row_characters_example_value"
                         android:text="@{viewModel.liveData.masterCategory}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/rowCharactersLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:text="@string/row_characters_subcategory" />
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.subCategory}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -243,9 +222,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_window"
                 android:text="@string/button_add_to_wardrobe"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/characteristics_table"
                 app:layout_constraintStart_toStartOf="@id/characteristics_table"
                 app:layout_constraintTop_toBottomOf="@id/characteristics_table"/>
+
+            <Button
+                android:id="@+id/button_where_buy"
+                style="@style/buttonStyle.white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/margin_top_button_where_buy"
+                android:text="@string/button_where_buy"
+                app:layout_constraintEnd_toEndOf="@id/characteristics_table"
+                app:layout_constraintStart_toStartOf="@id/characteristics_table"
+                app:layout_constraintTop_toBottomOf="@id/button_add_wardrobe"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
