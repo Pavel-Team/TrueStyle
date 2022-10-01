@@ -72,6 +72,12 @@
         <item name="android:background">@drawable/bottom_gray_line</item>
     </style>
 
+    <!--Стиль для собственного Spinner-->
+    <style name="spinnerStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/abc_spinner_mtrl_am_alpha</item>
+        <item name="android:backgroundTint">@color/strong_gray</item>
+    </style>
+
     <style name="textTextViewStyle.charactersTextView.settingTextView">
         <item name="android:layout_marginStart">@dimen/margin_start_end_row_characters</item>
         <item name="android:layout_marginEnd">@dimen/margin_start_end_row_characters</item>
@@ -141,6 +147,36 @@
         <item name="fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">14sp</item>
         <item name="android:padding">@dimen/padding_edit_text</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_edit_text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+    <style name="editTextStyle.Table">
+        <item name="android:background">@drawable/background_layout_characteristics</item>
+        <item name="android:textColorHint">@color/light_gray_2</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingStart">@dimen/padding_edit_text</item>
+        <item name="android:paddingEnd">@dimen/padding_edit_text</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_edit_text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+    <style name="autoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:background">@drawable/background_layout_characteristics</item>
+        <item name="android:textColorHint">@color/light_gray_2</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingStart">@dimen/padding_edit_text</item>
+        <item name="android:paddingEnd">@dimen/padding_edit_text</item>
         <item name="android:textCursorDrawable">@drawable/cursor_edit_text</item>
         <item name="android:maxLines">1</item>
         <item name="android:inputType">text</item>

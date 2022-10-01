@@ -10,4 +10,5 @@ object ConstantsDialog {
     const val DIALOG_NEW_VERSION = "DIALOG_NEW_VERSION"         //Диалоговое окно с доступным обновлением
     const val DIALOG_CONFIRM_QUIT = "DIALOG_CONFIRM_QUIT"       //Диалоговое окно с подтверждением выхода из аккаунта
     const val DIALOG_SUCCESSFUL_RESET_PASSWORD = "DIALOG_SUCCESSFUL_RESET_PASSWORD" //Диалоговое окно об успешной смене пароля
+    const val DIALOG_LOAD_PHOTO = "DIALOG_LOAD_PHOTO"           //Диалоговое окно с выбором загрузки фото (из камеры или из галереи)
 }

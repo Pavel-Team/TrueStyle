@@ -17,7 +17,7 @@ private const val TAG = "ClothesSearchViewModel"
 
 class ClothesSearchViewModel  constructor(application: Application): AndroidViewModel(application) {
 
-    var liveData: MutableLiveData<List<Stuff>> = MutableLiveData()
+    var liveData: MutableLiveData<List<Stuff>> = MutableLiveData(listOf())
     private val stuffRepository = StuffRepository
 
     //Получение рекомендованной одежды

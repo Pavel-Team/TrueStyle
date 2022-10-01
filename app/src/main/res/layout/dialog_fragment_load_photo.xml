@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_dialog_fragment"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_layout_dialog_fragment">
+
+    <TextView
+        style="@style/titleTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/load_photo_with"
+        android:textSize="@dimen/text_size_load_photo_with"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_top_button_edit_info_user"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:id="@+id/layout_make_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/margin_bottom_title_edit_info_user">
+
+            <ImageView
+                android:layout_width="@dimen/width_ic_make_photo"
+                android:layout_height="@dimen/width_ic_make_photo"
+                android:layout_gravity="center"
+                android:contentDescription="@string/button_make_photo"
+                android:src="@drawable/ic_photomaker"
+                android:background="@null"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                style="@style/textTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/camera"
+                android:layout_gravity="center"
+                android:textSize="@dimen/text_size_make_photo"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_load_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/margin_bottom_title_edit_info_user">
+
+            <ImageView
+                android:layout_width="@dimen/width_ic_make_photo"
+                android:layout_height="@dimen/width_ic_make_photo"
+                android:layout_gravity="center"
+                android:contentDescription="@string/button_load_photo"
+                android:src="@drawable/ic_gallery"
+                android:background="@null"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                style="@style/textTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gallery"
+                android:layout_gravity="center"
+                android:textSize="@dimen/text_size_make_photo"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

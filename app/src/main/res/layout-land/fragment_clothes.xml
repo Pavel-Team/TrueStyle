@@ -11,7 +11,8 @@
     <ScrollView
         android:id="@+id/scroll_view_clothes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -111,28 +112,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:text="@string/row_characters_color" />
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.baseColor}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/rowCharactersLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
                         android:text="@string/row_characters_season" />
 
                     <TextView
@@ -142,50 +121,6 @@
                         android:layout_weight="1"
                         android:hint="@string/row_characters_example_value"
                         android:text="@{viewModel.liveData.season}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/rowCharactersLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:text="@string/row_characters_gender" />
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.gender.name}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/rowCharactersLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:text="@string/row_characters_usage" />
-
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.usage}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -202,7 +137,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:text="@string/row_characters_type" />
+                        android:text="@string/row_characters_gender" />
 
                     <TextView
                         style="@style/textTextViewStyle.charactersTextView"
@@ -210,7 +145,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.articleType}" />
+                        android:text="@{viewModel.liveData.gender.name}" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -235,8 +170,7 @@
                 android:text="@string/button_where_buy"
                 app:layout_constraintEnd_toEndOf="@id/characteristics_table"
                 app:layout_constraintStart_toStartOf="@id/characteristics_table"
-                app:layout_constraintTop_toBottomOf="@id/button_add_wardrobe"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/button_add_wardrobe" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

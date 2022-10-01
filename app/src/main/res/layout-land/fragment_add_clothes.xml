@@ -6,30 +6,44 @@
 
         <variable
             name="viewModel"
-            type="ru.dm.android.truestyle.viewmodel.ClothesViewModel" />
+            type="ru.dm.android.truestyle.viewmodel.AddClothesViewModel" />
     </data>
 
     <ScrollView
         android:id="@+id/scroll_view_clothes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
 
-            <!-- ЧТО ТО СДЕЛАТЬ С HEIGHT-->
+            <!-- ЧТО ТО СДЕЛАТЬ С WIDTH-->
             <ImageView
                 android:id="@+id/image_view_clothes"
-                imageUrl="@{viewModel.liveData.imageUrl}"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_width="400dp"
+                android:layout_height="0dp"
                 android:contentDescription="@string/image_clothes"
                 android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/characteristics_table"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_view_add"
+                style="@style/titleAppTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/image_view_clothes"
+                app:layout_constraintTop_toTopOf="@id/image_button_back"
+                app:layout_constraintBottom_toBottomOf="@id/image_button_back"
+                android:layout_marginEnd="@dimen/margin_window"
+                android:background="@drawable/white_rounded_rectangle"
+                android:paddingHorizontal="@dimen/padding_vertical_text_add_clothes"
+                android:textSize="@dimen/text_size_add_clothes"
+                android:text="@string/add"/>
 
             <ImageButton
                 android:id="@+id/image_button_back"
@@ -46,7 +60,7 @@
 
             <LinearLayout
                 android:id="@+id/characteristics_table"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_window"
                 android:background="@drawable/background_layout_characteristics"
@@ -54,8 +68,8 @@
                 android:paddingTop="@dimen/characters_table_padding_top_bottom"
                 android:paddingBottom="@dimen/characters_table_padding_top_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_view_clothes">
+                app:layout_constraintStart_toEndOf="@id/image_view_clothes"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     style="@style/rowCharactersLinearLayout"
@@ -64,19 +78,22 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/text_view_title"
                         style="@style/textTextViewStyle.charactersTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:text="@string/row_characters_title" />
+                        android:text="@string/row_characters_title"
+                        android:gravity="center_vertical"/>
 
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
+                    <EditText
+                        android:id="@+id/edit_text_title"
+                        style="@style/editTextStyle.Table"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.productDisplayName}" />
+                        android:text="@={viewModel.liveData.titleStuff}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -86,19 +103,22 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/text_view_category"
                         style="@style/textTextViewStyle.charactersTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:text="@string/row_characters_category" />
+                        android:text="@string/row_characters_category"
+                        android:gravity="center_vertical"/>
 
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
+                    <AutoCompleteTextView
+                        android:id="@+id/auto_complete_text_view_category"
+                        style="@style/autoCompleteTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.masterCategory}" />
+                        android:text="@={viewModel.liveData.categoryStuff}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,19 +128,20 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/text_view_season"
                         style="@style/textTextViewStyle.charactersTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:text="@string/row_characters_season" />
+                        android:text="@string/row_characters_season"
+                        android:gravity="center_vertical"/>
 
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
+                    <Spinner
+                        android:id="@+id/spinner_season"
+                        style="@style/spinnerStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.season}" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -133,19 +154,20 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/text_view_gender"
                         style="@style/textTextViewStyle.charactersTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:text="@string/row_characters_gender" />
+                        android:text="@string/row_characters_gender"
+                        android:gravity="center_vertical"/>
 
-                    <TextView
-                        style="@style/textTextViewStyle.charactersTextView"
+                    <Spinner
+                        android:id="@+id/spinner_gender"
+                        style="@style/spinnerStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.gender.name}" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -153,25 +175,13 @@
             <Button
                 android:id="@+id/button_add_wardrobe"
                 style="@style/buttonStyle.LightBlue"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_window"
                 android:text="@string/button_add_to_wardrobe"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/characteristics_table"
+                app:layout_constraintStart_toStartOf="@id/characteristics_table"
                 app:layout_constraintTop_toBottomOf="@id/characteristics_table" />
-
-            <Button
-                android:id="@+id/button_where_buy"
-                style="@style/buttonStyle.white"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/margin_top_button_where_buy"
-                android:text="@string/button_where_buy"
-                app:layout_constraintEnd_toEndOf="@id/button_add_wardrobe"
-                app:layout_constraintStart_toStartOf="@id/button_add_wardrobe"
-                app:layout_constraintTop_toBottomOf="@id/button_add_wardrobe"
-                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

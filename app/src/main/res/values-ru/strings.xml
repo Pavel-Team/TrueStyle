@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string-array name="seasons">
+        <item>Зима</item>
+        <item>Весна</item>
+        <item>Лето</item>
+        <item>Осень</item>
+        <item>Межсезонье</item>
+        <item>Выберите</item>
+    </string-array>
+
+    <string-array name="genders">
+        <item>Мужской</item>
+        <item>Женский</item>
+        <item>Выберите</item>
+    </string-array>
+
+
     <string name="title_recommendation">Рекомендации</string>
     <string name="title_clothes_search">Поиск по фото</string>
     <string name="title_articles">Статьи</string>
@@ -35,7 +52,10 @@
     <string name="toast_clothes_deleted">Удалено из гардероба</string>
 
     <string name="descriprion_image_clothes_search">Сделай фото - найди одежду</string>
-    <string name="button_load_photo">Выбрать</string>
+    <string name="button_add_to_wardrobe_clothes_search">Добавить</string>
+    <string name="button_find_similar">Найти похожее</string>
+
+    <string name="button_load_photo">Выбрать из галереи</string>
     <string name="button_make_photo">Сделать фото</string>
 
     <string name="settings">Настройки</string>
@@ -151,5 +171,11 @@
     <string name="change_password">Сменить пароль</string>
     <string name="password_changed_successfully">Пароль успешно сменен!</string>
     <string name="to_main">На главную</string>
+
+    <string name="incorrect_fields">Поля заполнены некорректно</string>
+
+    <string name="load_photo_with">Загрузить фото с помощью</string>
+    <string name="camera">Камеры</string>
+    <string name="gallery">Галереи</string>
 
 </resources>

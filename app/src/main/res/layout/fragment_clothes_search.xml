@@ -34,29 +34,29 @@
 
         <Button
             style="@style/buttonStyle.white"
-            android:id="@+id/button_load_photo"
+            android:id="@+id/button_find_similar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_make_photo"
-            android:text="@string/button_load_photo"
+            app:layout_constraintEnd_toStartOf="@id/button_add_wardrobe"
+            android:text="@string/button_find_similar"
             android:layout_marginBottom="@dimen/margin_start_buttons_search_clothes"
             android:layout_marginEnd="@dimen/margin_between_buttons_search_clothes"
-            android:layout_marginStart="@dimen/margin_horizontal_buttons_search_clothes"/>
+            android:layout_marginStart="@dimen/margin_horizontal_buttons_search_clothes" />
 
         <Button
             style="@style/buttonStyle.LightBlue"
-            android:id="@+id/button_make_photo"
+            android:id="@+id/button_add_wardrobe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/button_load_photo"
-            android:text="@string/button_make_photo"
+            app:layout_constraintStart_toEndOf="@id/button_find_similar"
+            android:text="@string/button_add_to_wardrobe_clothes_search"
             android:layout_marginBottom="@dimen/margin_start_buttons_search_clothes"
             android:layout_marginEnd="@dimen/margin_horizontal_buttons_search_clothes"
-            android:layout_marginStart="@dimen/margin_between_buttons_search_clothes"/>
+            android:layout_marginStart="@dimen/margin_between_buttons_search_clothes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

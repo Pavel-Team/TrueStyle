@@ -15,7 +15,7 @@ import ru.dm.android.truestyle.viewmodel.PrivacyPolicyViewModel
 
 class PrivacyPolicyFragment : Fragment() {
 
-    private lateinit var viewwModel: PrivacyPolicyViewModel
+    private lateinit var viewModel: PrivacyPolicyViewModel
     private var _binding: FragmentPrivacyPolicyBinding? = null
     private val binding get() = _binding!!
 
@@ -25,7 +25,7 @@ class PrivacyPolicyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewwModel = ViewModelProvider(this).get(PrivacyPolicyViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PrivacyPolicyViewModel::class.java)
 
         _binding = FragmentPrivacyPolicyBinding.inflate(inflater, container, false)
         binding.webViewPrivacyPolicy.webChromeClient = object : WebChromeClient() { //webChromeClient - для обработки событий
@@ -49,8 +49,8 @@ class PrivacyPolicyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Загрузилась статья - показываем её
-        viewwModel.liveDataHtmlPrivacyPolicy.observe(viewLifecycleOwner, Observer {
+        //Загрузилась инфа - показываем её
+        viewModel.liveDataHtmlPrivacyPolicy.observe(viewLifecycleOwner, Observer {
             binding.webViewPrivacyPolicy.loadDataWithBaseURL(null, it, "text/html", "en_US", null)
         })
 

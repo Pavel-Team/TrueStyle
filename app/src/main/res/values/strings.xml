@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">True Style</string>
 
-    <string name="soon_update">Will be available in the next update!</string>
+    <array name="array_languages">
+        <item>Русский</item>
+        <item>English</item>
+    </array>
 
     <string-array name="countries" formatted="false" translatable="false">
         <item>Afghanistan</item>
@@ -232,6 +235,24 @@
         <item>Åland Islands</item>
     </string-array>
 
+    <string-array name="seasons">
+        <item>Winter</item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Autumn</item>
+        <item>Inter-seasonal</item>
+        <item>Choose</item>
+    </string-array>
+
+    <string-array name="genders">
+        <item>Man</item>
+        <item>Woman</item>
+        <item>Choose</item>
+    </string-array>
+
+
+    <string name="soon_update">Will be available in the next update!</string>
+
     <string name="title_recommendation">Recommendation</string>
     <string name="title_clothes_search">Search</string>
     <string name="title_articles">Articles</string>
@@ -264,7 +285,10 @@
 
     <string name="title_search_clothes">Search</string>
     <string name="descriprion_image_clothes_search">Make photo - find clothes</string>
-    <string name="button_load_photo">Select</string>
+    <string name="button_add_to_wardrobe_clothes_search">Add to wardrobe</string>
+    <string name="button_find_similar">Find similar</string>
+    
+    <string name="button_load_photo">Select from Gallery</string>
     <string name="button_make_photo">Make photo</string>
 
     <string name="settings">Settings</string>
@@ -282,6 +306,8 @@
     <string name="title_summer">Summer</string>
     <string name="title_winter">Winter</string>
     <string name="title_spring">Spring</string>
+
+    <string name="add">add</string>
 
     <string name="not_connection">Not connection</string>
     <string name="error_server">Technical work. \nRe-apply later</string>
@@ -312,11 +338,6 @@
     <string name="row_settings_push">Push</string>
     <string name="soon">Soon</string>
     <string name="quit">Quit</string>
-
-    <array name="array_languages">
-        <item>Русский</item>
-        <item>English</item>
-    </array>
 
     <string name="hint_setting">Setting</string>
 
@@ -398,5 +419,11 @@
     <string name="change_password">Change password</string>
     <string name="password_changed_successfully">Password changed successfully!</string>
     <string name="to_main">To main</string>
+
+    <string name="incorrect_fields">Fields filled out incorrectly</string>
+
+    <string name="load_photo_with">Load photo with</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
 </resources>

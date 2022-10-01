@@ -42,6 +42,9 @@
     <dimen name="radius_table_characters">16dp</dimen>
     <dimen name="margin_top_button_where_buy">8dp</dimen>
 
+    <dimen name="text_size_add_clothes">20sp</dimen>
+    <dimen name="padding_vertical_text_add_clothes">4dp</dimen>
+
     <dimen name="margin_image_clothes_search">56dp</dimen>
     <dimen name="margin_start_buttons_search_clothes">24dp</dimen>
     <dimen name="margin_between_buttons_search_clothes">8dp</dimen>
@@ -155,4 +158,8 @@
     <dimen name="text_size_new_version">18sp</dimen>
 
     <dimen name="width_image_confirm_quit">100dp</dimen>
+
+    <dimen name="width_ic_make_photo">100dp</dimen>
+    <dimen name="text_size_make_photo">16sp</dimen>
+    <dimen name="text_size_load_photo_with">18sp</dimen>
 </resources>
