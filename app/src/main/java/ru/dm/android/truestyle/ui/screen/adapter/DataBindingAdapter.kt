@@ -66,3 +66,32 @@ fun loadImage(view: ImageView, url: String?) {
             .into(view)
     }
 }
+
+
+@BindingAdapter("imageUrlClothes")
+fun loadImageClothes(view: ImageView, url: String?) {
+    if (!url.isNullOrEmpty()) {
+        val fullUrl = Constants.URL + "wardrobe/img" + url.toString()
+
+        val glideUrl = GlideUrl(
+            fullUrl,
+            LazyHeaders.Builder()
+                .addHeader("Authorization", Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(view.context))
+                .build()
+        )
+
+        Log.d("Recom", fullUrl)
+
+        val indicatorLoading = CircularProgressDrawable(view.context)
+        indicatorLoading.centerRadius = 40f
+        indicatorLoading.strokeWidth = 8f
+        indicatorLoading.alpha = 90
+        //indicatorLoading.setColorSchemeColors(view.context.getColor(R.color.light_blue))
+        indicatorLoading.start()
+
+        Glide.with(view.context)
+            .load(glideUrl)
+            .placeholder(indicatorLoading)
+            .into(view)
+    }
+}

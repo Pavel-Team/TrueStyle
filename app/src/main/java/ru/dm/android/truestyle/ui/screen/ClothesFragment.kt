@@ -1,10 +1,11 @@
 package ru.dm.android.truestyle.ui.screen
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +17,8 @@ import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
-import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.viewmodel.ClothesViewModel
+
 
 private const val TAG = "ClothesFragment"
 private const val ARG_CLOTHES = "clothes" //Константа для получения аргументов из Bundle
@@ -87,6 +88,21 @@ class ClothesFragment : Fragment() {
             }
         })
 
+        //Слушатель на кнопку "Где купить"
+        binding.buttonWhereBuy.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                if (clothesViewModel.liveData.value?.storeLink != null) {
+                    val browserIntent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(clothesViewModel.liveData.value!!.storeLink)
+                    )
+                    startActivity(browserIntent)
+                } else {
+                    Toast.makeText(requireContext(), R.string.not_link, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
         return root
     }
 
@@ -103,9 +119,20 @@ class ClothesFragment : Fragment() {
                 //Листенер для кнопки "Удалить из гардероба"
                 binding.buttonAddWardrobe.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(view: View?) {
-                        clothesViewModel.deleteClothesFromWardrobe()
-                        clothesViewModel.liveDataHasInWardrobe.value = false
-                        Toast.makeText(requireContext(), R.string.toast_clothes_deleted, Toast.LENGTH_SHORT).show()
+
+                        if (clothes!!.storeLink != "") {
+                            clothesViewModel.deleteClothesFromWardrobe()
+                            clothesViewModel.liveDataHasInWardrobe.value = false
+                        } else {
+                            clothesViewModel.deleteUserStuffFromWardrobe()
+                            activity?.onBackPressed()
+                        }
+
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.toast_clothes_deleted,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 })
             } else {

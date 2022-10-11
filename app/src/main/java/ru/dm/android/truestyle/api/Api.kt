@@ -1,12 +1,11 @@
 package ru.dm.android.truestyle.api
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
-import ru.dm.android.truestyle.api.request.LoginRequest
-import ru.dm.android.truestyle.api.request.MlRequest
-import ru.dm.android.truestyle.api.request.NewPasswordRequest
-import ru.dm.android.truestyle.api.request.SettingRequest
+import ru.dm.android.truestyle.api.request.*
 import ru.dm.android.truestyle.api.response.*
 import ru.dm.android.truestyle.model.Registration
 
@@ -82,23 +81,39 @@ interface Api {
     //API гардероба
     @GET("wardrobe/{season}")
     suspend fun getUserClothesBySeason(@Header("Authorization") token: String,
-                                       @Path("season") season: String): Response<List<Stuff>>
+                                       @Path("season") season: String): Response<WardrobeResponse>
 
-    @POST("wardrobe/add")
+    @POST("wardrobe/add/shopstuff")
     suspend fun addClothesInWardrobe(@Header("Authorization") token: String,
-                                     @Query("id_stuff") id: Long): Response<TextMessage>
+                                     @Query("id") id: Long): Response<TextMessage>
 
-    @POST("wardrobe/delete")
+//    @Multipart
+//    @POST("wardrobe/add/userstuff")
+//    suspend fun addUserStuff(@Part stuffInfo: MultipartBody.Part,
+//                             @Part img: MultipartBody.Part,
+//                             @Header("Authorization") token: String) : Response<TextMessage>
+
+    @Multipart
+    @POST("wardrobe/add/userstuff")
+    suspend fun addUserStuff(@Part("info") stuffInfo: RequestBody,
+                             @Part img: MultipartBody.Part,
+                             @Header("Authorization") token: String) : Response<TextMessage>
+
+    @POST("wardrobe/delete/shopstuff")
     suspend fun deleteClothesInWardrobe(@Header("Authorization") token: String,
-                                        @Query("id_stuff") id: Long): Response<TextMessage>
+                                        @Query("id") id: Long): Response<TextMessage>
 
-    @GET("wardrobe/check")
+    @POST("wardrobe/delete/userstuff")
+    suspend fun deleteUserStuff(@Header("Authorization") token: String,
+                                @Query("id") id: Long): Response<TextMessage>
+
+    @GET("wardrobe/check/{type}")
     suspend fun checkClothesInWardrobe(@Header("Authorization") token: String,
+                                       @Path("type") type: String,
                                        @Query("id") id: Long): Response<TextMessage>
 
     //API поиска одежды
     @POST("clothes/get/cv")
-    suspend fun getCvStuff(@Body stuffData: Int,
+    suspend fun getCvStuff(@Body stuffData: ShopStuffCVData,
                            @Header("Authorization") token: String): Response<List<Stuff>>
-
 }

@@ -10,11 +10,11 @@ object Constants {
     const val LINK_IN_PLAY_MARKET = "https://play.google.com/store/apps/details?id=yio.tro.antiyoy.android&hl=ru&gl=US"
 
     //Константы для названия сезона в БД на сервере
-    const val SEASON_SUMMER = "Summer"
-    const val SEASON_WINTER = "Winter"
-    const val SEASON_SPRING = "Spring"
-    const val SEASON_AUTUMN = "Fall"
-    const val SEASON_NAN = "NaN"
+    const val SEASON_SUMMER = "лето"
+    const val SEASON_WINTER = "зима"
+    const val SEASON_SPRING = "весна"
+    const val SEASON_AUTUMN = "осень"
+    const val SEASON_NAN = "демисезон"
 
     //Константы пола
     const val GENDER_MAN = "Men"
@@ -25,4 +25,7 @@ object Constants {
 
     //Константы для валидации
     val REGEX_EMAIL = Regex("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+
+    //Константы для работы с файловой системой
+    val FILE_NAME = "temporaryPhoto.jpg"
 }

@@ -32,6 +32,7 @@ import ru.dm.android.truestyle.databinding.DialogFragmentLoadPhotoBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.AddClothesFragment
 import ru.dm.android.truestyle.ui.screen.GetRecommendationFragment
+import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.ClothesSearchViewModel
 import java.io.*
 import java.nio.MappedByteBuffer
@@ -40,7 +41,6 @@ import java.nio.channels.FileChannel
 private const val TAG = "LoadPhotoDialogFragment"
 private const val ARG_IS_ADD_TO_WARDROBE = "IS_ADD_TO_WARDROBE" //Аргумент, передаваемый в диалоговое окно, говорящий, нужно ли открывать окно с добавлением одежды в гардероб
 
-private const val FILE_NAME = "temporaryPhoto.jpg" //Название временно сохраненного файла
 private const val FILE_PROVIDER = "ru.dm.android.truestyle.fileprovider" //Путь до хранилища file-provider'а (указан в манифесте)
 
 
@@ -95,7 +95,7 @@ class LoadPhotoDialogFragment : DialogFragment() {
                 Log.d(TAG, "end decode file")
 
                 Log.d(TAG, "start analyze photo")
-                val dataClothes:Int = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
+                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
 //                Log.d(TAG, "res:" +dataClothes.toString())
                 Log.d(TAG, "end analyze photo")
                 viewModel.findClothes(dataClothes)
@@ -109,7 +109,7 @@ class LoadPhotoDialogFragment : DialogFragment() {
 
                 //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
                 if (isAddToWardrobe!!) {
-                    val fragmentTo = AddClothesFragment.newInstance(photoUri)
+                    val fragmentTo = AddClothesFragment.newInstance(photoUri, dataClothes)
                     navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
                     dismiss()
                 } else {
@@ -131,13 +131,13 @@ class LoadPhotoDialogFragment : DialogFragment() {
                 val inputStream  = context?.contentResolver?.openInputStream(result.data!!.data!!)
                 bitmapImage = BitmapFactory.decodeStream(inputStream)
                 Log.d(TAG, "start analyze photo")
-                val dataClothes:Int = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
+                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
 
                 Log.d(TAG, "end analyze photo")
 
                 //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
                 if (isAddToWardrobe!!) {
-                    val fragmentTo = AddClothesFragment.newInstance(result.data!!.data!!)
+                    val fragmentTo = AddClothesFragment.newInstance(result.data!!.data!!, dataClothes)
                     navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
                     dismiss()
                 } else {
@@ -217,7 +217,7 @@ class LoadPhotoDialogFragment : DialogFragment() {
 
         //Временный файл с фото
         val filesDir = context?.applicationContext?.filesDir
-        photoFile = File(filesDir, FILE_NAME)
+        photoFile = File(filesDir, Constants.FILE_NAME)
         photoUri = FileProvider.getUriForFile(requireActivity(),
             FILE_PROVIDER,
             photoFile)
@@ -263,22 +263,25 @@ class LoadPhotoDialogFragment : DialogFragment() {
 
 
     // Определяем класс модели
-    private fun runObjectDetection(bitmap: Bitmap): Int {
+    private fun runObjectDetection(bitmap: Bitmap): String {
 //        dataClothes.add(getResultDetection(bitmap, "model_class.pt", 143, 254))
         //TODO: Add object detection code here
-        var result:Int = 0
         try {
 //            Log.e(TAG, "path:" + this.context?.let { assetFilePath(it, "article_tye.pt") })
-            this.model = Module.load(this.context?.let { assetFilePath(it, "article_type.pt") })
+            Log.d(TAG, "runObjectDetection")
+            this.model = Module.load(this.context?.let { assetFilePath(it, "MobileNetV3_32class_v2.pt") })
             val out: Int
-            result = predict(bitmap)
-            return result;
+            var result = predict(bitmap)
+            val arrayCategories = resources.getStringArray(R.array.categories_stuff)
+            var resultCategory = arrayCategories[result]
+            Log.d(TAG, "result=$result")
+            return resultCategory;
         } catch (e: IOException) {
             e.printStackTrace()
             Log.e(TAG, "гг")
         }
 
-        return 0; // Это прям херня, нужно будет исправить потом
+        return ""; // Это прям херня, нужно будет исправить потом
     }
 
     // приведение размера картинки и конвертация ее в тензор
@@ -307,6 +310,7 @@ class LoadPhotoDialogFragment : DialogFragment() {
         val inputs = IValue.from(tensor)
         val outputs = model.forward(inputs).toTensor()
         val scores = outputs.dataAsFloatArray
+        Log.d(TAG, "scores=${scores}")
         val classIndex = argMax(scores)
         return classIndex
     }

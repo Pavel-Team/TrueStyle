@@ -27,7 +27,7 @@
                 android:scaleType="centerCrop"
                 tools:src="@drawable/example_clothes"
                 android:contentDescription="@string/image_clothes"
-                imageUrl="@{model.imageUrl}"/>
+                imageUrlClothes='@{model.imageUrl + "?type=shop"}'/>
 
         </androidx.cardview.widget.CardView>
 

@@ -2,6 +2,7 @@ package ru.dm.android.truestyle.viewmodel
 
 import android.app.Application
 import android.os.Build
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -40,6 +41,8 @@ class WardrobeViewModel  constructor(application: Application): AndroidViewModel
             res.getString(R.string.title_autumn) -> result = Constants.SEASON_AUTUMN
         }
 
+        Log.d(TAG, "result = $result")
+
         return result
     }
 
@@ -52,7 +55,9 @@ class WardrobeViewModel  constructor(application: Application): AndroidViewModel
             val season = getServerTitleSeason(liveDataTitleSeason.value!!)
             val listSeason = wardrobeRepository.getClothesBySeason(token, season)
             val listAllSeason = wardrobeRepository.getClothesBySeason(token, Constants.SEASON_NAN)
-            liveData.value = listOf(listSeason, listAllSeason).flatten().toMutableList()
+            liveData.value = listOf(listSeason!!.usersStuffs, listAllSeason!!.usersStuffs, listSeason.shopsStuffs, listAllSeason.shopsStuffs)
+                .flatten().toMutableList()
+            Log.d(TAG, liveData.value.toString())
         }
     }
 
@@ -63,6 +68,24 @@ class WardrobeViewModel  constructor(application: Application): AndroidViewModel
 
         viewModelScope.launch {
             val response = wardrobeRepository.deleteClothes(token, id)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                val newList = liveData.value?.toMutableList()
+                newList?.removeIf { it.id==id }
+                if (newList != null)
+                    liveData.value = newList!!
+                else
+                    liveData.value = mutableListOf()
+            }
+        }
+    }
+
+
+    //Удаление пользовательской одежды из гардероба
+    fun deleteUserStuffFromWardrobe(id: Long) {
+        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
+
+        viewModelScope.launch {
+            val response = wardrobeRepository.deleteUserStuff(token, id)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val newList = liveData.value?.toMutableList()
                 newList?.removeIf { it.id==id }

@@ -6,5 +6,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Gender(@SerializedName("id") val id: Long = 0,
-                  @SerializedName("gender_name") val name: String = "unknown") : Parcelable {
+                  @SerializedName("genderName") val name: String = "unknown") : Parcelable {
 }

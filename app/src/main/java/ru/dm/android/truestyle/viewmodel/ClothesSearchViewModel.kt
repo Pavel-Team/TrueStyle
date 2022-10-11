@@ -21,7 +21,7 @@ class ClothesSearchViewModel  constructor(application: Application): AndroidView
     private val stuffRepository = StuffRepository
 
     //Получение рекомендованной одежды
-    fun findClothes(stuffData: Int) {
+    fun findClothes(stuffData: String) {
         val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
 
         viewModelScope.async {

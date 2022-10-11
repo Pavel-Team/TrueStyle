@@ -3,6 +3,7 @@ package ru.dm.android.truestyle.ui.screen
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -13,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.net.toFile
@@ -20,6 +22,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Gender
+import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.*
 import ru.dm.android.truestyle.viewmodel.AddClothesViewModel
 import java.io.File
@@ -28,6 +32,7 @@ import java.lang.RuntimeException
 
 private const val TAG = "AddClothesFragment"
 private const val ARG_URI_PHOTO = "URI_PHOTO" //Bitmap изображения с прошлого фрагмента
+private const val ARG_CATEGORY = "CATEGORY"   //Определенная нейронной сетью категория
 
 
 class AddClothesFragment: Fragment() {
@@ -36,6 +41,7 @@ class AddClothesFragment: Fragment() {
     private val binding get() = _binding!!
 
     private var width = 0
+    private var category: String = "" //Категория, полученная из аргументов (определенная нейронкой)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +69,10 @@ class AddClothesFragment: Fragment() {
 
         //Получаем аргументы
         viewModel.uriImage = arguments?.get(ARG_URI_PHOTO) as Uri
+        category = arguments?.getString(ARG_CATEGORY, "")!!
+
+        viewModel.liveData.value!!.articleType = category
+        binding.autoCompleteTextViewCategory.setText(category)
 
         //Делаем высоту imageView равную ширине для вертикальной ориентации. Для горизонтальной - после создания элемента
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
@@ -98,7 +108,7 @@ class AddClothesFragment: Fragment() {
         //Слушатель на кнопку "Добавить в гардероб"
         binding.buttonAddWardrobe.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                onClickButtonAddWardrobe()
+                onClickButtonAddWardrobe(bitmap)
             }
         })
 
@@ -126,12 +136,8 @@ class AddClothesFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.liveDataArrayCategories.observe(viewLifecycleOwner, Observer {
-            initAutoCompleteTextViewCategory()
-        })
-
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
-            binding.autoCompleteTextViewCategory.setText(it.masterCategory)
+            binding.autoCompleteTextViewCategory.setText(it.articleType)
         })
     }
 
@@ -144,19 +150,20 @@ class AddClothesFragment: Fragment() {
 
     //Первоначальная инициализация всех полей с заполнением
     private fun initFields() {
+        initAutoCompleteTextViewCategory()
         initSpinnerSeason()
         initSpinnerGender()
-        //init category происходит в onViewCreated
     }
 
 
     //Первоначальная инициализация поля с категорией
     private fun initAutoCompleteTextViewCategory() {
+        val arrayCategories = resources.getStringArray(R.array.categories_stuff)
         val adapterCategory = ArrayAdapter<String>(
             requireContext(),
             R.layout.item_spinner_auto_complete_text_view,
             R.id.title_category,
-            viewModel.liveDataArrayCategories.value!!
+            arrayCategories
         )
         binding.autoCompleteTextViewCategory.setAdapter(adapterCategory)
         binding.autoCompleteTextViewCategory.threshold = 1
@@ -167,7 +174,7 @@ class AddClothesFragment: Fragment() {
                 //Выводим выпадающий список
                 binding.autoCompleteTextViewCategory.showDropDown()
             } else {
-                if (viewModel.liveDataArrayCategories.value!!.contains(binding.autoCompleteTextViewCategory.text.toString())) {
+                if (arrayCategories.contains(binding.autoCompleteTextViewCategory.text.toString())) {
                     binding.textViewCategory.setTextColor(resources.getColor(R.color.black))
                     viewModel.liveDataIsCorrectCategory.value = true
                 } else {
@@ -189,6 +196,18 @@ class AddClothesFragment: Fragment() {
         )
         binding.spinnerSeason.adapter = adapter
         binding.spinnerSeason.setSelection(arraySeasons.size-1)
+
+        binding.spinnerSeason.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                //Оповещаем viewModel
+                viewModel.liveData.value!!.season = binding.spinnerSeason.selectedItem.toString()
+                Log.d(TAG, viewModel.liveData.value!!.season)
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                //...
+            }
+        }
     }
 
 
@@ -202,6 +221,19 @@ class AddClothesFragment: Fragment() {
         )
         binding.spinnerGender.adapter = adapter
         binding.spinnerGender.setSelection(arraySeasons.size-1)
+
+        binding.spinnerGender.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                //Оповещаем viewModel
+                val genderTitle = binding.spinnerGender.selectedItem.toString()
+                viewModel.liveData.value!!.gender = viewModel.getServerGender(genderTitle)
+                Log.d(TAG, viewModel.liveData.value!!.gender.toString())
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                //...
+            }
+        }
     }
 
 
@@ -211,7 +243,7 @@ class AddClothesFragment: Fragment() {
         viewModel.liveDataIsCorrectTitle.value = binding.editTextTitle.text.isNotEmpty()
 
         //Категория
-        viewModel.liveDataIsCorrectCategory.value = viewModel.liveDataArrayCategories.value!!.contains(binding.autoCompleteTextViewCategory.text.toString())
+        viewModel.liveDataIsCorrectCategory.value = resources.getStringArray(R.array.categories_stuff).contains(binding.autoCompleteTextViewCategory.text.toString())
 
         //Сезон
         viewModel.liveDataIsCorrectSeason.value = binding.spinnerSeason.selectedItemId != resources.getStringArray(R.array.seasons).size.toLong() - 1
@@ -222,7 +254,7 @@ class AddClothesFragment: Fragment() {
 
 
     //Действия по нажатию на кнопку "Добавить в гардероб"
-    private fun onClickButtonAddWardrobe() {
+    private fun onClickButtonAddWardrobe(bitmap: Bitmap) {
         var isCorrectData = true //Корректны ли все данные
 
         //Проверяем корректность ввода полей
@@ -259,8 +291,10 @@ class AddClothesFragment: Fragment() {
 
         //Отправка на сервер
         if (isCorrectData) {
-            Toast.makeText(requireContext(), "good", Toast.LENGTH_SHORT).show()
-            //...Отправка на сервер
+            viewModel.addUserStuff(bitmap)
+            //По хорошему бы добавить анимацию и все дела
+            activity?.onBackPressed()
+            Toast.makeText(requireContext(), R.string.succes_load_photo, Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(requireContext(), resources.getString(R.string.incorrect_fields), Toast.LENGTH_SHORT).show()
         }
@@ -269,9 +303,10 @@ class AddClothesFragment: Fragment() {
 
 
     companion object {
-        fun newInstance(uri: Uri?) : AddClothesFragment {
+        fun newInstance(uri: Uri?, category: String) : AddClothesFragment {
             val args = Bundle().apply {
                 putParcelable(ARG_URI_PHOTO, uri)
+                putString(ARG_CATEGORY, category)
             }
             return AddClothesFragment().apply {
                 arguments = args

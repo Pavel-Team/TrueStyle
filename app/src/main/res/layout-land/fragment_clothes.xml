@@ -22,7 +22,7 @@
             <!-- ЧТО ТО СДЕЛАТЬ С WIDTH-->
             <ImageView
                 android:id="@+id/image_view_clothes"
-                imageUrl="@{viewModel.liveData.imageUrl}"
+                imageUrlClothes='@{viewModel.liveData.storeLink=="" ? viewModel.liveData.imageUrl + "?type=user": viewModel.liveData.imageUrl + "?type=shop"}'
                 android:layout_width="400dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/image_clothes"
@@ -98,7 +98,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="@string/row_characters_example_value"
-                        android:text="@{viewModel.liveData.masterCategory}" />
+                        android:text="@{viewModel.liveData.articleType}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,7 +170,8 @@
                 android:text="@string/button_where_buy"
                 app:layout_constraintEnd_toEndOf="@id/characteristics_table"
                 app:layout_constraintStart_toStartOf="@id/characteristics_table"
-                app:layout_constraintTop_toBottomOf="@id/button_add_wardrobe" />
+                app:layout_constraintTop_toBottomOf="@id/button_add_wardrobe"
+                android:visibility='@{viewModel.liveData.storeLink=="" ? View.GONE : View.VISIBLE}'/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

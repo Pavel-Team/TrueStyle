@@ -84,6 +84,14 @@ class WardrobeFragment: Fragment() {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume")
+        wardrobeViewModel.loadWardrobe()
+        adapterWardrobeClothes.submitList(wardrobeViewModel.liveData.value!!)
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -150,7 +158,10 @@ class WardrobeFragment: Fragment() {
             binding.imageViewDeleteWardrobe.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
                     Log.d(TAG, "onClick")
-                    wardrobeViewModel.deleteClothes(binding.model!!.id)
+                    if (binding.model!!.storeLink == "")
+                        wardrobeViewModel.deleteUserStuffFromWardrobe(binding.model!!.id)
+                    else
+                        wardrobeViewModel.deleteClothes(binding.model!!.id)
                 }
             })
         }

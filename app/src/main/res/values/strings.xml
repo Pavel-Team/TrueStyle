@@ -250,6 +250,41 @@
         <item>Choose</item>
     </string-array>
 
+    <string-array name="categories_stuff">
+        <item>Футболка</item>
+        <item>Брюки</item>
+        <item>Платье</item>
+        <item>Куртка/Парка/Пуховик</item>
+        <item>Шорты</item>
+        <item>Джемпер</item>
+        <item>Блуза</item>
+        <item>Джинсы</item>
+        <item>Юбка</item>
+        <item>Рубашка</item>
+        <item>Купальник</item>
+        <item>Рюкзак</item>
+        <item>Топ</item>
+        <item>Худи</item>
+        <item>Комбинезон</item>
+        <item>Майка</item>
+        <item>Жилет</item>
+        <item>Бюстгальтер</item>
+        <item>Свитер</item>
+        <item>Носки</item>
+        <item>Мешок</item>
+        <item>Шапка</item>
+        <item>Шуба</item>
+        <item>Халат</item>
+        <item>Пиджак</item>
+        <item>Перчатки</item>
+        <item>Бейсболка</item>
+        <item>Плавки</item>
+        <item>Сумка</item>
+        <item>Пальто</item>
+        <item>Ветровка</item>
+        <item>Тайтсы/Легинсы</item>
+    </string-array>
+
 
     <string name="soon_update">Will be available in the next update!</string>
 
@@ -282,6 +317,7 @@
     <string name="row_characters_example_value">value</string>
     <string name="toast_clothes_added">Clothes added in wardrobe</string>
     <string name="toast_clothes_deleted">Clothes deleted from wardrobe</string>
+    <string name="not_link">Link unavailable</string>
 
     <string name="title_search_clothes">Search</string>
     <string name="descriprion_image_clothes_search">Make photo - find clothes</string>
@@ -421,6 +457,7 @@
     <string name="to_main">To main</string>
 
     <string name="incorrect_fields">Fields filled out incorrectly</string>
+    <string name="succes_load_photo">The photo has been added to the wardrobe!</string>
 
     <string name="load_photo_with">Load photo with</string>
     <string name="camera">Camera</string>

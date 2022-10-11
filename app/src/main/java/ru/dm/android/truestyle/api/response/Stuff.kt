@@ -13,13 +13,11 @@ import ru.dm.android.truestyle.BR
 data class Stuff(@SerializedName("id") val id: Long = 0,
                  @SerializedName("productDisplayName") var productDisplayName: String = "",
                  @SerializedName("gender") var gender: Gender = Gender(),
-                 @SerializedName("masterCategory") var masterCategory: String = "",
-                 @SerializedName("subCategory") val subCategory: String = "",
-                 @SerializedName("articleType") val articleType: String = "",
+                 @SerializedName("articleType") var articleType: String = "",
                  @SerializedName("baseColor") val baseColor: String = "",
                  @SerializedName("season") var season: String = "",
-                 @SerializedName("usage") val usage: String = "",
-                 @SerializedName("imageUrl") val imageUrl: String = "") : BaseObservable(), Parcelable {
+                 @SerializedName("imageUrl") val imageUrl: String = "",
+                 @SerializedName("storeLink") val storeLink: String? = "") : BaseObservable(), Parcelable {
 
     @IgnoredOnParcel
     @get:Bindable
@@ -32,7 +30,7 @@ data class Stuff(@SerializedName("id") val id: Long = 0,
 
     @IgnoredOnParcel
     @get:Bindable
-    var categoryStuff: String = masterCategory
+    var categoryStuff: String = articleType
         set(value) {
             field = value
             notifyPropertyChanged(BR.categoryStuff)
