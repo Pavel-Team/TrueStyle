@@ -9,7 +9,7 @@ import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
 class ServerErrorInterceptor(private val fm: FragmentManager) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())
-        if (response.code() > 400) {
+        if (response.code() >= 500) {
             ErrorServerDialogFragment().apply {
                 show(fm, ConstantsDialog.DIALOG_ERROR_SERVER)
             }

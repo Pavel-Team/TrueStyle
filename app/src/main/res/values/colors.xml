@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background_color">#FFFFFFFF</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,10 +8,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_background_button">#FFFFFFFF</color>
     <color name="alpha_white">#BBFFFFFF</color>
     <color name="light_black">#3b3b3b</color>
     <color name="red">#FF4444</color>
     <color name="alpha_red">#80FF4444</color>
+    <color name="strong_black">#0A0A0A</color>
     
     <color name="blue">#0500F6</color>
     <color name="purple">#DF00AE</color>
