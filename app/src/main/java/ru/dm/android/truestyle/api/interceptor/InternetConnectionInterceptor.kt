@@ -1,8 +1,12 @@
-package ru.dm.android.truestyle.api
+package ru.dm.android.truestyle.api.interceptor
 
 import android.content.Context
+import android.util.Log
+import androidx.fragment.app.FragmentManager
 import okhttp3.*
 import ru.dm.android.truestyle.service.SystemService
+import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
+import ru.dm.android.truestyle.ui.dialog.ErrorServerDialogFragment
 
 class InternetConnectionInterceptor(private val context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -15,6 +19,7 @@ class InternetConnectionInterceptor(private val context: Context) : Interceptor 
                 .request(chain.request())
                 .build()
         }
-        return chain.proceed(chain.request())
+        val response = chain.proceed(chain.request())
+        return response
     }
 }

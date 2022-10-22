@@ -2,7 +2,6 @@
 package ru.dm.android.truestyle.ui.activity
 
 import android.content.Context
-import android.content.pm.ActivityInfo
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +13,16 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import ru.dm.android.truestyle.BuildConfig
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.ConnectionLiveData
+import ru.dm.android.truestyle.api.interceptor.InternetConnectionInterceptor
+import ru.dm.android.truestyle.api.Networking
+import ru.dm.android.truestyle.api.interceptor.ServerErrorInterceptor
 import ru.dm.android.truestyle.databinding.ActivityMainBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.preferences.LanguageContextWrapper
@@ -52,10 +58,23 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
 
+        //Добавляем интерсептор для сети
+        Networking.apply {
+            okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(InternetConnectionInterceptor(applicationContext))
+                .addInterceptor(ServerErrorInterceptor(supportFragmentManager))
+                .build()
+            retrofit = Retrofit.Builder()
+                .baseUrl(Constants.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build()
+            api = retrofit.create()
+        }
+
         val viewModel: MainActivityViewModel by viewModels()
 
         //ВРЕМЕННО
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if(!hasWifi(this)) {
             NotConnectionDialogFragment().apply {
                 show(supportFragmentManager, ConstantsDialog.DIALOG_NOT_CONNECTION)

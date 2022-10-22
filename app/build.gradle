@@ -27,8 +27,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        //Имя apk
-        project.ext.set("archivesBaseName", "True Style - " + defaultConfig.versionName)
+        archivesBaseName="True Style - ${defaultConfig.versionName}"
     }
 
     buildTypes {
@@ -38,8 +37,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug{
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

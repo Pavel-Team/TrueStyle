@@ -10,13 +10,4 @@ class PrivacyPolicyViewModel(application: Application): AndroidViewModel(applica
 
     val liveDataHtmlPrivacyPolicy: MutableLiveData<String> = MutableLiveData("")
 
-    init {
-        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
-
-        viewModelScope.launch {
-            //...Закачка html с политикой конфидециальности
-            liveDataHtmlPrivacyPolicy.value = "<b>Политика конфедициальности</b>"
-        }
-    }
-
 }

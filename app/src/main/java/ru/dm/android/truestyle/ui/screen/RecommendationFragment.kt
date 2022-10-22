@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -13,9 +14,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.dm.android.truestyle.R
+import ru.dm.android.truestyle.api.response.Advertisement
 import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentRecommendationBinding
+import ru.dm.android.truestyle.databinding.ItemPartnerBinding
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.adapter.ArticleRecommendationAdapter
@@ -130,11 +133,54 @@ class RecommendationFragment : Fragment() {
                 navigation.initNewState()
             }
         })
+
+        recommendationViewModel.liveDataPartners.observe(viewLifecycleOwner, Observer {
+            if (it.size != 0) {
+                updateViewFlipperWithPartners(it)
+            }
+        })
+    }
+
+
+    //Инициализация viewFlipper'а с партнерами
+    private fun updateViewFlipperWithPartners(listPartners: List<Advertisement>) {
+        val INTERVAL_FLIP = 5000 //Число мс необходимых для авто-флипа
+
+        //Заполнение партнерами
+        binding.viewFlipperPartners.removeAllViews()
+        listPartners.forEach {
+            Log.d(TAG, it.toString())
+            val bindingPartner = ItemPartnerBinding.inflate(layoutInflater, binding.viewFlipperPartners, false)
+            bindingPartner.model = it
+            binding.viewFlipperPartners.addView(bindingPartner.root)
+
+            bindingPartner.root.setOnClickListener(object: View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    val browserIntent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(it.shopUrl)
+                    )
+                    startActivity(browserIntent)
+                }
+            })
+        }
+
+        //Настройка авто-флипа
+        binding.viewFlipperPartners.flipInterval = INTERVAL_FLIP
+        setAnimationForViewFlipper()
+        binding.viewFlipperPartners.startFlipping()
+    }
+
+
+    private fun setAnimationForViewFlipper() {
+        binding.viewFlipperPartners.setInAnimation(requireContext(), R.anim.left_in)
+        binding.viewFlipperPartners.setOutAnimation(requireContext(), R.anim.left_out)
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
+        binding.viewFlipperPartners.stopFlipping()
         _binding = null
     }
 

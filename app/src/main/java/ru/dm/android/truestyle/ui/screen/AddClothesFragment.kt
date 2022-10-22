@@ -139,6 +139,21 @@ class AddClothesFragment: Fragment() {
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
             binding.autoCompleteTextViewCategory.setText(it.articleType)
         })
+
+        viewModel.liveDataCategories.observe(viewLifecycleOwner, Observer {
+            initAutoCompleteTextViewCategory()
+        })
+
+        viewModel.liveDataStatusAddStuff.observe(viewLifecycleOwner, Observer {
+            if (it.equals("Stuff ADDED")) {
+                activity?.onBackPressed()
+                Toast.makeText(requireContext(), R.string.succes_load_photo, Toast.LENGTH_SHORT).show()
+            } else if (it.equals("Stuff didn't add, because The wardrobe is limited to 110 items!")) {
+                Toast.makeText(requireContext(), R.string.limit_photo, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), R.string.error_load_user_stuff, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 
@@ -150,7 +165,7 @@ class AddClothesFragment: Fragment() {
 
     //Первоначальная инициализация всех полей с заполнением
     private fun initFields() {
-        initAutoCompleteTextViewCategory()
+        //initAutoCompleteTextViewCategory() вызывается после прихода списка категорий в onCreateView
         initSpinnerSeason()
         initSpinnerGender()
     }
@@ -158,12 +173,13 @@ class AddClothesFragment: Fragment() {
 
     //Первоначальная инициализация поля с категорией
     private fun initAutoCompleteTextViewCategory() {
-        val arrayCategories = resources.getStringArray(R.array.categories_stuff)
+        //val arrayCategories = resources.getStringArray(R.array.categories_stuff)
+        val listCategories = viewModel.liveDataCategories.value!!
         val adapterCategory = ArrayAdapter<String>(
             requireContext(),
             R.layout.item_spinner_auto_complete_text_view,
             R.id.title_category,
-            arrayCategories
+            listCategories
         )
         binding.autoCompleteTextViewCategory.setAdapter(adapterCategory)
         binding.autoCompleteTextViewCategory.threshold = 1
@@ -174,7 +190,7 @@ class AddClothesFragment: Fragment() {
                 //Выводим выпадающий список
                 binding.autoCompleteTextViewCategory.showDropDown()
             } else {
-                if (arrayCategories.contains(binding.autoCompleteTextViewCategory.text.toString())) {
+                if (listCategories.contains(binding.autoCompleteTextViewCategory.text.toString())) {
                     binding.textViewCategory.setTextColor(resources.getColor(R.color.black))
                     viewModel.liveDataIsCorrectCategory.value = true
                 } else {
@@ -292,9 +308,8 @@ class AddClothesFragment: Fragment() {
         //Отправка на сервер
         if (isCorrectData) {
             viewModel.addUserStuff(bitmap)
+            //Навигация происходит только после успешного добавления фото в onViewCreated()
             //По хорошему бы добавить анимацию и все дела
-            activity?.onBackPressed()
-            Toast.makeText(requireContext(), R.string.succes_load_photo, Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(requireContext(), resources.getString(R.string.incorrect_fields), Toast.LENGTH_SHORT).show()
         }

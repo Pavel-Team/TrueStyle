@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
         <variable
             name="viewModel"
@@ -96,6 +97,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_recommendation_clothes" />
 
+            <LinearLayout
+                android:id="@+id/layout_partners"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_title_recommendation_articles"
+                app:layout_constraintStart_toStartOf="@id/title_app"
+                app:layout_constraintTop_toBottomOf="@id/clothes_recommendation_recycler_view"
+                android:orientation="vertical"
+                android:visibility='@{viewModel.liveDataPartners.size()==0 ? View.GONE : View.VISIBLE}'>
+
+                <TextView
+                    style="@style/titleTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_window"
+                    android:text="@string/partners" />
+
+                <ViewFlipper
+                    android:id="@+id/view_flipper_partners"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_recommendation_recycler_view" />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/title_recommendation_articles"
                 style="@style/titleTextViewStyle"
@@ -104,7 +130,7 @@
                 android:layout_marginTop="@dimen/margin_top_title_recommendation_articles"
                 android:text="@string/title_recommendation_articles"
                 app:layout_constraintStart_toStartOf="@id/title_app"
-                app:layout_constraintTop_toBottomOf="@id/clothes_recommendation_recycler_view" />
+                app:layout_constraintTop_toBottomOf="@id/layout_partners" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/articles_recommendation_recycler_view"

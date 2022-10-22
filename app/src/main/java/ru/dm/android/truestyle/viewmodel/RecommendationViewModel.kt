@@ -6,11 +6,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import ru.dm.android.truestyle.api.response.Advertisement
 import ru.dm.android.truestyle.api.response.Article
 import ru.dm.android.truestyle.api.response.Quote
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.preferences.ApplicationPreferences
 import ru.dm.android.truestyle.repository.ApplicationRepository
+import ru.dm.android.truestyle.repository.PartnerRepository
 import ru.dm.android.truestyle.repository.RecommendationRepository
 import ru.dm.android.truestyle.util.Constants
 import java.net.SocketTimeoutException
@@ -21,11 +23,13 @@ class RecommendationViewModel  constructor(application: Application): AndroidVie
 
     val recommendationRepository = RecommendationRepository
     val applicationRepository = ApplicationRepository
+    val partnerRepository = PartnerRepository
 
     var liveDataValidToken: MutableLiveData<Boolean> = MutableLiveData(true) //Сделано палкой, но из активити Response не возвращается
     var liveDataQuote: MutableLiveData<Quote> = MutableLiveData()
     var liveDataClothes: MutableLiveData<List<Stuff>> = MutableLiveData()
     var liveDataArticles: MutableLiveData<List<Article>> = MutableLiveData()
+    val liveDataPartners: MutableLiveData<List<Advertisement>> = MutableLiveData(listOf())
 
     //ВРЕМЕННО
     init {
@@ -57,6 +61,7 @@ class RecommendationViewModel  constructor(application: Application): AndroidVie
                 liveDataQuote.value = recommendationRepository.getQuote(token)
                 liveDataClothes.value = recommendationRepository.getRecommendedClothes(token)
                 liveDataArticles.value = recommendationRepository.getRecommendedArticles(token)
+                liveDataPartners.value = partnerRepository.getPartners(token)
             } catch (e: SocketTimeoutException) {
                 e.printStackTrace()
                 Log.d("sss", "No internet connection")

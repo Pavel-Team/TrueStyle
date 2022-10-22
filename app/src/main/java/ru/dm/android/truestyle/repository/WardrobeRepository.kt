@@ -58,18 +58,18 @@ object WardrobeRepository{
     suspend fun checkClothesInWardrobe(token: String, id: Long, type: String): Boolean {
         val response = networking.api.checkClothesInWardrobe(token, type, id)
         Log.d(TAG, "response = " + response.body()?.message)
+        Log.d(TAG, "message = " + response.message())
         return response.isSuccessful
     }
 
 
     //Добавление фото одежды пользователя в гардероб
     //В случае успеха вернет - Stuff ADDED
-    //В случае неудачи - Stuff has already been added
+    //В случае неудачи - Stuff has already been added, because ...
+    //Если фотографий больше чем 110 - то Stuff didn't add, because The wardrobe is limited to 110 items!
     suspend fun addUserStuff(token: String,
                              stuffInfo: UserStuff,
-                             imageFile: File): Boolean {
-        Log.d(TAG, "start add")
-        Log.d(TAG, token)
+                             imageFile: File): String? {
         val gson: Gson = GsonBuilder().create()
 
         val imgFormData = MultipartBody.Part.createFormData(
@@ -94,12 +94,7 @@ object WardrobeRepository{
             token = token
         )
 
-        Log.d(TAG, gson.toJson(stuffInfo))
-        Log.d(TAG, "code = ${response.code()}")
-        Log.d(TAG, "errorBody.string= ${response.errorBody()?.string()}")
-        Log.d(TAG, "body.message = ${response.body()?.message}")
-
-        return response.isSuccessful
+        return response.body()?.message
     }
 
 
@@ -110,6 +105,15 @@ object WardrobeRepository{
     suspend fun deleteUserStuff(token: String, id: Long): String{
         val response = networking.api.deleteUserStuff(token, id).message()
         Log.d(TAG, response)
+        return response
+    }
+
+
+    //Получение всех категорий одежды
+    //Возвращает список всех категорий одежды
+    suspend fun getAllCategories(token: String): List<String>? {
+        val response = networking.api.getAllCategories(token).body()
+        Log.d(TAG, "response = $response")
         return response
     }
 

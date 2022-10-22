@@ -1,4 +1,4 @@
-/**Фрагмент с политикой конфидециальности*/
+/**Фрагмент с политикой конфидециальности ИЛИ условиями пользования (в зависимости от url присланного в newInstance()*/
 package ru.dm.android.truestyle.ui.screen
 
 import android.os.Bundle
@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.databinding.FragmentPrivacyPolicyBinding
 import ru.dm.android.truestyle.viewmodel.PrivacyPolicyViewModel
 
+private const val ARG_URL = "URL" //URL на html-страницу с правилами/условиями
+
 class PrivacyPolicyFragment : Fragment() {
 
     private lateinit var viewModel: PrivacyPolicyViewModel
@@ -26,6 +28,9 @@ class PrivacyPolicyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this).get(PrivacyPolicyViewModel::class.java)
+
+        //Получаем аргументы
+        viewModel.liveDataHtmlPrivacyPolicy.value = arguments?.getString(ARG_URL, "")!!
 
         _binding = FragmentPrivacyPolicyBinding.inflate(inflater, container, false)
         binding.webViewPrivacyPolicy.webChromeClient = object : WebChromeClient() { //webChromeClient - для обработки событий
@@ -51,7 +56,7 @@ class PrivacyPolicyFragment : Fragment() {
 
         //Загрузилась инфа - показываем её
         viewModel.liveDataHtmlPrivacyPolicy.observe(viewLifecycleOwner, Observer {
-            binding.webViewPrivacyPolicy.loadDataWithBaseURL(null, it, "text/html", "en_US", null)
+            binding.webViewPrivacyPolicy.loadUrl(it)
         })
 
     }
@@ -63,4 +68,17 @@ class PrivacyPolicyFragment : Fragment() {
         _binding = null
     }
 
+
+
+
+    companion object {
+        fun newInstance(url: String) : PrivacyPolicyFragment {
+            val args = Bundle().apply {
+                putString(ARG_URL, url)
+            }
+            return PrivacyPolicyFragment().apply {
+                arguments = args
+            }
+        }
+    }
 }

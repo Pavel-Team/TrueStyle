@@ -45,6 +45,9 @@ interface Api {
     @GET("art/recommended/five")
     suspend fun getRecommendedArticles(@Header("Authorization") token: String): Response<List<Article>>
 
+    @GET("ad/get")
+    suspend fun getPartners(@Header("Authorization") token: String): Response<List<Advertisement>>
+
     //API статей
     @GET("art/recommended/tree")
     suspend fun getSliderArticles(@Header("Authorization") token: String): Response<List<Article>>
@@ -87,12 +90,6 @@ interface Api {
     suspend fun addClothesInWardrobe(@Header("Authorization") token: String,
                                      @Query("id") id: Long): Response<TextMessage>
 
-//    @Multipart
-//    @POST("wardrobe/add/userstuff")
-//    suspend fun addUserStuff(@Part stuffInfo: MultipartBody.Part,
-//                             @Part img: MultipartBody.Part,
-//                             @Header("Authorization") token: String) : Response<TextMessage>
-
     @Multipart
     @POST("wardrobe/add/userstuff")
     suspend fun addUserStuff(@Part("info") stuffInfo: RequestBody,
@@ -111,6 +108,9 @@ interface Api {
     suspend fun checkClothesInWardrobe(@Header("Authorization") token: String,
                                        @Path("type") type: String,
                                        @Query("id") id: Long): Response<TextMessage>
+
+    @GET("wardrobe/all/articleType")
+    suspend fun getAllCategories(@Header("Authorization") token: String): Response<List<String>>
 
     //API поиска одежды
     @POST("clothes/get/cv")

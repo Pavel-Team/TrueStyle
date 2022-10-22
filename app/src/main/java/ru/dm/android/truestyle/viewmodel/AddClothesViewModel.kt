@@ -26,6 +26,8 @@ private const val TAG = "AddClothesViewModel"
 
 class AddClothesViewModel(application: Application) : AndroidViewModel(application) {
     var liveData: MutableLiveData<Stuff> = MutableLiveData(Stuff()) //Добавляемая одежда
+    val liveDataCategories: MutableLiveData<List<String>> = MutableLiveData(listOf())
+    val liveDataStatusAddStuff: MutableLiveData<String> = MutableLiveData()
 
     val liveDataIsCorrectTitle: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataIsCorrectCategory: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -38,6 +40,11 @@ class AddClothesViewModel(application: Application) : AndroidViewModel(applicati
 
     init {
         Log.d("AddClothesViewModel", "init")
+        val token = Constants.TYPE_TOKEN + " " + ApplicationPreferences.getToken(getApplication<Application>().applicationContext)
+
+        viewModelScope.launch {
+            liveDataCategories.value = wardrobeRepository.getAllCategories(token)
+        }
     }
 
 
@@ -68,7 +75,7 @@ class AddClothesViewModel(application: Application) : AndroidViewModel(applicati
                 gender = liveData.value!!.gender
             )
 
-            wardrobeRepository.addUserStuff(
+            liveDataStatusAddStuff.value = wardrobeRepository.addUserStuff(
                 token = token,
                 stuffInfo = stuffInfo,
                 imageFile = file

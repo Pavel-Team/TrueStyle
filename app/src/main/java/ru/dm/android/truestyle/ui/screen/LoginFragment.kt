@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentLoginBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
+import ru.dm.android.truestyle.util.Constants
+import ru.dm.android.truestyle.util.makeLinks
 import ru.dm.android.truestyle.viewmodel.LoginViewModel
 
 private const val TAG = "LoginFragment"
@@ -96,12 +98,16 @@ class LoginFragment : Fragment(){
         })
 
         //Слушатель текста с политикой конфидециальности
-        binding.textViewPrivacyPolicy.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                val fragmentTo = PrivacyPolicyFragment()
+        binding.textViewPrivacyPolicy.makeLinks(
+            Pair(resources.getString(R.string.terms), View.OnClickListener {
+                val fragmentTo = PrivacyPolicyFragment.newInstance(Constants.URL_TERMS)
                 navigation.navigateTo(fragmentTo, R.id.navigation_profile)
-            }
-        })
+            }),
+            Pair(resources.getString(R.string.privacy), View.OnClickListener {
+                val fragmentTo = PrivacyPolicyFragment.newInstance(Constants.URL_PRIVACY_POLICY)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+            })
+        )
 
         return root
     }

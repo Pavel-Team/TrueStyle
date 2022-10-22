@@ -31,6 +31,7 @@
     <string name="tech_support">Техподдержка</string>
     <string name="estimate">Оценить</string>
     <string name="subscribe">Подписаться</string>
+    <string name="partners">Партнеры</string>
     <string name="title_recommendation_articles">Стиль</string>
     <string name="title_recommendation_clothes">Рекомендуем</string>
 
@@ -112,6 +113,8 @@
     <string name="sign_up">Регистрация</string>
     <string name="forgot_password">Забыли пароль? <b>Войти</b></string>
     <string name="privacy_policy">Продолжая, Вы соглашаетесть с <b>правилами</b> True Style и <b>политикой конфиденциальности</b></string>
+    <string name="terms">правилами</string>
+    <string name="privacy">политикой конфиденциальности</string>
     <string name="or_continue_with">или продолжить с</string>
 
     <string name="recommendation">Рекомендации</string>
@@ -175,6 +178,8 @@
 
     <string name="incorrect_fields">Поля заполнены некорректно</string>
     <string name="succes_load_photo">Фото добавлено в гардероб!</string>
+    <string name="limit_photo">Исчерпан лимит фотографий для Вашего гардероба: 110 фото</string>
+    <string name="error_load_user_stuff">Ошибка добавления</string>
 
     <string name="load_photo_with">Загрузить фото с помощью</string>
     <string name="camera">Камеры</string>

@@ -300,6 +300,7 @@
     <string name="tech_support">Support</string>
     <string name="estimate">Estimate</string>
     <string name="subscribe">Subscribe</string>
+    <string name="partners">Partners</string>
     <string name="title_recommendation_articles">Style</string>
     <string name="title_recommendation_clothes">Recommended</string>
 
@@ -389,6 +390,8 @@
     <string name="sign_up">Sign up</string>
     <string name="forgot_password">Forgot your password? <b>Login me.</b></string>
     <string name="privacy_policy">By continuing, you agree to True Style <b>Terms &#38; Conditions</b> and <b>Privacy Policy</b></string>
+    <string name="terms">Terms &#38; Conditions</string>
+    <string name="privacy">Privacy Policy</string>
     <string name="or_continue_with">or continue with</string>
     <string name="google">Google</string>
     <string name="vk">Vk</string>
@@ -458,6 +461,8 @@
 
     <string name="incorrect_fields">Fields filled out incorrectly</string>
     <string name="succes_load_photo">The photo has been added to the wardrobe!</string>
+    <string name="limit_photo">The photo limit for your wardrobe has been exhausted: 110 photos</string>
+    <string name="error_load_user_stuff">Error load photo</string>
 
     <string name="load_photo_with">Load photo with</string>
     <string name="camera">Camera</string>

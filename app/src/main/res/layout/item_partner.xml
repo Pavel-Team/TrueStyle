@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="ru.dm.android.truestyle.api.response.Advertisement" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="@dimen/margin_window"
+        android:layout_marginEnd="@dimen/margin_window"
+        app:cardCornerRadius="@dimen/radius_image_clothes">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            imageUrl="@{model.imgUrl}"
+            tools:src="@drawable/example_clothes" />
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

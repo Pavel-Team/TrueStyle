@@ -26,10 +26,22 @@ fun setWebViewClient(view: WebView, client: WebChromeClient) {
     view.settings.javaScriptEnabled=true
 }
 
+
+//Для ссылок из интернета
 @BindingAdapter("loadUrl")
-fun loadUrl(view: WebView, url: String) {
-    Log.d("ArticleD", url)
-    view.loadUrl(Constants.URL + url)
+fun loadUrl(view: ImageView, url: String) {
+
+    val indicatorLoading = CircularProgressDrawable(view.context)
+    indicatorLoading.centerRadius = 40f
+    indicatorLoading.strokeWidth = 8f
+    indicatorLoading.alpha = 90
+    //indicatorLoading.setColorSchemeColors(view.context.getColor(R.color.light_blue))
+    indicatorLoading.start()
+
+    Glide.with(view.context)
+        .load(url)
+        .placeholder(indicatorLoading)
+        .into(view)
 }
 
 
@@ -39,6 +51,7 @@ fun maxProgress(view: ProgressBar, maxProgress: Int) {
 }
 
 
+//Для ссылок с сервера
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
     if (!url.isNullOrEmpty()) {

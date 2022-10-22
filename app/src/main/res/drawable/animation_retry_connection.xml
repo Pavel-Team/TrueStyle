@@ -5,11 +5,15 @@
     <item android:drawable="@drawable/ic_not_connect"
         android:duration="100"/>
     <item android:drawable="@drawable/ic_not_connect_retry"
-        android:duration="1000"/>
+        android:duration="500"/>
     <item android:drawable="@drawable/ic_not_connect"
-        android:duration="1000"/>
+        android:duration="500"/>
     <item android:drawable="@drawable/ic_not_connect_retry"
-        android:duration="1000"/>
+        android:duration="500"/>
+    <item android:drawable="@drawable/ic_not_connect"
+        android:duration="500"/>
+    <item android:drawable="@drawable/ic_not_connect_retry"
+        android:duration="500"/>
     <item android:drawable="@drawable/ic_not_connect"
         android:duration="100"/>
 </animation-list>
