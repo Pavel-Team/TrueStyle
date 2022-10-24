@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/title_registration"
+                android:text="@string/title_in_registration"
                 android:layout_marginTop="@dimen/padding_top_title_registration"
                 android:textSize="@dimen/font_size_title_registration"
                 android:textColor="@color/text_color" />

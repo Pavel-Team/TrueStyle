@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentLoginBinding
+import ru.dm.android.truestyle.ui.activity.MainActivity
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.util.makeLinks
@@ -25,8 +28,6 @@ class LoginFragment : Fragment(){
     private lateinit var loginViewModel: LoginViewModel
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-
-    private val navigation = Navigation
 
     private var isFirstOpen = true //Первый ли запуск окна (антибаг для обсервера)
 
@@ -62,8 +63,8 @@ class LoginFragment : Fragment(){
         //Слушатель кнопки регистрация
         binding.buttonSignUp.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View?) {
-                val fragmentTo = RegistrationFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                val action = LoginFragmentDirections.actionNavigationLoginToNavigationRegistration()
+                this@LoginFragment.findNavController().navigate(action)
             }
         })
 
@@ -78,8 +79,8 @@ class LoginFragment : Fragment(){
         //Слушатель поля "Забыли пароль?"
         binding.textViewForgotPassword.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                val fragmentTo = PasswordResetFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                val action = LoginFragmentDirections.actionNavigationLoginToNavigationPasswordReset()
+                this@LoginFragment.findNavController().navigate(action)
             }
         })
 
@@ -100,12 +101,12 @@ class LoginFragment : Fragment(){
         //Слушатель текста с политикой конфидециальности
         binding.textViewPrivacyPolicy.makeLinks(
             Pair(resources.getString(R.string.terms), View.OnClickListener {
-                val fragmentTo = PrivacyPolicyFragment.newInstance(Constants.URL_TERMS)
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                val action = LoginFragmentDirections.actionNavigationLoginToNavigationPrivacyPolicy(Constants.URL_TERMS)
+                this@LoginFragment.findNavController().navigate(action)
             }),
             Pair(resources.getString(R.string.privacy), View.OnClickListener {
-                val fragmentTo = PrivacyPolicyFragment.newInstance(Constants.URL_PRIVACY_POLICY)
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                val action = LoginFragmentDirections.actionNavigationLoginToNavigationPrivacyPolicy(Constants.URL_PRIVACY_POLICY)
+                this@LoginFragment.findNavController().navigate(action)
             })
         )
 
@@ -127,10 +128,10 @@ class LoginFragment : Fragment(){
 
         loginViewModel.liveDataIsSignIn.observe(viewLifecycleOwner, Observer {
             if (it) {
-                val fragmentTo = ProfileFragment()
-                navigation.setVisibleNavView() //Включаем нижнее меню при успешном входе
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
-                navigation.clearStackFragment(R.id.navigation_profile)
+                //Включить меню (корректировать)
+                (activity as MainActivity).navView.visibility = View.VISIBLE
+                val action = LoginFragmentDirections.actionNavigationLoginToNavigationRecommendation()
+                this@LoginFragment.findNavController().navigate(action)
             } else {
                 if (binding.editTextLogin.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty() && !isFirstOpen)
                     Toast.makeText(requireContext(), resources.getString(R.string.error_login), Toast.LENGTH_SHORT).show()

@@ -292,6 +292,20 @@
     <string name="title_clothes_search">Search</string>
     <string name="title_articles">Articles</string>
     <string name="title_profile">Profile</string>
+    <string name="title_technical_support">Technical support</string>
+    <string name="title_get_recommendation">Get recommendation</string>
+    <string name="title_add_clothes">Add clothes</string>
+    <string name="title_article">Article</string>
+    <string name="title_articles_in_topic">Articles in topic</string>
+    <string name="title_login">Login</string>
+    <string name="title_registration">Registration</string>
+    <string name="title_password_reset">Password reset</string>
+    <string name="title_set_new_password">Set new password</string>
+    <string name="title_privacy_policy">Privacy policy</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_wardrobe">Wardrobe</string>
+
 
     <string name="fragment_clothes">Clothes</string>
 
@@ -399,7 +413,7 @@
     <string name="recommendation">Recommendation</string>
     <string name="empty_recommendation">Not found</string>
 
-    <string name="title_registration">Join True Style</string>
+    <string name="title_in_registration">Join True Style</string>
     <string name="username">Username</string>
     <string name="email">E-mail address</string>
     <string name="hint_password">For security, your password must be 6 characters (latin letters, digits, symbols \'_?!\' ) or more</string>

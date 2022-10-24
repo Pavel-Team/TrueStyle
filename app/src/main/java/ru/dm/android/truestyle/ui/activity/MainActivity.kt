@@ -5,12 +5,13 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import okhttp3.OkHttpClient
@@ -30,7 +31,6 @@ import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
 import ru.dm.android.truestyle.ui.dialog.NewVersionDialogFragment
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
-import ru.dm.android.truestyle.ui.screen.LoginFragment
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.MainActivityViewModel
 import java.util.*
@@ -38,7 +38,7 @@ import java.util.*
 
 private const val TAG = "MainActivity"
 
-class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener{
+class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
     lateinit var navView: BottomNavigationView
@@ -125,31 +125,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 viewModel.liveDataCorrectAppVersion.value = true
             }
         })
-        viewModel.liveDataCorrectAppVersion.observe(this, Observer {
-            Log.d(TAG, "observer correctAppVersion")
-            Log.d(TAG, it.toString())
-            //Если версия корректна - отрисовываем фрагменты
-            if (it) {
-                //ApplicationPreferences.setToken(this, "")
-                val token = ApplicationPreferences.getToken(this)!!
-                //На слаучай с поворотом экрана
-                if (token == "") {
-                    navView.visibility = View.GONE
-                }
-                if (supportFragmentManager?.backStackEntryCount == 0) {
-                    if (token.equals("")) {
-                        Navigation.lastMenuItem = R.id.navigation_profile
-                        Navigation.lastFragment = LoginFragment()
-                    }
-                    //P.S. проверка валидности токена происходит в RecommendationViewModel
-                    navView.selectedItemId = Navigation.lastMenuItem
-                    supportFragmentManager.beginTransaction()
-                        .add(R.id.nav_host_fragment_activity_main, Navigation.lastFragment)
-                        .addToBackStack(null).commit()
-                }
-            }
-        })
 
+
+        //Настраиваем контейнер
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -157,20 +135,29 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         navView.itemIconTintList = null //Чтобы не накладывался цвет из темы
         navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED //Для того, чтобы не отображался текст
 
-        navigation.setFragmentManager(supportFragmentManager)
-        navigation.setNavView(navView)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        /*val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_recommendation, R.id.navigation_clothes_search, R.id.navigation_articles, R.id.navigation_profile
-            )
-        )
 
-        setupActionBarWithNavController(navController, appBarConfiguration)*/
-//        if (supportFragmentManager.findFragmentById(R.id.container) == null)
-//            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, RecommendationFragment()).commit()
-        navView.setOnItemSelectedListener(this)
+        //Отрисовываем нужный фрагмент в зависимости от корректности версии и токена
+        viewModel.liveDataCorrectAppVersion.observe(this, Observer {
+            Log.d(TAG, "observer correctAppVersion")
+            Log.d(TAG, it.toString())
+            //Если версия корректна - отрисовываем фрагменты
+            if (it) {
+                val token = ApplicationPreferences.getToken(this)!!
+                //На слаучай с поворотом экрана
+                var idStartDestination = R.id.navigation_login
+                if (token == "") {
+                    navView.visibility = View.GONE
+                } else {
+                    idStartDestination = R.id.navigation_recommendation
+                }
+                navController.graph.setStartDestination(idStartDestination)
+                navView.setupWithNavController(navController)
+            }
+        })
+
     }
 
 
@@ -183,18 +170,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "onDestroy MainActivity")
-    }
-
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Log.d(TAG, "Нажат пункт: " + item.title.toString())
-        return navigation.onNavigationItemSelected(item)
-    }
-
-
-    override fun onBackPressed() {
-        if (navigation.onBackPressed())
-            finish()
     }
 
 

@@ -10,6 +10,7 @@ import android.webkit.WebView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import ru.dm.android.truestyle.databinding.FragmentPrivacyPolicyBinding
 import ru.dm.android.truestyle.viewmodel.PrivacyPolicyViewModel
 
@@ -21,6 +22,8 @@ class PrivacyPolicyFragment : Fragment() {
     private var _binding: FragmentPrivacyPolicyBinding? = null
     private val binding get() = _binding!!
 
+    private val args: PrivacyPolicyFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +33,7 @@ class PrivacyPolicyFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(PrivacyPolicyViewModel::class.java)
 
         //Получаем аргументы
-        viewModel.liveDataHtmlPrivacyPolicy.value = arguments?.getString(ARG_URL, "")!!
+        viewModel.liveDataHtmlPrivacyPolicy.value = args.url
 
         _binding = FragmentPrivacyPolicyBinding.inflate(inflater, container, false)
         binding.webViewPrivacyPolicy.webChromeClient = object : WebChromeClient() { //webChromeClient - для обработки событий
@@ -72,6 +75,8 @@ class PrivacyPolicyFragment : Fragment() {
 
 
     companion object {
+        const val ARG_URL = "URL" //URL на html-страницу с правилами/условиями
+
         fun newInstance(url: String) : PrivacyPolicyFragment {
             val args = Bundle().apply {
                 putString(ARG_URL, url)
