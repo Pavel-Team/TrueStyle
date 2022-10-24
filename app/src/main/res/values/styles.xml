@@ -3,7 +3,7 @@
 
     <!--Стиль для TextView заголовка приложения-->
     <style name="titleAppTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="fontFamily">@font/playball_regular</item>
         <item name="android:textSize">30sp</item>
     </style>
@@ -25,7 +25,7 @@
 
     <!--Стиль для TextView заголовков-->
     <style name="titleTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">16sp</item>
     </style>
@@ -39,7 +39,7 @@
 
     <!--Стиль для TextView обычного текста-->
     <style name="textTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textSize">13sp</item>
     </style>
@@ -111,7 +111,7 @@
     </style>
 
     <style name="buttonStyle.whiteBlue">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/background_color</item>
         <item name="android:textColor">@color/light_blue</item>
         <item name="android:textSize">20sp</item>
         <item name="android:stateListAnimator">@null</item>
@@ -120,7 +120,7 @@
 
     <!--Стиль для кнопок с изображением-->
     <style name="buttonStyle.imageButton" parent="buttonStyle.whiteBlue">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:padding">@dimen/inner_padding_image_button</item>
     </style>
 

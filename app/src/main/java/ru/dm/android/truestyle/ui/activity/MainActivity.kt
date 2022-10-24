@@ -127,6 +127,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         })
         viewModel.liveDataCorrectAppVersion.observe(this, Observer {
             Log.d(TAG, "observer correctAppVersion")
+            Log.d(TAG, it.toString())
             //Если версия корректна - отрисовываем фрагменты
             if (it) {
                 //ApplicationPreferences.setToken(this, "")

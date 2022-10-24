@@ -5,6 +5,6 @@
 
     <corners android:radius="@dimen/radius_background_dialog"/>
 
-    <solid android:color="@color/white"/>
+    <solid android:color="@color/background_color"/>
 
 </shape>

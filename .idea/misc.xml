@@ -3,44 +3,70 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable-anydpi/ic_plus.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/animation_retry_connection.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/avd_splash_screen.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/background_dialog_fragment.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/background_layout_characteristics.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/black_circle.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/bottom_gray_line.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/dashed_border.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_back.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_quit.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_search.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_vector_splash_screen.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/white_button.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/white_circle.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/white_rounded_rectangle.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout-land/fragment_add_clothes.xml" value="0.23015873015873015" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout-land/fragment_clothes.xml" value="0.20416666666666666" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout-land/fragment_login.xml" value="0.33" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout-land/fragment_profile.xml" value="0.2310405643738977" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_confirm_quit.xml" value="0.27291666666666664" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_edit_user_info.xml" value="0.27291666666666664" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_edit_user_style.xml" value="0.27291666666666664" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_edit_username.xml" value="0.27291666666666664" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_error_server.xml" value="0.17753623188405798" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_load_photo.xml" value="0.27291666666666664" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_new_version.xml" value="0.11458333333333333" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_not_connection.xml" value="0.17753623188405798" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_add_clothes.xml" value="0.18" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/dialog_fragment_successful_password_reset.xml" value="0.25" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_add_clothes.xml" value="0.25" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_article.xml" value="0.3400389357560026" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_articles.xml" value="0.27291666666666664" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_articles_in_topic.xml" value="0.33" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_clothes.xml" value="0.25" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_clothes_search.xml" value="0.25" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_login.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_edit_profile.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_get_recommendation.xml" value="0.22" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_one_setting.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_password_reset.xml" value="0.17753623188405798" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_privacy_policy.xml" value="0.271875" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_profile.xml" value="0.17753623188405798" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_recommendation.xml" value="0.17753623188405798" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_registration.xml" value="0.17753623188405798" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_article_in_topic.xml" value="0.12552083333333333" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_article_recommendation.xml" value="0.12552083333333333" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_recommendation.xml" value="0.5" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_registration.xml" value="0.16" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_set_new_password.xml" value="0.18" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_settings.xml" value="0.5" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_technical_support.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_topics.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_wardrobe.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_article_in_topic.xml" value="0.25" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_article_recommendation.xml" value="0.5" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_clothes_in_get_recommendation.xml" value="0.12552083333333333" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_clothes_in_wardrobe.xml" value="0.12552083333333333" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_clothes_recommendation.xml" value="0.27291666666666664" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_partner.xml" value="0.27291666666666664" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_recommended_article.xml" value="0.17753623188405798" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_selected_spinner_season.xml" value="0.27291666666666664" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_setting.xml" value="0.17753623188405798" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_spinner_auto_complete_text_view.xml" value="0.12447916666666667" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_spinner_country.xml" value="0.12552083333333333" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_spinner_country.xml" value="0.67" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_spinner_season.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_spinner_styles.xml" value="0.67" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_spinner_styles_selected.xml" value="0.17753623188405798" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/item_topic.xml" value="0.17753623188405798" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable-anydpi/ic_plus.xml" value="0.2890625" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.23717948717948717" />
         <entry key="..\:/Projects/Android Kotlin/TrueStyle/app/src/main/res/drawable/animated_gradient_loading.xml" value="0.194" />

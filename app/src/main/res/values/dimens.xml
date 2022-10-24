@@ -49,6 +49,7 @@
     <dimen name="margin_start_buttons_search_clothes">24dp</dimen>
     <dimen name="margin_between_buttons_search_clothes">8dp</dimen>
     <dimen name="margin_horizontal_buttons_search_clothes">21dp</dimen>
+    <dimen name="text_size_empty">20sp</dimen>
 
     <dimen name="radius_background_user_style">13dp</dimen>
     <dimen name="padding_user_style">3dp</dimen>

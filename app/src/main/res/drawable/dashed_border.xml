@@ -5,5 +5,5 @@
         android:dashGap="@dimen/dash_gap_dashed_border"
         android:dashWidth="@dimen/dash_width_dashed_border"
         android:width="@dimen/width_dash_border"
-        android:color="@color/black" />
+        android:color="@color/text_color" />
 </shape>

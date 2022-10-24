@@ -26,9 +26,12 @@ class MainActivityViewModel: ViewModel() {
     //Функция проверки актуальной версии приложения
     fun checkCurrentAppVersion() {
         viewModelScope.launch {
+            Log.d(TAG, "before getCurrentAppVersion")
             val appVersion = applicationRepository.getCurrentAppVersion()
             Log.d(TAG, appVersion.toString())
+            Log.d(TAG, "after appVersion")
             liveDataAppVersion.value = appVersion!!
+            Log.d(TAG, "after appVersion2")
         }
     }
 

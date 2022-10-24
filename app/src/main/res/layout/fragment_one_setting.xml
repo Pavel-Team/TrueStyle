@@ -11,8 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
         <ImageButton
             android:id="@+id/image_button_back"
@@ -34,7 +33,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/image_button_back"
             app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/hint_setting"
+            android:text="@string/hint_setting"
             android:layout_marginStart="@dimen/margin_start_title_style"
             android:layout_marginTop="@dimen/margin_window"/>
 

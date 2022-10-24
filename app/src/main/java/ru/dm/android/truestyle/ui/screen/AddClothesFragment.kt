@@ -188,7 +188,12 @@ class AddClothesFragment: Fragment() {
         binding.autoCompleteTextViewCategory.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 //Выводим выпадающий список
-                binding.autoCompleteTextViewCategory.showDropDown()
+                try {
+                    binding.autoCompleteTextViewCategory.showDropDown()
+                } catch (e : WindowManager.BadTokenException) {
+                    binding.autoCompleteTextViewCategory.dismissDropDown()
+                    e.printStackTrace()
+                }
             } else {
                 if (listCategories.contains(binding.autoCompleteTextViewCategory.text.toString())) {
                     binding.textViewCategory.setTextColor(resources.getColor(R.color.black))
