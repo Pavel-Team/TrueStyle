@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -31,6 +32,7 @@ import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
 import ru.dm.android.truestyle.ui.dialog.NewVersionDialogFragment
 import ru.dm.android.truestyle.ui.dialog.NotConnectionDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
+import ru.dm.android.truestyle.ui.screen.LoginFragmentDirections
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.MainActivityViewModel
 import java.util.*
@@ -137,6 +139,7 @@ class MainActivity : AppCompatActivity(){
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
+        navView.setupWithNavController(navController)
 
 
         //Отрисовываем нужный фрагмент в зависимости от корректности версии и токена
@@ -147,14 +150,12 @@ class MainActivity : AppCompatActivity(){
             if (it) {
                 val token = ApplicationPreferences.getToken(this)!!
                 //На слаучай с поворотом экрана
-                var idStartDestination = R.id.navigation_login
                 if (token == "") {
                     navView.visibility = View.GONE
                 } else {
-                    idStartDestination = R.id.navigation_recommendation
+                    val action = LoginFragmentDirections.actionNavigationLoginToNavigationRecommendation()
+                    navController.navigate(action)
                 }
-                navController.graph.setStartDestination(idStartDestination)
-                navView.setupWithNavController(navController)
             }
         })
 

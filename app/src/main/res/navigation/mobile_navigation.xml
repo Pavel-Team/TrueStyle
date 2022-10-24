@@ -32,6 +32,22 @@
             app:exitAnim="@anim/to_fragment_close"
             app:popEnterAnim="@anim/back_fragment_open"
             app:popExitAnim="@anim/back_fragment_close" />
+        <action
+            android:id="@+id/action_navigation_recommendation_to_navigation_login"
+            app:destination="@id/navigation_login"
+            app:enterAnim="@anim/to_fragment_open"
+            app:exitAnim="@anim/to_fragment_close"
+            app:popEnterAnim="@anim/back_fragment_open"
+            app:popExitAnim="@anim/back_fragment_close"
+            app:popUpTo="@+id/navigation_login"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_recommendation_to_navigation_article"
+            app:destination="@id/navigation_article"
+            app:enterAnim="@anim/to_fragment_open"
+            app:exitAnim="@anim/to_fragment_close"
+            app:popEnterAnim="@anim/back_fragment_open"
+            app:popExitAnim="@anim/back_fragment_close"/>
     </fragment>
 
     <fragment
@@ -40,8 +56,9 @@
         android:label="@string/fragment_clothes"
         tools:layout="@layout/fragment_clothes">
         <argument
-            android:name="clothes_id"
-            android:defaultValue="-1" />
+            android:name="clothes"
+            app:argType="ru.dm.android.truestyle.api.response.Stuff"
+            app:nullable="false" />
     </fragment>
 
     <fragment
@@ -122,7 +139,12 @@
         android:id="@+id/navigation_article"
         android:name="ru.dm.android.truestyle.ui.screen.ArticleFragment"
         android:label="@string/title_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article">
+        <argument
+            android:name="article"
+            app:argType="ru.dm.android.truestyle.api.response.Article"
+            app:nullable="false"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_articles_in_topic"
@@ -188,7 +210,8 @@
             app:exitAnim="@anim/to_fragment_close"
             app:popEnterAnim="@anim/back_fragment_open"
             app:popExitAnim="@anim/back_fragment_close"
-            app:popUpTo="true"/>
+            app:popUpTo="@+id/navigation_login"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -202,7 +225,9 @@
             app:enterAnim="@anim/to_fragment_open"
             app:exitAnim="@anim/to_fragment_close"
             app:popEnterAnim="@anim/back_fragment_open"
-            app:popExitAnim="@anim/back_fragment_close" />
+            app:popExitAnim="@anim/back_fragment_close"
+            app:popUpTo="@+id/navigation_login"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

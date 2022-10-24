@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
@@ -15,7 +16,8 @@ import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.holder.ClothesHolder
 
 class ClothesRecommendationAdapter(private val context: Context,
-                                   private val listClothes: List<Stuff>): RecyclerView.Adapter<ClothesHolder>() {
+                                   private val listClothes: List<Stuff>,
+                                   private val navController: NavController): RecyclerView.Adapter<ClothesHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothesHolder {
         val binding = DataBindingUtil.inflate<ItemClothesRecommendationBinding>(
@@ -24,7 +26,7 @@ class ClothesRecommendationAdapter(private val context: Context,
             parent,
             false
         )
-        return ClothesHolder(binding)
+        return ClothesHolder(binding, navController)
     }
 
     override fun onBindViewHolder(holder: ClothesHolder, position: Int) {

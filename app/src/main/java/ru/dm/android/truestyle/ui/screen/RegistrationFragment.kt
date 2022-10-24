@@ -15,8 +15,10 @@ import androidx.core.graphics.BlendModeCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentRegistrationBinding
+import ru.dm.android.truestyle.ui.activity.MainActivity
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.RegistrationViewModel
@@ -29,8 +31,6 @@ class RegistrationFragment: Fragment() {
     private val registrationViewModel by viewModels<RegistrationViewModel>()
     private var _binding: FragmentRegistrationBinding? = null
     private val binding get() = _binding!!
-
-    private val navigation = Navigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -220,9 +220,7 @@ class RegistrationFragment: Fragment() {
         //Слушатель для текста "Есть аккаунт"
         binding.textHasAccount.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
-                val fragmentTo = LoginFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
-                navigation.clearStackFragment(R.id.navigation_profile)
+                activity?.onBackPressed()
             }
         })
 
@@ -263,10 +261,9 @@ class RegistrationFragment: Fragment() {
 
             //...убираем анимацию
 
-            val fragmentTo = ProfileFragment()
-            navigation.setVisibleNavView() //Включаем нижнее меню при успешном входе
-            navigation.navigateTo(fragmentTo, R.id.navigation_profile)
-            navigation.clearStackFragment(R.id.navigation_profile)
+            (activity as MainActivity).navView.visibility = View.VISIBLE
+            val action = RegistrationFragmentDirections.actionNavigationRegistrationToNavigationRecommendation()
+            this@RegistrationFragment.findNavController().navigate(action)
         })
     }
 

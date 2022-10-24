@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.FragmentPasswordResetBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
@@ -20,8 +21,6 @@ class PasswordResetFragment : Fragment() {
     private val viewModel by viewModels<PasswordResetViewModel>()
     private var _binding: FragmentPasswordResetBinding? = null
     private val binding get() = _binding!!
-
-    private val navigation = Navigation
 
 
     override fun onCreateView(
@@ -76,8 +75,8 @@ class PasswordResetFragment : Fragment() {
                 isFirstOpen = true
                 binding.textErrorEmail.visibility = View.INVISIBLE
 
-                val fragmentTo = SetNewPasswordFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+                val action = PasswordResetFragmentDirections.actionNavigationPasswordResetToNavigationSetNewPassword()
+                this@PasswordResetFragment.findNavController().navigate(action)
 
                 return@Observer
             } else {

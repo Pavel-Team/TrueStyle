@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Stuff
 import ru.dm.android.truestyle.databinding.FragmentClothesBinding
@@ -29,6 +30,7 @@ class ClothesFragment : Fragment() {
     private lateinit var clothesViewModel: ClothesViewModel
     private var _binding: FragmentClothesBinding? = null
     private val binding get() = _binding!!
+    private val args: ClothesFragmentArgs by navArgs()
 
     private var clothes: Stuff? = Stuff()
     private var width = 0
@@ -38,7 +40,7 @@ class ClothesFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         //Достаем аргументы
-        clothes = arguments?.getParcelable(ARG_CLOTHES)
+        clothes = args.clothes
 
         //Получаем размеры ширины экрана
         val windowManager: WindowManager = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager

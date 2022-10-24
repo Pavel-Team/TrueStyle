@@ -29,8 +29,6 @@ class SetNewPasswordFragment : Fragment() {
     private var _binding: FragmentSetNewPasswordBinding? = null
     private val binding get() = _binding!!
 
-    private val navigation = Navigation
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

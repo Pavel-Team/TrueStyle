@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.api.response.Advertisement
@@ -36,8 +38,6 @@ class RecommendationFragment : Fragment() {
     private lateinit var recommendationViewModel: RecommendationViewModel
     private var _binding: FragmentRecommendationBinding? = null
     private val binding get() = _binding!!
-
-    private val navigation = Navigation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,7 @@ class RecommendationFragment : Fragment() {
         //Настраиваем RecyclerView с рекомендациями для одежды и статей
         binding.clothesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ClothesRecommendationAdapter(context, listOf(Stuff(), Stuff(), Stuff())) //ВРЕМЕННО (потом готовить аж с OnCreate)
+            adapter = ClothesRecommendationAdapter(context, listOf(Stuff(), Stuff(), Stuff()), this@RecommendationFragment.findNavController()) //ВРЕМЕННО (потом готовить аж с OnCreate)
         }
         binding.articlesRecommendationRecyclerView.apply{
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -75,9 +75,8 @@ class RecommendationFragment : Fragment() {
         binding.makePhotoImageButton.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 Log.d(TAG, "onClick")
-                val fragmentTo = ClothesSearchFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-                navigation.clearStackFragment(R.id.navigation_clothes_search)
+                val action = RecommendationFragmentDirections.actionNavigationRecommendationToNavigationClothesSearch()
+                this@RecommendationFragment.findNavController().navigate(action)
             }
         })
 
@@ -105,8 +104,8 @@ class RecommendationFragment : Fragment() {
         //Слушатель кнопки "Техподдержка"
         binding.techSupport.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
-                val fragmentTo = TechnicalSupportFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_recommendation)
+                val action = RecommendationFragmentDirections.actionNavigationRecommendationToNavigationTechnicalSupport()
+                this@RecommendationFragment.findNavController().navigate(action)
             }
         })
 
@@ -119,7 +118,7 @@ class RecommendationFragment : Fragment() {
 
         recommendationViewModel.liveDataClothes.observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "observe liveDataClothes")
-            binding.clothesRecommendationRecyclerView.adapter = ClothesRecommendationAdapter(requireContext(), recommendationViewModel.liveDataClothes.value.orEmpty())
+            binding.clothesRecommendationRecyclerView.adapter = ClothesRecommendationAdapter(requireContext(), recommendationViewModel.liveDataClothes.value.orEmpty(), this@RecommendationFragment.findNavController())
         })
 
         recommendationViewModel.liveDataArticles.observe(viewLifecycleOwner, Observer {
@@ -130,9 +129,8 @@ class RecommendationFragment : Fragment() {
             if (!it) {
                 ApplicationPreferences.setToken(requireContext(), "")
 
-                val fragmentTo = LoginFragment()
-                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
-                navigation.initNewState()
+                val action = RecommendationFragmentDirections.actionNavigationRecommendationToNavigationLogin()
+                this@RecommendationFragment.findNavController().navigate(action)
             }
         })
 

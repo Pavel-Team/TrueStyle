@@ -22,7 +22,7 @@ class GetRecommendationAdapter(private val context: Context,
             parent,
             false
         )
-        return GetRecommendationHolder(binding)
+        return GetRecommendationHolder(binding, context)
     }
 
     override fun onBindViewHolder(holder: GetRecommendationHolder, position: Int) {
