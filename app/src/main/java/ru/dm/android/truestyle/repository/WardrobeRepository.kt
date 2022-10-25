@@ -21,7 +21,7 @@ object WardrobeRepository{
     private val networking = Networking
 
     init {
-        Log.d(TAG, "init")
+//        Log.d(TAG, "init")
     }
 
 
