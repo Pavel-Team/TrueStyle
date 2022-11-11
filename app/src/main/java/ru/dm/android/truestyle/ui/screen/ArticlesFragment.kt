@@ -120,7 +120,7 @@ public class ArticlesFragment : Fragment()  {
         }
 
         val mainActivity = activity!! as MainActivity
-        mainActivity.navView.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+        mainActivity.navView.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.background_bottom_menu))
 
         val menu = mainActivity.navView.menu
         menu.getItem(0).setIcon(resources.getDrawable(R.drawable.ic_recommendation))

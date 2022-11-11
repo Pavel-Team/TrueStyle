@@ -21,6 +21,7 @@
     <color name="purple">#DF00AE</color>
     <color name="light_blue">#449AFF</color>
     <color name="alpha_light_blue">#80449AFF</color>
+    <color name="alpha_light_blue_2">#AA449AFF</color>
 
     <color name="gray">#13000000</color>
     <color name="gray_2">#323232</color>

@@ -8,6 +8,7 @@ object Constants {
     //Константы для проверки версии
     const val MIN_DIFF_DATE_FOR_VISIBLE_DIALOG_APP_VERSION = 24 * 60* 60 * 1000L
     const val LINK_IN_PLAY_MARKET = "https://play.google.com/store/apps/details?id=yio.tro.antiyoy.android&hl=ru&gl=US"
+    const val LINK_IN_RUSTORE = "https://apps.rustore.ru/app/ru.dm.android.truestyle"
 
     //Константы для правил приложения и политики конфидециальности
     const val URL_TERMS = "http://185.221.153.118:8080/policy/TermsAndConditions.html"

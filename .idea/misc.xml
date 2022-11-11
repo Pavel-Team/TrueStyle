@@ -9,9 +9,11 @@
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/background_dialog_fragment.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/background_layout_characteristics.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/black_circle.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/blue_circle.xml" value="0.2035" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/bottom_gray_line.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/dashed_border.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_back.xml" value="0.219" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_crop.xml" value="0.2035" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_quit.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_search.xml" value="0.219" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/drawable/ic_vector_splash_screen.xml" value="0.219" />
@@ -38,6 +40,7 @@
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_articles_in_topic.xml" value="0.33" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_clothes.xml" value="0.25" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_clothes_search.xml" value="0.25" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_crop_photo.xml" value="0.1634963768115942" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_edit_profile.xml" value="0.17753623188405798" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_get_recommendation.xml" value="0.22" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -48,7 +51,7 @@
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_recommendation.xml" value="0.5" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_registration.xml" value="0.16" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_set_new_password.xml" value="0.18" />
-        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_settings.xml" value="0.5" />
+        <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_technical_support.xml" value="0.17753623188405798" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_topics.xml" value="0.17753623188405798" />
         <entry key="..\:/Fast projects/TrueStyle/app/src/main/res/layout/fragment_wardrobe.xml" value="0.17753623188405798" />

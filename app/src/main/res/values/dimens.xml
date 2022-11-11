@@ -163,4 +163,6 @@
     <dimen name="width_ic_make_photo">100dp</dimen>
     <dimen name="text_size_make_photo">16sp</dimen>
     <dimen name="text_size_load_photo_with">18sp</dimen>
+
+    <dimen name="width_apply_crop">64dp</dimen>
 </resources>

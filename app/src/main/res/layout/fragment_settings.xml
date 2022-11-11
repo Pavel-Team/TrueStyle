@@ -191,6 +191,20 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/text_view_privacy_policy"
+            style="@style/textTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_and_privacy_policy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/margin_window"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginEnd="@dimen/margin_window"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -95,10 +95,10 @@ class RecommendationFragment : Fragment() {
         //Слушатель кнопки "Оценить"
         binding.estimate.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
-//                val intent = Intent(Intent.ACTION_VIEW)
-//                intent.data = Uri.parse(Constants.LINK_IN_PLAY_MARKET)
-//                startActivity(intent)
-                Toast.makeText(activity, resources.getString(R.string.soon_update), Toast.LENGTH_SHORT).show()
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(Constants.LINK_IN_RUSTORE)
+                startActivity(intent)
+//                Toast.makeText(activity, resources.getString(R.string.soon_update), Toast.LENGTH_SHORT).show()
             }
         })
 

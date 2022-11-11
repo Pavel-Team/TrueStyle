@@ -20,6 +20,7 @@ import ru.dm.android.truestyle.ui.dialog.ConstantsDialog
 import ru.dm.android.truestyle.ui.dialog.EditUsernameDialogFragment
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.util.Constants
+import ru.dm.android.truestyle.util.makeLinks
 import ru.dm.android.truestyle.viewmodel.SettingsViewModel
 
 
@@ -88,7 +89,7 @@ class SettingsFragment: Fragment() {
         binding.estimate.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(Constants.LINK_IN_PLAY_MARKET)
+                intent.data = Uri.parse(Constants.LINK_IN_RUSTORE)
                 startActivity(intent)
             }
         })
@@ -100,6 +101,18 @@ class SettingsFragment: Fragment() {
                 navigation.navigateTo(fragmentTo, R.id.navigation_profile)
             }
         })
+
+        //Слушатель текста с политикой конфидециальности
+        binding.textViewPrivacyPolicy.makeLinks(
+            Pair(resources.getString(R.string.terms2), View.OnClickListener {
+                val fragmentTo = PrivacyPolicyFragment.newInstance(Constants.URL_TERMS)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+            }),
+            Pair(resources.getString(R.string.privacy2), View.OnClickListener {
+                val fragmentTo = PrivacyPolicyFragment.newInstance(Constants.URL_PRIVACY_POLICY)
+                navigation.navigateTo(fragmentTo, R.id.navigation_profile)
+            })
+        )
 
         return root
     }

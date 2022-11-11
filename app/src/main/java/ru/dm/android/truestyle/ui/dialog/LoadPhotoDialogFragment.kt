@@ -19,7 +19,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,12 +30,14 @@ import ru.dm.android.truestyle.R
 import ru.dm.android.truestyle.databinding.DialogFragmentLoadPhotoBinding
 import ru.dm.android.truestyle.ui.navigation.Navigation
 import ru.dm.android.truestyle.ui.screen.AddClothesFragment
+import ru.dm.android.truestyle.ui.screen.CropPhotoFragment
 import ru.dm.android.truestyle.ui.screen.GetRecommendationFragment
 import ru.dm.android.truestyle.util.Constants
 import ru.dm.android.truestyle.viewmodel.ClothesSearchViewModel
 import java.io.*
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
+
 
 private const val TAG = "LoadPhotoDialogFragment"
 private const val ARG_IS_ADD_TO_WARDROBE = "IS_ADD_TO_WARDROBE" //Аргумент, передаваемый в диалоговое окно, говорящий, нужно ли открывать окно с добавлением одежды в гардероб
@@ -91,31 +92,33 @@ class LoadPhotoDialogFragment : DialogFragment() {
                 // Получаем изображение и получаем его Bitmap
                 Log.d(TAG, "start decode file")
                 val filePath: String = photoFile.getPath()
+
                 bitmapImage = BitmapFactory.decodeFile(filePath)
                 Log.d(TAG, "end decode file")
 
-                Log.d(TAG, "start analyze photo")
-                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
-//                Log.d(TAG, "res:" +dataClothes.toString())
-                Log.d(TAG, "end analyze photo")
-                viewModel.findClothes(dataClothes)
-
-
-                //Наш файл для передачи лежит в photoFile
-                //...отправка на сервер
-
-                //Забираем разрешения и удаляем фото (УДАЛЕНИЕ СДЕЛАТЬ ПОСЛЕ УДАЧНОЙ ОТПРАВКИ)
-                requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-
-                //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
-                if (isAddToWardrobe!!) {
-                    val fragmentTo = AddClothesFragment.newInstance(photoUri, dataClothes)
-                    navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-                    dismiss()
-                } else {
-                    viewModel.findClothes(dataClothes)
-                    photoFile.delete()
-                }
+                cropPhoto(photoUri)
+//                Log.d(TAG, "start analyze photo")
+//                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
+////                Log.d(TAG, "res:" +dataClothes.toString())
+//                Log.d(TAG, "end analyze photo")
+//                viewModel.findClothes(dataClothes)
+//
+//
+//                //Наш файл для передачи лежит в photoFile
+//                //...отправка на сервер
+//
+//                //Забираем разрешения и удаляем фото (УДАЛЕНИЕ СДЕЛАТЬ ПОСЛЕ УДАЧНОЙ ОТПРАВКИ)
+//                requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+//
+//                //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
+//                if (isAddToWardrobe!!) {
+//                    val fragmentTo = AddClothesFragment.newInstance(photoUri, dataClothes)
+//                    navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+//                    dismiss()
+//                } else {
+//                    viewModel.findClothes(dataClothes)
+//                    photoFile.delete()
+//                }
             }
         }
 
@@ -130,19 +133,21 @@ class LoadPhotoDialogFragment : DialogFragment() {
 
                 val inputStream  = context?.contentResolver?.openInputStream(result.data!!.data!!)
                 bitmapImage = BitmapFactory.decodeStream(inputStream)
-                Log.d(TAG, "start analyze photo")
-                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
 
-                Log.d(TAG, "end analyze photo")
-
-                //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
-                if (isAddToWardrobe!!) {
-                    val fragmentTo = AddClothesFragment.newInstance(result.data!!.data!!, dataClothes)
-                    navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-                    dismiss()
-                } else {
-                    viewModel.findClothes(dataClothes)
-                }
+                cropPhoto(result.data!!.data!!)
+//                Log.d(TAG, "start analyze photo")
+//                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
+//
+//                Log.d(TAG, "end analyze photo")
+//
+//                //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
+//                if (isAddToWardrobe!!) {
+//                    val fragmentTo = AddClothesFragment.newInstance(result.data!!.data!!, dataClothes)
+//                    navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+//                    dismiss()
+//                } else {
+//                    viewModel.findClothes(dataClothes)
+//                }
             }
         }
     }
@@ -174,16 +179,16 @@ class LoadPhotoDialogFragment : DialogFragment() {
         Log.d(TAG, isFirstObserve.toString())
         Log.d(TAG, isFirstObserveAntiBug.toString())
 
-        //Слушатель на ливдату с одеждой, подобранной нейронкой
-        viewModel.liveData.observe(this, Observer {
-            if (isFirstObserve) {
-                isFirstObserve = false
-            } else {
-                val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
-                navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-                dismiss()
-            }
-        })
+//        //Слушатель на ливдату с одеждой, подобранной нейронкой
+//        viewModel.liveData.observe(this, Observer {
+//            if (isFirstObserve) {
+//                isFirstObserve = false
+//            } else {
+//                val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
+//                navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+//                dismiss()
+//            }
+//        })
 
         val dialog = Dialog(requireActivity(), R.style.dialogStyle)
         dialog.setContentView(binding.root)
@@ -259,6 +264,16 @@ class LoadPhotoDialogFragment : DialogFragment() {
 
         Log.d(TAG, "resultGallery " + resultLauncherGallery.toString())
         resultLauncherGallery?.launch(pickIntent)
+    }
+
+
+    //Метод для обрезки фото
+    private fun cropPhoto(imageUri: Uri) {
+        Toast.makeText(requireContext(), R.string.crop_photo, Toast.LENGTH_SHORT).show()
+
+        val fragmentTo = CropPhotoFragment.newInstance(imageUri)
+        navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
+        dismiss()
     }
 
 

@@ -24,6 +24,7 @@
 
     <string name="soon_update">Будет доступно в ближайшем обновлении!</string>
 
+    <string name="terms_and_privacy_policy"><b>Правила</b> True Style и <b>политика конфиденциальности</b></string>
     <string name="fragment_clothes">Обзор одежды</string>
 
     <string name="content_description_ic_plus">Сделать фото</string>
@@ -59,6 +60,9 @@
 
     <string name="button_load_photo">Выбрать из галереи</string>
     <string name="button_make_photo">Сделать фото</string>
+    <string name="crop_photo">Выделите одежду на фото</string>
+    <string name="title_crop_photo">Выделение одежды</string>
+    <string name="error_crop">Пожалуйста, обрежьте фото</string>
 
     <string name="settings">Настройки</string>
     <string name="user_style">Стиль пользователя</string>
@@ -114,7 +118,9 @@
     <string name="forgot_password">Забыли пароль? <b>Войти</b></string>
     <string name="privacy_policy">Продолжая, Вы соглашаетесть с <b>правилами</b> True Style и <b>политикой конфиденциальности</b></string>
     <string name="terms">правилами</string>
+    <string name="terms2">Правила</string>
     <string name="privacy">политикой конфиденциальности</string>
+    <string name="privacy2">политика конфиденциальности</string>
     <string name="or_continue_with">или продолжить с</string>
 
     <string name="recommendation">Рекомендации</string>

@@ -304,6 +304,7 @@
     <string name="title_privacy_policy">Privacy policy</string>
     <string name="title_settings">Settings</string>
     <string name="title_setting">Setting</string>
+    <string name="terms_and_privacy_policy"><b>Terms &#38; Conditions</b> and <b>Privacy Policy</b></string>
     <string name="title_wardrobe">Wardrobe</string>
 
     <string name="fragment_clothes">Clothes</string>
@@ -340,6 +341,9 @@
     
     <string name="button_load_photo">Select from Gallery</string>
     <string name="button_make_photo">Make photo</string>
+    <string name="crop_photo">Highlight the clothes in the photo</string>
+    <string name="title_crop_photo">Photo cropping</string>
+    <string name="error_crop">Please crop the photo</string>
 
     <string name="settings">Settings</string>
     <string name="user_style">User style</string>
@@ -405,6 +409,8 @@
     <string name="privacy_policy">By continuing, you agree to True Style <b>Terms &#38; Conditions</b> and <b>Privacy Policy</b></string>
     <string name="terms">Terms &#38; Conditions</string>
     <string name="privacy">Privacy Policy</string>
+    <string name="terms2">Terms &#38; Conditions</string>
+    <string name="privacy2">Privacy Policy</string>
     <string name="or_continue_with">or continue with</string>
     <string name="google">Google</string>
     <string name="vk">Vk</string>

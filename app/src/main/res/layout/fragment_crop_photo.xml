@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_view_crop_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_clothes" />
+
+        <ru.dm.android.truestyle.ui.view.CropView
+            android:id="@+id/crop_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            style="@style/titleAppTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/margin_window"
+            android:layout_marginTop="@dimen/margin_window"
+            android:text="@string/title_crop_photo"
+            android:textColor="@color/white"/>
+
+        <ImageButton
+            android:id="@+id/button_apply"
+            android:layout_width="@dimen/width_apply_crop"
+            android:layout_height="@dimen/width_apply_crop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/margin_window"
+            android:contentDescription="@string/apply"
+            android:src="@drawable/ic_crop"
+            android:background="@drawable/blue_circle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
