@@ -42,8 +42,6 @@ import java.nio.channels.FileChannel
 private const val TAG = "LoadPhotoDialogFragment"
 private const val ARG_IS_ADD_TO_WARDROBE = "IS_ADD_TO_WARDROBE" //Аргумент, передаваемый в диалоговое окно, говорящий, нужно ли открывать окно с добавлением одежды в гардероб
 
-private const val FILE_PROVIDER = "ru.dm.android.truestyle.fileprovider" //Путь до хранилища file-provider'а (указан в манифесте)
-
 
 class LoadPhotoDialogFragment : DialogFragment() {
 
@@ -58,15 +56,8 @@ class LoadPhotoDialogFragment : DialogFragment() {
     private var isFirstObserve = true
     private var isFirstObserveAntiBug = true
 
-    // Classifier
-    val IMG_SIZE: Int = 224
-    //    val IMAGENET_CLASSES = arrayOf("fire", "nofire")
-    val mean = floatArrayOf(0.485f, 0.456f, 0.406f)
-    val std = floatArrayOf(0.229f, 0.224f, 0.225f)
-    lateinit var model: Module
-
     private val navigation = Navigation
-    private var bitmapImage: Bitmap? = null
+    //private var bitmapImage: Bitmap? = null
 
 
     //Обработчики результата активити с камерой и галереей
@@ -92,33 +83,11 @@ class LoadPhotoDialogFragment : DialogFragment() {
                 // Получаем изображение и получаем его Bitmap
                 Log.d(TAG, "start decode file")
                 val filePath: String = photoFile.getPath()
-
-                bitmapImage = BitmapFactory.decodeFile(filePath)
                 Log.d(TAG, "end decode file")
 
-                cropPhoto(photoUri)
-//                Log.d(TAG, "start analyze photo")
-//                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
-////                Log.d(TAG, "res:" +dataClothes.toString())
-//                Log.d(TAG, "end analyze photo")
-//                viewModel.findClothes(dataClothes)
-//
-//
-//                //Наш файл для передачи лежит в photoFile
-//                //...отправка на сервер
-//
-//                //Забираем разрешения и удаляем фото (УДАЛЕНИЕ СДЕЛАТЬ ПОСЛЕ УДАЧНОЙ ОТПРАВКИ)
-//                requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-//
-//                //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
-//                if (isAddToWardrobe!!) {
-//                    val fragmentTo = AddClothesFragment.newInstance(photoUri, dataClothes)
-//                    navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-//                    dismiss()
-//                } else {
-//                    viewModel.findClothes(dataClothes)
-//                    photoFile.delete()
-//                }
+                cropPhoto(photoUri, isAddToWardrobe!!)
+                //Забираем разрешения и удаляем фото (УДАЛЕНИЕ СДЕЛАТЬ ПОСЛЕ УДАЧНОЙ ОТПРАВКИ)
+                requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             }
         }
 
@@ -131,23 +100,7 @@ class LoadPhotoDialogFragment : DialogFragment() {
                 Log.d(TAG, "data data = " + result.data!!.data!!.toString())
                 Log.d(TAG, "***")
 
-                val inputStream  = context?.contentResolver?.openInputStream(result.data!!.data!!)
-                bitmapImage = BitmapFactory.decodeStream(inputStream)
-
-                cropPhoto(result.data!!.data!!)
-//                Log.d(TAG, "start analyze photo")
-//                val dataClothes:String = runObjectDetection(bitmapImage!!) // Передаем объект изображения для классификации
-//
-//                Log.d(TAG, "end analyze photo")
-//
-//                //В зависимости от надобности добавлять в гардероб - шлем запрос на сервер (навигация с запросом в обсервере)
-//                if (isAddToWardrobe!!) {
-//                    val fragmentTo = AddClothesFragment.newInstance(result.data!!.data!!, dataClothes)
-//                    navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-//                    dismiss()
-//                } else {
-//                    viewModel.findClothes(dataClothes)
-//                }
+                cropPhoto(result.data!!.data!!, isAddToWardrobe!!)
             }
         }
     }
@@ -178,17 +131,6 @@ class LoadPhotoDialogFragment : DialogFragment() {
         Log.d(TAG, "onCreateDialog")
         Log.d(TAG, isFirstObserve.toString())
         Log.d(TAG, isFirstObserveAntiBug.toString())
-
-//        //Слушатель на ливдату с одеждой, подобранной нейронкой
-//        viewModel.liveData.observe(this, Observer {
-//            if (isFirstObserve) {
-//                isFirstObserve = false
-//            } else {
-//                val fragmentTo = GetRecommendationFragment.newInstance(ArrayList(it))
-//                navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
-//                dismiss()
-//            }
-//        })
 
         val dialog = Dialog(requireActivity(), R.style.dialogStyle)
         dialog.setContentView(binding.root)
@@ -224,7 +166,7 @@ class LoadPhotoDialogFragment : DialogFragment() {
         val filesDir = context?.applicationContext?.filesDir
         photoFile = File(filesDir, Constants.FILE_NAME)
         photoUri = FileProvider.getUriForFile(requireActivity(),
-            FILE_PROVIDER,
+            Constants.FILE_PROVIDER,
             photoFile)
 
         Log.d(TAG, "########")
@@ -268,131 +210,12 @@ class LoadPhotoDialogFragment : DialogFragment() {
 
 
     //Метод для обрезки фото
-    private fun cropPhoto(imageUri: Uri) {
+    private fun cropPhoto(imageUri: Uri, isAddToWardrobe: Boolean) {
         Toast.makeText(requireContext(), R.string.crop_photo, Toast.LENGTH_SHORT).show()
 
-        val fragmentTo = CropPhotoFragment.newInstance(imageUri)
+        val fragmentTo = CropPhotoFragment.newInstance(imageUri, isAddToWardrobe)
         navigation.navigateTo(fragmentTo, R.id.navigation_clothes_search)
         dismiss()
-    }
-
-
-    // Определяем класс модели
-    private fun runObjectDetection(bitmap: Bitmap): String {
-//        dataClothes.add(getResultDetection(bitmap, "model_class.pt", 143, 254))
-        //TODO: Add object detection code here
-        try {
-//            Log.e(TAG, "path:" + this.context?.let { assetFilePath(it, "article_tye.pt") })
-            Log.d(TAG, "runObjectDetection")
-            this.model = Module.load(this.context?.let { assetFilePath(it, "MobileNetV3_32class_v2.pt") })
-            val out: Int
-            var result = predict(bitmap)
-            val arrayCategories = resources.getStringArray(R.array.categories_stuff)
-            var resultCategory = arrayCategories[result]
-            Log.d(TAG, "result=$result")
-            return resultCategory;
-        } catch (e: IOException) {
-            e.printStackTrace()
-            Log.e(TAG, "гг")
-        }
-
-        return ""; // Это прям херня, нужно будет исправить потом
-    }
-
-    // приведение размера картинки и конвертация ее в тензор
-    fun preprocess(bitmap: Bitmap, size: Int): Tensor {
-        var bitmap = bitmap
-        bitmap = Bitmap.createScaledBitmap(bitmap, size, size, false)
-        return TensorImageUtils.bitmapToFloat32Tensor(bitmap, mean, std)
-    }
-
-    // найти номер максимального элемента в массиве
-    fun argMax(inputs: FloatArray): Int {
-        var maxIndex = -1
-        var maxvalue = -1000000000.0f
-        for (i in inputs.indices) {
-            if (inputs[i] > maxvalue) {
-                maxIndex = i
-                maxvalue = inputs[i]
-            }
-        }
-        return maxIndex
-    }
-
-    // использование НС
-    fun predict(bitmap: Bitmap): Int {
-        val tensor = preprocess(bitmap, IMG_SIZE)
-        val inputs = IValue.from(tensor)
-        val outputs = model.forward(inputs).toTensor()
-        val scores = outputs.dataAsFloatArray
-        Log.d(TAG, "scores=${scores}")
-        val classIndex = argMax(scores)
-        return classIndex
-    }
-
-
-//    // Оптимизация изображения для модели
-//    private fun convertBitmapToByteBuffer(bp: Bitmap, sizeImage: Int): ByteBuffer? {
-//        val imgData: ByteBuffer = ByteBuffer.allocateDirect(java.lang.Float.BYTES * sizeImage * sizeImage * 3)
-//        imgData.order(ByteOrder.nativeOrder())
-//        val bitmap = Bitmap.createScaledBitmap(bp, sizeImage, sizeImage, true)
-//        val intValues = IntArray(sizeImage * sizeImage)
-//
-//        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-//
-//        // Convert the image to floating point.
-//        var pixel = 0
-//        for (i in 0 until sizeImage) {
-//            for (j in 0 until sizeImage) {
-//                val `val` = intValues[pixel++]
-//                imgData.putFloat((`val` shr 16 and 0xFF) / 255f)
-//                imgData.putFloat((`val` shr 8 and 0xFF) / 255f)
-//                imgData.putFloat((`val` and 0xFF) / 255f)
-//            }
-//        }
-//        return imgData
-//    }
-
-
-    //Memory-map the model file in Assets.
-    // Загрузка модели из assets
-    @Throws(IOException::class)
-    private fun loadModelFile(activity: FragmentActivity, filename:String): MappedByteBuffer? {
-        val fileDescriptor = activity.assets.openFd(filename)
-        val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
-        val fileChannel = inputStream.channel
-        val startOffset = fileDescriptor.startOffset
-        val declaredLength = fileDescriptor.declaredLength
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
-    }
-
-    // Загрузка модели
-    fun assetFilePath(context: Context, asset: String): String {
-        val file = File(context.filesDir, asset)
-
-        try {
-            val inpStream: InputStream = context.assets.open(asset)
-            try {
-                val outStream = FileOutputStream(file, false)
-                val buffer = ByteArray(4 * 1024)
-                var read: Int
-
-                while (true) {
-                    read = inpStream.read(buffer)
-                    if (read == -1) {
-                        break
-                    }
-                    outStream.write(buffer, 0, read)
-                }
-                outStream.flush()
-            } catch (ex: Exception) {
-                ex.printStackTrace()
-            }
-            return file.absolutePath
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return ""
     }
 
 

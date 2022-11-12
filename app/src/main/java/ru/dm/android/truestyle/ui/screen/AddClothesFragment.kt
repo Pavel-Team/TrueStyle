@@ -145,6 +145,7 @@ class AddClothesFragment: Fragment() {
         })
 
         viewModel.liveDataStatusAddStuff.observe(viewLifecycleOwner, Observer {
+            binding.buttonAddWardrobe.isEnabled = true
             if (it.equals("Stuff ADDED")) {
                 activity?.onBackPressed()
                 Toast.makeText(requireContext(), R.string.succes_load_photo, Toast.LENGTH_SHORT).show()
@@ -315,6 +316,7 @@ class AddClothesFragment: Fragment() {
             viewModel.addUserStuff(bitmap)
             //Навигация происходит только после успешного добавления фото в onViewCreated()
             //По хорошему бы добавить анимацию и все дела
+            binding.buttonAddWardrobe.isEnabled = false
         } else {
             Toast.makeText(requireContext(), resources.getString(R.string.incorrect_fields), Toast.LENGTH_SHORT).show()
         }

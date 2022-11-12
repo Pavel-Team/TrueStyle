@@ -6,27 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/image_view_crop_photo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/image_clothes" />
-
         <ru.dm.android.truestyle.ui.view.CropView
             android:id="@+id/crop_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            style="@style/titleAppTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="@dimen/margin_window"
-            android:layout_marginTop="@dimen/margin_window"
-            android:text="@string/title_crop_photo"
-            android:textColor="@color/white"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true" />
 
         <ImageButton
             android:id="@+id/button_apply"

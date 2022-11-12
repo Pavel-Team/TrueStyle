@@ -23,6 +23,7 @@
     <string name="title_profile">Профиль</string>
 
     <string name="soon_update">Будет доступно в ближайшем обновлении!</string>
+    <string name="wait">Пожалуйста, подождите</string>
 
     <string name="terms_and_privacy_policy"><b>Правила</b> True Style и <b>политика конфиденциальности</b></string>
     <string name="fragment_clothes">Обзор одежды</string>

@@ -32,5 +32,9 @@ object Constants {
     val REGEX_EMAIL = Regex("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 
     //Константы для работы с файловой системой
-    val FILE_NAME = "temporaryPhoto.jpg"
+    const val FILE_NAME = "temporaryPhoto.jpg"
+    const val FILE_PROVIDER = "ru.dm.android.truestyle.fileprovider" //Путь до хранилища file-provider'а (указан в манифесте)
+
+    //Константы для assets
+    val FILE_NAME_NN = "MobileNetV3_32class_v2.pt"
 }

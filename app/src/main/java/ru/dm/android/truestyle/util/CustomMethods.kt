@@ -5,7 +5,11 @@ import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import ru.dm.android.truestyle.R
 
 
 //Кликабельные ссылки с обработчиком
@@ -38,5 +42,18 @@ fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
     this.movementMethod =
         LinkMovementMethod.getInstance() // without LinkMovementMethod, link can not click
     this.setText(spannableString, TextView.BufferType.SPANNABLE)
+}
+
+
+//Анимация загрузки
+fun ImageView.startLoadAnimation() {
+    val indicatorLoading = CircularProgressDrawable(this.context)
+    indicatorLoading.centerRadius = 40f
+    indicatorLoading.strokeWidth = 8f
+    indicatorLoading.alpha = 90
+    //indicatorLoading.setColorSchemeColors(this.context.getColor(R.color.light_blue))
+    indicatorLoading.start()
+
+    this.setImageDrawable(indicatorLoading)
 }
 

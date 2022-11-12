@@ -187,4 +187,11 @@ object Navigation{
             return false
         }
     }
+
+
+    //Выбросить последний элемент из стека (может выдасть ошибку на последнем элементе)
+    fun popStack(idItemMenu: Int) {
+        mapStackFragments.get(idItemMenu)!!.pop()
+        val lastFragment = mapStackFragments.get(idItemMenu)
+    }
 }
